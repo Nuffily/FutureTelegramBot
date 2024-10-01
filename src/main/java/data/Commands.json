@@ -1,0 +1,69 @@
+[
+  {
+    "location" : "main",
+    "id" : "mainHelp",
+    "inputVariants" : [
+      "help",
+      "pomosh",
+      "h",
+      "рудз"
+    ]
+  },
+
+  {
+    "location" : "main",
+    "id" : "travelToJS",
+    "inputVariants" : [
+      "js",
+      "javascript",
+      "джава",
+      "джс",
+      "джаваскрипт",
+      "оы"
+    ]
+  },
+
+  {
+    "location" : "js",
+    "id" : "toMenu",
+    "inputVariants" : [
+      "back",
+      "nazad",
+      "назад",
+      "бек",
+      "b",
+      "ифсл"
+    ]
+  },
+
+  {
+    "location" : "js",
+    "id" : "JSHelp",
+    "inputVariants" : [
+      "help",
+      "pomosh",
+      "h",
+      "рудз"
+    ]
+  },
+
+  {
+    "location" : "js",
+    "id" : "JSQuestion",
+    "inputVariants" : [
+      "question",
+      "quest",
+      "q",
+      "йгуые"
+    ]
+  },
+
+  {
+    "location" : "main",
+    "id" : "exit",
+    "inputVariants" : [
+      "exit",
+      "учше"
+    ]
+  }
+]
