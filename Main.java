@@ -40,7 +40,7 @@ public class Main {
                 case "javascript":
                     return 1000;
                 default:
-                    System.out.println("Я же сказал хелп введи конч");
+                    System.out.println("Я же сказал хелп введи, если не шаришь");
                     return 0;
             }
         }
