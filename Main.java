@@ -6,15 +6,15 @@ public class Main {
     public static void main(String[] args) {
 
         salutation();
-        Scanner in = new Scanner(System.in);
+        Scanner scan = new Scanner(System.in);
         int a;
         do {
-            a = work(in);
+            a = work(scan);
         } while (a != 0);
     }
 
-    public static int work(Scanner in) {
-        String command = bot.takeCommand(in);
+    public static int work(Scanner scan) {
+        String command = bot.takeCommand(scan);
         int idCommand = bot.commandToId(command);
         if (idCommand == -1) return 0;
         bot.quote(idCommand);
@@ -26,8 +26,8 @@ public class Main {
     }
 
     public static class bot {
-        public static String takeCommand(Scanner in) {
-            String com = in.nextLine();
+        public static String takeCommand(Scanner scan) {
+            String com = scan.nextLine();
             return com;
         }
 
@@ -51,26 +51,20 @@ public class Main {
             {
                 String s;
                 while((s=br.readLine())!=null){
-
                     if (s.equals('$' + String.valueOf(id))) {
                         break;
                     }
                 }
-
                 while((s=br.readLine())!=null){
                     if (s.equals("$")) {
                         break;
                     }
                     System.out.println(s);
                 }
-
-
             }
             catch(IOException ex){
                 System.out.println(ex.getMessage());
             }
         }
-
     }
-
 }

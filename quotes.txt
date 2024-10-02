@@ -15,8 +15,7 @@ hdfg
 
 
 $1000
-kore
-wa
-shiren
-da
+java
+scrip
+t
 $
