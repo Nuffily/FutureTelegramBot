@@ -34,6 +34,7 @@ public class Main {
         public static int commandToId(String command) {
             switch (command) {
                 case "exit":
+                    System.out.println("Пока-пока!");
                     return -1;
                 case "help":
                     return 7;
