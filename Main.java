@@ -14,12 +14,17 @@ public class Main {
     }
 
     public static int work(Scanner scan) {
-        String command = bot.takeCommand(scan);
+
+        String command = bot.read(scan);
         int idCommand = idLib.getId(command, "main");
         if (idCommand == -1) return 0;
         bot.quote(idCommand);
+
         if (idCommand == 1000) {
             JavaScriptLayer.main(scan);
+        }
+        if (idCommand == 2000) {
+            EnglishLayer.main(scan);
         }
         return 1;
     }

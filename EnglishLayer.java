@@ -1,6 +1,6 @@
 import java.util.Scanner;
 
-public class JavaScriptLayer {
+public class EnglishLayer {
 
     public static void main(Scanner scan) {
 
@@ -13,7 +13,7 @@ public class JavaScriptLayer {
 
     public static int work(Scanner scan) {
         String command = bot.read(scan);
-        int idCommand = idLib.getId(command, "JS");
+        int idCommand = idLib.getId(command, "ENG");
         if (idCommand == -1) return 0;
         if (idCommand < 100000) bot.quote(idCommand);
         else bot.question(idCommand, scan);
@@ -21,7 +21,7 @@ public class JavaScriptLayer {
     }
 
     public static void salutation() {
-        System.out.print("Готов изучать JS? Тогда пиши \"quest\"!\nНу или help, если хочешь что-то еще \n");
+        System.out.print("Готов изучать Английский? Тогда пиши \"quest\"!\nНу или help, если хочешь что-то еще \n");
     }
 
 

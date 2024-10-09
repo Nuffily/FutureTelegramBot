@@ -1,4 +1,4 @@
-$1001
+$100001
 What will be the output of the following JavaScript code snippet?
 // JavaScript Equalto Operators
 function equalto()
@@ -9,16 +9,16 @@ function equalto()
     else
         return false;
 }
-$$
+$V
 false
 true
 compilation error
 runtime error
-$$
+$A
 1
-$$
 
-$1002
+
+$100002
 What will be the output of the following JavaScript code?
 // Javascript code snippet to compare the height
 function height()
@@ -27,11 +27,10 @@ function height()
     var type = (height>=190) ? "tall" : "short";
     return type;
 }
-$$
+$V
 short
 123.56
 tall
 190
-$$
+$A
 1
-$$
