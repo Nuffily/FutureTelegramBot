@@ -2,6 +2,7 @@ import java.io.BufferedReader;
 import java.io.FileReader;
 import java.io.IOException;
 import java.util.Scanner;
+import java.lang.Math;
 
 public class bot {
     public static String takeCommand(Scanner scan) {
@@ -24,9 +25,15 @@ public class bot {
                 }
                 System.out.println(s);
             }
+
         }
         catch(IOException ex){
             System.out.println(ex.getMessage());
         }
+    }
+
+    public static void createQuestion(int id) {
+        int questionId = 1001 + (int) (Math.random() * (1002 - 1001 + 1));
+        quote(questionId);
     }
 }

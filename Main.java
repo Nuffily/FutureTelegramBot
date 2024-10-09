@@ -15,9 +15,12 @@ public class Main {
 
     public static int work(Scanner scan) {
         String command = bot.takeCommand(scan);
-        int idCommand = idLib.getId(command);
+        int idCommand = idLib.getId(command, "main");
         if (idCommand == -1) return 0;
         bot.quote(idCommand);
+        if (idCommand == 1000) {
+            JavaScriptLayer.main(scan);
+        }
         return 1;
     }
 
