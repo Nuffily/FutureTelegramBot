@@ -1,4 +1,8 @@
+import java.io.BufferedReader;
+import java.io.FileReader;
+import java.io.IOException;
 import java.util.Scanner;
+import java.util.HashMap;
 
 public class idLib {
     public static int getId(String command, String from) {
@@ -48,10 +52,14 @@ public class idLib {
         return 0;
     }
 
+
+
+
+
     public static int getCountOfQuests(int id) {
         switch (id) {
             case 100000:
-                return 2;
+                return 21;
             case 200000:
                 return 0;
             default:
@@ -59,3 +67,5 @@ public class idLib {
         }
     }
 }
+
+

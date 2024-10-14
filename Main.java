@@ -4,6 +4,12 @@ import java.io.*;
 public class Main {
 
     public static void main(String[] args) {
+        OutputLibrary Lib = new OutputLibrary();
+
+        Lib.fillMaps();
+
+        System.out.println(Lib.MainQuotes.get("help"));
+        System.out.println(Lib.MainQuotes.get("js"));
 
         salutation();
         Scanner scan = new Scanner(System.in);
@@ -16,6 +22,7 @@ public class Main {
     public static int work(Scanner scan) {
 
         String command = bot.read(scan);
+
         int idCommand = idLib.getId(command, "main");
         if (idCommand == -1) return 0;
         bot.quote(idCommand);
