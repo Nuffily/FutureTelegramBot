@@ -19,7 +19,7 @@ public class idLib {
                     case "eng":
                         return 2000;
                     default:
-                        return some.getRandom(11, 17);
+                        return Some.getRandom(11, 17);
                 }
 
             case "JS":
@@ -32,7 +32,7 @@ public class idLib {
                     case "quest":
                         return 100000;
                     default:
-                        return some.getRandom(11, 17);
+                        return Some.getRandom(11, 17);
                 }
 
             case "ENG":
@@ -45,7 +45,7 @@ public class idLib {
                     case "quest":
                         return 200000;
                     default:
-                        return some.getRandom(11, 17);
+                        return Some.getRandom(11, 17);
                 }
         }
 

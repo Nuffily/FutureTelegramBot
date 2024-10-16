@@ -1,4 +1,6 @@
-$100001
+
+$
+1
 What will be the output of the following JavaScript code snippet?
 // JavaScript Equalto Operators
 function equalto()
@@ -10,6 +12,7 @@ function equalto()
         return false;
 }
 $V
+4
 false
 true
 compilation error
@@ -18,7 +21,8 @@ $A
 1
 
 
-$100002
+$
+2
 What will be the output of the following JavaScript code?
 // Javascript code snippet to compare the height
 function height()
@@ -28,6 +32,7 @@ function height()
     return type;
 }
 $V
+4
 short
 123.56
 tall
@@ -36,10 +41,12 @@ $A
 1
 
 
-$100003
+$
+3
 What will be the output of the following code snippet?
 print(typeof(NaN));
 $V
+4
 object
 number
 string
@@ -48,7 +55,8 @@ $A
 2
 
 
-$100004
+$
+4
 What will be the output of the following code snippet?
 let s = "00000001111111";
 let l = 0, r = s.length - 1, ans = -1;
@@ -64,6 +72,7 @@ while(l <= r) {
 }
 print(ans);
 $V
+4
 8
 7
 0
@@ -72,7 +81,8 @@ $A
 2
 
 
-$100005
+$
+5
 What will be the output of the following code snippet?
 let s = "00000001111111";
 let l = 0, r = s.length - 1, ans = -1;
@@ -88,6 +98,7 @@ while(l <= r) {
 }
 print(ans);
 $V
+4
 8
 7
 0
@@ -96,13 +107,15 @@ $A
 2
 
 
-$100006
+$
+6
 What will be the output of the following code snippet?
 const example = ({ a, b, c }) => {
  console.log(a, b, c);
 };
 example(0, 1, 2);
 $V
+4
 0 1 2
 0 undefined undefined
 undefined undefined undefined
@@ -111,7 +124,8 @@ $A
 3
 
 
-$100007
+$
+7
 What will be the output of the following code snippet?
 function solve(arr, rotations){
  if(rotations == 0) return arr;
@@ -123,6 +137,7 @@ function solve(arr, rotations){
 }
 // solve([44, 1, 22, 111], 5);
 $V
+4
 [111,44,1,22]
 [44,1,22,111]
 [1,22,111,44]
@@ -131,13 +146,15 @@ $A
 1
 
 
-$100008
+$
+8
 What will be the output of the following code snippet?
 var a = Math.max();
 var b = Math.min();
 print(a);
 print(b);
 $V
+4
 -infinity infinity
 -infinity -infinity
 -infinity infinity
@@ -146,7 +163,8 @@ $A
 1
 
 
-$100009
+$
+9
 What will be the output of the following code snippet?
 const set = new Set();
 set.add(5);
@@ -156,6 +174,7 @@ for (let item of set) {
  console.log(item + 6);
 }
 $V
+4
 11 NaN NaN
 11 NaN [object Object]
 11 Hello6 [object Object]6
@@ -164,7 +183,8 @@ $A
 3
 
 
-$100010
+$
+10
 What will be the output of the following code snippet?
 var a = "hello";
 var sum = 0;
@@ -173,6 +193,7 @@ for(var i = 0; i < a.length; i++) {
 }
 print(sum);
 $V
+4
 47
 NaN
 0
@@ -181,13 +202,15 @@ $A
 2
 
 
-$100011
+$
+11
 What will be the output of the following code snippet?
 function test(...args) {
  console.log(typeof args);
 }
 test(12);
 $V
+4
 NaN
 Number
 Object
@@ -196,11 +219,13 @@ $A
 3
 
 
-$100012
+$
+12
 What will be the output of the following code snippet?
 var a = true + true + true * 3;
 print(a)
 $V
+4
 3
 0
 Error
@@ -209,11 +234,13 @@ $A
 4
 
 
-$100013
+$
+13
 What will be the output of the following code snippet?
 a = [1, 2, 3, 4, 5];
 print(a.slice(2, 4));
 $V
+4
 3,4
 2,3
 3,4,5
@@ -222,7 +249,8 @@ $A
 1
 
 
-$100014
+$
+14
 What will be the output of the following code snippet?
 var a = 1;
 var b = 0;
@@ -233,6 +261,7 @@ while (a <= 3)
    print(b);
 }
 $V
+4
 4 10 18
 1 2 3
 1 4 7
@@ -241,7 +270,8 @@ $A
 1
 
 
-$100015
+$
+15
 What will be the output of the following code snippet?
 (function(){
  setTimeout(()=> console.log(1),2000);
@@ -250,6 +280,7 @@ What will be the output of the following code snippet?
  console.log(4);
 })();
 $V
+4
 1 2 3 4
 2 3 4 1
 2 4 3 1
@@ -258,7 +289,8 @@ $A
 3
 
 
-$100016
+$
+16
 What will be the output of the following code snippet?
 <script type="text/javascript" language="javascript"
 var a = "Scaler";
@@ -266,6 +298,7 @@ var result = a.substring(2, 4);
 document.write(result);
 </script>
 $V
+4
 al
 ale
 cal
@@ -274,10 +307,12 @@ $A
 1
 
 
-$100017
+$
+17
 When an operator’s value is NULL,
 the typeof returned by the unary operator is:
 $V
+4
 Boolean
 Undefined
 Object
@@ -286,10 +321,12 @@ $A
 3
 
 
-$100018
+$
+18
 When the switch statement matches the expression with the given labels,
 how is the comparison done?
 $V
+4
 Both the datatype and the result of the expression are compared
 Only the datatype of the expression is compared
 Only the value of the expression is compared
@@ -298,9 +335,11 @@ $A
 1
 
 
-$100019
+$
+19
 Which function is used to serialize an object into a JSON string in JavaScript?
 $V
+4
 stringify()
 parse()
 convert()
@@ -309,9 +348,11 @@ $A
 1
 
 
-$100020
+$
+20
 Which object in JavaScript doesn’t have a prototype?
 $V
+4
 Base object
 All objects have a prototype
 None of the objects have a prototype
@@ -320,9 +361,11 @@ $A
 1
 
 
-$100021
+$
+21
 Which of the following are closures in JavaScript?
 $V
+4
 Variables
 Functions
 Objects
@@ -330,6 +373,269 @@ All of the above
 $A
 4
 
+$
+22
+What does the following JavaScript code output?
+console.log(10 == '10');
+$V
+4
+true
+false
+SyntaxError
+TypeError
+$A
+1
+
+$
+23
+What does the following JavaScript function return?
+function checkBoolean() {
+  var x = true;
+  var y = false;
+  return x && y;
+}
+$V
+4
+true
+false
+undefined
+null
+$A
+2
+
+$
+24
+What will be displayed in the console after executing the following code?
+let x = 5;
+let y = 2;
+console.log(x % y);
+$V
+4
+2.5
+1
+2
+0
+$A
+2
+
+$
+25
+What is the result of the following JavaScript expression?
+console.log(typeof undefined);
+$V
+4
+'undefined'
+'object'
+'null'
+'NaN'
+$A
+1
+
+$
+26
+What will the following JavaScript code output?
+console.log("5" + 1);
+$V
+4
+6
+'51'
+'5undefined'
+TypeError
+$A
+2
+
+$
+27
+What will the following JavaScript code output?
+console.log("five" * 2);
+$V
+4
+10
+NaN
+TypeError
+'fivefive'
+$A
+2
+
+
+$
+28
+What will this JavaScript code return?
+function compareNumbers() {
+  return 10 > 9;
+}
+$V
+4
+true
+false
+'10'
+'9'
+$A
+1
+
+$
+29
+What does the following JavaScript function return?
+function testArray() {
+  var arr = [1, 2, 3];
+  return arr[0];
+}
+$V
+4
+1
+2
+3
+'undefined'
+$A
+1
+
+
+
+$
+30
+What will the following JavaScript code output?
+console.log(typeof null);
+$V
+4
+'object'
+'null'
+'undefined'
+'NaN'
+$A
+1
+
+$
+31
+What does the following JavaScript code return?
+function multiply(a, b) {
+  return a * b;
+}
+console.log(multiply(5, 3));
+$V
+4
+15
+8
+'53'
+undefined
+$A
+1
+
+$
+32
+What does this JavaScript code do?
+const arr = ['apple', 'banana', 'cherry'];
+console.log(arr.length);
+$V
+4
+3
+'apple'
+undefined
+TypeError
+$A
+1
+
+$
+33
+What does the following JavaScript code output?
+console.log(0.1 + 0.2 === 0.3);
+$V
+4
+true
+false
+TypeError
+undefined
+$A
+2
+
+$
+34
+How does JavaScript interpret the following code?
+let x = "10";
+let y = "5";
+console.log(x + y);
+$V
+4
+15
+'105'
+'10undefined'
+TypeError
+$A
+2
+
+$
+35
+What will be displayed by the following code?
+console.log("Hello World".charAt(6));
+$V
+4
+W
+w
+H
+undefined
+$A
+2
+
+$
+36
+What happens when this code is executed?
+console.log("2" + 2);
+$V
+4
+4
+'22'
+'2undefined'
+TypeError
+$A
+2
+
+$
+37
+What is the output of the following JavaScript snippet?
+let a = true;
+let b = false;
+console.log(a && b);
+$V
+4
+true
+false
+undefined
+null
+$A
+2
+
+$
+38
+What does the following code return?
+function checkAge(age) {
+  if (age > 18) {
+    return true;
+  } else {
+    return false;
+  }
+}
+console.log(checkAge(20));
+$V
+4
+true
+false
+'20'
+undefined
+$A
+1
+
+$
+39
+What is the result of the following JavaScript expression?
+let num = "10";
+console.log(+num + 5);
+$V
+4
+15
+'105'
+10
+TypeError
+$A
+1
 
 
 
