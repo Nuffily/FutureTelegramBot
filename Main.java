@@ -31,7 +31,7 @@ public class Main {
 //
 //        String command = Bot.read(scan);
 //
-//        int idCommand = idLib.getId(command, "main");
+//        int idCommand = Junk.idLib.getId(command, "main");
 //        if (idCommand == -1) return 0;
 //        Bot.quote(idCommand);
 //

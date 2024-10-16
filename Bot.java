@@ -116,7 +116,7 @@ public class Bot {
 
 //    public static void question(int idCommand, Scanner scan) {
 //
-//        int count = idLib.getCountOfQuests(idCommand);
+//        int count = Junk.idLib.getCountOfQuests(idCommand);
 //
 //        if (count == 0) {
 //            System.out.println("Вопросов нет!.. Почему-то...");
