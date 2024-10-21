@@ -1,3 +1,0 @@
-1 - number of question
-4 - count of answers
-1 - num of correct answer
