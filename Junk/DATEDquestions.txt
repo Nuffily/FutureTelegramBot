@@ -1,0 +1,349 @@
+$100001
+What will be the output of the following JavaScript code snippet?
+// JavaScript Equalto Operators
+function equalto()
+{
+    let num=10;
+    if(num==="10")
+        return true;
+    else
+        return false;
+}
+$V
+false
+true
+compilation error
+runtime error
+$A
+1
+
+
+$100002
+What will be the output of the following JavaScript code?
+// Javascript code snippet to compare the height
+function height()
+{
+    var  height = 123.56;
+    var type = (height>=190) ? "tall" : "short";
+    return type;
+}
+$V
+short
+123.56
+tall
+190
+$A
+1
+
+
+$100003
+What will be the output of the following code snippet?
+print(typeof(NaN));
+$V
+object
+number
+string
+none of the above
+$A
+2
+
+
+$100004
+What will be the output of the following code snippet?
+let s = "00000001111111";
+let l = 0, r = s.length - 1, ans = -1;
+while(l <= r) {
+   var mid = Math.floor((l + r) / 2);
+   if(s[mid] == '1') {
+       ans = mid;
+       r = mid - 1;
+   }
+   else {
+       l = mid + 1;
+   }
+}
+print(ans);
+$V
+8
+7
+0
+1
+$A
+2
+
+
+$100005
+What will be the output of the following code snippet?
+let s = "00000001111111";
+let l = 0, r = s.length - 1, ans = -1;
+while(l <= r) {
+   var mid = Math.floor((l + r) / 2);
+   if(s[mid] == '1') {
+       ans = mid;
+       r = mid - 1;
+   }
+   else {
+       l = mid + 1;
+   }
+}
+print(ans);
+$V
+8
+7
+0
+1
+$A
+2
+
+
+$100006
+What will be the output of the following code snippet?
+const example = ({ a, b, c }) => {
+ console.log(a, b, c);
+};
+example(0, 1, 2);
+$V
+0 1 2
+0 undefined undefined
+undefined undefined undefined
+none of the above
+$A
+3
+
+
+$100007
+What will be the output of the following code snippet?
+function solve(arr, rotations){
+ if(rotations == 0) return arr;
+ for(let i = 0; i < rotations; i++){
+   let element = arr.pop();
+   arr.unshift(element);
+ }
+ return arr;
+}
+// solve([44, 1, 22, 111], 5);
+$V
+[111,44,1,22]
+[44,1,22,111]
+[1,22,111,44]
+[22,111,44,1]
+$A
+1
+
+
+$100008
+What will be the output of the following code snippet?
+var a = Math.max();
+var b = Math.min();
+print(a);
+print(b);
+$V
+-infinity infinity
+-infinity -infinity
+-infinity infinity
+-infinity -infinity
+$A
+1
+
+
+$100009
+What will be the output of the following code snippet?
+const set = new Set();
+set.add(5);
+set.add('Hello');
+set.add({ name: 'Scaler' });
+for (let item of set) {
+ console.log(item + 6);
+}
+$V
+11 NaN NaN
+11 NaN [object Object]
+11 Hello6 [object Object]6
+None of the above
+$A
+3
+
+
+$100010
+What will be the output of the following code snippet?
+var a = "hello";
+var sum = 0;
+for(var i = 0; i < a.length; i++) {
+   sum += (a[i] - 'a');
+}
+print(sum);
+$V
+47
+NaN
+0
+None of the above
+$A
+2
+
+
+$100011
+What will be the output of the following code snippet?
+function test(...args) {
+ console.log(typeof args);
+}
+test(12);
+$V
+NaN
+Number
+Object
+Array
+$A
+3
+
+
+$100012
+What will be the output of the following code snippet?
+var a = true + true + true * 3;
+print(a)
+$V
+3
+0
+Error
+5
+$A
+4
+
+
+$100013
+What will be the output of the following code snippet?
+a = [1, 2, 3, 4, 5];
+print(a.slice(2, 4));
+$V
+3,4
+2,3
+3,4,5
+2,3,4
+$A
+1
+
+
+$100014
+What will be the output of the following code snippet?
+var a = 1;
+var b = 0;
+while (a <= 3)
+{
+   a++;
+   b += a * 2;
+   print(b);
+}
+$V
+4 10 18
+1 2 3
+1 4 7
+None of the above
+$A
+1
+
+
+$100015
+What will be the output of the following code snippet?
+(function(){
+ setTimeout(()=> console.log(1),2000);
+ console.log(2);
+ setTimeout(()=> console.log(3),0);
+ console.log(4);
+})();
+$V
+1 2 3 4
+2 3 4 1
+2 4 3 1
+4 3 1 2
+$A
+3
+
+
+$100016
+What will be the output of the following code snippet?
+<script type="text/javascript" language="javascript"
+var a = "Scaler";
+var result = a.substring(2, 4);
+document.write(result);
+</script>
+$V
+al
+ale
+cal
+caler
+$A
+1
+
+
+$100017
+When an operator’s value is NULL,
+the typeof returned by the unary operator is:
+$V
+Boolean
+Undefined
+Object
+Integer
+$A
+3
+
+
+$100018
+When the switch statement matches the expression with the given labels,
+how is the comparison done?
+$V
+Both the datatype and the result of the expression are compared
+Only the datatype of the expression is compared
+Only the value of the expression is compared
+None of the above
+$A
+1
+
+
+$100019
+Which function is used to serialize an object into a JSON string in JavaScript?
+$V
+stringify()
+parse()
+convert()
+None of the above
+$A
+1
+
+
+$100020
+Which object in JavaScript doesn’t have a prototype?
+$V
+Base object
+All objects have a prototype
+None of the objects have a prototype
+None of the above
+$A
+1
+
+
+$100021
+Which of the following are closures in JavaScript?
+$V
+Variables
+Functions
+Objects
+All of the above
+$A
+4
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
