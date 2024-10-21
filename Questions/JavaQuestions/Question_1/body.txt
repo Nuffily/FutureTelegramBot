@@ -1,9 +1,0 @@
-Что выведет этот код?
-//
-function equalto() {
-    let num=10;
-    if (num === "10")
-        return true;
-    else
-        return false;
-}

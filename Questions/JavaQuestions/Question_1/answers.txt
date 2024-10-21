@@ -1,4 +1,0 @@
-false
-true
-compilation error
-runtime error
