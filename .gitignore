@@ -3,9 +3,10 @@
 /.idea
 
 /out
-
+/Questions
 DATED*
-
+/target
+target
 DATED*.txt
 
 Junk
@@ -16,5 +17,5 @@ junk
 /Junk
 
 sandbox
-Sandbox.java
+src/main/java/Sandbox.java
 Sandbox
