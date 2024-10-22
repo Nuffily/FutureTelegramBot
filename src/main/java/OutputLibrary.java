@@ -17,7 +17,7 @@ public class OutputLibrary {
         singleQuotes = fillMapSingleQuotes("src/main/java/quotes.txt");
         randomQuotes = fillMapRandomQuotes("src/main/java/quotes.txt");
         JSQuestions = fillQuestions("src/main/java/questionsJS.txt");
-        JSQuestions = normalFillQuestions("src/main/java/Questions/JavaQuestions");
+//        JSQuestions = normalFillQuestions("src/main/java/Questions/JavaQuestions");
     }
 
     private Question[] normalFillQuestions(String directory) {
@@ -178,7 +178,7 @@ public class OutputLibrary {
                         responses[i] = stack.pop();
 
                     s = br.readLine();
-                    Some.shuffleArray(responses);
+                    handMadeUtils.shuffleArray(responses);
                     map.put(s, responses);
                 }
             }

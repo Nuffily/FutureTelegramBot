@@ -1,4 +1,13 @@
-{
-    "name" : "Enrico poccho",
-    "age" : 34
-}
+[
+    {
+    "firstName":"Homer",
+    "lastName":"Simpson",
+    "age":44
+    },
+
+    {
+        "firstName":"Enricco",
+        "lastName":"POccho",
+        "age":45
+    }
+]

@@ -1,6 +1,6 @@
 import java.util.Random;
 
-public class Some {
+public class handMadeUtils {
 
     static <T> void shuffleArray(T[] arr) {
         Random rnd = new Random();
