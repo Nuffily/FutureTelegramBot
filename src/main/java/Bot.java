@@ -14,8 +14,7 @@ public class Bot {
         String command;
         command = scan.nextLine();
 
-        if (location.equals("main")) command = library.mainCommands.get(command);
-        else if (location.equals("js")) command = library.JSCommands.get(command);
+        command = library.commands.get(location).get(command);
 
         if (command == null) {
             System.out.println(handMadeUtils.getRndElem(library.randomQuotes.get("unknownCommand")));
@@ -28,7 +27,7 @@ public class Bot {
             quote = handMadeUtils.getRndElem(library.randomQuotes.get(command));
         }
 
-        if (quote != null) System.out.print(quote);
+        if (quote != null) System.out.println(quote);
 
         execute(command);
 

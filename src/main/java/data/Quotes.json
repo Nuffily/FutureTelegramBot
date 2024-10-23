@@ -27,7 +27,7 @@
   {
     "type" : "random",
     "name" : "unknownCommand",
-    "output" : [
+    "outputArray" : [
       "Я же сказал хелп введи, если не шаришь",
       "Я же сказал хелп ввести",
       "Нет такой команды",
@@ -40,7 +40,7 @@
   {
     "type" : "random",
     "name" : "correctAnswer",
-    "output" : [
+    "outputArray" : [
       "Верно!",
       "Правильный ответ!",
       "Верно. Наш слоняра",
@@ -57,7 +57,7 @@
   {
     "type" : "random",
     "name" : "incorrectAnswer",
-    "output" : [
+    "outputArray" : [
       "...неверно",
       "Ну почти...",
       "Вообще ни разу",
