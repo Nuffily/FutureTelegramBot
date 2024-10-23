@@ -49,7 +49,7 @@
 
   {
     "location" : "js",
-    "id" : "JSquestion",
+    "id" : "JSQuestion",
     "inputVariants" : [
       "question",
       "quest",

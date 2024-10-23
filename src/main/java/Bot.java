@@ -48,6 +48,7 @@ public class Bot {
     }
 
     private void createQuestion() {
+
         Question question = handMadeUtils.getRndElem(library.JSQuestions);
 
         Scanner scan = new Scanner(System.in);
