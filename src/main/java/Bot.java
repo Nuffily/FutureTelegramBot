@@ -1,68 +1,63 @@
-import structures.*;
-
 import java.util.Scanner;
 
 public class Bot {
 
-    Location location = Location.MAIN;
-    ResourceStorage storage;
+    String location = "main";
+    OutputLibrary library;
     Scanner scan = new Scanner(System.in);
-    Statistics statisticsJS;
 
     public void run() {
 
         String command;
         command = scan.nextLine();
 
-        command = storage.commands.get(location).get(command);
+        command = library.commands.get(location).get(command);
 
         if (command == null) {
-            PrintService.printlnQuote("unknownCommand");
+            System.out.println(handMadeUtils.getRndElem(library.randomQuotes.get("unknownCommand")));
             return;
         }
 
-        PrintService.printlnQuote(command);
+        String quote;
+        quote = library.singleQuotes.get(command);
+        if ((quote == null) && (library.randomQuotes.get(command) != null)) {
+            quote = handMadeUtils.getRndElem(library.randomQuotes.get(command));
+        }
+
+        if (quote != null) System.out.println(quote);
 
         execute(command);
+
     }
 
     private void execute(String command) {
         switch (command) {
             case "travelToJS":
-                location = Location.JS;
+                location = "js";
                 break;
             case "toMenu":
-                location = Location.MAIN;
+                location = "main";
                 break;
             case "exit":
-                location = Location.EXIT;
+                location = "exit";
                 break;
             case "JSQuestion":
                 createQuestion();
-                break;
-            case "showStatsJS":
-                statisticsJS.printStats();
-                break;
-            case "uploadStatsJS":
-                statisticsJS = Statistics.uploadStats("src/main/java/resources/Statistics.json");
-                break;
-            case "saveStatsJS":
-                statisticsJS.saveStats("src/main/java/resources/Statistics.json");
                 break;
         }
     }
 
     private void createQuestion() {
 
-        Question question = MyUtils.getRandomElement(storage.JSQuestions);
+        Question question = handMadeUtils.getRndElem(library.JSQuestions);
 
         Scanner scan = new Scanner(System.in);
 
-        PrintService.println(question.body + "\n-------------------------------\n"
+        System.out.println(question.body + "-------------------------------\n"
                 + "Варианты ответа:");
 
         for (int i = 0; i < question.answers.length; i++) {
-            PrintService.println((i + 1) + ". " + question.answers[i]);
+            System.out.println(i + ". " + question.answers[i]);
         }
 
         String ans;
@@ -72,32 +67,25 @@ public class Bot {
             ans = scan.nextLine();
 
             if (!ans.matches("[-+]?\\d+")) {
-                PrintService.println("Ответ должен быть числом");
+                System.out.println("Ответ должен быть числом");
                 continue;
             }
 
             answer = Integer.parseInt(ans);
 
             if (answer < 1 || answer > question.answers.length) {
-                PrintService.println("Такого варианта ответа нет");
+                System.out.println("Такого варианта ответа нет");
                 continue;
             }
 
             break;
         }
 
-        if (answer == question.correctAnswer) {
-            PrintService.printlnQuote("correctAnswer");
-
-            statisticsJS.update(question.number, true);
-        }
-        else {
-            PrintService.printlnQuote("incorrectAnswer");
-            PrintService.printQuote("correctAnswerIs");
-            PrintService.println("" + question.correctAnswer);
-
-            statisticsJS.update(question.number, false);
-        }
+        if (answer == question.correctAnswer)
+            System.out.println(handMadeUtils.getRndElem(library.randomQuotes.get("correctAnswer")));
+        else
+            System.out.println(handMadeUtils.getRndElem(library.randomQuotes.get("incorrectAnswer"))
+                    + "\nПравильным ответом был вариант " + question.correctAnswer);
     }
 
 }
