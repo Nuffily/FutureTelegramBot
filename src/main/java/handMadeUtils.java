@@ -20,8 +20,4 @@ public class handMadeUtils {
         int elem = getRandom(0, arr.length - 1);
         return arr[elem];
     }
-
-    //1001 + (int) (Math.random() * (1002 - 1001 + 1))
-
-
 }
