@@ -41,7 +41,7 @@ public class Bot {
             case "exit":
                 location = "exit";
                 break;
-            case "JSquestion":
+            case "JSQuestion":
                 createQuestion();
                 break;
         }

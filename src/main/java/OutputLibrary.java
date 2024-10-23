@@ -87,7 +87,7 @@ public class OutputLibrary {
 
     private HashMap<String, String> importSingleQuotes(String path) {
 
-        HashMap<String, String> map = new HashMap<String, String>();
+        HashMap<String, String> map = new HashMap<>();
         File file = new File(path);
 
         ObjectMapper objectMapper = new ObjectMapper();
