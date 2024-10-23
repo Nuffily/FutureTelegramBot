@@ -1,6 +1,3 @@
-import java.io.BufferedReader;
-import java.io.FileReader;
-import java.io.IOException;
 import java.util.Scanner;
 
 public class Bot {
@@ -83,11 +80,11 @@ public class Bot {
             break;
         }
 
-        if (answer == question.correctAns)
+        if (answer == question.correctAnswer)
             System.out.println(handMadeUtils.getRndElem(library.randomQuotes.get("correctAnswer")));
         else
             System.out.println(handMadeUtils.getRndElem(library.randomQuotes.get("incorrectAnswer"))
-                    + "\nПравильным ответом был вариант " + question.correctAns);
+                    + "\nПравильным ответом был вариант " + question.correctAnswer);
     }
 
 

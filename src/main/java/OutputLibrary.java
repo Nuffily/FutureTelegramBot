@@ -1,10 +1,8 @@
 import java.io.*;
 import java.util.HashMap;
-import java.util.Map;
-import java.util.Stack;
+
 import com.fasterxml.jackson.annotation.JsonAutoDetect;
 import com.fasterxml.jackson.annotation.PropertyAccessor;
-import com.fasterxml.jackson.core.type.TypeReference;
 import com.fasterxml.jackson.databind.ObjectMapper;
 
 public class OutputLibrary {
@@ -12,13 +10,28 @@ public class OutputLibrary {
     HashMap<String, String> singleQuotes;
     HashMap<String, String[]> randomQuotes;
     Question[] JSQuestions;
-    int countOfJSQuestions = 39;
 
     public void fillMaps() {
         commands = importCommands("src/main/java/data/Commands.json");
         singleQuotes = importSingleQuotes("src/main/java/data/Quotes.json");
         randomQuotes = importRandomQuotes("src/main/java/data/Quotes.json");
-        JSQuestions = fillQuestions("src/main/java/questionsJS.txt");
+        JSQuestions = importQuestions("src/main/java/data/QuestionsJS.json");
+    }
+
+    private Question[] importQuestions(String path) {
+        Question[] array;
+        File file = new File(path);
+
+        ObjectMapper objectMapper = new ObjectMapper();
+        objectMapper.setVisibility(PropertyAccessor.FIELD, JsonAutoDetect.Visibility.ANY);
+
+        try {
+            array = objectMapper.readValue(file, Question[].class);
+        } catch (IOException e) {
+            throw new RuntimeException(e);
+        }
+
+        return array;
     }
 
     private HashMap<String, HashMap<String, String> > importCommands(String path) {
@@ -95,48 +108,48 @@ public class OutputLibrary {
         return map;
     }
 
-    private Question[] fillQuestions(String fileName) {
-
-        Question[] array = new Question[countOfJSQuestions];
-
-        try(BufferedReader br = new BufferedReader(new FileReader(fileName)))
-        {
-            Question question;
-            String s;
-            int questNumber = 0;
-
-            while ((s = br.readLine()) != null) {
-
-                question = new Question();
-
-                while ((s = br.readLine()) != null && !(s.equals("$"))) { }
-
-                if (s == null) break;
-
-                question.number = Integer.parseInt(br.readLine());
-
-                while (((s = br.readLine()) != null) && !s.equals("$V")) {
-                    question.body += s  + "\n";
-                }
-
-                question.answers = new String[Integer.parseInt(br.readLine())];
-
-                for (int i = 0; ((s = br.readLine()) != null) && !s.equals("$A"); i++) {
-                    question.answers[i] = s;
-                }
-
-                question.correctAns = Integer.parseInt(br.readLine());
-
-                array[questNumber++] = question;
-//                System.out.println(arr[questNumber - 1].number);
-            }
-        }
-        catch(IOException ex){
-            System.out.println(ex.getMessage());
-        }
-
-        return array;
-    }
+//    private Question[] fillQuestions(String fileName) {
+//
+//        Question[] array = new Question[countOfJSQuestions];
+//
+//        try(BufferedReader br = new BufferedReader(new FileReader(fileName)))
+//        {
+//            Question question;
+//            String s;
+//            int questNumber = 0;
+//
+//            while ((s = br.readLine()) != null) {
+//
+//                question = new Question();
+//
+//                while ((s = br.readLine()) != null && !(s.equals("$"))) { }
+//
+//                if (s == null) break;
+//
+//                question.number = Integer.parseInt(br.readLine());
+//
+//                while (((s = br.readLine()) != null) && !s.equals("$V")) {
+//                    question.body += s  + "\n";
+//                }
+//
+//                question.answers = new String[Integer.parseInt(br.readLine())];
+//
+//                for (int i = 0; ((s = br.readLine()) != null) && !s.equals("$A"); i++) {
+//                    question.answers[i] = s;
+//                }
+//
+//                question.correctAnswer = Integer.parseInt(br.readLine());
+//
+//                array[questNumber++] = question;
+////                System.out.println(arr[questNumber - 1].number);
+//            }
+//        }
+//        catch(IOException ex){
+//            System.out.println(ex.getMessage());
+//        }
+//
+//        return array;
+//    }
 
 //    private HashMap<String, String> fillCommands(String fileName) {
 //

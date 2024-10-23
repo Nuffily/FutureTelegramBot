@@ -1,36 +1,20 @@
 public class Question {
     String body = "";
     String[] answers;
-    int correctAns;
+    int correctAnswer;
     int number;
-}
+    int countOfAnswers;
 
-class Quote {
-    String type = "";
-    String name = "";
-    String output = "";
-    String[] outputArray = {};
+    Question() {}
 
-    Quote() {}
-
-    Quote(String type, String name, String output, String[] outputArray) {
-        this.type = type;
-        this.name = name;
-        this.output = output;
-        this.outputArray = outputArray;
+    Question(String body, String[] answers, int correctAns, int number, int countOfAnswers) {
+        this.body = body;
+        this.answers = answers;
+        this.correctAnswer = correctAns;
+        this.number = number;
+        this.countOfAnswers = countOfAnswers;
     }
 }
 
-class Command {
-    String location = "";
-    String id = "";
-    String[] inputVariants = {};
 
-    Command() {}
 
-    Command(String location, String id, String[] inputVariants) {
-        this.location = location;
-        this.id = id;
-        this.inputVariants = inputVariants;
-    }
-}
