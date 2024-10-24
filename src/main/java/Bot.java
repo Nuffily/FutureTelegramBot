@@ -1,3 +1,5 @@
+import structures.Question;
+
 import java.util.Scanner;
 
 public class Bot {
@@ -14,14 +16,14 @@ public class Bot {
         command = library.commands.get(location).get(command);
 
         if (command == null) {
-            System.out.println(handMadeUtils.getRndElem(library.randomQuotes.get("unknownCommand")));
+            System.out.println(MyUtils.getRandomElement(library.randomQuotes.get("unknownCommand")));
             return;
         }
 
         String quote;
         quote = library.singleQuotes.get(command);
         if ((quote == null) && (library.randomQuotes.get(command) != null)) {
-            quote = handMadeUtils.getRndElem(library.randomQuotes.get(command));
+            quote = MyUtils.getRandomElement(library.randomQuotes.get(command));
         }
 
         if (quote != null) System.out.println(quote);
@@ -49,7 +51,7 @@ public class Bot {
 
     private void createQuestion() {
 
-        Question question = handMadeUtils.getRndElem(library.JSQuestions);
+        Question question = MyUtils.getRandomElement(library.JSQuestions);
 
         Scanner scan = new Scanner(System.in);
 
@@ -82,95 +84,10 @@ public class Bot {
         }
 
         if (answer == question.correctAnswer)
-            System.out.println(handMadeUtils.getRndElem(library.randomQuotes.get("correctAnswer")));
+            System.out.println(MyUtils.getRandomElement(library.randomQuotes.get("correctAnswer")));
         else
-            System.out.println(handMadeUtils.getRndElem(library.randomQuotes.get("incorrectAnswer"))
+            System.out.println(MyUtils.getRandomElement(library.randomQuotes.get("incorrectAnswer"))
                     + "\nПравильным ответом был вариант " + question.correctAnswer);
     }
 
-
-
-//    public static void quote(int id) {
-//        try(BufferedReader br = new BufferedReader(new FileReader("quotes.txt")))
-//        {
-//            String s;
-//            while((s=br.readLine())!=null){
-//                if (s.equals('$' + String.valueOf(id))) {
-//                    break;
-//                }
-//            }
-//            while((s=br.readLine())!=null){
-//                if (s.equals("$")) {
-//                    break;
-//                }
-//                System.out.println(s);
-//            }
-//
-//        }
-//        catch(IOException ex){
-//            System.out.println(ex.getMessage());
-//        }
-//    }
-
-//    public static void question(int idCommand, Scanner scan) {
-//
-//        int count = Junk.idLib.getCountOfQuests(idCommand);
-//
-//        if (count == 0) {
-//            System.out.println("Вопросов нет!.. Почему-то...");
-//            return;
-//        }
-//
-//        int id = Some.getRandom(idCommand + 1, idCommand + count);
-//
-//        String realAnswer = printQuestion(id);
-//        String answer = read(scan);
-//
-//        while (!answer.matches("[-+]?\\d+")) {
-//            System.out.println("Кажись, это не ответ");
-//            answer = read(scan);
-//        }
-//
-//        if (answer.equals(realAnswer)) quote(Some.getRandom(201, 211));
-//        else {
-//            quote(Some.getRandom(401, 410));
-//            System.out.println("Правильным ответом был под номером " + realAnswer);
-//        }
-//
-//        System.out.println();
-//
-//    }
-
-//    public static String printQuestion(int id) {
-//        try(BufferedReader br = new BufferedReader(new FileReader("DATEDquestions.txt")))
-//        {
-//            String s;
-//            while((s=br.readLine())!=null){
-//                if (s.equals('$' + String.valueOf(id))) {
-//                    break;
-//                }
-//            }
-//            System.out.println();
-//            while((s=br.readLine())!=null){
-//                if (s.equals("$V")) {
-//                    break;
-//                }
-//                System.out.println(s);
-//            }
-//            System.out.println();
-//            for (int i = 1; (s = br.readLine())!=null; i++) {
-//                if (s.equals("$A")) {
-//                    break;
-//                }
-//                System.out.println(i + ". "+ s);
-//            }
-//            return br.readLine();
-//
-//        }
-//        catch(IOException ex){
-//            System.out.println(ex.getMessage());
-//        }
-//        return "1";
-//
-//    }
 }

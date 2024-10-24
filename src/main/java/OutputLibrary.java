@@ -1,17 +1,21 @@
 import java.io.*;
 import java.util.HashMap;
+import java.util.Map;
 
 import com.fasterxml.jackson.annotation.JsonAutoDetect;
 import com.fasterxml.jackson.annotation.PropertyAccessor;
 import com.fasterxml.jackson.databind.ObjectMapper;
+import structures.*;
 
 public class OutputLibrary {
-    HashMap<String, HashMap<String, String> > commands;
-    HashMap<String, String> singleQuotes;
-    HashMap<String, String[]> randomQuotes;
+    Map<String, HashMap<String, String> > commands;
+    Map<String, String> singleQuotes;
+    Map<String, String[]> randomQuotes;
     Question[] JSQuestions;
 
     public void fillMaps() {
+
+
         commands = importCommands("src/main/java/data/Commands.json");
         singleQuotes = importSingleQuotes("src/main/java/data/Quotes.json");
         randomQuotes = importRandomQuotes("src/main/java/data/Quotes.json");
@@ -23,7 +27,7 @@ public class OutputLibrary {
         File file = new File(path);
 
         ObjectMapper objectMapper = new ObjectMapper();
-        objectMapper.setVisibility(PropertyAccessor.FIELD, JsonAutoDetect.Visibility.ANY);
+        objectMapper.setVisibility(PropertyAccessor.FIELD, JsonAutoDetect.Visibility.ANY); //нужно ли?
 
         try {
             array = objectMapper.readValue(file, Question[].class);
@@ -34,8 +38,13 @@ public class OutputLibrary {
         return array;
     }
 
-    private HashMap<String, HashMap<String, String> > importCommands(String path) {
-        HashMap<String, HashMap<String, String> > map = new HashMap<>();
+//    private <T>  T read(File file, Class<T> clazz) {
+//        ObjectMapper objectMapper = new ObjectMapper();
+//        objectMapper.readValue(file, clazz);
+//    }
+
+    private Map<String, HashMap<String, String> > importCommands(String path) {
+        Map<String, HashMap<String, String> > map = new HashMap<>();
         File file = new File(path);
 
         ObjectMapper objectMapper = new ObjectMapper();
@@ -62,9 +71,9 @@ public class OutputLibrary {
         return map;
     }
 
-    private HashMap<String, String[]> importRandomQuotes(String path) {
+    private Map<String, String[]> importRandomQuotes(String path) {
 
-        HashMap<String, String[]> map = new HashMap<>();
+        Map<String, String[]> map = new HashMap<>();
         File file = new File(path);
 
         ObjectMapper objectMapper = new ObjectMapper();
@@ -85,7 +94,7 @@ public class OutputLibrary {
         return map;
     }
 
-    private HashMap<String, String> importSingleQuotes(String path) {
+    private Map<String, String> importSingleQuotes(String path) {
 
         HashMap<String, String> map = new HashMap<>();
         File file = new File(path);
@@ -107,172 +116,4 @@ public class OutputLibrary {
 
         return map;
     }
-
-//    private Question[] fillQuestions(String fileName) {
-//
-//        Question[] array = new Question[countOfJSQuestions];
-//
-//        try(BufferedReader br = new BufferedReader(new FileReader(fileName)))
-//        {
-//            Question question;
-//            String s;
-//            int questNumber = 0;
-//
-//            while ((s = br.readLine()) != null) {
-//
-//                question = new Question();
-//
-//                while ((s = br.readLine()) != null && !(s.equals("$"))) { }
-//
-//                if (s == null) break;
-//
-//                question.number = Integer.parseInt(br.readLine());
-//
-//                while (((s = br.readLine()) != null) && !s.equals("$V")) {
-//                    question.body += s  + "\n";
-//                }
-//
-//                question.answers = new String[Integer.parseInt(br.readLine())];
-//
-//                for (int i = 0; ((s = br.readLine()) != null) && !s.equals("$A"); i++) {
-//                    question.answers[i] = s;
-//                }
-//
-//                question.correctAnswer = Integer.parseInt(br.readLine());
-//
-//                array[questNumber++] = question;
-////                System.out.println(arr[questNumber - 1].number);
-//            }
-//        }
-//        catch(IOException ex){
-//            System.out.println(ex.getMessage());
-//        }
-//
-//        return array;
-//    }
-
-//    private HashMap<String, String> fillCommands(String fileName) {
-//
-//        HashMap<String, String> map = new HashMap<String, String>();
-//
-//        try(BufferedReader br = new BufferedReader(new FileReader(fileName)))
-//        {
-//            String command = "";
-//            String s = "";
-//            while ((s = br.readLine()) != null) {
-//
-//                while ((s = br.readLine()) != null && !s.equals("$")) { }
-//
-//                command = br.readLine();
-//                br.readLine();
-//
-//                while (((s = br.readLine()) != null) && !s.equals("$")) {
-//                    map.put(s, command);
-//                }
-//            }
-//        }
-//        catch(IOException ex){
-//            System.out.println(ex.getMessage());
-//        }
-//
-//        return map;
-//    }
-
-//    private HashMap<String, String> fillMapSingleQuotes(String fileName) {
-//
-//        HashMap<String, String> map = new HashMap<String, String>();
-//
-//        try(BufferedReader br = new BufferedReader(new FileReader(fileName)))
-//        {
-//            String response = "";
-//            String s = "";
-//            while ((s = br.readLine()) != null) {
-//
-//                response = "";
-//
-//                if (s.equals("$s")) {
-//
-//                    while ((s = br.readLine()) != null && !s.equals("$")) {
-//                        response += s + "\n";
-//                    }
-//
-//                    s = br.readLine();
-//                    map.put(s, response);
-//                }
-//            }
-//        }
-//        catch(IOException ex){
-//            System.out.println(ex.getMessage());
-//        }
-//        return map;
-//    }
-//
-//    private HashMap<String, String[]> fillMapRandomQuotes(String fileName) {
-//
-//        HashMap<String, String[]> map = new HashMap<String, String[]>();
-//        String responses[];
-//
-//        try(BufferedReader br = new BufferedReader(new FileReader(fileName)))
-//        {
-//            String s = "";
-//            String cur = "";
-//            Stack<String> stack = new Stack<String>();
-//            int ResponseCount;
-//
-//            while ((s = br.readLine()) != null) {
-//
-//                if (s.equals("$r")) {
-//
-//                    ResponseCount = 0;
-//                    a: while (true) {
-//                        while ((s = br.readLine()) != null && !s.equals("$") && !s.equals("$$")) {
-//                            cur += s;
-//                        }
-//                        stack.push(cur);
-//                        ResponseCount++;
-//                        cur = "";
-//                        if (s == null || s.equals("$$")) break;
-//                    }
-//
-//                    responses = new String[ResponseCount];
-//
-//                    for (int i = 0; i < ResponseCount; i++)
-//                        responses[i] = stack.pop();
-//
-//                    s = br.readLine();
-//                    handMadeUtils.shuffleArray(responses);
-//                    map.put(s, responses);
-//                }
-//            }
-//        }
-//        catch(IOException ex){
-//            System.out.println(ex.getMessage());
-//        }
-//        return map;
-//    }
-//
-
-//    private void createPredefinedQuote(HashMap<String, String> map, BufferedReader br1) {
-//        String response = "";
-//
-//        try(BufferedReader br = br1)
-//        {
-//            String s;
-//
-//            response = "";
-//
-//            while ((s = br.readLine()) != null && !s.equals("$")) {
-//                response += s + "\n";
-//            }
-//
-//            while (((s = br.readLine()) != null) && !s.equals("$end")) {
-//                map.put(s, response);
-//            }
-//            return;
-//        }
-//        catch(IOException ex){
-//            System.out.println(ex.getMessage());
-//        }
-//    }
-
 }

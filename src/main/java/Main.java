@@ -24,25 +24,4 @@ public class Main {
 
         System.out.print("Пока-пока!");
     }
-
-
-
-
-//    public static int work(Scanner scan) {
-//
-//        String command = Bot.read(scan);
-//
-//        int idCommand = Junk.idLib.getId(command, "main");
-//        if (idCommand == -1) return 0;
-//        Bot.quote(idCommand);
-//
-//        if (idCommand == 1000) {
-//            JavaScriptLayer.main(scan);
-//        }
-//        if (idCommand == 2000) {
-//            EnglishLayer.main(scan);
-//        }
-//        return 1;
-//    }
-
 }
