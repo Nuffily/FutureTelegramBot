@@ -1,13 +1,13 @@
 package structures;
 
 public class Command {
-    public Location location;
+    public String location = "";
     public String id = "";
     public String[] inputVariants = {};
 
     public Command() {}
 
-    public Command(Location location, String id, String[] inputVariants) {
+    public Command(String location, String id, String[] inputVariants) {
         this.location = location;
         this.id = id;
         this.inputVariants = inputVariants;

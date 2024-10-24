@@ -1,17 +1,17 @@
 package structures;
 
 public class Quote {
-    public QuoteType type;
+    public  String type = "";
     public String name = "";
-    public String response = "";
-    public String[] responseRandom = {}; //sealed class
+    public String output = "";
+    public String[] outputArray = {}; //sealed class
 
     public Quote() {}
 
-    public Quote(String type, String name, String response, String[] responseRandom) {
-        this.type = QuoteType.valueOf(type);
+    public Quote(String type, String name, String output, String[] outputArray) {
+        this.type = type;
         this.name = name;
-        this.response = response;
-        this.responseRandom = responseRandom;
+        this.output = output;
+        this.outputArray = outputArray;
     }
 }
