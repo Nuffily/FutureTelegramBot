@@ -1,17 +1,21 @@
 import java.io.*;
 import java.util.HashMap;
+import java.util.Map;
 
 import com.fasterxml.jackson.annotation.JsonAutoDetect;
 import com.fasterxml.jackson.annotation.PropertyAccessor;
 import com.fasterxml.jackson.databind.ObjectMapper;
+import structures.*;
 
 public class OutputLibrary {
-    HashMap<String, HashMap<String, String> > commands;
-    HashMap<String, String> singleQuotes;
-    HashMap<String, String[]> randomQuotes;
+    Map<String, HashMap<String, String> > commands;
+    Map<String, String> singleQuotes;
+    Map<String, String[]> randomQuotes;
     Question[] JSQuestions;
 
     public void fillMaps() {
+
+
         commands = importCommands("src/main/java/data/Commands.json");
         singleQuotes = importSingleQuotes("src/main/java/data/Quotes.json");
         randomQuotes = importRandomQuotes("src/main/java/data/Quotes.json");
@@ -23,7 +27,7 @@ public class OutputLibrary {
         File file = new File(path);
 
         ObjectMapper objectMapper = new ObjectMapper();
-        objectMapper.setVisibility(PropertyAccessor.FIELD, JsonAutoDetect.Visibility.ANY);
+        objectMapper.setVisibility(PropertyAccessor.FIELD, JsonAutoDetect.Visibility.ANY); //нужно ли?
 
         try {
             array = objectMapper.readValue(file, Question[].class);
@@ -34,8 +38,13 @@ public class OutputLibrary {
         return array;
     }
 
-    private HashMap<String, HashMap<String, String> > importCommands(String path) {
-        HashMap<String, HashMap<String, String> > map = new HashMap<>();
+//    private <T>  T read(File file, Class<T> clazz) {
+//        ObjectMapper objectMapper = new ObjectMapper();
+//        objectMapper.readValue(file, clazz);
+//    }
+
+    private Map<String, HashMap<String, String> > importCommands(String path) {
+        Map<String, HashMap<String, String> > map = new HashMap<>();
         File file = new File(path);
 
         ObjectMapper objectMapper = new ObjectMapper();
@@ -62,9 +71,9 @@ public class OutputLibrary {
         return map;
     }
 
-    private HashMap<String, String[]> importRandomQuotes(String path) {
+    private Map<String, String[]> importRandomQuotes(String path) {
 
-        HashMap<String, String[]> map = new HashMap<>();
+        Map<String, String[]> map = new HashMap<>();
         File file = new File(path);
 
         ObjectMapper objectMapper = new ObjectMapper();
@@ -85,7 +94,7 @@ public class OutputLibrary {
         return map;
     }
 
-    private HashMap<String, String> importSingleQuotes(String path) {
+    private Map<String, String> importSingleQuotes(String path) {
 
         HashMap<String, String> map = new HashMap<>();
         File file = new File(path);
@@ -107,5 +116,4 @@ public class OutputLibrary {
 
         return map;
     }
-
 }

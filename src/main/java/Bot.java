@@ -1,3 +1,5 @@
+import structures.Question;
+
 import java.util.Scanner;
 
 public class Bot {
@@ -14,14 +16,14 @@ public class Bot {
         command = library.commands.get(location).get(command);
 
         if (command == null) {
-            System.out.println(handMadeUtils.getRndElem(library.randomQuotes.get("unknownCommand")));
+            System.out.println(MyUtils.getRandomElement(library.randomQuotes.get("unknownCommand")));
             return;
         }
 
         String quote;
         quote = library.singleQuotes.get(command);
         if ((quote == null) && (library.randomQuotes.get(command) != null)) {
-            quote = handMadeUtils.getRndElem(library.randomQuotes.get(command));
+            quote = MyUtils.getRandomElement(library.randomQuotes.get(command));
         }
 
         if (quote != null) System.out.println(quote);
@@ -49,7 +51,7 @@ public class Bot {
 
     private void createQuestion() {
 
-        Question question = handMadeUtils.getRndElem(library.JSQuestions);
+        Question question = MyUtils.getRandomElement(library.JSQuestions);
 
         Scanner scan = new Scanner(System.in);
 
@@ -82,9 +84,9 @@ public class Bot {
         }
 
         if (answer == question.correctAnswer)
-            System.out.println(handMadeUtils.getRndElem(library.randomQuotes.get("correctAnswer")));
+            System.out.println(MyUtils.getRandomElement(library.randomQuotes.get("correctAnswer")));
         else
-            System.out.println(handMadeUtils.getRndElem(library.randomQuotes.get("incorrectAnswer"))
+            System.out.println(MyUtils.getRandomElement(library.randomQuotes.get("incorrectAnswer"))
                     + "\nПравильным ответом был вариант " + question.correctAnswer);
     }
 
