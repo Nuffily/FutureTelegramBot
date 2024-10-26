@@ -16,10 +16,10 @@ public class OutputLibrary {
     public void fillMaps() {
 
 
-        commands = importCommands("src/main/java/data/Commands.json");
-        singleQuotes = importSingleQuotes("src/main/java/data/Quotes.json");
-        randomQuotes = importRandomQuotes("src/main/java/data/Quotes.json");
-        JSQuestions = importQuestions("src/main/java/data/QuestionsJS.json");
+        commands = importCommands("src/main/java/resources/Commands.json");
+        singleQuotes = importSingleQuotes("src/main/java/resources/Quotes.json");
+        randomQuotes = importRandomQuotes("src/main/java/resources/Quotes.json");
+        JSQuestions = importQuestions("src/main/java/resources/QuestionsJS.json");
     }
 
     private Question[] importQuestions(String path) {
@@ -87,7 +87,7 @@ public class OutputLibrary {
         }
 
         for (Quote currentQuote: quotes) {
-            if (currentQuote.type.equals("random"))
+            if (currentQuote.type == QuoteType.RANDOM)
                 map.put(currentQuote.name, currentQuote.outputArray);
         }
 
@@ -110,7 +110,7 @@ public class OutputLibrary {
         }
 
         for (Quote currentQuote: quotes) {
-            if (currentQuote.type.equals("single"))
+            if (currentQuote.type == QuoteType.SINGLE)
                 map.put(currentQuote.name, currentQuote.output);
         }
 

@@ -1,31 +1,31 @@
 [
   {
-    "type" : "single",
+    "type" : "SINGLE",
     "name" : "mainHelp",
     "output" : "Это учебный бот!!! Пока тут есть только тесты для Джаваскрипта и Английского языка\nКоманды:\nJS - для перехода в меню обучения ДжаваСкрипту\nENG - для перехода в меню обучения Английскому\nexit - чтобы прервать работу программы"
   },
   {
-    "type" : "single",
+    "type" : "SINGLE",
     "name" : "JSHelp",
     "output" : "Это меню обучения ДжаваСкрипту\nКоманды:\nquest - чтобы получить вопрос с вариантами ответов\nexit - чтобы вернуться в главное меню"
   },
   {
-    "type" : "single",
+    "type" : "SINGLE",
     "name" : "toMenu",
     "output" : "Назад в меню!"
   },
   {
-    "type" : "single",
+    "type" : "SINGLE",
     "name" : "travelToJS",
     "output" : "Переходим к изучению JavaScript!\nВводи question для получения вопроса, ну или help, для всякого другого"
   },
   {
-    "type" : "single",
+    "type" : "SINGLE",
     "name" : "toMenu",
     "output" : "Назад в меню!"
   },
   {
-    "type" : "random",
+    "type" : "RANDOM",
     "name" : "unknownCommand",
     "outputArray" : [
       "Я же сказал хелп введи, если не шаришь",
@@ -38,7 +38,7 @@
     ]
   },
   {
-    "type" : "random",
+    "type" : "RANDOM",
     "name" : "correctAnswer",
     "outputArray" : [
       "Верно!",
@@ -58,7 +58,7 @@
     ]
   },
   {
-    "type" : "random",
+    "type" : "RANDOM",
     "name" : "incorrectAnswer",
     "outputArray" : [
       "...неверно",
