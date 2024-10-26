@@ -8,7 +8,7 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 import structures.*;
 
 public class OutputLibrary {
-    Map<String, HashMap<String, String> > commands;
+    Map<Location, HashMap<String, String> > commands;
     Map<String, String> singleQuotes;
     Map<String, String[]> randomQuotes;
     Question[] JSQuestions;
@@ -43,8 +43,8 @@ public class OutputLibrary {
 //        objectMapper.readValue(file, clazz);
 //    }
 
-    private Map<String, HashMap<String, String> > importCommands(String path) {
-        Map<String, HashMap<String, String> > map = new HashMap<>();
+    private Map<Location, HashMap<String, String> > importCommands(String path) {
+        Map<Location, HashMap<String, String> > map = new HashMap<>();
         File file = new File(path);
 
         ObjectMapper objectMapper = new ObjectMapper();
@@ -59,12 +59,12 @@ public class OutputLibrary {
         }
 
         for (Command currentCommand: commands) {
-            if (!map.containsKey(currentCommand.location)) {
-                map.put(currentCommand.location, new HashMap<>());
+            if (!map.containsKey(Location.valueOf(currentCommand.location))) {
+                map.put(Location.valueOf(currentCommand.location), new HashMap<>());
             }
             for (String variant: currentCommand.inputVariants) {
 
-                map.get(currentCommand.location).put(variant, currentCommand.id);
+                map.get(Location.valueOf(currentCommand.location)).put(variant, currentCommand.id);
             }
         }
 

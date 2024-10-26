@@ -1,10 +1,11 @@
+import structures.Location;
 import structures.Question;
 
 import java.util.Scanner;
 
 public class Bot {
 
-    String location = "main";
+    Location location = Location.MAIN;
     OutputLibrary library;
     Scanner scan = new Scanner(System.in);
 
@@ -35,13 +36,13 @@ public class Bot {
     private void execute(String command) {
         switch (command) {
             case "travelToJS":
-                location = "js";
+                location = Location.JS;
                 break;
             case "toMenu":
-                location = "main";
+                location = Location.MAIN;
                 break;
             case "exit":
-                location = "exit";
+                location = Location.EXIT;
                 break;
             case "JSQuestion":
                 createQuestion();

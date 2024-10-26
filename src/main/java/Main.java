@@ -1,6 +1,4 @@
-import java.io.*;
-import java.io.IOException;
-import java.util.Scanner;
+import structures.*;
 
 public class Main {
 
@@ -16,7 +14,7 @@ public class Main {
         Bot bot = new Bot();
         bot.library = library;
 
-        while (!bot.location.equals("exit")) {
+        while (!bot.location.equals(Location.EXIT)) {
 
             bot.run();
 
