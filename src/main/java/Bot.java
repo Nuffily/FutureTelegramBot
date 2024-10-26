@@ -1,5 +1,4 @@
-import structures.Location;
-import structures.Question;
+import structures.*;
 
 import java.util.Scanner;
 
@@ -60,7 +59,7 @@ public class Bot {
                 + "Варианты ответа:");
 
         for (int i = 0; i < question.answers.length; i++) {
-            System.out.println(i + ". " + question.answers[i]);
+            System.out.println((i + 1) + ". " + question.answers[i]);
         }
 
         String ans;
