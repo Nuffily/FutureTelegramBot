@@ -2,8 +2,6 @@ import java.io.*;
 import java.util.HashMap;
 import java.util.Map;
 
-import com.fasterxml.jackson.annotation.JsonAutoDetect;
-import com.fasterxml.jackson.annotation.PropertyAccessor;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import structures.*;
 
@@ -13,9 +11,7 @@ public class ResourceStorage {
     Map<String, String[]> randomQuotes;
     Question[] JSQuestions;
 
-    public void fillMaps() {
-
-
+    public void importStorage() {
         commands = importCommands("src/main/java/resources/Commands.json");
         singleQuotes = importSingleQuotes("src/main/java/resources/Quotes.json");
         randomQuotes = importRandomQuotes("src/main/java/resources/Quotes.json");

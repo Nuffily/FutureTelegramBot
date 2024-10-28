@@ -16,11 +16,11 @@ public class Bot {
         command = storage.commands.get(location).get(command);
 
         if (command == null) {
-            PrintService.println(MyUtils.getRandomElement(storage.randomQuotes.get("unknownCommand")));
+            PrintService.printlnQuote("unknownCommand");
             return;
         }
 
-        PrintService.printQuote(command);
+        PrintService.printlnQuote(command);
 
         execute(command);
 
@@ -78,10 +78,11 @@ public class Bot {
         }
 
         if (answer == question.correctAnswer)
-            PrintService.printQuote("correctAnswer");
+            PrintService.printlnQuote("correctAnswer");
         else {
-            PrintService.printQuote("incorrectAnswer");
-            PrintService.println("Правильным ответом был вариант " + question.correctAnswer);
+            PrintService.printlnQuote("incorrectAnswer");
+            PrintService.printQuote("correctAnswerIs");
+            PrintService.println("" + question.correctAnswer);
         }
     }
 

@@ -6,7 +6,7 @@ public class Start {
 
         ResourceStorage storage = new ResourceStorage();
 
-        storage.fillMaps();
+        storage.importStorage();
 
         PrintService.println("Здарова! Введи какую-нить команду, например, /help");
 
