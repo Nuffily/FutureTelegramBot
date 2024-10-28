@@ -5,7 +5,7 @@ import java.util.Scanner;
 public class Bot {
 
     Location location = Location.MAIN;
-    OutputLibrary library;
+    ResourceStorage library;
     Scanner scan = new Scanner(System.in);
 
     public void run() {
