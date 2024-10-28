@@ -1,10 +1,10 @@
 import structures.*;
 
-public class Main {
+public class Start {
 
     public static void main(String[] args) {
 
-        OutputLibrary library = new OutputLibrary();
+        ResourceStorage library = new ResourceStorage();
 
         library.fillMaps();
 
