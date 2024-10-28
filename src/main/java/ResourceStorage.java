@@ -36,12 +36,12 @@ public class ResourceStorage {
         Command[] commands = importFromJSon(path, Command[].class);
 
         for (Command currentCommand: commands) {
-            if (!map.containsKey(Location.valueOf(currentCommand.location))) {
-                map.put(Location.valueOf(currentCommand.location), new HashMap<>());
+            if (!map.containsKey(currentCommand.location)) {
+                map.put((currentCommand.location), new HashMap<>());
             }
             for (String variant: currentCommand.inputVariants) {
 
-                map.get(Location.valueOf(currentCommand.location)).put(variant, currentCommand.id);
+                map.get(currentCommand.location).put(variant, currentCommand.id);
             }
         }
 
