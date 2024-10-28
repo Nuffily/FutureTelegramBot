@@ -5,7 +5,7 @@ import java.util.Scanner;
 public class Bot {
 
     Location location = Location.MAIN;
-    ResourceStorage library;
+    ResourceStorage storage;
     Scanner scan = new Scanner(System.in);
 
     public void run() {
@@ -13,20 +13,14 @@ public class Bot {
         String command;
         command = scan.nextLine();
 
-        command = library.commands.get(location).get(command);
+        command = storage.commands.get(location).get(command);
 
         if (command == null) {
-            System.out.println(MyUtils.getRandomElement(library.randomQuotes.get("unknownCommand")));
+            PrintService.println(MyUtils.getRandomElement(storage.randomQuotes.get("unknownCommand")));
             return;
         }
 
-        String quote;
-        quote = library.singleQuotes.get(command);
-        if ((quote == null) && (library.randomQuotes.get(command) != null)) {
-            quote = MyUtils.getRandomElement(library.randomQuotes.get(command));
-        }
-
-        if (quote != null) System.out.println(quote);
+        PrintService.printQuote(command);
 
         execute(command);
 
@@ -51,15 +45,15 @@ public class Bot {
 
     private void createQuestion() {
 
-        Question question = MyUtils.getRandomElement(library.JSQuestions);
+        Question question = MyUtils.getRandomElement(storage.JSQuestions);
 
         Scanner scan = new Scanner(System.in);
 
-        System.out.println(question.body + "-------------------------------\n"
+        PrintService.println(question.body + "-------------------------------\n"
                 + "Варианты ответа:");
 
         for (int i = 0; i < question.answers.length; i++) {
-            System.out.println((i + 1) + ". " + question.answers[i]);
+            PrintService.println((i + 1) + ". " + question.answers[i]);
         }
 
         String ans;
@@ -69,14 +63,14 @@ public class Bot {
             ans = scan.nextLine();
 
             if (!ans.matches("[-+]?\\d+")) {
-                System.out.println("Ответ должен быть числом");
+                PrintService.println("Ответ должен быть числом");
                 continue;
             }
 
             answer = Integer.parseInt(ans);
 
             if (answer < 1 || answer > question.answers.length) {
-                System.out.println("Такого варианта ответа нет");
+                PrintService.println("Такого варианта ответа нет");
                 continue;
             }
 
@@ -84,10 +78,11 @@ public class Bot {
         }
 
         if (answer == question.correctAnswer)
-            System.out.println(MyUtils.getRandomElement(library.randomQuotes.get("correctAnswer")));
-        else
-            System.out.println(MyUtils.getRandomElement(library.randomQuotes.get("incorrectAnswer"))
-                    + "\nПравильным ответом был вариант " + question.correctAnswer);
+            PrintService.printQuote("correctAnswer");
+        else {
+            PrintService.printQuote("incorrectAnswer");
+            PrintService.println("Правильным ответом был вариант " + question.correctAnswer);
+        }
     }
 
 }

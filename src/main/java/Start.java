@@ -4,15 +4,16 @@ public class Start {
 
     public static void main(String[] args) {
 
-        ResourceStorage library = new ResourceStorage();
+        ResourceStorage storage = new ResourceStorage();
 
-        library.fillMaps();
+        storage.fillMaps();
 
-        System.out.print("Здарова! Введи какую-нить команду, например, /help \n");
+        PrintService.println("Здарова! Введи какую-нить команду, например, /help");
 
+        PrintService.storage = storage;
 
         Bot bot = new Bot();
-        bot.library = library;
+        bot.storage = storage;
 
         while (!bot.location.equals(Location.EXIT)) {
 
@@ -20,6 +21,6 @@ public class Start {
 
         }
 
-        System.out.print("Пока-пока!");
+        PrintService.println("Пока-пока!");
     }
 }
