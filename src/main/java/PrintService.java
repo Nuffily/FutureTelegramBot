@@ -24,11 +24,11 @@ public class PrintService {
         if (quote != null) System.out.print(quote);
     }
 
-    public static void println(String quote) {
+    public static <T> void println(T quote) {
         System.out.println(quote);
     }
 
-    public static void print(String quote) {
+    public static <T> void print(T quote) {
         System.out.print(quote);
     }
 }

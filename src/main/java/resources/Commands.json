@@ -65,5 +65,17 @@
       "exit",
       "учше"
     ]
+  },
+
+  {
+    "location" : "JS",
+    "id" : "showJSStats",
+    "inputVariants" : [
+      "stats",
+      "st",
+      "ыефеы",
+      "stat",
+      "ыефе"
+    ]
   }
 ]
