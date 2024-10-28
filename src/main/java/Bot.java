@@ -7,6 +7,7 @@ public class Bot {
     Location location = Location.MAIN;
     ResourceStorage storage;
     Scanner scan = new Scanner(System.in);
+    Statistics statistics;
 
     public void run() {
 
@@ -23,7 +24,6 @@ public class Bot {
         PrintService.printlnQuote(command);
 
         execute(command);
-
     }
 
     private void execute(String command) {
@@ -39,6 +39,9 @@ public class Bot {
                 break;
             case "JSQuestion":
                 createQuestion();
+                break;
+            case "showJSStats":
+                statistics.printStats();
                 break;
         }
     }
@@ -77,12 +80,17 @@ public class Bot {
             break;
         }
 
-        if (answer == question.correctAnswer)
+        if (answer == question.correctAnswer) {
             PrintService.printlnQuote("correctAnswer");
+
+            statistics.update(question.number, true);
+        }
         else {
             PrintService.printlnQuote("incorrectAnswer");
             PrintService.printQuote("correctAnswerIs");
             PrintService.println("" + question.correctAnswer);
+
+            statistics.update(question.number, false);
         }
     }
 
