@@ -8,6 +8,7 @@ import structures.*;
 public class ResourceStorage {
     Map<Location, Map<String, String> > commands;
     Map<String, String> singleQuotes;
+
     Map<String, String[]> randomQuotes;
     Question[] JSQuestions;
 
