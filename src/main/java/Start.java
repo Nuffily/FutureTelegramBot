@@ -8,7 +8,7 @@ public class Start {
 
         storage.importStorage();
 
-        Statistics statistics = new Statistics(storage);
+        Statistics statisticsJS = new Statistics(storage, storage.JSQuestions);
 
         PrintService.println("Здарова! Введи какую-нить команду, например, /help");
 
@@ -16,7 +16,7 @@ public class Start {
 
         Bot bot = new Bot();
         bot.storage = storage;
-        bot.statistics = statistics;
+        bot.statisticsJS = statisticsJS;
 
         while (!bot.location.equals(Location.EXIT)) {
 

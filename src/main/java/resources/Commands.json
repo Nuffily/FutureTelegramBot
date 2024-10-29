@@ -69,13 +69,30 @@
 
   {
     "location" : "JS",
-    "id" : "showJSStats",
+    "id" : "showStatsJS",
     "inputVariants" : [
       "stats",
       "st",
       "ыефеы",
       "stat",
       "ыефе"
+    ]
+  },
+
+  {
+    "location" : "JS",
+    "id" : "uploadStatsJS",
+    "inputVariants" : [
+      "upload"
+    ]
+  },
+
+  {
+    "location" : "JS",
+    "id" : "saveStatsJS",
+    "inputVariants" : [
+      "save",
+      "sav"
     ]
   }
 ]

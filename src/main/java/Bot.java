@@ -7,7 +7,7 @@ public class Bot {
     Location location = Location.MAIN;
     ResourceStorage storage;
     Scanner scan = new Scanner(System.in);
-    Statistics statistics;
+    Statistics statisticsJS;
 
     public void run() {
 
@@ -40,8 +40,14 @@ public class Bot {
             case "JSQuestion":
                 createQuestion();
                 break;
-            case "showJSStats":
-                statistics.printStats();
+            case "showStatsJS":
+                statisticsJS.printStats();
+                break;
+            case "uploadStatsJS":
+                statisticsJS = Statistics.uploadStats("src/main/java/resources/Statistics.json");
+                break;
+            case "saveStatsJS":
+                statisticsJS.saveStats("src/main/java/resources/Statistics.json");
                 break;
         }
     }
@@ -83,14 +89,14 @@ public class Bot {
         if (answer == question.correctAnswer) {
             PrintService.printlnQuote("correctAnswer");
 
-            statistics.update(question.number, true);
+            statisticsJS.update(question.number, true);
         }
         else {
             PrintService.printlnQuote("incorrectAnswer");
             PrintService.printQuote("correctAnswerIs");
             PrintService.println("" + question.correctAnswer);
 
-            statistics.update(question.number, false);
+            statisticsJS.update(question.number, false);
         }
     }
 
