@@ -2,8 +2,9 @@ import java.util.Scanner;
 
 public class Bot {
 
-    String location = "main";
-    OutputLibrary library;
+    public String location = "main";
+    public OutputLibrary library;
+
     Scanner scan = new Scanner(System.in);
 
     public void run() {

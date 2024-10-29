@@ -6,18 +6,15 @@ public class Main {
 
     public static void main(String[] args) {
 
-        OutputLibrary library = new OutputLibrary();
+        OutputLibrary lib = new OutputLibrary();
+        lib.fillMaps();
 
-        library.fillMaps();
-
-        System.out.print("Здарова! Введи какую-нить команду, например, /help \n");
-
+        System.out.print("Здорова! Введи какую-нить команду, например, /help \n");
 
         Bot bot = new Bot();
-        bot.library = library;
+        bot.library = lib;
 
         while (!bot.location.equals("exit")) {
-
             bot.run();
 
         }
