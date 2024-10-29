@@ -11,6 +11,11 @@
   },
   {
     "type" : "SINGLE",
+    "name" : "uploadStatsJS",
+    "response" : "Статистика "
+  },
+  {
+    "type" : "SINGLE",
     "name" : "toMenu",
     "response" : "Назад в меню!"
   },
