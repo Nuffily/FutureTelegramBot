@@ -5,22 +5,20 @@ public class Bot {
     public String location = "main";
     public OutputLibrary library;
 
-    Scanner scan = new Scanner(System.in);
+    private final InputService inputService = new InputService();  // Инициализация при объявлении
+    private final OutputService outputService = new OutputService();
 
     public void run() {
 
-        String command;
-        command = scan.nextLine();
-
+        String command = inputService.readLine();
+        
         command = library.commands.get(location).get(command);
-
         if (command == null) {
             System.out.println(handMadeUtils.getRndElem(library.randomQuotes.get("unknownCommand")));
             return;
         }
 
-        String quote;
-        quote = library.singleQuotes.get(command);
+        String quote = library.singleQuotes.get(command);
         if ((quote == null) && (library.randomQuotes.get(command) != null)) {
             quote = handMadeUtils.getRndElem(library.randomQuotes.get(command));
         }
@@ -31,7 +29,7 @@ public class Bot {
 
     }
 
-    private void execute(String command) {
+    protected void execute(String command) {
         switch (command) {
             case "travelToJS":
                 location = "js";
@@ -52,7 +50,7 @@ public class Bot {
 
         Question question = handMadeUtils.getRndElem(library.JSQuestions);
 
-        Scanner scan = new Scanner(System.in);
+        //Scanner scan = new Scanner(System.in);
 
         System.out.println(question.body + "-------------------------------\n"
                 + "Варианты ответа:");
@@ -65,7 +63,7 @@ public class Bot {
         int answer;
 
         while (true) {
-            ans = scan.nextLine();
+            ans = inputService.readLine();
 
             if (!ans.matches("[-+]?\\d+")) {
                 System.out.println("Ответ должен быть числом");
@@ -83,7 +81,7 @@ public class Bot {
         }
 
         if (answer == question.correctAnswer)
-            System.out.println(handMadeUtils.getRndElem(library.randomQuotes.get("correctAnswer")));
+            outputService.print(handMadeUtils.getRndElem(library.randomQuotes.get("correctAnswer")));
         else
             System.out.println(handMadeUtils.getRndElem(library.randomQuotes.get("incorrectAnswer"))
                     + "\nПравильным ответом был вариант " + question.correctAnswer);

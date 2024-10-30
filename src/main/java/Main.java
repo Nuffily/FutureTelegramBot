@@ -16,7 +16,6 @@ public class Main {
 
         while (!bot.location.equals("exit")) {
             bot.run();
-
         }
 
         System.out.print("Пока-пока!");

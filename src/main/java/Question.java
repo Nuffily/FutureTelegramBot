@@ -1,11 +1,10 @@
 public class Question {
-    String body = "";
-    String[] answers;
+    public String body = "";
+    public String[] answers;
     int correctAnswer;
     int number;
     int countOfAnswers;
-
-    Question() {}
+    public Question() {}
 
     Question(String body, String[] answers, int correctAns, int number, int countOfAnswers) {
         this.body = body;

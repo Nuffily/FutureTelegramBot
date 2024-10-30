@@ -6,21 +6,22 @@ import com.fasterxml.jackson.annotation.PropertyAccessor;
 import com.fasterxml.jackson.databind.ObjectMapper;
 
 public class OutputLibrary {
-    HashMap<String, HashMap<String, String> > commands;
-    HashMap<String, String> singleQuotes;
-    HashMap<String, String[]> randomQuotes;
-    Question[] JSQuestions;
+    public HashMap<String, HashMap<String, String> > commands;
+
+    public HashMap<String, String> singleQuotes;
+    public HashMap<String, String[]> randomQuotes;
+    public Question[] JSQuestions;
 
     public void fillMaps() {
         commands = importCommands("src/main/java/data/Commands.json");
         singleQuotes = importSingleQuotes("src/main/java/data/Quotes.json");
         randomQuotes = importRandomQuotes("src/main/java/data/Quotes.json");
-        JSQuestions = importQuestions("src/main/java/data/QuestionsJS.json");
+        JSQuestions = importQuestions();
     }
 
-    private Question[] importQuestions(String path) {
+    private Question[] importQuestions() {
         Question[] array;
-        File file = new File(path);
+        File file = new File("src/main/java/data/QuestionsJS.json");
 
         ObjectMapper objectMapper = new ObjectMapper();
         objectMapper.setVisibility(PropertyAccessor.FIELD, JsonAutoDetect.Visibility.ANY);
