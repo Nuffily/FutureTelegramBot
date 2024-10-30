@@ -58,7 +58,7 @@ public class Bot {
 
         Scanner scan = new Scanner(System.in);
 
-        PrintService.println(question.body + "-------------------------------\n"
+        PrintService.println(question.body + "\n-------------------------------\n"
                 + "Варианты ответа:");
 
         for (int i = 0; i < question.answers.length; i++) {

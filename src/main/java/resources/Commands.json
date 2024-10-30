@@ -83,7 +83,8 @@
     "location" : "JS",
     "id" : "uploadStatsJS",
     "inputVariants" : [
-      "upload"
+      "upload",
+      "upl"
     ]
   },
 
