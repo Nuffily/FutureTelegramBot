@@ -1,7 +1,7 @@
 
 [
   {
-    "body": "What will be the output of the following JavaScript code snippet?\n// JavaScript Equalto Operators\nfunction equalto() {\n    let num=10;\n    if(num===\"10\")\n        return true;\n    else\n        return false;\n}",
+    "body": "Что выведет этот код?\n// JavaScript Equalto Operators\nfunction equalto() {\n    let num=10;\n    if(num===\"10\")\n        return true;\n    else\n        return false;\n}",
     "answers": [
       "false",
       "true",
@@ -16,7 +16,7 @@
 
 
   {
-    "body": "What will be the output of the following JavaScript code?\n// Javascript code snippet to compare the height\nfunction height() {\n    var height = 123.56;\n    var type = (height>=190) ? \"tall\" : \"short\";\n    return type;\n}",
+    "body": "Что выведет этот код?\n// Javascript code snippet to compare the height\nfunction height() {\n    var height = 123.56;\n    var type = (height>=190) ? \"tall\" : \"short\";\n    return type;\n}",
     "answers": [
       "short",
       "123.56",
@@ -31,7 +31,7 @@
 
 
   {
-    "body": "What will be the output of the following code snippet?\nprint(typeof(NaN));",
+    "body": "Что выведет этот код?\nprint(typeof(NaN));",
     "answers": [
       "object",
       "number",
@@ -46,7 +46,7 @@
 
 
   {
-    "body": "What will be the output of the following code snippet?\nlet s = \"00000001111111\";\nlet l = 0, r = s.length - 1, ans = -1;\nwhile(l <= r) {\n   var mid = Math.floor((l + r) / 2);\n   if(s[mid] == '1') {\n       ans = mid;\n       r = mid - 1;\n   }\n   else {\n       l = mid + 1;\n   }\n}\nprint(ans);",
+    "body": "Что выведет этот код?\nlet s = \"00000001111111\";\nlet l = 0, r = s.length - 1, ans = -1;\nwhile(l <= r) {\n   var mid = Math.floor((l + r) / 2);\n   if(s[mid] == '1') {\n       ans = mid;\n       r = mid - 1;\n   }\n   else {\n       l = mid + 1;\n   }\n}\nprint(ans);",
     "answers": [
       "8",
       "7",
@@ -61,7 +61,7 @@
 
 
   {
-    "body": "What will be the output of the following code snippet?\nlet s = \"00000001111111\";\nlet l = 0, r = s.length - 1, ans = -1;\nwhile(l <= r) {\n   var mid = Math.floor((l + r) / 2);\n   if(s[mid] == '1') {\n       ans = mid;\n       r = mid - 1;\n   }\n   else {\n       l = mid + 1;\n   }\n}\nprint(ans);",
+    "body": "Что выведет этот код?\nlet s = \"00000001111111\";\nlet l = 0, r = s.length - 1, ans = -1;\nwhile(l <= r) {\n   var mid = Math.floor((l + r) / 2);\n   if(s[mid] == '1') {\n       ans = mid;\n       r = mid - 1;\n   }\n   else {\n       l = mid + 1;\n   }\n}\nprint(ans);",
     "answers": [
       "8",
       "7",
@@ -76,7 +76,7 @@
 
 
   {
-    "body": "What will be the output of the following code snippet?\nconst example = ({ a, b, c }) => {\n console.log(a, b, c);\n};\nexample(0, 1, 2);",
+    "body": "Что выведет этот код?\nconst example = ({ a, b, c }) => {\n console.log(a, b, c);\n};\nexample(0, 1, 2);",
     "answers": [
       "0 1 2",
       "0 undefined undefined",
@@ -91,7 +91,7 @@
 
 
   {
-    "body": "What will be the output of the following code snippet?\nfunction solve(arr, rotations){\n if(rotations == 0) return arr;\n for(let i = 0; i < rotations; i++){\n   let element = arr.pop();\n   arr.unshift(element);\n }\n return arr;\n}\n// solve([44, 1, 22, 111], 5);",
+    "body": "Что выведет этот код?\nfunction solve(arr, rotations){\n if(rotations == 0) return arr;\n for(let i = 0; i < rotations; i++){\n   let element = arr.pop();\n   arr.unshift(element);\n }\n return arr;\n}\n// solve([44, 1, 22, 111], 5);",
     "answers": [
       "[111,44,1,22]",
       "[44,1,22,111]",
@@ -106,7 +106,7 @@
 
 
   {
-    "body": "What will be the output of the following code snippet?\nvar a = Math.max();\nvar b = Math.min();\nprint(a);\nprint(b);",
+    "body": "Что выведет этот код?\nvar a = Math.max();\nvar b = Math.min();\nprint(a);\nprint(b);",
     "answers": [
       "-infinity infinity",
       "-infinity -infinity",
@@ -121,7 +121,7 @@
 
 
   {
-    "body": "What will be the output of the following code snippet?\nconst set = new Set();\nset.add(5);\nset.add('Hello');\nset.add({ name: 'Scaler' });\nfor (let item of set) {\n console.log(item + 6);\n}",
+    "body": "Что выведет этот код?\nconst set = new Set();\nset.add(5);\nset.add('Hello');\nset.add({ name: 'Scaler' });\nfor (let item of set) {\n console.log(item + 6);\n}",
     "answers": [
       "11 NaN NaN",
       "11 NaN [object Object]",
@@ -136,7 +136,7 @@
 
 
   {
-    "body": "What will be the output of the following code snippet?\nvar a = \"hello\";\nvar sum = 0;\nfor(var i = 0; i < a.length; i++) {\n   sum += (a[i] - 'a');\n}\nprint(sum);",
+    "body": "Что выведет этот код?\nvar a = \"hello\";\nvar sum = 0;\nfor(var i = 0; i < a.length; i++) {\n   sum += (a[i] - 'a');\n}\nprint(sum);",
     "answers": [
       "47",
       "NaN",
@@ -151,7 +151,7 @@
 
 
   {
-    "body": "What will be the output of the following code snippet?\nfunction test(...args) {\n console.log(typeof args);\n}\ntest(12);",
+    "body": "Что выведет этот код?\nfunction test(...args) {\n console.log(typeof args);\n}\ntest(12);",
     "answers": [
       "NaN",
       "Number",
@@ -166,7 +166,7 @@
 
 
   {
-    "body": "What will be the output of the following code snippet?\nvar a = true + true + true * 3;\nprint(a);",
+    "body": "Что выведет этот код??\nvar a = true + true + true * 3;\nprint(a);",
     "answers": [
       "3",
       "0",
@@ -181,7 +181,7 @@
 
 
   {
-    "body": "What will be the output of the following code snippet?\na = [1, 2, 3, 4, 5];\nprint(a.slice(2, 4));",
+    "body": "Что выведет этот код?\na = [1, 2, 3, 4, 5];\nprint(a.slice(2, 4));",
     "answers": [
       "3,4",
       "2,3",
@@ -196,7 +196,7 @@
 
 
   {
-    "body": "What will be the output of the following code snippet?\nvar a = 1;\nvar b = 0;\nwhile (a <= 3) {\n   a++;\n   b += a * 2;\n   print(b);\n}",
+    "body": "Что выведет этот код?\nvar a = 1;\nvar b = 0;\nwhile (a <= 3) {\n   a++;\n   b += a * 2;\n   print(b);\n}",
     "answers": [
       "4 10 18",
       "1 2 3",
@@ -211,7 +211,7 @@
 
 
   {
-    "body": "What will be the output of the following code snippet?\n(function(){\n setTimeout(()=> console.log(1),2000);\n console.log(2);\n setTimeout(()=> console.log(3),0);\n console.log(4);\n})();",
+    "body": "Что выведет этот код?\n(function(){\n setTimeout(()=> console.log(1),2000);\n console.log(2);\n setTimeout(()=> console.log(3),0);\n console.log(4);\n})();",
     "answers": [
       "1 2 3 4",
       "2 3 4 1",
@@ -226,7 +226,7 @@
 
 
   {
-    "body": "What will be the output of the following code snippet?\n<script type=\"text/javascript\" language=\"javascript\"\nvar a = \"Scaler\";\nvar result = a.substring(2, 4);\ndocument.write(result);\n</script>",
+    "body": "Что выведет этот код?\n<script type=\"text/javascript\" language=\"javascript\"\nvar a = \"Scaler\";\nvar result = a.substring(2, 4);\ndocument.write(result);\n</script>",
     "answers": [
       "al",
       "ale",
@@ -241,7 +241,7 @@
 
 
   {
-    "body": "When an operator’s value is NULL,\nthe typeof returned by the unary operator is:",
+    "body": "Когда значение оператора равно NULL,\nунарный оператор typeof вернет...",
     "answers": [
       "Boolean",
       "Undefined",
@@ -286,7 +286,7 @@
 
 
   {
-    "body": "Which object in JavaScript doesn’t have a prototype?",
+    "body": "У какого объекта нет прототипа?",
     "answers": [
       "Base object",
       "All objects have a prototype",
@@ -346,7 +346,7 @@
 
 
   {
-    "body": "What will be displayed in the console after executing the following code?\nlet x = 5;\nlet y = 2;\nconsole.log(x % y);",
+    "body": "Что выведет этот код?\nlet x = 5;\nlet y = 2;\nconsole.log(x % y);",
     "answers": [
       "2.5",
       "1",
@@ -361,7 +361,7 @@
 
 
   {
-    "body": "What is the result of the following JavaScript expression?\nconsole.log(typeof undefined);",
+    "body": "Что выведет этот код?\nconsole.log(typeof undefined);",
     "answers": [
       "'undefined'",
       "'object'",
@@ -376,7 +376,7 @@
 
 
   {
-    "body": "What will the following JavaScript code output?\nconsole.log(\"5\" + 1);",
+    "body": "Что выведет этот код?\nconsole.log(\"5\" + 1);",
     "answers": [
       "6",
       "'51'",
@@ -391,7 +391,7 @@
 
 
   {
-    "body": "What will the following JavaScript code output?\nconsole.log(\"five\" * 2);",
+    "body": "Что выведет этот код?\nconsole.log(\"five\" * 2);",
     "answers": [
       "10",
       "NaN",
@@ -406,7 +406,7 @@
 
 
   {
-    "body": "What will this JavaScript code return?\nfunction compareNumbers() {\n  return 10 > 9;\n}",
+    "body": "Что выведет этот код?\nfunction compareNumbers() {\n  return 10 > 9;\n}",
     "answers": [
       "true",
       "false",
@@ -421,7 +421,7 @@
 
 
   {
-    "body": "What does the following JavaScript function return?\nfunction testArray() {\n  var arr = [1, 2, 3];\n  return arr[0];\n}",
+    "body": "Что выведет этот код?\nfunction testArray() {\n  var arr = [1, 2, 3];\n  return arr[0];\n}",
     "answers": [
       "1",
       "2",
@@ -436,7 +436,7 @@
 
 
   {
-    "body": "What will the following JavaScript code output?\nconsole.log(typeof null);",
+    "body": "Что выведет этот код?\nconsole.log(typeof null);",
     "answers": [
       "'object'",
       "'null'",
@@ -451,7 +451,7 @@
 
 
   {
-    "body": "What does the following JavaScript code return?\nfunction multiply(a, b) {\n  return a * b;\n}\nconsole.log(multiply(5, 3));",
+    "body": "Что выведет этот код?\nfunction multiply(a, b) {\n  return a * b;\n}\nconsole.log(multiply(5, 3));",
     "answers": [
       "15",
       "8",
@@ -466,7 +466,7 @@
 
 
   {
-    "body": "What does this JavaScript code do?\nconst arr = ['apple', 'banana', 'cherry'];\nconsole.log(arr.length);",
+    "body": "Что выведет этот код?\nconst arr = ['apple', 'banana', 'cherry'];\nconsole.log(arr.length);",
     "answers": [
       "3",
       "'apple'",
@@ -481,7 +481,7 @@
 
 
   {
-    "body": "What does the following JavaScript code output?\nconsole.log(0.1 + 0.2 === 0.3);",
+    "body": "Что выведет этот код?\nconsole.log(0.1 + 0.2 === 0.3);",
     "answers": [
       "true",
       "false",
@@ -496,7 +496,7 @@
 
 
   {
-    "body": "How does JavaScript interpret the following code?\nlet x = \"10\";\nlet y = \"5\";\nconsole.log(x + y);",
+    "body": "Что выведет этот код?\nlet x = \"10\";\nlet y = \"5\";\nconsole.log(x + y);",
     "answers": [
       "15",
       "'105'",
@@ -511,7 +511,7 @@
 
 
   {
-    "body": "What will be displayed by the following code?\nconsole.log(\"Hello World\".charAt(6));",
+    "body": "Что выведет этот код?\nconsole.log(\"Hello World\".charAt(6));",
     "answers": [
       "W",
       "w",
@@ -526,7 +526,7 @@
 
 
   {
-    "body": "What happens when this code is executed?\nconsole.log(\"2\" + 2);",
+    "body": "Что выведет этот код?\nconsole.log(\"2\" + 2);",
     "answers": [
       "4",
       "'22'",
@@ -541,7 +541,7 @@
 
 
   {
-    "body": "What is the output of the following JavaScript snippet?\nlet a = true;\nlet b = false;\nconsole.log(a && b);",
+    "body": "Что выведет этот код?\nlet a = true;\nlet b = false;\nconsole.log(a && b);",
     "answers": [
       "true",
       "false",

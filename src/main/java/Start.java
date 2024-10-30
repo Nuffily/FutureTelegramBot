@@ -5,9 +5,7 @@ public class Start {
     public static void main(String[] args) {
 
         ResourceStorage storage = new ResourceStorage();
-
-        storage.importStorage();
-
+        
         Statistics statisticsJS = new Statistics(storage, storage.JSQuestions);
 
         PrintService.println("Здарова! Введи какую-нить команду, например, /help");

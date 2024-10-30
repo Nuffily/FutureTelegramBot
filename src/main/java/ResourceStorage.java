@@ -12,7 +12,7 @@ public class ResourceStorage {
     Map<String, String[]> randomQuotes;
     Question[] JSQuestions;
 
-    public void importStorage() {
+    ResourceStorage() {
         commands = importCommands("src/main/java/resources/Commands.json");
         singleQuotes = importSingleQuotes("src/main/java/resources/Quotes.json");
         randomQuotes = importRandomQuotes("src/main/java/resources/Quotes.json");
