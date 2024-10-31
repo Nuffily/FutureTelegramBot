@@ -9,7 +9,8 @@ public class Question {
 
     public Question() {}
 
-    public Question(String body, String[] answers, int correctAns, int number, int countOfAnswers) {
+    public Question(String body, String[] answers,
+                    int correctAns, int number, int countOfAnswers) {
         this.body = body;
         this.answers = answers;
         this.correctAnswer = correctAns;

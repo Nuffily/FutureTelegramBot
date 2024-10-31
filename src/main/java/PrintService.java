@@ -10,7 +10,7 @@ public class PrintService {
             quote = MyUtils.getRandomElement(storage.randomQuotes.get(command));
         }
 
-        if (quote != null) System.out.println(quote);
+        if (quote != null) println(quote);
     }
 
     public static void printQuote(String command) {
@@ -21,7 +21,7 @@ public class PrintService {
             quote = MyUtils.getRandomElement(storage.randomQuotes.get(command));
         }
 
-        if (quote != null) System.out.print(quote);
+        if (quote != null) print(quote);
     }
 
     public static <T> void println(T quote) {
