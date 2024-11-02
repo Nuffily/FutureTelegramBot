@@ -1,6 +1,7 @@
 package structures;
 
 public class Quote {
+
     public QuoteType type;
     public String name = "";
     public String response = "";
@@ -13,5 +14,6 @@ public class Quote {
         this.name = name;
         this.response = response;
         this.responseRandom = responseRandom;
+
     }
 }

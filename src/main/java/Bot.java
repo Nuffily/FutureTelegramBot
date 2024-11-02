@@ -1,5 +1,6 @@
 import structures.*;
 
+
 import java.util.Scanner;
 
 public class Bot {
@@ -17,11 +18,13 @@ public class Bot {
         command = storage.commands.get(location).get(command);
 
         if (command == null) {
+
             PrintService.printlnQuote("unknownCommand");
             return;
         }
 
         PrintService.printlnQuote(command);
+
 
         execute(command);
     }
@@ -54,7 +57,9 @@ public class Bot {
 
     private void createQuestion() {
 
+
         Question question = MyUtils.getRandomElement(storage.JSQuestions);
+
 
         Scanner scan = new Scanner(System.in);
 
@@ -86,6 +91,7 @@ public class Bot {
             break;
         }
 
+
         if (answer == question.correctAnswer) {
             PrintService.printlnQuote("correctAnswer");
 
@@ -101,3 +107,4 @@ public class Bot {
     }
 
 }
+
