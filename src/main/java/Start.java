@@ -1,4 +1,4 @@
-import structures.*;
+import model.*;
 
 public class Start {
 
@@ -6,7 +6,7 @@ public class Start {
 
         ResourceStorage storage = new ResourceStorage();
         
-        Statistics statisticsJS = new Statistics(storage, storage.JSQuestions);
+        Statistics statisticsJS = new Statistics(storage.JSQuestions);
 
         PrintService.println("Здарова! Введи какую-нить команду, например, /help");
 

@@ -1,7 +1,6 @@
-import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.databind.SerializationFeature;
-import structures.*;
+import model.*;
 import java.io.*;
 
 public class Statistics {
@@ -9,15 +8,13 @@ public class Statistics {
     public int CountOfPassedQuestions = 0;
     public int[] questionsAttempts = {};
     public int CountOfAttemptedQuestions = 0;
+    static ObjectMapper objectMapper = new ObjectMapper().enable(SerializationFeature.INDENT_OUTPUT);
 
     Statistics() {}
 
-    Statistics(boolean[] questionPassed, int CountOfPassedQuestions,
-                int[] questionsAttempts, int CountOfAttemptedQuestions) {
-        this.questionPassed = questionPassed;
-        this.CountOfPassedQuestions = CountOfPassedQuestions;
-        this.questionsAttempts = questionsAttempts;
-        this.CountOfAttemptedQuestions = CountOfAttemptedQuestions;
+    Statistics(Question[] questions) {
+        questionPassed = new boolean[questions.length + 1];
+        questionsAttempts = new int[questions.length + 1];
     }
 
     public void printStats() {
@@ -25,12 +22,7 @@ public class Statistics {
         PrintService.println("Количество встретившихся вопросов: " + CountOfAttemptedQuestions + "/" + questionPassed.length);
     }
 
-    Statistics(ResourceStorage storage, Question[] questions) {
-        questionPassed = new boolean[questions.length + 1];
-        questionsAttempts = new int[questions.length + 1];
-    }
-
-    public void update(int numberOfQuestion, boolean result) {
+    public void updateStats(int numberOfQuestion, boolean result) {
 
         if (!questionPassed[numberOfQuestion] && result) {
             questionPassed[numberOfQuestion] = true;
@@ -51,8 +43,6 @@ public class Statistics {
     }
 
     static public Statistics uploadStats(String path) {
-        ObjectMapper objectMapper = new ObjectMapper();
-
         try {
             return objectMapper.readValue(new File(path), Statistics.class);
         } catch (IOException e) {

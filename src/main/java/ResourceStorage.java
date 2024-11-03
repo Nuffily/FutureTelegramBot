@@ -3,7 +3,7 @@ import java.util.HashMap;
 import java.util.Map;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
-import structures.*;
+import model.*;
 
 public class ResourceStorage {
     Map<Location, Map<String, String> > commands;
@@ -13,17 +13,14 @@ public class ResourceStorage {
     Question[] JSQuestions;
 
     ResourceStorage() {
-        commands = importCommands("src/main/java/resources/Commands.json");
-        singleQuotes = importSingleQuotes("src/main/java/resources/SimpleQuotes.json");
-        randomQuotes = importRandomQuotes("src/main/java/resources/RandomQuotes.json");
-        JSQuestions = importQuestions("src/main/java/resources/QuestionsJS.json");
+        commands = importCommands("src/main/resources/Commands.json");
+        singleQuotes = importSingleQuotes("src/main/resources/SimpleQuotes.json");
+        randomQuotes = importRandomQuotes("src/main/resources/RandomQuotes.json");
+        JSQuestions = importQuestions("src/main/resources/QuestionsJS.json");
     }
 
     private Question[] importQuestions(String path) {
-
-        Question[] array = importFromJSon(path, Question[].class);
-
-        return array;
+        return importFromJSon(path, Question[].class);
     }
 
     private Map<Location, Map<String, String> > importCommands(String path) {

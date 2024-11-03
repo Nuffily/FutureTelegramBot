@@ -1,4 +1,4 @@
-package structures;
+package model;
 
 public enum Location {
     MAIN,

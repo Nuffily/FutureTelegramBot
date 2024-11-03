@@ -1,4 +1,4 @@
-import structures.*;
+import model.*;
 
 import java.util.Scanner;
 
@@ -17,11 +17,11 @@ public class Bot {
         command = storage.commands.get(location).get(command);
 
         if (command == null) {
-            PrintService.printlnQuote("unknownCommand");
+            PrintService.printlnResponse("unknownCommand");
             return;
         }
 
-        PrintService.printlnQuote(command);
+        PrintService.printlnResponse(command);
 
         execute(command);
     }
@@ -44,10 +44,10 @@ public class Bot {
                 statisticsJS.printStats();
                 break;
             case "uploadStatsJS":
-                statisticsJS = Statistics.uploadStats("src/main/java/resources/Statistics.json");
+                statisticsJS = Statistics.uploadStats("src/main/resources/Statistics.json");
                 break;
             case "saveStatsJS":
-                statisticsJS.saveStats("src/main/java/resources/Statistics.json");
+                statisticsJS.saveStats("src/main/resources/Statistics.json");
                 break;
         }
     }
@@ -55,8 +55,6 @@ public class Bot {
     private void createQuestion() {
 
         Question question = MyUtils.getRandomElement(storage.JSQuestions);
-
-        Scanner scan = new Scanner(System.in);
 
         PrintService.println(question.body + "\n-------------------------------\n"
                 + "Варианты ответа:");
@@ -87,16 +85,16 @@ public class Bot {
         }
 
         if (answer == question.correctAnswer) {
-            PrintService.printlnQuote("correctAnswer");
+            PrintService.printlnResponse("correctAnswer");
 
-            statisticsJS.update(question.number, true);
+            statisticsJS.updateStats(question.number, true);
         }
         else {
-            PrintService.printlnQuote("incorrectAnswer");
-            PrintService.printQuote("correctAnswerIs");
+            PrintService.printlnResponse("incorrectAnswer");
+            PrintService.printResponse("correctAnswerIs");
             PrintService.println("" + question.correctAnswer);
 
-            statisticsJS.update(question.number, false);
+            statisticsJS.updateStats(question.number, false);
         }
     }
 
