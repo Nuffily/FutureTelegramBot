@@ -6,7 +6,7 @@ import java.util.Scanner;
 public class TestService {
     Question[] questions;
     ResourceStorage storage;
-    Statistics statistics;
+    QuestionStatistics statistics;
     String StatPath;
     Scanner scan = new Scanner(System.in);
 
@@ -16,7 +16,7 @@ public class TestService {
             questions = importQuestions("src/main/resources/QuestionsJS.json");
         else
             questions = importQuestions("src/main/resources/QuestionsMATH.json");
-        statistics = new Statistics(questions);
+        statistics = new QuestionStatistics(questions);
         this.StatPath = StatPath;
     }
 

@@ -6,6 +6,7 @@ public class Question {
     public int correctAnswer;
     public int number;
     public int countOfAnswers;
+    public String explanation; // в процессе
 
     public Question() {}
 }

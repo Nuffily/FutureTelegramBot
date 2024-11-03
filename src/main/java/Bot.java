@@ -48,7 +48,7 @@ public class Bot {
                 testServiceJS.statistics.printStats();
                 break;
             case "uploadStatsJS":
-                testServiceJS.statistics = Statistics.uploadStats("src/main/resources/StatisticsJS.json");
+                testServiceJS.statistics = QuestionStatistics.uploadStats("src/main/resources/StatisticsJS.json");
                 break;
             case "saveStatsJS":
                 testServiceJS.statistics.saveStats("src/main/resources/StatisticsJS.json");
@@ -60,7 +60,7 @@ public class Bot {
                 testServiceMATH.statistics.printStats();
                 break;
             case "uploadStatsMATH":
-                testServiceMATH.statistics = Statistics.uploadStats("src/main/resources/StatisticsMATH.json");
+                testServiceMATH.statistics = QuestionStatistics.uploadStats("src/main/resources/StatisticsMATH.json");
                 break;
             case "saveStatsMATH":
                 testServiceMATH.statistics.saveStats("src/main/resources/StatisticsMATH.json");
