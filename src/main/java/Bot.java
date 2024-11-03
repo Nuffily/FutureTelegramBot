@@ -7,7 +7,8 @@ public class Bot {
     Location location = Location.MAIN;
     ResourceStorage storage;
     Scanner scan = new Scanner(System.in);
-    Statistics statisticsJS;
+    TestService testServiceJS = new TestService(storage, Location.JS, "src/main/resources/StatisticsJS.json");
+    TestService testServiceMATH = new TestService(storage, Location.MATH, "src/main/resources/StatisticsMATH.json");
 
     public void run() {
 
@@ -31,6 +32,9 @@ public class Bot {
             case "travelToJS":
                 location = Location.JS;
                 break;
+            case "travelToMATH":
+                location = Location.MATH;
+                break;
             case "toMenu":
                 location = Location.MAIN;
                 break;
@@ -38,64 +42,32 @@ public class Bot {
                 location = Location.EXIT;
                 break;
             case "JSQuestion":
-                createQuestion();
+                testServiceJS.createQuestion();
                 break;
             case "showStatsJS":
-                statisticsJS.printStats();
+                testServiceJS.statistics.printStats();
                 break;
             case "uploadStatsJS":
-                statisticsJS = Statistics.uploadStats("src/main/resources/Statistics.json");
+                testServiceJS.statistics = Statistics.uploadStats("src/main/resources/StatisticsJS.json");
                 break;
             case "saveStatsJS":
-                statisticsJS.saveStats("src/main/resources/Statistics.json");
+                testServiceJS.statistics.saveStats("src/main/resources/StatisticsJS.json");
+                break;
+            case "MATHQuestion":
+                testServiceMATH.createQuestion();
+                break;
+            case "showStatsMATH":
+                testServiceMATH.statistics.printStats();
+                break;
+            case "uploadStatsMATH":
+                testServiceMATH.statistics = Statistics.uploadStats("src/main/resources/StatisticsMATH.json");
+                break;
+            case "saveStatsMATH":
+                testServiceMATH.statistics.saveStats("src/main/resources/StatisticsMATH.json");
                 break;
         }
     }
 
-    private void createQuestion() {
 
-        Question question = MyUtils.getRandomElement(storage.JSQuestions);
-
-        PrintService.println(question.body + "\n-------------------------------\n"
-                + "Варианты ответа:");
-
-        for (int i = 0; i < question.answers.length; i++) {
-            PrintService.println((i + 1) + ". " + question.answers[i]);
-        }
-
-        String ans;
-        int answer;
-
-        while (true) {
-            ans = scan.nextLine();
-
-            if (!ans.matches("[-+]?\\d+")) {
-                PrintService.println("Ответ должен быть числом");
-                continue;
-            }
-
-            answer = Integer.parseInt(ans);
-
-            if (answer < 1 || answer > question.answers.length) {
-                PrintService.println("Такого варианта ответа нет");
-                continue;
-            }
-
-            break;
-        }
-
-        if (answer == question.correctAnswer) {
-            PrintService.printlnResponse("correctAnswer");
-
-            statisticsJS.updateStats(question.number, true);
-        }
-        else {
-            PrintService.printlnResponse("incorrectAnswer");
-            PrintService.printResponse("correctAnswerIs");
-            PrintService.println("" + question.correctAnswer);
-
-            statisticsJS.updateStats(question.number, false);
-        }
-    }
 
 }

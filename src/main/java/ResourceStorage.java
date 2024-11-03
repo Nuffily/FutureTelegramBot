@@ -8,19 +8,12 @@ import model.*;
 public class ResourceStorage {
     Map<Location, Map<String, String> > commands;
     Map<String, String> singleQuotes;
-
     Map<String, String[]> randomQuotes;
-    Question[] JSQuestions;
 
     ResourceStorage() {
         commands = importCommands("src/main/resources/Commands.json");
         singleQuotes = importSingleQuotes("src/main/resources/SimpleQuotes.json");
         randomQuotes = importRandomQuotes("src/main/resources/RandomQuotes.json");
-        JSQuestions = importQuestions("src/main/resources/QuestionsJS.json");
-    }
-
-    private Question[] importQuestions(String path) {
-        return importFromJSon(path, Question[].class);
     }
 
     private Map<Location, Map<String, String> > importCommands(String path) {
@@ -68,7 +61,7 @@ public class ResourceStorage {
         return map;
     }
 
-    private <T> T[] importFromJSon(String path, Class<T[]> clazz) {
+    static public <T> T[] importFromJSon(String path, Class<T[]> clazz) {
         T[] array;
         File file = new File(path);
         ObjectMapper objectMapper = new ObjectMapper();

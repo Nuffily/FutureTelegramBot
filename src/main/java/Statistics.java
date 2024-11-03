@@ -18,8 +18,8 @@ public class Statistics {
     }
 
     public void printStats() {
-        PrintService.println("Количество пройденных вопросов: " + CountOfPassedQuestions + "/" + questionPassed.length);
-        PrintService.println("Количество встретившихся вопросов: " + CountOfAttemptedQuestions + "/" + questionPassed.length);
+        PrintService.println("Количество пройденных вопросов: " + CountOfPassedQuestions + "/" + (questionPassed.length - 1));
+        PrintService.println("Количество встретившихся вопросов: " + CountOfAttemptedQuestions + "/" + (questionPassed.length - 1));
     }
 
     public void updateStats(int numberOfQuestion, boolean result) {

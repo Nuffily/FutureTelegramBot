@@ -24,6 +24,39 @@
   },
 
   {
+    "location" : "MAIN",
+    "id" : "travelToMATH",
+    "inputVariants" : [
+      "math",
+      "ьфер"
+    ]
+  },
+
+  {
+    "location" : "MATH",
+    "id" : "MATHQuestion",
+    "inputVariants" : [
+      "question",
+      "quest",
+      "q",
+      "йгуые"
+    ]
+  },
+
+  {
+    "location" : "MATH",
+    "id" : "toMenu",
+    "inputVariants" : [
+      "back",
+      "nazad",
+      "назад",
+      "бек",
+      "b",
+      "ифсл"
+    ]
+  },
+
+  {
     "location" : "JS",
     "id" : "toMenu",
     "inputVariants" : [
@@ -92,6 +125,35 @@
   {
     "location" : "JS",
     "id" : "saveStatsJS",
+    "inputVariants" : [
+      "save",
+      "sav"
+    ]
+  },
+  {
+    "location" : "MATH",
+    "id" : "showStatsMATH",
+    "inputVariants" : [
+      "stats",
+      "st",
+      "ыефеы",
+      "stat",
+      "ыефе"
+    ]
+  },
+
+  {
+    "location" : "MATH",
+    "id" : "uploadStatsMATH",
+    "inputVariants" : [
+      "upload",
+      "upl"
+    ]
+  },
+
+  {
+    "location" : "MATH",
+    "id" : "saveStatsMATH",
     "inputVariants" : [
       "save",
       "sav"
