@@ -14,8 +14,8 @@ public class ResourceStorage {
 
     ResourceStorage() {
         commands = importCommands("src/main/java/resources/Commands.json");
-        singleQuotes = importSingleQuotes("src/main/java/resources/Quotes.json");
-        randomQuotes = importRandomQuotes("src/main/java/resources/Quotes.json");
+        singleQuotes = importSingleQuotes("src/main/java/resources/SimpleQuotes.json");
+        randomQuotes = importRandomQuotes("src/main/java/resources/RandomQuotes.json");
         JSQuestions = importQuestions("src/main/java/resources/QuestionsJS.json");
     }
 
@@ -49,12 +49,11 @@ public class ResourceStorage {
 
         Map<String, String[]> map = new HashMap<>();
 
-        Quote[] quotes = importFromJSon(path, Quote[].class);
+        QuoteRandom[] quotes = importFromJSon(path, QuoteRandom[].class);
 
-        for (Quote currentQuote: quotes) {
-            if (currentQuote.type == QuoteType.RANDOM)
-                map.put(currentQuote.name, currentQuote.responseRandom);
-        }
+        for (QuoteRandom currentQuote: quotes)
+            map.put(currentQuote.name, currentQuote.responseRandom);
+
 
         return map;
     }
@@ -63,12 +62,11 @@ public class ResourceStorage {
 
         HashMap<String, String> map = new HashMap<>();
 
-        Quote[] quotes = importFromJSon(path, Quote[].class);
+        QuoteSimple[] quotes = importFromJSon(path, QuoteSimple[].class);
 
-        for (Quote currentQuote: quotes) {
-            if (currentQuote.type == QuoteType.SINGLE)
-                map.put(currentQuote.name, currentQuote.response);
-        }
+        for (QuoteSimple currentQuote: quotes)
+            map.put(currentQuote.name, currentQuote.response);
+
 
         return map;
     }
@@ -83,6 +81,7 @@ public class ResourceStorage {
         } catch (IOException e) {
             throw new RuntimeException(e);
         }
+
 
         return array;
     }
