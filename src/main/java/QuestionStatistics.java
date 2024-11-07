@@ -44,10 +44,21 @@ public class QuestionStatistics {
     }
 
     static public QuestionStatistics uploadStats(String path) {
+        File file;
         try {
-            return objectMapper.readValue(new File(path), QuestionStatistics.class);
+            file = new File(path);
+        } catch (Exception e) {
+            PrintService.println("Существующая статистика не найдена или повреждена");
+            return null;
+        }
+
+        try {
+            QuestionStatistics questionStatistics = objectMapper.readValue(file, QuestionStatistics.class);
+            PrintService.println("Статистика загружена! Чтобы взгянуть на нее, напиши 'stats'");
+            return questionStatistics;
         } catch (IOException e) {
-            throw new RuntimeException(e);
+            PrintService.println("Существующая статистика не найдена или повреждена");
+            return null;
         }
     }
 }
