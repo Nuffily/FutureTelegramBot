@@ -9,7 +9,7 @@ public class QuestionStatistics {
     public int CountOfPassedQuestions = 0;
     public int[] questionsAttempts = {};
     public int CountOfAttemptedQuestions = 0;
-    ObjectMapper objectMapper = new ObjectMapper().enable(SerializationFeature.INDENT_OUTPUT);
+    ObjectMapper objectMapper = new ObjectMapper();
     PrintService printer = new PrintService();
 
 

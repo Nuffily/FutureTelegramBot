@@ -1,6 +1,9 @@
+import com.fasterxml.jackson.databind.ObjectMapper;
 import model.Location;
 import model.Question;
 
+import java.io.File;
+import java.io.IOException;
 import java.util.Scanner;
 
 public class TestService {
@@ -78,6 +81,15 @@ public class TestService {
     }
 
     private Question[] importQuestions(String path) {
-        return storage.importFromJSon(path, Question[].class);
+        return importFromJSon(path, Question[].class);
+    }
+
+    public <T> T[] importFromJSon(String path, Class<T[]> clazz) {
+        ObjectMapper mapper = new ObjectMapper();
+        try {
+            return mapper.readValue(new File(path), clazz);
+        } catch (IOException e) {
+            throw new RuntimeException(e);
+        }
     }
 }

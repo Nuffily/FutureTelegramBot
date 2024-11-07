@@ -60,9 +60,7 @@ public class ResourceStorage {
         return map;
     }
 
-
     public <T> T[] importFromJSon(String path, Class<T[]> clazz) {
-        File file = new File(path);
         try {
             return mapper.readValue(new File(path), clazz);
         } catch (IOException e) {
