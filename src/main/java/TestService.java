@@ -78,6 +78,6 @@ public class TestService {
     }
 
     private Question[] importQuestions(String path) {
-        return ResourceStorage.importFromJSon(path, Question[].class);
+        return storage.importFromJSon(path, Question[].class);
     }
 }

@@ -9,6 +9,7 @@ public class ResourceStorage {
     Map<Location, Map<String, String> > commands;
     Map<String, String> singleQuotes;
     Map<String, String[]> randomQuotes;
+    ObjectMapper mapper = new ObjectMapper();
 
     ResourceStorage() {
         commands = importCommands("src/main/resources/Commands.json");
@@ -60,12 +61,10 @@ public class ResourceStorage {
     }
 
 
-    static public <T> T[] importFromJSon(String path, Class<T[]> clazz) {
+    public <T> T[] importFromJSon(String path, Class<T[]> clazz) {
         File file = new File(path);
-        ObjectMapper objectMapper = new ObjectMapper();
-
         try {
-            return objectMapper.readValue(file, clazz);
+            return mapper.readValue(new File(path), clazz);
         } catch (IOException e) {
             throw new RuntimeException(e);
         }

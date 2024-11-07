@@ -5,14 +5,14 @@ public class PrintService {
 
         String quote = getQuote(command);
 
-        if (quote != null) println(quote);
+        if (quote != null) println(getQuote(command));
     }
 
     public void printResponse(String command) {
 
         String quote = getQuote(command);
 
-        if (quote != null) print(quote);
+        if (quote != null) print(getQuote(command));
     }
 
     private String getQuote(String command) {
