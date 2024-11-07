@@ -4,5 +4,6 @@ public enum Location {
     MAIN,
     JS,
     MATH,
-    EXIT
+    EXIT,
+    THEORY
 }

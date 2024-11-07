@@ -13,6 +13,7 @@ public class Start {
         Bot bot = new Bot();
         bot.storage = storage;
 
+        bot.theoryService = new TheoryService(storage, Location.THEORY);
         while (!bot.location.equals(Location.EXIT)) {
 
             bot.run();

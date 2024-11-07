@@ -3,20 +3,19 @@ import model.*;
 import java.util.Scanner;
 
 public class Bot {
-
     Location location = Location.MAIN;
     ResourceStorage storage;
     Scanner scan = new Scanner(System.in);
     TestService testServiceJS = new TestService(storage, Location.JS, "src/main/resources/StatisticsJS.json");
     TestService testServiceMATH = new TestService(storage, Location.MATH, "src/main/resources/StatisticsMATH.json");
+    public TheoryService theoryService;
 
     public void run() {
 
-        String command;
-        command = scan.nextLine();
+        String command = scan.nextLine();
 
         command = storage.commands.get(location).get(command);
-
+        PrintService.print("aaaaaaaaaa");
         if (command == null) {
             PrintService.printlnResponse("unknownCommand");
             return;
@@ -32,6 +31,9 @@ public class Bot {
             case "travelToJS":
                 location = Location.JS;
                 break;
+            case "travelToTheory":
+                location = Location.THEORY;
+                break;
             case "travelToMATH":
                 location = Location.MATH;
                 break;
@@ -40,6 +42,9 @@ public class Bot {
                 break;
             case "exit":
                 location = Location.EXIT;
+                break;
+            case "startTheory":
+                theoryService.startTheory();
                 break;
             case "JSQuestion":
                 testServiceJS.createQuestion();
