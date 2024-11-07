@@ -1,5 +1,6 @@
 import model.*;
 
+
 import java.util.Scanner;
 
 public class Bot {
@@ -9,6 +10,7 @@ public class Bot {
     Scanner scan = new Scanner(System.in);
     TestService testServiceJS = new TestService(storage, Location.JS, "src/main/resources/StatisticsJS.json");
     TestService testServiceMATH = new TestService(storage, Location.MATH, "src/main/resources/StatisticsMATH.json");
+
 
     public void run() {
 
@@ -23,6 +25,7 @@ public class Bot {
         }
 
         PrintService.printlnResponse(command);
+
 
         execute(command);
     }
@@ -69,9 +72,16 @@ public class Bot {
             case "saveStatsMATH":
                 testServiceMATH.statistics.saveStats("src/main/resources/StatisticsMATH.json");
                 break;
+            case "showStatsJS":
+                statisticsJS.printStats();
+                break;
+            case "uploadStatsJS":
+                statisticsJS = Statistics.uploadStats("src/main/java/resources/Statistics.json");
+                break;
+            case "saveStatsJS":
+                statisticsJS.saveStats("src/main/java/resources/Statistics.json");
+                break;
         }
     }
-
-
 
 }

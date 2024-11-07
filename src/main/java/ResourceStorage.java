@@ -44,7 +44,6 @@ public class ResourceStorage {
         for (QuoteRandom currentQuote: quotes)
             map.put(currentQuote.name, currentQuote.responseRandom);
 
-
         return map;
     }
 
@@ -57,9 +56,9 @@ public class ResourceStorage {
         for (QuoteSimple currentQuote: quotes)
             map.put(currentQuote.name, currentQuote.response);
 
-
         return map;
     }
+
 
     static public <T> T[] importFromJSon(String path, Class<T[]> clazz) {
         T[] array;
@@ -71,7 +70,6 @@ public class ResourceStorage {
         } catch (IOException e) {
             throw new RuntimeException(e);
         }
-
 
         return array;
     }
