@@ -6,9 +6,10 @@ public class Start {
 
         ResourceStorage storage = new ResourceStorage();
 
-        PrintService.println("Здарова! Введи какую-нить команду, например, /help");
-
         PrintService.storage = storage;
+        PrintService printer = new PrintService();
+
+        printer.println("Здарова! Введи какую-нить команду, например, /help");
 
         Bot bot = new Bot();
         bot.storage = storage;
@@ -19,6 +20,6 @@ public class Start {
 
         }
 
-        PrintService.println("Пока-пока!");
+        printer.println("Пока-пока!");
     }
 }

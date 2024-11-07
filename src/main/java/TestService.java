@@ -9,6 +9,7 @@ public class TestService {
     QuestionStatistics statistics;
     String StatPath;
     Scanner scan = new Scanner(System.in);
+    PrintService printer = new PrintService();
 
     TestService(ResourceStorage storage, Location location, String StatPath) {
         this.storage = storage;
@@ -24,7 +25,7 @@ public class TestService {
 
         Question question = MyUtils.getRandomElement(questions);
 
-        PrintService.println(question.body + "\n-------------------------------\n"
+        printer.println(question.body + "\n-------------------------------\n"
                 + "Варианты ответа:");
 
         String rightAnswer = question.answers[question.correctAnswer - 1];
@@ -38,7 +39,7 @@ public class TestService {
             }
 
         for (int i = 0; i < question.answers.length; i++) {
-            PrintService.println((i + 1) + ". " + question.answers[i]);
+            printer.println((i + 1) + ". " + question.answers[i]);
         }
 
         String ans;
@@ -48,14 +49,14 @@ public class TestService {
             ans = scan.nextLine();
 
             if (!ans.matches("[-+]?\\d+")) {
-                PrintService.println("Ответ должен быть числом");
+                printer.println("Ответ должен быть числом");
                 continue;
             }
 
             answer = Integer.parseInt(ans);
 
             if (answer < 1 || answer > question.answers.length) {
-                PrintService.println("Такого варианта ответа нет");
+                printer.println("Такого варианта ответа нет");
                 continue;
             }
 
@@ -63,14 +64,14 @@ public class TestService {
         }
 
         if (answer == question.correctAnswer) {
-            PrintService.printlnResponse("correctAnswer");
+            printer.printlnResponse("correctAnswer");
 
             statistics.updateStats(question.number, true);
         }
         else {
-            PrintService.printlnResponse("incorrectAnswer");
-            PrintService.printResponse("correctAnswerIs");
-            PrintService.println("" + question.correctAnswer);
+            printer.printlnResponse("incorrectAnswer");
+            printer.printResponse("correctAnswerIs");
+            printer.println("" + question.correctAnswer);
 
             statistics.updateStats(question.number, false);
         }

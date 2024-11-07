@@ -9,7 +9,9 @@ public class QuestionStatistics {
     public int CountOfPassedQuestions = 0;
     public int[] questionsAttempts = {};
     public int CountOfAttemptedQuestions = 0;
-    static ObjectMapper objectMapper = new ObjectMapper().enable(SerializationFeature.INDENT_OUTPUT);
+    ObjectMapper objectMapper = new ObjectMapper().enable(SerializationFeature.INDENT_OUTPUT);
+    PrintService printer = new PrintService();
+
 
     QuestionStatistics() {}
 
@@ -19,8 +21,8 @@ public class QuestionStatistics {
     }
 
     public void printStats() {
-        PrintService.println("Количество пройденных вопросов: " + CountOfPassedQuestions + "/" + (questionPassed.length - 1));
-        PrintService.println("Количество встретившихся вопросов: " + CountOfAttemptedQuestions + "/" + (questionPassed.length - 1));
+        printer.println("Количество пройденных вопросов: " + CountOfPassedQuestions + "/" + (questionPassed.length - 1));
+        printer.println("Количество встретившихся вопросов: " + CountOfAttemptedQuestions + "/" + (questionPassed.length - 1));
     }
 
     public void updateStats(int numberOfQuestion, boolean result) {
@@ -43,22 +45,24 @@ public class QuestionStatistics {
         }
     }
 
-    static public QuestionStatistics uploadStats(String path) {
+    public void uploadStats(String path) {
         File file;
         try {
             file = new File(path);
         } catch (Exception e) {
-            PrintService.println("Существующая статистика не найдена или повреждена");
-            return null;
+            printer.println("Существующая статистика не найдена или повреждена");
+            return;
         }
 
         try {
-            QuestionStatistics questionStatistics = objectMapper.readValue(file, QuestionStatistics.class);
-            PrintService.println("Статистика загружена! Чтобы взгянуть на нее, напиши 'stats'");
-            return questionStatistics;
+            QuestionStatistics newQuestionStatistics = objectMapper.readValue(file, QuestionStatistics.class);
+            printer.println("Статистика загружена! Чтобы взгянуть на нее, напиши 'stats'");
+            this.CountOfAttemptedQuestions = newQuestionStatistics.CountOfAttemptedQuestions;
+            this.CountOfPassedQuestions = newQuestionStatistics.CountOfPassedQuestions;
+            this.questionsAttempts = newQuestionStatistics.questionsAttempts;
+            this.questionPassed = newQuestionStatistics.questionPassed;
         } catch (IOException e) {
-            PrintService.println("Существующая статистика не найдена или повреждена");
-            return null;
+            printer.println("Существующая статистика не найдена или повреждена");
         }
     }
 }

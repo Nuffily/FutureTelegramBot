@@ -10,7 +10,7 @@ public class Bot {
     Scanner scan = new Scanner(System.in);
     TestService testServiceJS = new TestService(storage, Location.JS, "src/main/resources/StatisticsJS.json");
     TestService testServiceMATH = new TestService(storage, Location.MATH, "src/main/resources/StatisticsMATH.json");
-
+    PrintService printer = new PrintService();
 
     public void run() {
 
@@ -20,11 +20,11 @@ public class Bot {
         command = storage.commands.get(location).get(command);
 
         if (command == null) {
-            PrintService.printlnResponse("unknownCommand");
+            printer.printlnResponse("unknownCommand");
             return;
         }
 
-        PrintService.printlnResponse(command);
+        printer.printlnResponse(command);
 
 
         execute(command);
@@ -51,9 +51,7 @@ public class Bot {
                 testServiceJS.statistics.printStats();
                 break;
             case "uploadStatsJS":
-                QuestionStatistics newQuestionStatisticsJS = QuestionStatistics.uploadStats("src/main/resources/StatisticsJS.json");
-                if (newQuestionStatisticsJS != null)
-                    testServiceJS.statistics = newQuestionStatisticsJS;
+                testServiceJS.statistics.uploadStats("src/main/resources/StatisticsJS.json");
                 break;
             case "saveStatsJS":
                 testServiceJS.statistics.saveStats("src/main/resources/StatisticsJS.json");
@@ -65,21 +63,10 @@ public class Bot {
                 testServiceMATH.statistics.printStats();
                 break;
             case "uploadStatsMATH":
-                QuestionStatistics newQuestionStatisticsMATH = QuestionStatistics.uploadStats("src/main/resources/StatisticsMATH.json");
-                if (newQuestionStatisticsMATH != null)
-                    testServiceMATH.statistics = newQuestionStatisticsMATH;
+                testServiceMATH.statistics.uploadStats("src/main/resources/StatisticsMATH.json");
                 break;
             case "saveStatsMATH":
                 testServiceMATH.statistics.saveStats("src/main/resources/StatisticsMATH.json");
-                break;
-            case "showStatsJS":
-                statisticsJS.printStats();
-                break;
-            case "uploadStatsJS":
-                statisticsJS = Statistics.uploadStats("src/main/java/resources/Statistics.json");
-                break;
-            case "saveStatsJS":
-                statisticsJS.saveStats("src/main/java/resources/Statistics.json");
                 break;
         }
     }

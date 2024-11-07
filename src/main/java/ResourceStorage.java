@@ -61,16 +61,13 @@ public class ResourceStorage {
 
 
     static public <T> T[] importFromJSon(String path, Class<T[]> clazz) {
-        T[] array;
         File file = new File(path);
         ObjectMapper objectMapper = new ObjectMapper();
 
         try {
-            array = objectMapper.readValue(file, clazz);
+            return objectMapper.readValue(file, clazz);
         } catch (IOException e) {
             throw new RuntimeException(e);
         }
-
-        return array;
     }
 }
