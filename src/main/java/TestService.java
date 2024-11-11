@@ -67,13 +67,13 @@ public class TestService {
         }
 
         if (answer == question.correctAnswer) {
-            printer.printlnResponse("correctAnswer");
+            printer.printlnResponse("correctAnswer", storage);
 
             statistics.updateStats(question.number, true);
         }
         else {
-            printer.printlnResponse("incorrectAnswer");
-            printer.printResponse("correctAnswerIs");
+            printer.printlnResponse("incorrectAnswer", storage);
+            printer.printResponse("correctAnswerIs", storage);
             printer.println("" + question.correctAnswer);
 
             statistics.updateStats(question.number, false);

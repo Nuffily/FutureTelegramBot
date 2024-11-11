@@ -8,9 +8,15 @@ public class Bot {
     Location location = Location.MAIN;
     ResourceStorage storage;
     Scanner scan = new Scanner(System.in);
-    TestService testServiceJS = new TestService(storage, Location.JS, "src/main/resources/StatisticsJS.json");
-    TestService testServiceMATH = new TestService(storage, Location.MATH, "src/main/resources/StatisticsMATH.json");
+    TestService testServiceJS;
+    TestService testServiceMATH;
     PrintService printer = new PrintService();
+
+    Bot(ResourceStorage storage) {
+        this.storage = storage;
+        testServiceJS = new TestService(storage, Location.JS, "src/main/resources/StatisticsJS.json");
+        testServiceMATH = new TestService(storage, Location.MATH, "src/main/resources/StatisticsMATH.json");
+    }
 
     public void run() {
 
@@ -20,11 +26,11 @@ public class Bot {
         command = storage.commands.get(location).get(command);
 
         if (command == null) {
-            printer.printlnResponse("unknownCommand");
+            printer.printlnResponse("unknownCommand", storage);
             return;
         }
 
-        printer.printlnResponse(command);
+        printer.printlnResponse(command, storage);
 
 
         execute(command);

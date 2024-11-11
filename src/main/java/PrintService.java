@@ -1,21 +1,20 @@
 public class PrintService {
-    static ResourceStorage storage;
 
-    public void printlnResponse(String command) {
+    public void printlnResponse(String command, ResourceStorage storage) {
 
-        String quote = getQuote(command);
+        String quote = getQuote(command,storage);
 
-        if (quote != null) println(getQuote(command));
+        if (quote != null) println(quote);
     }
 
-    public void printResponse(String command) {
+    public void printResponse(String command, ResourceStorage storage) {
 
-        String quote = getQuote(command);
+        String quote = getQuote(command, storage);
 
-        if (quote != null) print(getQuote(command));
+        if (quote != null) print(quote);
     }
 
-    private String getQuote(String command) {
+    private String getQuote(String command, ResourceStorage storage) {
         String quote = storage.singleQuotes.get(command);
 
         if ((quote == null) && (storage.randomQuotes.get(command) != null)) {

@@ -6,13 +6,11 @@ public class Start {
 
         ResourceStorage storage = new ResourceStorage();
 
-        PrintService.storage = storage;
         PrintService printer = new PrintService();
 
         printer.println("Здарова! Введи какую-нить команду, например, /help");
 
-        Bot bot = new Bot();
-        bot.storage = storage;
+        Bot bot = new Bot(storage);
 
         while (!bot.location.equals(Location.EXIT)) {
 
