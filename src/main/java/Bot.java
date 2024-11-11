@@ -1,65 +1,73 @@
-import structures.Question;
+import structures.*;
+
 
 import java.util.Scanner;
 
 public class Bot {
 
-    String location = "main";
-    OutputLibrary library;
+    Location location = Location.MAIN;
+    ResourceStorage storage;
     Scanner scan = new Scanner(System.in);
+    Statistics statisticsJS;
 
     public void run() {
 
         String command;
         command = scan.nextLine();
 
-        command = library.commands.get(location).get(command);
+        command = storage.commands.get(location).get(command);
 
         if (command == null) {
-            System.out.println(MyUtils.getRandomElement(library.randomQuotes.get("unknownCommand")));
+
+            PrintService.printlnQuote("unknownCommand");
             return;
         }
 
-        String quote;
-        quote = library.singleQuotes.get(command);
-        if ((quote == null) && (library.randomQuotes.get(command) != null)) {
-            quote = MyUtils.getRandomElement(library.randomQuotes.get(command));
-        }
+        PrintService.printlnQuote(command);
 
-        if (quote != null) System.out.println(quote);
 
         execute(command);
-
     }
 
     private void execute(String command) {
         switch (command) {
             case "travelToJS":
-                location = "js";
+                location = Location.JS;
                 break;
             case "toMenu":
-                location = "main";
+                location = Location.MAIN;
                 break;
             case "exit":
-                location = "exit";
+                location = Location.EXIT;
                 break;
             case "JSQuestion":
                 createQuestion();
+                break;
+            case "showStatsJS":
+                statisticsJS.printStats();
+                break;
+            case "uploadStatsJS":
+                statisticsJS = Statistics.uploadStats("src/main/java/resources/Statistics.json");
+                break;
+            case "saveStatsJS":
+                statisticsJS.saveStats("src/main/java/resources/Statistics.json");
                 break;
         }
     }
 
     private void createQuestion() {
 
-        Question question = MyUtils.getRandomElement(library.JSQuestions);
+
+        Question question = MyUtils.getRandomElement(storage.JSQuestions);
+
 
         Scanner scan = new Scanner(System.in);
 
-        System.out.println(question.body + "-------------------------------\n"
+        PrintService.println(question.body + "\n-------------------------------\n"
                 + "Варианты ответа:");
 
         for (int i = 0; i < question.answers.length; i++) {
-            System.out.println(i + ". " + question.answers[i]);
+            PrintService.println((i + 1) + ". " + question.answers[i]);
         }
 
         String ans;
@@ -69,25 +77,34 @@ public class Bot {
             ans = scan.nextLine();
 
             if (!ans.matches("[-+]?\\d+")) {
-                System.out.println("Ответ должен быть числом");
+                PrintService.println("Ответ должен быть числом");
                 continue;
             }
 
             answer = Integer.parseInt(ans);
 
             if (answer < 1 || answer > question.answers.length) {
-                System.out.println("Такого варианта ответа нет");
+                PrintService.println("Такого варианта ответа нет");
                 continue;
             }
 
             break;
         }
 
-        if (answer == question.correctAnswer)
-            System.out.println(MyUtils.getRandomElement(library.randomQuotes.get("correctAnswer")));
-        else
-            System.out.println(MyUtils.getRandomElement(library.randomQuotes.get("incorrectAnswer"))
-                    + "\nПравильным ответом был вариант " + question.correctAnswer);
+
+        if (answer == question.correctAnswer) {
+            PrintService.printlnQuote("correctAnswer");
+
+            statisticsJS.update(question.number, true);
+        }
+        else {
+            PrintService.printlnQuote("incorrectAnswer");
+            PrintService.printQuote("correctAnswerIs");
+            PrintService.println("" + question.correctAnswer);
+
+            statisticsJS.update(question.number, false);
+        }
     }
 
 }
+

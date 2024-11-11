@@ -1,6 +1,6 @@
 [
   {
-    "location" : "main",
+    "location" : "MAIN",
     "id" : "mainHelp",
     "inputVariants" : [
       "help",
@@ -11,7 +11,7 @@
   },
 
   {
-    "location" : "main",
+    "location" : "MAIN",
     "id" : "travelToJS",
     "inputVariants" : [
       "js",
@@ -24,7 +24,7 @@
   },
 
   {
-    "location" : "js",
+    "location" : "JS",
     "id" : "toMenu",
     "inputVariants" : [
       "back",
@@ -37,7 +37,7 @@
   },
 
   {
-    "location" : "js",
+    "location" : "JS",
     "id" : "JSHelp",
     "inputVariants" : [
       "help",
@@ -48,7 +48,7 @@
   },
 
   {
-    "location" : "js",
+    "location" : "JS",
     "id" : "JSQuestion",
     "inputVariants" : [
       "question",
@@ -59,11 +59,41 @@
   },
 
   {
-    "location" : "main",
+    "location" : "MAIN",
     "id" : "exit",
     "inputVariants" : [
       "exit",
       "учше"
+    ]
+  },
+
+  {
+    "location" : "JS",
+    "id" : "showStatsJS",
+    "inputVariants" : [
+      "stats",
+      "st",
+      "ыефеы",
+      "stat",
+      "ыефе"
+    ]
+  },
+
+  {
+    "location" : "JS",
+    "id" : "uploadStatsJS",
+    "inputVariants" : [
+      "upload",
+      "upl"
+    ]
+  },
+
+  {
+    "location" : "JS",
+    "id" : "saveStatsJS",
+    "inputVariants" : [
+      "save",
+      "sav"
     ]
   }
 ]
