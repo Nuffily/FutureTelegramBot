@@ -1,6 +1,6 @@
 {
   "questionPassed" : [ false, true ],
-  "CountOfPassedQuestions" : 1,
+  "countOfPassedQuestions" : 1,
   "questionsAttempts" : [ 0, 1 ],
-  "CountOfAttemptedQuestions" : 1
+  "countOfAttemptedQuestions" : 1
 }

@@ -1,8 +1,10 @@
+import utils.MyUtils;
+
 public class PrintService {
 
     public void printlnResponse(String command, ResourceStorage storage) {
 
-        String quote = getQuote(command,storage);
+        String quote = getQuote(command, storage);
 
         if (quote != null) println(quote);
     }
@@ -15,10 +17,10 @@ public class PrintService {
     }
 
     private String getQuote(String command, ResourceStorage storage) {
-        String quote = storage.singleQuotes.get(command);
+        String quote = storage.getSingleQuotes().get(command);
 
-        if ((quote == null) && (storage.randomQuotes.get(command) != null)) {
-            quote = MyUtils.getRandomElement(storage.randomQuotes.get(command));
+        if ((quote == null) && (storage.getRandomQuotes().get(command) != null)) {
+            quote = MyUtils.getRandomElement(storage.getRandomQuotes().get(command));
         }
 
         return quote;

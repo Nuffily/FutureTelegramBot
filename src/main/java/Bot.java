@@ -23,7 +23,7 @@ public class Bot {
         String command;
         command = scan.nextLine();
 
-        command = storage.commands.get(location).get(command);
+        command = storage.getCommands().get(location).get(command);
 
         if (command == null) {
             printer.printlnResponse("unknownCommand", storage);
@@ -51,7 +51,7 @@ public class Bot {
                 location = Location.EXIT;
                 break;
             case "JSQuestion":
-                testServiceJS.createQuestion();
+                testServiceJS.questionPassion();
                 break;
             case "showStatsJS":
                 testServiceJS.statistics.printStats();
@@ -63,7 +63,7 @@ public class Bot {
                 testServiceJS.statistics.saveStats("src/main/resources/StatisticsJS.json");
                 break;
             case "MATHQuestion":
-                testServiceMATH.createQuestion();
+                testServiceMATH.questionPassion();
                 break;
             case "showStatsMATH":
                 testServiceMATH.statistics.printStats();

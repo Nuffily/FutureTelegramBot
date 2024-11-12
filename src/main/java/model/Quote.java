@@ -1,8 +1,16 @@
 package model;
 
 public sealed class Quote permits QuoteSimple, QuoteRandom {
-    public String name = "";
+    private String name;
 
     public Quote() {}
+
+    public String getName() {
+        return name;
+    }
+
+    public void setName(String name) {
+        this.name = name;
+    }
 }
 

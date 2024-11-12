@@ -1,6 +1,7 @@
 import com.fasterxml.jackson.databind.ObjectMapper;
 import model.Location;
 import model.Question;
+import utils.MyUtils;
 
 import java.io.File;
 import java.io.IOException;
@@ -24,27 +25,39 @@ public class TestService {
         this.StatPath = StatPath;
     }
 
-    public void createQuestion() {
+    public void questionPassion() {
 
         Question question = MyUtils.getRandomElement(questions);
 
-        printer.println(question.body + "\n-------------------------------\n"
+        printer.println(question.getBody() + "\n-------------------------------\n"
                 + "Варианты ответа:");
 
-        String rightAnswer = question.answers[question.correctAnswer - 1];
+        String rightAnswer = question.getAnswers()[question.getCorrectAnswer() - 1];
 
-        MyUtils.shuffleArray(question.answers);
+        question.shuffleAnswers();
 
-        for (int i = 0; i < question.countOfAnswers; i++)
-            if (question.answers[i].equals(rightAnswer)) {
-                question.correctAnswer = i + 1;
-                break;
-            }
 
-        for (int i = 0; i < question.answers.length; i++) {
-            printer.println((i + 1) + ". " + question.answers[i]);
+        for (int i = 0; i < question.getAnswers().length; i++) {
+            printer.println((i + 1) + ". " + question.getAnswers()[i]);
         }
 
+        int answer = getSuitableAnswer(question);
+
+        if (answer == question.getCorrectAnswer()) {
+            printer.printlnResponse("correctAnswer", storage);
+
+            statistics.updateStats(question.getNumber(), true);
+        }
+        else {
+            printer.printlnResponse("incorrectAnswer", storage);
+            printer.printResponse("correctAnswerIs", storage);
+            printer.println("" + question.getCorrectAnswer());
+
+            statistics.updateStats(question.getNumber(), false);
+        }
+    }
+
+    private int getSuitableAnswer(Question question) {
         String ans;
         int answer;
 
@@ -58,33 +71,20 @@ public class TestService {
 
             answer = Integer.parseInt(ans);
 
-            if (answer < 1 || answer > question.answers.length) {
+            if (answer < 1 || answer > question.getAnswers().length) {
                 printer.println("Такого варианта ответа нет");
                 continue;
             }
 
-            break;
-        }
-
-        if (answer == question.correctAnswer) {
-            printer.printlnResponse("correctAnswer", storage);
-
-            statistics.updateStats(question.number, true);
-        }
-        else {
-            printer.printlnResponse("incorrectAnswer", storage);
-            printer.printResponse("correctAnswerIs", storage);
-            printer.println("" + question.correctAnswer);
-
-            statistics.updateStats(question.number, false);
+            return answer;
         }
     }
 
     private Question[] importQuestions(String path) {
-        return importFromJSon(path, Question[].class);
+        return importFromJson(path, Question[].class);
     }
 
-    public <T> T[] importFromJSon(String path, Class<T[]> clazz) {
+    public <T> T[] importFromJson(String path, Class<T[]> clazz) {
         ObjectMapper mapper = new ObjectMapper();
         try {
             return mapper.readValue(new File(path), clazz);

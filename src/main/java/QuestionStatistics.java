@@ -1,17 +1,15 @@
 import com.fasterxml.jackson.databind.ObjectMapper;
-import com.fasterxml.jackson.databind.SerializationFeature;
 import model.*;
 
 import java.io.*;
 
 public class QuestionStatistics {
-    public boolean[] questionPassed = {};
-    public int CountOfPassedQuestions = 0;
-    public int[] questionsAttempts = {};
-    public int CountOfAttemptedQuestions = 0;
+    boolean[] questionPassed = {};
+    int countOfPassedQuestions = 0;
+    int[] questionsAttempts = {};
+    int countOfAttemptedQuestions = 0;
     ObjectMapper objectMapper = new ObjectMapper();
     PrintService printer = new PrintService();
-
 
     QuestionStatistics() {}
 
@@ -21,19 +19,19 @@ public class QuestionStatistics {
     }
 
     public void printStats() {
-        printer.println("Количество пройденных вопросов: " + CountOfPassedQuestions + "/" + (questionPassed.length - 1));
-        printer.println("Количество встретившихся вопросов: " + CountOfAttemptedQuestions + "/" + (questionPassed.length - 1));
+        printer.println("Количество пройденных вопросов: " + countOfPassedQuestions + "/" + (questionPassed.length - 1));
+        printer.println("Количество встретившихся вопросов: " + countOfAttemptedQuestions + "/" + (questionPassed.length - 1));
     }
 
-    public void updateStats(int numberOfQuestion, boolean result) {
+    public void updateStats(int numberOfQuestion, boolean isCorrectAnswer) {
 
-        if (!questionPassed[numberOfQuestion] && result) {
+        if (!questionPassed[numberOfQuestion] && isCorrectAnswer) {
             questionPassed[numberOfQuestion] = true;
-            CountOfPassedQuestions++;
+            countOfPassedQuestions++;
         }
 
         if (questionsAttempts[numberOfQuestion]++ == 0)
-            CountOfAttemptedQuestions++;
+            countOfAttemptedQuestions++;
     }
 
     public void saveStats(String path) {
@@ -57,12 +55,30 @@ public class QuestionStatistics {
         try {
             QuestionStatistics newQuestionStatistics = objectMapper.readValue(file, QuestionStatistics.class);
             printer.println("Статистика загружена! Чтобы взгянуть на нее, напиши 'stats'");
-            this.CountOfAttemptedQuestions = newQuestionStatistics.CountOfAttemptedQuestions;
-            this.CountOfPassedQuestions = newQuestionStatistics.CountOfPassedQuestions;
+
+            this.countOfAttemptedQuestions = newQuestionStatistics.countOfAttemptedQuestions;
+            this.countOfPassedQuestions = newQuestionStatistics.countOfPassedQuestions;
             this.questionsAttempts = newQuestionStatistics.questionsAttempts;
             this.questionPassed = newQuestionStatistics.questionPassed;
         } catch (IOException e) {
             printer.println("Существующая статистика не найдена или повреждена");
         }
+    }
+
+
+    public int getCountOfPassedQuestions() {
+        return countOfPassedQuestions;
+    }
+
+    public boolean[] getQuestionPassed() {
+        return questionPassed;
+    }
+
+    public int[] getQuestionsAttempts() {
+        return questionsAttempts;
+    }
+
+    public int getCountOfAttemptedQuestions() {
+        return countOfAttemptedQuestions;
     }
 }

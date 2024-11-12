@@ -1,8 +1,16 @@
 package model;
 
 public final class QuoteSimple extends Quote {
-    public String response = "";
+    private String response;
 
     public QuoteSimple() {}
+
+    public String getResponse() {
+        return response;
+    }
+
+    public void setResponse(String response) {
+        this.response = response;
+    }
 }
 
