@@ -8,14 +8,12 @@ public class Bot {
     Location location = Location.MAIN;
     ResourceStorage storage;
     Scanner scan = new Scanner(System.in);
-    TestService testServiceJS;
-    TestService testServiceMATH;
+    TestService testService;
     PrintService printer = new PrintService();
 
     Bot(ResourceStorage storage) {
         this.storage = storage;
-        testServiceJS = new TestService(storage, Location.JS, "src/main/resources/StatisticsJS.json");
-        testServiceMATH = new TestService(storage, Location.MATH, "src/main/resources/StatisticsMATH.json");
+        testService = new TestService(storage);
     }
 
     public void run() {
@@ -50,29 +48,17 @@ public class Bot {
             case "exit":
                 location = Location.EXIT;
                 break;
-            case "JSQuestion":
-                testServiceJS.questionPassion();
+            case "startQuestion":
+                testService.questionPassion(location);
                 break;
-            case "showStatsJS":
-                testServiceJS.statistics.printStats();
+            case "showStats":
+                testService.statistics.get(location).printStats();
                 break;
-            case "uploadStatsJS":
-                testServiceJS.statistics.uploadStats("src/main/resources/StatisticsJS.json");
+            case "uploadStats":
+                testService.statistics.get(location).uploadStats("src/main/resources/Statistics" + location.toString() + ".json");
                 break;
-            case "saveStatsJS":
-                testServiceJS.statistics.saveStats("src/main/resources/StatisticsJS.json");
-                break;
-            case "MATHQuestion":
-                testServiceMATH.questionPassion();
-                break;
-            case "showStatsMATH":
-                testServiceMATH.statistics.printStats();
-                break;
-            case "uploadStatsMATH":
-                testServiceMATH.statistics.uploadStats("src/main/resources/StatisticsMATH.json");
-                break;
-            case "saveStatsMATH":
-                testServiceMATH.statistics.saveStats("src/main/resources/StatisticsMATH.json");
+            case "saveStats":
+                testService.statistics.get(location).saveStats("src/main/resources/Statistics" + location.toString() + ".json");
                 break;
         }
     }

@@ -2,32 +2,34 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 import model.Location;
 import model.Question;
 import utils.MyUtils;
-
 import java.io.File;
 import java.io.IOException;
+import java.util.HashMap;
+import java.util.Map;
 import java.util.Scanner;
 
 public class TestService {
-    Question[] questions;
+    Map<Location, Question[]> questions;
+    Map<Location, QuestionStatistics> statistics;
     ResourceStorage storage;
-    QuestionStatistics statistics;
-    String StatPath;
     Scanner scan = new Scanner(System.in);
     PrintService printer = new PrintService();
 
-    TestService(ResourceStorage storage, Location location, String StatPath) {
+    TestService(ResourceStorage storage) {
         this.storage = storage;
-        if (location.equals(Location.JS))
-            questions = importQuestions("src/main/resources/QuestionsJS.json");
-        else
-            questions = importQuestions("src/main/resources/QuestionsMATH.json");
-        statistics = new QuestionStatistics(questions);
-        this.StatPath = StatPath;
+
+        questions = new HashMap<>();
+        questions.put(Location.JS, importQuestions("src/main/resources/QuestionsJS.json"));
+        questions.put(Location.MATH, importQuestions("src/main/resources/QuestionsMATH.json"));
+
+        statistics = new HashMap<>();
+        statistics.put(Location.JS, new QuestionStatistics(questions.get(Location.JS)));
+        statistics.put(Location.MATH, new QuestionStatistics(questions.get(Location.MATH)));
     }
 
-    public void questionPassion() {
+    public void questionPassion(Location Location) {
 
-        Question question = MyUtils.getRandomElement(questions);
+        Question question = MyUtils.getRandomElement(questions.get(Location));
 
         printer.println(question.getBody() + "\n-------------------------------\n"
                 + "Варианты ответа:");
@@ -46,14 +48,14 @@ public class TestService {
         if (answer == question.getCorrectAnswer()) {
             printer.printlnResponse("correctAnswer", storage);
 
-            statistics.updateStats(question.getNumber(), true);
+            statistics.get(Location).updateStats(question.getNumber(), true);
         }
         else {
             printer.printlnResponse("incorrectAnswer", storage);
             printer.printResponse("correctAnswerIs", storage);
             printer.println("" + question.getCorrectAnswer());
 
-            statistics.updateStats(question.getNumber(), false);
+            statistics.get(Location).updateStats(question.getNumber(), false);
         }
     }
 

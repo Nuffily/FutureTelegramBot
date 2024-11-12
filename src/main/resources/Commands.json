@@ -34,7 +34,18 @@
 
   {
     "location" : "MATH",
-    "id" : "MATHQuestion",
+    "id" : "MATHHelp",
+    "inputVariants" : [
+      "help",
+      "pomosh",
+      "h",
+      "рудз"
+    ]
+  },
+
+  {
+    "location" : "MATH",
+    "id" : "startQuestion",
     "inputVariants" : [
       "question",
       "quest",
@@ -82,7 +93,7 @@
 
   {
     "location" : "JS",
-    "id" : "JSQuestion",
+    "id" : "startQuestion",
     "inputVariants" : [
       "question",
       "quest",
@@ -103,7 +114,7 @@
 
   {
     "location" : "JS",
-    "id" : "showStatsJS",
+    "id" : "showStats",
     "inputVariants" : [
       "stats",
       "st",
@@ -115,7 +126,7 @@
 
   {
     "location" : "JS",
-    "id" : "uploadStatsJS",
+    "id" : "uploadStats",
     "inputVariants" : [
       "upload",
       "upl"
@@ -124,7 +135,7 @@
 
   {
     "location" : "JS",
-    "id" : "saveStatsJS",
+    "id" : "saveStats",
     "inputVariants" : [
       "save",
       "sav"
@@ -132,7 +143,7 @@
   },
   {
     "location" : "MATH",
-    "id" : "showStatsMATH",
+    "id" : "showStats",
     "inputVariants" : [
       "stats",
       "st",
@@ -144,7 +155,7 @@
 
   {
     "location" : "MATH",
-    "id" : "uploadStatsMATH",
+    "id" : "uploadStats",
     "inputVariants" : [
       "upload",
       "upl"
@@ -153,7 +164,7 @@
 
   {
     "location" : "MATH",
-    "id" : "saveStatsMATH",
+    "id" : "saveStats",
     "inputVariants" : [
       "save",
       "sav"
