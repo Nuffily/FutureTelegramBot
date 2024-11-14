@@ -2,6 +2,9 @@ import model.*;
 
 import java.util.Scanner;
 
+// должен быть общий интерфейс для бота, полиморфный код, который
+// реализует функционал для тг, дс например
+//
 public class Bot {
     Location location = Location.MAIN;
     ResourceStorage storage;
@@ -10,12 +13,13 @@ public class Bot {
     TestService testServiceMATH = new TestService(storage, Location.MATH, "src/main/resources/StatisticsMATH.json");
     public TheoryService theoryService;
 
+
     public void run() {
 
         String command = scan.nextLine();
 
         command = storage.commands.get(location).get(command);
-        PrintService.print("aaaaaaaaaa");
+
         if (command == null) {
             PrintService.printlnResponse("unknownCommand");
             return;

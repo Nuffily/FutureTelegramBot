@@ -1,44 +1,26 @@
 import model.Location;
 import model.Theory;
-import model.Question;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import java.io.File;
 import java.io.IOException;
 import java.util.List;
-import java.util.Scanner;
+import java.util.Objects;
 
 public class TheoryService {
-    public ResourceStorage storage;
-    public Location location;
-    private List<Theory> theories;
+    private Theory[] theories;
     Input input = new Input();
 
-    public TheoryService(ResourceStorage storage, Location location) {
-        this.storage = storage;
-        this.location = location;
+    public TheoryService() {
         ObjectMapper objectMapper = new ObjectMapper();
         try {
-            TheoryData theoryData = objectMapper.readValue(new File("src/main/resources/TheoryStorage.json"), TheoryData.class);
-            this.theories = theoryData.getTheory();
+            this.theories = objectMapper.readValue(new File("src/main/resources/TheoryStorage.json"), Theory[].class);
+
         } catch (IOException e) {
             e.printStackTrace();
         }
     }
 
-    public static class TheoryData {
-        private List<Theory> theory;
-
-        public List<Theory> getTheory() {
-            return theory;
-        }
-    }
-
-
-    boolean flag = false;
-
-
     public void startTheory() {
-        displayAvailableTheories();
         handleUserInputForTheory();
     }
 
@@ -52,28 +34,28 @@ public class TheoryService {
 
     private void handleUserInputForTheory() {
         while (true) {
-            flag = false;
+            displayAvailableTheories();
             System.out.print("Введите номер темы или 'exit' для выхода: ");
+
             String userInput = input.readLine();
-            if ("exit".equalsIgnoreCase(userInput) || "back".equalsIgnoreCase(userInput)) {
-                System.out.println("Выход из программы.");
-                break;
-            }
 
             try {
                 int index = Integer.parseInt(userInput) - 1;
-                if (index >= 0 && index < theories.size()) {
-                    displaySections(theories.get(index));
-                    handleUserInputForSection(theories.get(index));
-                    if (flag){
-                        displaySections(theories.get(index));
-                        continue;
-                    }
-                    break;
+                if (index >= 0 && index < theories.length) {
+                    handleUserInputForSection(theories[index], index);
+
                 } else {
+                    if ("back".equalsIgnoreCase(userInput)) {
+                        System.out.println("Выход из программы.");
+                        break;
+                    }
                     System.out.println("Такой команды нет, пожалуйста, введите корректный номер.");
                 }
             } catch (NumberFormatException e) {
+                if ("exit".equalsIgnoreCase(userInput) || "back".equalsIgnoreCase(userInput)) {
+                    System.out.println("Выход в главное меню.");
+                    break;
+                }
                 System.out.println("Некорректный ввод, пожалуйста, введите число.");
             }
         }
@@ -86,21 +68,30 @@ public class TheoryService {
         }
     }
 
-    private void handleUserInputForSection(Theory theory) {
+    private void handleUserInputForSection(Theory theory, int index) {
+
         while (true) {
+            displaySections(theories[index]);
             System.out.print("Введите номер раздела для изучения или 'back' для возврата: ");
             String userInput = input.readLine();
             try {
                 int sectionIndex = Integer.parseInt(userInput) - 1;
                 if (sectionIndex >= 0 && sectionIndex < theory.getSections().size()) {
+                   // locationInTheory = "sections";
                     System.out.println(theory.getSections().get(sectionIndex).getContent());
-                    break;
+                    System.out.println("Введите back для возврата.");
+
+                    String curInput = input.readLine();
+                    if (Objects.equals(curInput, "menu")){
+                        displayAvailableTheories();
+                        break;
+                    }
                 } else {
                     System.out.println("Некорректный номер раздела, пожалуйста, введите число в диапазоне.");
                 }
             } catch (NumberFormatException e) {
                 if ("back".equalsIgnoreCase(userInput)) {
-                    flag = true;
+                    System.out.println("Выходим из раздела секции.");
                     break;
                 }
                 System.out.println("Некорректный ввод, пожалуйста, введите число или 'back'.");
