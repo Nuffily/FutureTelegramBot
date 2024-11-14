@@ -3,7 +3,8 @@ package model;
 public final class QuoteRandom extends Quote {
     private String[] responseRandom;
 
-    public QuoteRandom() {}
+    public QuoteRandom() {
+    }
 
     public String[] getResponseRandom() {
         return responseRandom;

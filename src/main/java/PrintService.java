@@ -30,7 +30,7 @@ public class PrintService {
         System.out.println(quote);
     }
 
-    public<T> void print(T quote) {
+    public <T> void print(T quote) {
         System.out.print(quote);
     }
 }

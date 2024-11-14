@@ -22,7 +22,8 @@ public class Question {
             }
     }
 
-    public Question() {}
+    public Question() {
+    }
 
     public String getBody() {
         return body;

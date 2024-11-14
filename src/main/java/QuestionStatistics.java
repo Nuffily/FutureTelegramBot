@@ -11,7 +11,8 @@ public class QuestionStatistics {
     ObjectMapper objectMapper = new ObjectMapper();
     PrintService printer = new PrintService();
 
-    QuestionStatistics() {}
+    QuestionStatistics() {
+    }
 
     QuestionStatistics(Question[] questions) {
         questionPassed = new boolean[questions.length + 1];

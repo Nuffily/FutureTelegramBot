@@ -5,7 +5,8 @@ public class Command {
     private String id;
     private String[] inputVariants;
 
-    public Command() {}
+    public Command() {
+    }
 
     public Location getLocation() {
         return location;

@@ -2,6 +2,7 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 import model.Location;
 import model.Question;
 import utils.MyUtils;
+
 import java.io.File;
 import java.io.IOException;
 import java.util.HashMap;
@@ -34,10 +35,7 @@ public class TestService {
         printer.println(question.getBody() + "\n-------------------------------\n"
                 + "Варианты ответа:");
 
-        String rightAnswer = question.getAnswers()[question.getCorrectAnswer() - 1];
-
         question.shuffleAnswers();
-
 
         for (int i = 0; i < question.getAnswers().length; i++) {
             printer.println((i + 1) + ". " + question.getAnswers()[i]);
@@ -49,8 +47,7 @@ public class TestService {
             printer.printlnResponse("correctAnswer", storage);
 
             statistics.get(Location).updateStats(question.getNumber(), true);
-        }
-        else {
+        } else {
             printer.printlnResponse("incorrectAnswer", storage);
             printer.printResponse("correctAnswerIs", storage);
             printer.println("" + question.getCorrectAnswer());

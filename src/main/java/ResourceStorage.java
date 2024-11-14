@@ -6,7 +6,7 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 import model.*;
 
 public class ResourceStorage {
-    private Map<Location, Map<String, String> > commands;
+    private Map<Location, Map<String, String>> commands;
     private Map<String, String> singleQuotes;
     private Map<String, String[]> randomQuotes;
     private final ObjectMapper mapper = new ObjectMapper();
@@ -17,17 +17,17 @@ public class ResourceStorage {
         randomQuotes = importRandomQuotes("src/main/resources/RandomQuotes.json");
     }
 
-    private Map<Location, Map<String, String> > importCommands(String path) {
+    private Map<Location, Map<String, String>> importCommands(String path) {
 
-        Map<Location, Map<String, String> > map = new HashMap<>();
+        Map<Location, Map<String, String>> map = new HashMap<>();
 
         Command[] commands = importFromJson(path, Command[].class);
 
-        for (Command currentCommand: commands) {
+        for (Command currentCommand : commands) {
             if (!map.containsKey(currentCommand.getLocation())) {
                 map.put((currentCommand.getLocation()), new HashMap<>());
             }
-            for (String variant: currentCommand.getInputVariants()) {
+            for (String variant : currentCommand.getInputVariants()) {
 
                 map.get(currentCommand.getLocation()).put(variant, currentCommand.getId());
             }
@@ -42,7 +42,7 @@ public class ResourceStorage {
 
         QuoteRandom[] quotes = importFromJson(path, QuoteRandom[].class);
 
-        for (QuoteRandom currentQuote: quotes)
+        for (QuoteRandom currentQuote : quotes)
             map.put(currentQuote.getName(), currentQuote.getResponseRandom());
 
         return map;
@@ -54,7 +54,7 @@ public class ResourceStorage {
 
         QuoteSimple[] quotes = importFromJson(path, QuoteSimple[].class);
 
-        for (QuoteSimple currentQuote: quotes)
+        for (QuoteSimple currentQuote : quotes)
             map.put(currentQuote.getName(), currentQuote.getResponse());
 
         return map;
@@ -68,7 +68,7 @@ public class ResourceStorage {
         }
     }
 
-    public Map<Location, Map<String, String> > getCommands() {
+    public Map<Location, Map<String, String>> getCommands() {
         return commands;
     }
 

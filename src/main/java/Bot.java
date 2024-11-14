@@ -1,7 +1,6 @@
-import model.*;
-
-
 import java.util.Scanner;
+
+import model.Location;
 
 public class Bot {
 
@@ -60,7 +59,7 @@ public class Bot {
             case "saveStats":
                 testService.statistics.get(location).saveStats("src/main/resources/Statistics" + location.toString() + ".json");
                 break;
+            default:
         }
     }
-
 }
