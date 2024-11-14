@@ -1,6 +1,5 @@
 import com.fasterxml.jackson.databind.ObjectMapper;
-import model.*;
-
+import model.Question;
 import java.io.*;
 
 public class QuestionStatistics {

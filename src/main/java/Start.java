@@ -1,4 +1,4 @@
-import model.*;
+import model.Location;
 
 public class Start {
 

@@ -1,5 +1,4 @@
 import java.util.Scanner;
-
 import model.Location;
 
 public class Bot {
@@ -28,7 +27,6 @@ public class Bot {
         }
 
         printer.printlnResponse(command, storage);
-
 
         execute(command);
     }
