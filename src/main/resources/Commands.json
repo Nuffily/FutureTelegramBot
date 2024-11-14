@@ -22,6 +22,16 @@
       "оы"
     ]
   },
+  {
+    "location" : "MAIN",
+    "id" : "travelToTheory",
+    "inputVariants" : [
+      "t",
+      "ttt",
+      "theory",
+      "th"
+    ]
+  },
 
   {
     "location" : "MAIN",
@@ -101,6 +111,56 @@
       "йгуые"
     ]
   },
+
+  {
+    "location" : "THEORY",
+    "id" : "startTheory",
+    "inputVariants" : [
+      "topics",
+      "t",
+      "tt",
+      "go"
+    ]
+  },
+
+
+
+  {
+    "location" : "THEORY",
+    "id" : "toMenu",
+    "inputVariants" : [
+      "back",
+      "nazad",
+      "назад",
+      "бек",
+      "b",
+      "ифсл"
+    ]
+  },
+
+  {
+    "location" : "THEORY",
+    "id" : "TheoryHelp",
+    "inputVariants" : [
+      "help",
+      "pomosh",
+      "h",
+      "рудз"
+    ]
+  },
+
+  {
+    "location" : "JS",
+    "id" : "JSQuestion",
+    "inputVariants" : [
+      "question",
+      "quest",
+      "q",
+      "йгуые"
+    ]
+  },
+
+
 
   {
     "location" : "MAIN",

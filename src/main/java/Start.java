@@ -12,10 +12,10 @@ public class Start {
 
         Bot bot = new Bot(storage);
 
+        bot.theoryService = new TheoryService();
+
         while (!bot.location.equals(Location.EXIT)) {
-
             bot.run();
-
         }
 
         printer.println("Пока-пока!");
