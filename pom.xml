@@ -38,8 +38,8 @@
         </dependency>
         <dependency>
             <groupId>org.junit.jupiter</groupId>
-            <artifactId>junit-jupiter</artifactId>
-            <version>5.8.1</version>
+            <artifactId>junit-jupiter-api</artifactId>
+            <version>5.11.3</version>
             <scope>test</scope>
         </dependency>
 

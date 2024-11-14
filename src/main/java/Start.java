@@ -1,4 +1,4 @@
-import model.*;
+import model.Location;
 
 public class Start {
 
@@ -6,12 +6,11 @@ public class Start {
 
         ResourceStorage storage = new ResourceStorage();
 
-        PrintService.println("Здарова! Введи какую-нить команду, например, /help");
+        PrintService printer = new PrintService();
 
-        PrintService.storage = storage;
+        printer.println("Здарова! Введи какую-нить команду, например, /help");
 
-        Bot bot = new Bot();
-        bot.storage = storage;
+        Bot bot = new Bot(storage);
 
         bot.theoryService = new TheoryService();
 
@@ -19,6 +18,6 @@ public class Start {
             bot.run();
         }
 
-        PrintService.println("Пока-пока!");
+        printer.println("Пока-пока!");
     }
 }

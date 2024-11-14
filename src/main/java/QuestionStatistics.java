@@ -1,17 +1,17 @@
 import com.fasterxml.jackson.databind.ObjectMapper;
-import com.fasterxml.jackson.databind.SerializationFeature;
-import model.*;
-
+import model.Question;
 import java.io.*;
 
 public class QuestionStatistics {
-    public boolean[] questionPassed = {};
-    public int CountOfPassedQuestions = 0;
-    public int[] questionsAttempts = {};
-    public int CountOfAttemptedQuestions = 0;
-    static ObjectMapper objectMapper = new ObjectMapper().enable(SerializationFeature.INDENT_OUTPUT);
+    boolean[] questionPassed = {};
+    int countOfPassedQuestions = 0;
+    int[] questionsAttempts = {};
+    int countOfAttemptedQuestions = 0;
+    ObjectMapper objectMapper = new ObjectMapper();
+    PrintService printer = new PrintService();
 
-    QuestionStatistics() {}
+    QuestionStatistics() {
+    }
 
     QuestionStatistics(Question[] questions) {
         questionPassed = new boolean[questions.length + 1];
@@ -19,19 +19,19 @@ public class QuestionStatistics {
     }
 
     public void printStats() {
-        PrintService.println("Количество пройденных вопросов: " + CountOfPassedQuestions + "/" + (questionPassed.length - 1));
-        PrintService.println("Количество встретившихся вопросов: " + CountOfAttemptedQuestions + "/" + (questionPassed.length - 1));
+        printer.println("Количество пройденных вопросов: " + countOfPassedQuestions + "/" + (questionPassed.length - 1));
+        printer.println("Количество встретившихся вопросов: " + countOfAttemptedQuestions + "/" + (questionPassed.length - 1));
     }
 
-    public void updateStats(int numberOfQuestion, boolean result) {
+    public void updateStats(int numberOfQuestion, boolean isCorrectAnswer) {
 
-        if (!questionPassed[numberOfQuestion] && result) {
+        if (!questionPassed[numberOfQuestion] && isCorrectAnswer) {
             questionPassed[numberOfQuestion] = true;
-            CountOfPassedQuestions++;
+            countOfPassedQuestions++;
         }
 
         if (questionsAttempts[numberOfQuestion]++ == 0)
-            CountOfAttemptedQuestions++;
+            countOfAttemptedQuestions++;
     }
 
     public void saveStats(String path) {
@@ -43,22 +43,42 @@ public class QuestionStatistics {
         }
     }
 
-    static public QuestionStatistics uploadStats(String path) {
+    public void uploadStats(String path) {
         File file;
         try {
             file = new File(path);
         } catch (Exception e) {
-            PrintService.println("Существующая статистика не найдена или повреждена");
-            return null;
+            printer.println("Существующая статистика не найдена или повреждена");
+            return;
         }
 
         try {
-            QuestionStatistics questionStatistics = objectMapper.readValue(file, QuestionStatistics.class);
-            PrintService.println("Статистика загружена! Чтобы взгянуть на нее, напиши 'stats'");
-            return questionStatistics;
+            QuestionStatistics newQuestionStatistics = objectMapper.readValue(file, QuestionStatistics.class);
+            printer.println("Статистика загружена! Чтобы взгянуть на нее, напиши 'stats'");
+
+            this.countOfAttemptedQuestions = newQuestionStatistics.countOfAttemptedQuestions;
+            this.countOfPassedQuestions = newQuestionStatistics.countOfPassedQuestions;
+            this.questionsAttempts = newQuestionStatistics.questionsAttempts;
+            this.questionPassed = newQuestionStatistics.questionPassed;
         } catch (IOException e) {
-            PrintService.println("Существующая статистика не найдена или повреждена");
-            return null;
+            printer.println("Существующая статистика не найдена или повреждена");
         }
+    }
+
+
+    public int getCountOfPassedQuestions() {
+        return countOfPassedQuestions;
+    }
+
+    public boolean[] getQuestionPassed() {
+        return questionPassed;
+    }
+
+    public int[] getQuestionsAttempts() {
+        return questionsAttempts;
+    }
+
+    public int getCountOfAttemptedQuestions() {
+        return countOfAttemptedQuestions;
     }
 }

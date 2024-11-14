@@ -1,46 +1,61 @@
+import com.fasterxml.jackson.databind.ObjectMapper;
 import model.Location;
 import model.Question;
-
+import utils.MyUtils;
+import java.io.File;
+import java.io.IOException;
+import java.util.HashMap;
+import java.util.Map;
 import java.util.Scanner;
 
 public class TestService {
-    Question[] questions;
+    Map<Location, Question[]> questions;
+    Map<Location, QuestionStatistics> statistics;
     ResourceStorage storage;
-    QuestionStatistics statistics;
-    String StatPath;
     Scanner scan = new Scanner(System.in);
+    PrintService printer = new PrintService();
 
-    TestService(ResourceStorage storage, Location location, String StatPath) {
+    TestService(ResourceStorage storage) {
         this.storage = storage;
-        if (location.equals(Location.JS))
-            questions = importQuestions("src/main/resources/QuestionsJS.json");
-        else
-            questions = importQuestions("src/main/resources/QuestionsMATH.json");
-        statistics = new QuestionStatistics(questions);
-        this.StatPath = StatPath;
+
+        questions = new HashMap<>();
+        questions.put(Location.JS, importQuestions("src/main/resources/QuestionsJS.json"));
+        questions.put(Location.MATH, importQuestions("src/main/resources/QuestionsMATH.json"));
+
+        statistics = new HashMap<>();
+        statistics.put(Location.JS, new QuestionStatistics(questions.get(Location.JS)));
+        statistics.put(Location.MATH, new QuestionStatistics(questions.get(Location.MATH)));
     }
 
-    public void createQuestion() {
+    public void questionPassion(Location Location) {
 
-        Question question = MyUtils.getRandomElement(questions);
+        Question question = MyUtils.getRandomElement(questions.get(Location));
 
-        PrintService.println(question.body + "\n-------------------------------\n"
+        printer.println(question.getBody() + "\n-------------------------------\n"
                 + "Варианты ответа:");
 
-        String rightAnswer = question.answers[question.correctAnswer - 1];
+        question.shuffleAnswers();
 
-        MyUtils.shuffleArray(question.answers);
-
-        for (int i = 0; i < question.countOfAnswers; i++)
-            if (question.answers[i].equals(rightAnswer)) {
-                question.correctAnswer = i + 1;
-                break;
-            }
-
-        for (int i = 0; i < question.answers.length; i++) {
-            PrintService.println((i + 1) + ". " + question.answers[i]);
+        for (int i = 0; i < question.getAnswers().length; i++) {
+            printer.println((i + 1) + ". " + question.getAnswers()[i]);
         }
 
+        int answer = getSuitableAnswer(question);
+
+        if (answer == question.getCorrectAnswer()) {
+            printer.printlnResponse("correctAnswer", storage);
+
+            statistics.get(Location).updateStats(question.getNumber(), true);
+        } else {
+            printer.printlnResponse("incorrectAnswer", storage);
+            printer.printResponse("correctAnswerIs", storage);
+            printer.println("" + question.getCorrectAnswer());
+
+            statistics.get(Location).updateStats(question.getNumber(), false);
+        }
+    }
+
+    private int getSuitableAnswer(Question question) {
         String ans;
         int answer;
 
@@ -48,35 +63,31 @@ public class TestService {
             ans = scan.nextLine();
 
             if (!ans.matches("[-+]?\\d+")) {
-                PrintService.println("Ответ должен быть числом");
+                printer.println("Ответ должен быть числом");
                 continue;
             }
 
             answer = Integer.parseInt(ans);
 
-            if (answer < 1 || answer > question.answers.length) {
-                PrintService.println("Такого варианта ответа нет");
+            if (answer < 1 || answer > question.getAnswers().length) {
+                printer.println("Такого варианта ответа нет");
                 continue;
             }
 
-            break;
-        }
-
-        if (answer == question.correctAnswer) {
-            PrintService.printlnResponse("correctAnswer");
-
-            statistics.updateStats(question.number, true);
-        }
-        else {
-            PrintService.printlnResponse("incorrectAnswer");
-            PrintService.printResponse("correctAnswerIs");
-            PrintService.println("" + question.correctAnswer);
-
-            statistics.updateStats(question.number, false);
+            return answer;
         }
     }
 
     private Question[] importQuestions(String path) {
-        return ResourceStorage.importFromJSon(path, Question[].class);
+        return importFromJson(path, Question[].class);
+    }
+
+    public <T> T[] importFromJson(String path, Class<T[]> clazz) {
+        ObjectMapper mapper = new ObjectMapper();
+        try {
+            return mapper.readValue(new File(path), clazz);
+        } catch (IOException e) {
+            throw new RuntimeException(e);
+        }
     }
 }

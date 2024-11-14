@@ -1,6 +1,5 @@
-import model.*;
-
 import java.util.Scanner;
+import model.Location;
 
 // должен быть общий интерфейс для бота, полиморфный код, который
 // реализует функционал для тг, дс например
@@ -9,23 +8,28 @@ public class Bot {
     Location location = Location.MAIN;
     ResourceStorage storage;
     Scanner scan = new Scanner(System.in);
-    TestService testServiceJS = new TestService(storage, Location.JS, "src/main/resources/StatisticsJS.json");
-    TestService testServiceMATH = new TestService(storage, Location.MATH, "src/main/resources/StatisticsMATH.json");
+    TestService testService;
+    PrintService printer = new PrintService();
     public TheoryService theoryService;
+  
+    Bot(ResourceStorage storage) {
+        this.storage = storage;
+        testService = new TestService(storage);
+    }
 
 
     public void run() {
 
         String command = scan.nextLine();
 
-        command = storage.commands.get(location).get(command);
+        command = storage.getCommands().get(location).get(command);
 
         if (command == null) {
-            PrintService.printlnResponse("unknownCommand");
+            printer.printlnResponse("unknownCommand", storage);
             return;
         }
 
-        PrintService.printlnResponse(command);
+        printer.printlnResponse(command, storage);
 
         execute(command);
     }
@@ -50,37 +54,19 @@ public class Bot {
             case "startTheory":
                 theoryService.startTheory();
                 break;
-            case "JSQuestion":
-                testServiceJS.createQuestion();
+            case "startQuestion":
+                testService.questionPassion(location);
                 break;
-            case "showStatsJS":
-                testServiceJS.statistics.printStats();
+            case "showStats":
+                testService.statistics.get(location).printStats();
                 break;
-            case "uploadStatsJS":
-                QuestionStatistics newQuestionStatisticsJS = QuestionStatistics.uploadStats("src/main/resources/StatisticsJS.json");
-                if (newQuestionStatisticsJS != null)
-                    testServiceJS.statistics = newQuestionStatisticsJS;
+            case "uploadStats":
+                testService.statistics.get(location).uploadStats("src/main/resources/Statistics" + location.toString() + ".json");
                 break;
-            case "saveStatsJS":
-                testServiceJS.statistics.saveStats("src/main/resources/StatisticsJS.json");
+            case "saveStats":
+                testService.statistics.get(location).saveStats("src/main/resources/Statistics" + location.toString() + ".json");
                 break;
-            case "MATHQuestion":
-                testServiceMATH.createQuestion();
-                break;
-            case "showStatsMATH":
-                testServiceMATH.statistics.printStats();
-                break;
-            case "uploadStatsMATH":
-                QuestionStatistics newQuestionStatisticsMATH = QuestionStatistics.uploadStats("src/main/resources/StatisticsMATH.json");
-                if (newQuestionStatisticsMATH != null)
-                    testServiceMATH.statistics = newQuestionStatisticsMATH;
-                break;
-            case "saveStatsMATH":
-                testServiceMATH.statistics.saveStats("src/main/resources/StatisticsMATH.json");
-                break;
+            default:
         }
     }
-
-
-
 }

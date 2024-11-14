@@ -1,14 +1,14 @@
 import java.io.*;
 import java.util.HashMap;
 import java.util.Map;
-
 import com.fasterxml.jackson.databind.ObjectMapper;
 import model.*;
 
 public class ResourceStorage {
-    Map<Location, Map<String, String> > commands;
-    Map<String, String> singleQuotes;
-    Map<String, String[]> randomQuotes;
+    private Map<Location, Map<String, String>> commands;
+    private Map<String, String> singleQuotes;
+    private Map<String, String[]> randomQuotes;
+    private final ObjectMapper mapper = new ObjectMapper();
 
     ResourceStorage() {
         commands = importCommands("src/main/resources/Commands.json");
@@ -16,19 +16,19 @@ public class ResourceStorage {
         randomQuotes = importRandomQuotes("src/main/resources/RandomQuotes.json");
     }
 
-    private Map<Location, Map<String, String> > importCommands(String path) {
+    private Map<Location, Map<String, String>> importCommands(String path) {
 
-        Map<Location, Map<String, String> > map = new HashMap<>();
+        Map<Location, Map<String, String>> map = new HashMap<>();
 
-        Command[] commands = importFromJSon(path, Command[].class);
+        Command[] commands = importFromJson(path, Command[].class);
 
-        for (Command currentCommand: commands) {
-            if (!map.containsKey(currentCommand.location)) {
-                map.put((currentCommand.location), new HashMap<>());
+        for (Command currentCommand : commands) {
+            if (!map.containsKey(currentCommand.getLocation())) {
+                map.put((currentCommand.getLocation()), new HashMap<>());
             }
-            for (String variant: currentCommand.inputVariants) {
+            for (String variant : currentCommand.getInputVariants()) {
 
-                map.get(currentCommand.location).put(variant, currentCommand.id);
+                map.get(currentCommand.getLocation()).put(variant, currentCommand.getId());
             }
         }
 
@@ -39,11 +39,10 @@ public class ResourceStorage {
 
         Map<String, String[]> map = new HashMap<>();
 
-        QuoteRandom[] quotes = importFromJSon(path, QuoteRandom[].class);
+        QuoteRandom[] quotes = importFromJson(path, QuoteRandom[].class);
 
-        for (QuoteRandom currentQuote: quotes)
-            map.put(currentQuote.name, currentQuote.responseRandom);
-
+        for (QuoteRandom currentQuote : quotes)
+            map.put(currentQuote.getName(), currentQuote.getResponseRandom());
 
         return map;
     }
@@ -52,29 +51,31 @@ public class ResourceStorage {
 
         HashMap<String, String> map = new HashMap<>();
 
-        QuoteSimple[] quotes = importFromJSon(path, QuoteSimple[].class);
+        QuoteSimple[] quotes = importFromJson(path, QuoteSimple[].class);
 
-        for (QuoteSimple currentQuote: quotes)
-            map.put(currentQuote.name, currentQuote.response);
-
+        for (QuoteSimple currentQuote : quotes)
+            map.put(currentQuote.getName(), currentQuote.getResponse());
 
         return map;
     }
 
-
-
-    static public <T> T[] importFromJSon(String path, Class<T[]> clazz) {
-        T[] array;
-        File file = new File(path);
-        ObjectMapper objectMapper = new ObjectMapper();
-
+    public <T> T[] importFromJson(String path, Class<T[]> clazz) {
         try {
-            array = objectMapper.readValue(file, clazz);
+            return mapper.readValue(new File(path), clazz);
         } catch (IOException e) {
             throw new RuntimeException(e);
         }
+    }
 
+    public Map<Location, Map<String, String>> getCommands() {
+        return commands;
+    }
 
-        return array;
+    public Map<String, String> getSingleQuotes() {
+        return singleQuotes;
+    }
+
+    public Map<String, String[]> getRandomQuotes() {
+        return randomQuotes;
     }
 }

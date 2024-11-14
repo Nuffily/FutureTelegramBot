@@ -1,37 +1,36 @@
+import utils.MyUtils;
 
 public class PrintService {
 
-    static ResourceStorage storage;
+    public void printlnResponse(String command, ResourceStorage storage) {
 
-    public static void printlnResponse(String command) {
-
-        String quote = getQuote(command);
+        String quote = getQuote(command, storage);
 
         if (quote != null) println(quote);
     }
 
-    public static void printResponse(String command) {
+    public void printResponse(String command, ResourceStorage storage) {
 
-        String quote = getQuote(command);
+        String quote = getQuote(command, storage);
 
         if (quote != null) print(quote);
     }
 
-    private static String getQuote(String command) {
-        String quote = storage.singleQuotes.get(command);
+    private String getQuote(String command, ResourceStorage storage) {
+        String quote = storage.getSingleQuotes().get(command);
 
-        if ((quote == null) && (storage.randomQuotes.get(command) != null)) {
-            quote = MyUtils.getRandomElement(storage.randomQuotes.get(command));
+        if ((quote == null) && (storage.getRandomQuotes().get(command) != null)) {
+            quote = MyUtils.getRandomElement(storage.getRandomQuotes().get(command));
         }
 
         return quote;
     }
 
-    public static <T> void println(T quote) {
+    public <T> void println(T quote) {
         System.out.println(quote);
     }
 
-    public static <T> void print(T quote) {
+    public <T> void print(T quote) {
         System.out.print(quote);
     }
 }
