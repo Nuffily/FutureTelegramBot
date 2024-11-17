@@ -9,12 +9,13 @@ public class Bot {
     ResourceStorage storage;
     Scanner scan = new Scanner(System.in);
     TestService testService;
-    PrintService printer = new PrintService();
+    PrintService printer;
     public TheoryService theoryService;
   
     Bot(ResourceStorage storage) {
         this.storage = storage;
         testService = new TestService(storage);
+        printer = new PrintService(storage);
     }
 
 
@@ -25,11 +26,11 @@ public class Bot {
         command = storage.getCommands().get(location).get(command);
 
         if (command == null) {
-            printer.printlnResponse("unknownCommand", storage);
+            printer.printlnResponse("unknownCommand");
             return;
         }
 
-        printer.printlnResponse(command, storage);
+        printer.printlnResponse(command);
 
         execute(command);
     }
@@ -55,7 +56,7 @@ public class Bot {
                 theoryService.startTheory();
                 break;
             case "startQuestion":
-                testService.questionPassion(location);
+                testService.questionPassing(location);
                 break;
             case "showStats":
                 testService.statistics.get(location).printStats();

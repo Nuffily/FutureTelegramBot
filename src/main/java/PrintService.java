@@ -1,22 +1,31 @@
 import utils.MyUtils;
 
 public class PrintService {
+    private final ResourceStorage storage;
 
-    public void printlnResponse(String command, ResourceStorage storage) {
+    PrintService(ResourceStorage storage) {
+        this.storage = storage;
+    }
 
-        String quote = getQuote(command, storage);
+    PrintService() {
+        storage = null;
+    }
+
+    public void printlnResponse(String command) {
+
+        String quote = getQuote(command);
 
         if (quote != null) println(quote);
     }
 
-    public void printResponse(String command, ResourceStorage storage) {
+    public void printResponse(String command) {
 
-        String quote = getQuote(command, storage);
+        String quote = getQuote(command);
 
         if (quote != null) print(quote);
     }
 
-    private String getQuote(String command, ResourceStorage storage) {
+    private String getQuote(String command) {
         String quote = storage.getSingleQuotes().get(command);
 
         if ((quote == null) && (storage.getRandomQuotes().get(command) != null)) {
@@ -33,4 +42,5 @@ public class PrintService {
     public <T> void print(T quote) {
         System.out.print(quote);
     }
+
 }

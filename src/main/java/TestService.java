@@ -13,10 +13,11 @@ public class TestService {
     Map<Location, QuestionStatistics> statistics;
     ResourceStorage storage;
     Scanner scan = new Scanner(System.in);
-    PrintService printer = new PrintService();
+    PrintService printer;
 
     TestService(ResourceStorage storage) {
         this.storage = storage;
+        printer = new PrintService(storage);
 
         questions = new HashMap<>();
         questions.put(Location.JS, importQuestions("src/main/resources/QuestionsJS.json"));
@@ -27,14 +28,12 @@ public class TestService {
         statistics.put(Location.MATH, new QuestionStatistics(questions.get(Location.MATH)));
     }
 
-    public void questionPassion(Location Location) {
-
+    public void questionPassing(Location Location) {
         Question question = MyUtils.getRandomElement(questions.get(Location));
+        question.shuffleAnswers();
 
         printer.println(question.getBody() + "\n-------------------------------\n"
                 + "Варианты ответа:");
-
-        question.shuffleAnswers();
 
         for (int i = 0; i < question.getAnswers().length; i++) {
             printer.println((i + 1) + ". " + question.getAnswers()[i]);
@@ -43,12 +42,12 @@ public class TestService {
         int answer = getSuitableAnswer(question);
 
         if (answer == question.getCorrectAnswer()) {
-            printer.printlnResponse("correctAnswer", storage);
+            printer.printlnResponse("correctAnswer");
 
             statistics.get(Location).updateStats(question.getNumber(), true);
         } else {
-            printer.printlnResponse("incorrectAnswer", storage);
-            printer.printResponse("correctAnswerIs", storage);
+            printer.printlnResponse("incorrectAnswer");
+            printer.printResponse("correctAnswerIs");
             printer.println("" + question.getCorrectAnswer());
 
             statistics.get(Location).updateStats(question.getNumber(), false);

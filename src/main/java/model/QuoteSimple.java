@@ -3,9 +3,6 @@ package model;
 public final class QuoteSimple extends Quote {
     private String response;
 
-    public QuoteSimple() {
-    }
-
     public String getResponse() {
         return response;
     }

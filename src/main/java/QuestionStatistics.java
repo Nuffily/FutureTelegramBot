@@ -11,6 +11,7 @@ public class QuestionStatistics {
     PrintService printer = new PrintService();
 
     QuestionStatistics() {
+
     }
 
     QuestionStatistics(Question[] questions) {
@@ -48,7 +49,7 @@ public class QuestionStatistics {
         try {
             file = new File(path);
         } catch (Exception e) {
-            printer.println("Существующая статистика не найдена или повреждена");
+            printer.println("Существующая статистика не найдена или повреждена!");
             return;
         }
 

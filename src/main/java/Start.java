@@ -6,7 +6,7 @@ public class Start {
 
         ResourceStorage storage = new ResourceStorage();
 
-        PrintService printer = new PrintService();
+        PrintService printer = new PrintService(storage);
 
         printer.println("Здарова! Введи какую-нить команду, например, /help");
 

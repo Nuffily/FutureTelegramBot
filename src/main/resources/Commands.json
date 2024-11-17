@@ -9,7 +9,6 @@
       "рудз"
     ]
   },
-
   {
     "location" : "MAIN",
     "id" : "travelToJS",
@@ -148,20 +147,6 @@
       "рудз"
     ]
   },
-
-  {
-    "location" : "JS",
-    "id" : "JSQuestion",
-    "inputVariants" : [
-      "question",
-      "quest",
-      "q",
-      "йгуые"
-    ]
-  },
-
-
-
   {
     "location" : "MAIN",
     "id" : "exit",
