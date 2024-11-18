@@ -1,6 +1,7 @@
 import com.fasterxml.jackson.databind.ObjectMapper;
 import model.Question;
-import java.io.*;
+import java.io.File;
+import java.io.IOException;
 
 public class QuestionStatistics {
     private boolean[] questionPassed = {};

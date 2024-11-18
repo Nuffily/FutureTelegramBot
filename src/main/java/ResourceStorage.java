@@ -1,8 +1,12 @@
-import java.io.*;
+import com.fasterxml.jackson.databind.ObjectMapper;
+import java.io.File;
+import java.io.IOException;
 import java.util.HashMap;
 import java.util.Map;
-import com.fasterxml.jackson.databind.ObjectMapper;
-import model.*;
+import model.Command;
+import model.Location;
+import model.QuoteRandom;
+import model.QuoteSimple;
 
 public class ResourceStorage {
     private final Map<Location, Map<String, String>> commands;
@@ -26,8 +30,8 @@ public class ResourceStorage {
             if (!map.containsKey(currentCommand.getLocation())) {
                 map.put((currentCommand.getLocation()), new HashMap<>());
             }
-            for (String variant : currentCommand.getInputVariants()) {
 
+            for (String variant : currentCommand.getInputVariants()) {
                 map.get(currentCommand.getLocation()).put(variant, currentCommand.getId());
             }
         }
@@ -41,8 +45,9 @@ public class ResourceStorage {
 
         QuoteRandom[] quotes = importFromJson(path, QuoteRandom[].class);
 
-        for (QuoteRandom currentQuote : quotes)
+        for (QuoteRandom currentQuote : quotes) {
             map.put(currentQuote.getName(), currentQuote.getResponseRandom());
+        }
 
         return map;
     }
@@ -53,8 +58,9 @@ public class ResourceStorage {
 
         QuoteSimple[] quotes = importFromJson(path, QuoteSimple[].class);
 
-        for (QuoteSimple currentQuote : quotes)
+        for (QuoteSimple currentQuote : quotes) {
             map.put(currentQuote.getName(), currentQuote.getResponse());
+        }
 
         return map;
     }

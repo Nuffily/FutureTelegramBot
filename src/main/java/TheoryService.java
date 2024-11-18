@@ -1,9 +1,7 @@
-import model.Location;
 import model.Theory;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import java.io.File;
 import java.io.IOException;
-import java.util.List;
 import java.util.Objects;
 
 public class TheoryService {
