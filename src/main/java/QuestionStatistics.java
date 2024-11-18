@@ -3,15 +3,14 @@ import model.Question;
 import java.io.*;
 
 public class QuestionStatistics {
-    boolean[] questionPassed = {};
-    int countOfPassedQuestions = 0;
-    int[] questionsAttempts = {};
-    int countOfAttemptedQuestions = 0;
-    ObjectMapper objectMapper = new ObjectMapper();
-    PrintService printer = new PrintService();
+    private boolean[] questionPassed = {};
+    private int countOfPassedQuestions = 0;
+    private int[] questionsAttempts = {};
+    private int countOfAttemptedQuestions = 0;
+    private final ObjectMapper objectMapper = new ObjectMapper();
+    private final PrintService printer = new PrintService();
 
     QuestionStatistics() {
-
     }
 
     QuestionStatistics(Question[] questions) {
@@ -61,6 +60,7 @@ public class QuestionStatistics {
             this.countOfPassedQuestions = newQuestionStatistics.countOfPassedQuestions;
             this.questionsAttempts = newQuestionStatistics.questionsAttempts;
             this.questionPassed = newQuestionStatistics.questionPassed;
+
         } catch (IOException e) {
             printer.println("Существующая статистика не найдена или повреждена");
         }

@@ -5,9 +5,9 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 import model.*;
 
 public class ResourceStorage {
-    private Map<Location, Map<String, String>> commands;
-    private Map<String, String> singleQuotes;
-    private Map<String, String[]> randomQuotes;
+    private final Map<Location, Map<String, String>> commands;
+    private final Map<String, String> singleQuotes;
+    private final Map<String, String[]> randomQuotes;
     private final ObjectMapper mapper = new ObjectMapper();
 
     ResourceStorage() {
@@ -59,7 +59,7 @@ public class ResourceStorage {
         return map;
     }
 
-    public <T> T[] importFromJson(String path, Class<T[]> clazz) {
+    private <T> T[] importFromJson(String path, Class<T[]> clazz) {
         try {
             return mapper.readValue(new File(path), clazz);
         } catch (IOException e) {

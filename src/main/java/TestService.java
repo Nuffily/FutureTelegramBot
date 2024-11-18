@@ -9,14 +9,12 @@ import java.util.Map;
 import java.util.Scanner;
 
 public class TestService {
-    Map<Location, Question[]> questions;
-    Map<Location, QuestionStatistics> statistics;
-    ResourceStorage storage;
-    Scanner scan = new Scanner(System.in);
-    PrintService printer;
+    private final Map<Location, Question[]> questions;
+    private final Map<Location, QuestionStatistics> statistics;
+    private final Scanner scan = new Scanner(System.in);
+    private final PrintService printer;
 
     TestService(ResourceStorage storage) {
-        this.storage = storage;
         printer = new PrintService(storage);
 
         questions = new HashMap<>();
@@ -28,7 +26,19 @@ public class TestService {
         statistics.put(Location.MATH, new QuestionStatistics(questions.get(Location.MATH)));
     }
 
-    public void questionPassing(Location Location) {
+    public void printStats(Location location) {
+        statistics.get(location).printStats();
+    }
+
+    public void uploadStats(Location location, String path) {
+        statistics.get(location).uploadStats(path + location.toString() + ".json");
+    }
+
+    public void saveStats(Location location, String path) {
+        statistics.get(location).saveStats(path + location.toString() + ".json");
+    }
+
+    public void questionAnswering(Location Location) {
         Question question = MyUtils.getRandomElement(questions.get(Location));
         question.shuffleAnswers();
 
@@ -81,7 +91,7 @@ public class TestService {
         return importFromJson(path, Question[].class);
     }
 
-    public <T> T[] importFromJson(String path, Class<T[]> clazz) {
+    private <T> T[] importFromJson(String path, Class<T[]> clazz) {
         ObjectMapper mapper = new ObjectMapper();
         try {
             return mapper.readValue(new File(path), clazz);

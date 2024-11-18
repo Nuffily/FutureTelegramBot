@@ -5,17 +5,18 @@ import model.Location;
 // реализует функционал для тг, дс например
 //
 public class Bot {
-    Location location = Location.MAIN;
-    ResourceStorage storage;
-    Scanner scan = new Scanner(System.in);
-    TestService testService;
-    PrintService printer;
-    public TheoryService theoryService;
+    private Location location = Location.MAIN;
+    private final ResourceStorage storage;
+    private final Scanner scan = new Scanner(System.in);
+    private final TestService testService;
+    private final PrintService printer;
+    private final  TheoryService theoryService;
   
     Bot(ResourceStorage storage) {
         this.storage = storage;
         testService = new TestService(storage);
         printer = new PrintService(storage);
+        theoryService = new TheoryService();
     }
 
 
@@ -56,18 +57,22 @@ public class Bot {
                 theoryService.startTheory();
                 break;
             case "startQuestion":
-                testService.questionPassing(location);
+                testService.questionAnswering(location);
                 break;
             case "showStats":
-                testService.statistics.get(location).printStats();
+                testService.printStats(location);
                 break;
             case "uploadStats":
-                testService.statistics.get(location).uploadStats("src/main/resources/Statistics" + location.toString() + ".json");
+                testService.uploadStats(location ,"src/main/resources/Statistics");
                 break;
             case "saveStats":
-                testService.statistics.get(location).saveStats("src/main/resources/Statistics" + location.toString() + ".json");
+                testService.saveStats(location ,"src/main/resources/Statistics");
                 break;
             default:
         }
+    }
+
+    public Location getLocation() {
+        return location;
     }
 }
