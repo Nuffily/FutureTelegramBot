@@ -15,14 +15,18 @@ public class PrintService {
 
         String quote = getQuote(command);
 
-        if (quote != null) println(quote);
+        if (quote != null) {
+            println(quote);
+        }
     }
 
     public void printResponse(String command) {
 
         String quote = getQuote(command);
 
-        if (quote != null) print(quote);
+        if (quote != null) {
+            print(quote);
+        }
     }
 
     private String getQuote(String command) {

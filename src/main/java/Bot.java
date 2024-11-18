@@ -63,10 +63,10 @@ public class Bot {
                 testService.printStats(location);
                 break;
             case "uploadStats":
-                testService.uploadStats(location ,"src/main/resources/Statistics");
+                testService.uploadStats(location, "src/main/resources/Statistics");
                 break;
             case "saveStats":
-                testService.saveStats(location ,"src/main/resources/Statistics");
+                testService.saveStats(location, "src/main/resources/Statistics");
                 break;
             default:
         }
