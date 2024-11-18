@@ -1,7 +1,7 @@
 import com.fasterxml.jackson.databind.ObjectMapper;
-import model.Question;
 import java.io.File;
 import java.io.IOException;
+import model.Question;
 
 public class QuestionStatistics {
     private boolean[] questionPassed = {};
@@ -20,8 +20,10 @@ public class QuestionStatistics {
     }
 
     public void printStats() {
-        printer.println("Количество пройденных вопросов: " + countOfPassedQuestions + "/" + (questionPassed.length - 1));
-        printer.println("Количество встретившихся вопросов: " + countOfAttemptedQuestions + "/" + (questionPassed.length - 1));
+        printer.println("Количество пройденных вопросов: "
+                + countOfPassedQuestions + "/" + (questionPassed.length - 1));
+        printer.println("Количество встретившихся вопросов: "
+                + countOfAttemptedQuestions + "/" + (questionPassed.length - 1));
     }
 
     public void updateStats(int numberOfQuestion, boolean isCorrectAnswer) {
@@ -31,8 +33,9 @@ public class QuestionStatistics {
             countOfPassedQuestions++;
         }
 
-        if (questionsAttempts[numberOfQuestion]++ == 0)
+        if (questionsAttempts[numberOfQuestion]++ == 0) {
             countOfAttemptedQuestions++;
+        }
     }
 
     public void saveStats(String path) {
