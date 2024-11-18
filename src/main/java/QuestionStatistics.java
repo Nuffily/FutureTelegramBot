@@ -57,7 +57,8 @@ public class QuestionStatistics {
         }
 
         try {
-            QuestionStatistics newQuestionStatistics = objectMapper.readValue(file, QuestionStatistics.class);
+            QuestionStatistics newQuestionStatistics =
+                    objectMapper.readValue(file, QuestionStatistics.class);
             printer.println("Статистика загружена! Чтобы взгянуть на нее, напиши 'stats'");
 
             this.countOfAttemptedQuestions = newQuestionStatistics.countOfAttemptedQuestions;
