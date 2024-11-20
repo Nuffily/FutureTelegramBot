@@ -1,12 +1,12 @@
 import com.fasterxml.jackson.databind.ObjectMapper;
-import model.Location;
-import model.Question;
-import utils.MyUtils;
 import java.io.File;
 import java.io.IOException;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.Scanner;
+import model.Location;
+import model.Question;
+import utils.MyUtils;
 
 public class TestService {
     private final Map<Location, Question[]> questions;
