@@ -1,20 +1,23 @@
-import model.Theory;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import java.io.File;
 import java.io.IOException;
+import model.Theory;
 import java.util.Objects;
+import java.util.Scanner;
 
 public class TheoryService {
     private Theory[] theories;
-    Input input = new Input();
+    private final Scanner scan = new Scanner(System.in);
+    private final PrintService printer;
 
-    public TheoryService() {
+    public TheoryService(ResourceStorage storage) {
+        printer = new PrintService(storage);
         ObjectMapper objectMapper = new ObjectMapper();
         try {
             this.theories = objectMapper.readValue(new File("src/main/resources/TheoryStorage.json"), Theory[].class);
 
         } catch (IOException e) {
-            e.printStackTrace();
+            printer.println(e);
         }
     }
 
@@ -23,19 +26,19 @@ public class TheoryService {
     }
 
     private void displayAvailableTheories() {
-        System.out.println("Доступные темы:");
+        printer.println("Доступные темы:");
         int count = 0;
         for (Theory theory : theories) {
-            System.out.println(++count + ". " + theory.getTitle() + " - " + theory.getCommand());
+            printer.println(++count + ". " + theory.getTitle() + " - " + theory.getCommand());
         }
     }
 
     private void handleUserInputForTheory() {
         while (true) {
             displayAvailableTheories();
-            System.out.print("Введите номер темы или 'exit' для выхода: ");
+            printer.print("Введите номер темы или 'exit' для выхода: ");
 
-            String userInput = input.readLine();
+            String userInput = scan.nextLine();
 
             try {
                 int index = Integer.parseInt(userInput) - 1;
@@ -44,25 +47,25 @@ public class TheoryService {
 
                 } else {
                     if ("back".equalsIgnoreCase(userInput)) {
-                        System.out.println("Выход из программы.");
+                        printer.println("Выход из программы.");
                         break;
                     }
-                    System.out.println("Такой команды нет, пожалуйста, введите корректный номер.");
+                    printer.println("Такой команды нет, пожалуйста, введите корректный номер.");
                 }
             } catch (NumberFormatException e) {
                 if ("exit".equalsIgnoreCase(userInput) || "back".equalsIgnoreCase(userInput)) {
-                    System.out.println("Выход в главное меню.");
+                    printer.println("Выход в главное меню.");
                     break;
                 }
-                System.out.println("Некорректный ввод, пожалуйста, введите число.");
+                printer.println("Некорректный ввод, пожалуйста, введите число.");
             }
         }
     }
 
     private void displaySections(Theory theory) {
-        System.out.println("Доступные разделы:");
+        printer.println("Доступные разделы:");
         for (Theory.Section section : theory.getSections()) {
-            System.out.println(section.getNumber() + ". " + section.getTitle());
+            printer.println(section.getNumber() + ". " + section.getTitle());
         }
     }
 
@@ -70,29 +73,30 @@ public class TheoryService {
 
         while (true) {
             displaySections(theories[index]);
-            System.out.print("Введите номер раздела для изучения или 'back' для возврата: ");
-            String userInput = input.readLine();
+            printer.print("Введите номер раздела для изучения или 'back' для возврата: ");
+            String userInput = scan.nextLine();
+
             try {
                 int sectionIndex = Integer.parseInt(userInput) - 1;
                 if (sectionIndex >= 0 && sectionIndex < theory.getSections().size()) {
                    // locationInTheory = "sections";
-                    System.out.println(theory.getSections().get(sectionIndex).getContent());
-                    System.out.println("Введите back для возврата.");
+                    printer.println(theory.getSections().get(sectionIndex).getContent());
+                    printer.println("Введите back для возврата.");
 
-                    String curInput = input.readLine();
+                    String curInput = scan.nextLine();
                     if (Objects.equals(curInput, "menu")){
                         displayAvailableTheories();
                         break;
                     }
                 } else {
-                    System.out.println("Некорректный номер раздела, пожалуйста, введите число в диапазоне.");
+                    printer.println("Некорректный номер раздела, пожалуйста, введите число в диапазоне.");
                 }
             } catch (NumberFormatException e) {
                 if ("back".equalsIgnoreCase(userInput)) {
-                    System.out.println("Выходим из раздела секции.");
+                    printer.println("Выходим из раздела секции.");
                     break;
                 }
-                System.out.println("Некорректный ввод, пожалуйста, введите число или 'back'.");
+                printer.println("Некорректный ввод, пожалуйста, введите число или 'back'.");
             }
         }
     }

@@ -10,13 +10,13 @@ public class Bot {
     private final Scanner scan = new Scanner(System.in);
     private final TestService testService;
     private final PrintService printer;
-    private final  TheoryService theoryService;
+    private final TheoryService theoryService;
   
     Bot(ResourceStorage storage) {
         this.storage = storage;
         testService = new TestService(storage);
         printer = new PrintService(storage);
-        theoryService = new TheoryService();
+        theoryService = new TheoryService(storage);
     }
 
 

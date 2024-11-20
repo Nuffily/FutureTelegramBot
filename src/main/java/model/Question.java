@@ -1,4 +1,5 @@
 package model;
+
 import java.util.Random;
 
 
@@ -17,16 +18,17 @@ public class Question {
             String temp = answers[index];
             answers[index] = answers[i];
             answers[i] = temp;
-            boolean temp_2 = isCorrect[index];
+            boolean temp2 = isCorrect[index];
             isCorrect[index] = isCorrect[i];
-            isCorrect[i] = temp_2;
+            isCorrect[i] = temp2;
         }
     }
 
     public int getCorrectAnswer() {
         for (int i = 0;; i++) {
-            if (isCorrect[i])
+            if (isCorrect[i]) {
                 return i + 1;
+            }
         }
     }
 
