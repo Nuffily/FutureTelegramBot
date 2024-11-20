@@ -38,8 +38,8 @@ public class TestService {
         statistics.get(location).saveStats(path + location.toString() + ".json");
     }
 
-    public void questionAnswering(Location Location) {
-        Question question = MyUtils.getRandomElement(questions.get(Location));
+    public void questionAnswering(Location location) {
+        Question question = MyUtils.getRandomElement(questions.get(location));
         question.shuffleAnswers();
 
         printer.println(question.getBody() + "\n-------------------------------\n"
@@ -54,13 +54,13 @@ public class TestService {
         if (question.getIsCorrect()[answer - 1]) {
             printer.printlnResponse("correctAnswer");
 
-            statistics.get(Location).updateStats(question.getNumber(), true);
+            statistics.get(location).updateStats(question.getNumber(), true);
         } else {
             printer.printlnResponse("incorrectAnswer");
             printer.printResponse("correctAnswerIs");
             printer.println("" + question.getCorrectAnswer());
 
-            statistics.get(Location).updateStats(question.getNumber(), false);
+            statistics.get(location).updateStats(question.getNumber(), false);
         }
     }
 

@@ -15,8 +15,8 @@ public class TheoryService {
         printer = new PrintService(storage);
         ObjectMapper objectMapper = new ObjectMapper();
         try {
-            this.theories = objectMapper.readValue
-                    (new File("src/main/resources/TheoryStorage.json"), Theory[].class);
+            this.theories = objectMapper.readValue(
+                    new File("src/main/resources/TheoryStorage.json"), Theory[].class);
 
         } catch (IOException e) {
             printer.println(e);
