@@ -51,7 +51,7 @@ public class TestService {
 
         int answer = getSuitableAnswer(question);
 
-        if (answer == question.getCorrectAnswer()) {
+        if (question.getIsCorrect()[answer - 1]) {
             printer.printlnResponse("correctAnswer");
 
             statistics.get(Location).updateStats(question.getNumber(), true);

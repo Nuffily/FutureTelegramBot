@@ -9,7 +9,7 @@
       "runtime error"
     ],
     "number": 1,
-    "correctAnswer": 1,
+    "isCorrect": [ 1, 0, 0, 0 ] ,
     "countOfAnswers": 4,
     "explanation": ""
   },
@@ -23,7 +23,7 @@
       "190"
     ],
     "number": 2,
-    "correctAnswer": 1,
+    "isCorrect": [ 1, 0, 0, 0 ] ,
     "countOfAnswers": 4,
     "explanation": ""
   },
@@ -37,7 +37,7 @@
       "none of the above"
     ],
     "number": 3,
-    "correctAnswer": 2,
+    "isCorrect": [ 0, 1, 0, 0 ] ,
     "countOfAnswers": 4,
     "explanation": ""
   },
@@ -51,7 +51,7 @@
       "1"
     ],
     "number": 4,
-    "correctAnswer": 2,
+    "isCorrect": [ 0, 1, 0, 0 ] ,
     "countOfAnswers": 4,
     "explanation": ""
   },
@@ -65,7 +65,7 @@
       "1"
     ],
     "number": 5,
-    "correctAnswer": 2,
+    "isCorrect": [ 0, 1, 0, 0 ] ,
     "countOfAnswers": 4,
     "explanation": ""
   },
@@ -79,7 +79,7 @@
       "none of the above"
     ],
     "number": 6,
-    "correctAnswer": 3,
+    "isCorrect": [ 0, 0, 1, 0 ] ,
     "countOfAnswers": 4,
     "explanation": ""
   },
@@ -93,7 +93,7 @@
       "[22,111,44,1]"
     ],
     "number": 7,
-    "correctAnswer": 1,
+    "isCorrect": [ 1, 0, 0, 0 ] ,
     "countOfAnswers": 4,
     "explanation": ""
   },
@@ -107,7 +107,7 @@
       "-infinity -infinity"
     ],
     "number": 8,
-    "correctAnswer": 1,
+    "isCorrect": [ 1, 0, 0, 0 ] ,
     "countOfAnswers": 4,
     "explanation": ""
   },
@@ -121,7 +121,7 @@
       "None of the above"
     ],
     "number": 9,
-    "correctAnswer": 3,
+    "isCorrect": [ 0, 0, 1, 0 ] ,
     "countOfAnswers": 4,
     "explanation": ""
   },
@@ -135,7 +135,7 @@
       "None of the above"
     ],
     "number": 10,
-    "correctAnswer": 2,
+    "isCorrect": [ 0, 1, 0, 0 ] ,
     "countOfAnswers": 4,
     "explanation": ""
   },
@@ -149,7 +149,7 @@
       "Array"
     ],
     "number": 11,
-    "correctAnswer": 3,
+    "isCorrect": [ 0, 0, 1, 0 ] ,
     "countOfAnswers": 4,
     "explanation": ""
   },
@@ -163,7 +163,7 @@
       "5"
     ],
     "number": 12,
-    "correctAnswer": 4,
+    "isCorrect": [ 0, 0, 0, 1 ] ,
     "countOfAnswers": 4,
     "explanation": ""
   },
@@ -177,7 +177,7 @@
       "2,3,4"
     ],
     "number": 13,
-    "correctAnswer": 1,
+    "isCorrect": [ 1, 0, 0, 0 ] ,
     "countOfAnswers": 4,
     "explanation": ""
   },
@@ -191,7 +191,7 @@
       "None of the above"
     ],
     "number": 14,
-    "correctAnswer": 1,
+    "isCorrect": [ 1, 0, 0, 0 ] ,
     "countOfAnswers": 4,
     "explanation": ""
   },
@@ -205,7 +205,7 @@
       "4 3 1 2"
     ],
     "number": 15,
-    "correctAnswer": 3,
+    "isCorrect": [ 0, 0, 1, 0 ] ,
     "countOfAnswers": 4,
     "explanation": ""
   },
@@ -219,7 +219,7 @@
       "caler"
     ],
     "number": 16,
-    "correctAnswer": 1,
+    "isCorrect": [ 1, 0, 0, 0 ] ,
     "countOfAnswers": 4,
     "explanation": ""
   },
@@ -233,7 +233,7 @@
       "Integer"
     ],
     "number": 17,
-    "correctAnswer": 3,
+    "isCorrect": [ 0, 0, 1, 0 ] ,
     "countOfAnswers": 4,
     "explanation": ""
   },
@@ -247,7 +247,7 @@
       "None of the above"
     ],
     "number": 18,
-    "correctAnswer": 1,
+    "isCorrect": [ 1, 0, 0, 0 ] ,
     "countOfAnswers": 4,
     "explanation": ""
   },
@@ -261,7 +261,7 @@
       "None of the above"
     ],
     "number": 19,
-    "correctAnswer": 1,
+    "isCorrect": [ 1, 0, 0, 0 ] ,
     "countOfAnswers": 4,
     "explanation": ""
   },
@@ -275,7 +275,7 @@
       "None of the above"
     ],
     "number": 20,
-    "correctAnswer": 1,
+    "isCorrect": [ 1, 0, 0, 0 ] ,
     "countOfAnswers": 4,
     "explanation": ""
   },
@@ -289,7 +289,7 @@
       "All of the above"
     ],
     "number": 21,
-    "correctAnswer": 4,
+    "isCorrect": [ 0, 0, 0, 1 ] ,
     "countOfAnswers": 4,
     "explanation": ""
   },
@@ -303,7 +303,7 @@
       "TypeError"
     ],
     "number": 22,
-    "correctAnswer": 1,
+    "isCorrect": [ 1, 0, 0, 0 ] ,
     "countOfAnswers": 4,
     "explanation": ""
   },
@@ -317,7 +317,7 @@
       "null"
     ],
     "number": 23,
-    "correctAnswer": 2,
+    "isCorrect": [ 0, 1, 0, 0 ] ,
     "countOfAnswers": 4,
     "explanation": ""
   },
@@ -331,7 +331,7 @@
       "0"
     ],
     "number": 24,
-    "correctAnswer": 2,
+    "isCorrect": [ 0, 1, 0, 0 ] ,
     "countOfAnswers": 4,
     "explanation": ""
   },
@@ -345,7 +345,7 @@
       "'NaN'"
     ],
     "number": 25,
-    "correctAnswer": 1,
+    "isCorrect": [ 1, 0, 0, 0 ] ,
     "countOfAnswers": 4,
     "explanation": ""
   },
@@ -359,7 +359,7 @@
       "TypeError"
     ],
     "number": 26,
-    "correctAnswer": 2,
+    "isCorrect": [ 0, 1, 0, 0 ] ,
     "countOfAnswers": 4,
     "explanation": ""
   },
@@ -373,7 +373,7 @@
       "'fivefive'"
     ],
     "number": 27,
-    "correctAnswer": 2,
+    "isCorrect": [ 0, 1, 0, 0 ] ,
     "countOfAnswers": 4,
     "explanation": ""
   },
@@ -387,10 +387,10 @@
       "'9'"
     ],
     "number": 28,
-    "correctAnswer": 1,
+    "isCorrect": [ 1, 0, 0, 0 ] ,
     "countOfAnswers": 4,
-  "explanation" : ""
-},
+    "explanation" : ""
+  },
 
 
 
@@ -403,7 +403,7 @@
       "'undefined'"
     ],
     "number": 29,
-    "correctAnswer": 1,
+    "isCorrect": [ 1, 0, 0, 0 ] ,
     "countOfAnswers": 4,
     "explanation": ""
   },
@@ -416,22 +416,22 @@
       "'NaN'"
     ],
     "number": 30,
-    "correctAnswer": 1,
+    "isCorrect": [ 1, 0, 0, 0 ] ,
     "countOfAnswers": 4,
     "explanation": ""
   },  {
-    "body": "Что выведет этот код?\nfunction multiply(a, b) {\n  return a * b;\n}\nconsole.log(multiply(5, 3));",
-    "answers": [
-      "15",
-      "8",
-      "'53'",
-      "undefined"
-    ],
-    "number": 31,
-    "correctAnswer": 1,
-    "countOfAnswers": 4,
-    "explanation": ""
-  },
+  "body": "Что выведет этот код?\nfunction multiply(a, b) {\n  return a * b;\n}\nconsole.log(multiply(5, 3));",
+  "answers": [
+    "15",
+    "8",
+    "'53'",
+    "undefined"
+  ],
+  "number": 31,
+  "isCorrect": [ 1, 0, 0, 0 ] ,
+  "countOfAnswers": 4,
+  "explanation": ""
+},
 
   {
     "body": "Что выведет этот код?\nconst arr = ['apple', 'banana', 'cherry'];\nconsole.log(arr.length);",
@@ -442,7 +442,7 @@
       "TypeError"
     ],
     "number": 32,
-    "correctAnswer": 1,
+    "isCorrect": [ 1, 0, 0, 0 ] ,
     "countOfAnswers": 4,
     "explanation": ""
   },
@@ -456,7 +456,7 @@
       "undefined"
     ],
     "number": 33,
-    "correctAnswer": 2,
+    "isCorrect": [ 0, 1, 0, 0 ] ,
     "countOfAnswers": 4,
     "explanation": ""
   },
@@ -470,7 +470,7 @@
       "TypeError"
     ],
     "number": 34,
-    "correctAnswer": 2,
+    "isCorrect": [ 0, 1, 0, 0 ] ,
     "countOfAnswers": 4,
     "explanation": ""
   },
@@ -484,7 +484,7 @@
       "undefined"
     ],
     "number": 35,
-    "correctAnswer": 2,
+    "isCorrect": [ 0, 1, 0, 0 ] ,
     "countOfAnswers": 4,
     "explanation": ""
   },
@@ -498,7 +498,7 @@
       "TypeError"
     ],
     "number": 36,
-    "correctAnswer": 2,
+    "isCorrect": [ 0, 1, 0, 0 ] ,
     "countOfAnswers": 4,
     "explanation": ""
   },
@@ -512,7 +512,7 @@
       "null"
     ],
     "number": 37,
-    "correctAnswer": 2,
+    "isCorrect": [ 0, 1, 0, 0 ] ,
     "countOfAnswers": 4,
     "explanation": ""
   }
