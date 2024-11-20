@@ -15,7 +15,8 @@ public class TheoryService {
         printer = new PrintService(storage);
         ObjectMapper objectMapper = new ObjectMapper();
         try {
-            this.theories = objectMapper.readValue(new File("src/main/resources/TheoryStorage.json"), Theory[].class);
+            this.theories = objectMapper.
+                    readValue(new File("src/main/resources/TheoryStorage.json"), Theory[].class);
 
         } catch (IOException e) {
             printer.println(e);
@@ -80,12 +81,12 @@ public class TheoryService {
             try {
                 int sectionIndex = Integer.parseInt(userInput) - 1;
                 if (sectionIndex >= 0 && sectionIndex < theory.getSections().size()) {
-                   // locationInTheory = "sections";
+
                     printer.println(theory.getSections().get(sectionIndex).getContent());
                     printer.println("Введите back для возврата.");
 
                     String curInput = scan.nextLine();
-                    if (Objects.equals(curInput, "menu")){
+                    if (Objects.equals(curInput, "menu")) {
                         displayAvailableTheories();
                         break;
                     }
