@@ -1,9 +1,10 @@
 import com.fasterxml.jackson.databind.ObjectMapper;
 import java.io.File;
 import java.io.IOException;
-import model.Theory;
 import java.util.Objects;
 import java.util.Scanner;
+import model.Theory;
+
 
 public class TheoryService {
     private Theory[] theories;
