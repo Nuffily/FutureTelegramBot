@@ -1,6 +1,6 @@
 package model;
 
-public final class QuoteRandom extends Quote {
+public final class ReplicaRandom extends Replica {
     private String[] responseRandom;
 
     public String[] getResponseRandom() {
