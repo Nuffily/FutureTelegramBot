@@ -12,24 +12,12 @@ public class Theory {
         return command;
     }
 
-    public void setCommand(String command) {
-        this.command = command;
-    }
-
     public String getTitle() {
         return title;
     }
 
-    public void setTitle(String title) {
-        this.title = title;
-    }
-
     public List<Section> getSections() {
         return sections;
-    }
-
-    public void setSections(List<Section> sections) {
-        this.sections = sections;
     }
 
     public static class Section {
