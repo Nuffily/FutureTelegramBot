@@ -6,8 +6,4 @@ public final class ReplicaRandom extends Replica {
     public String[] getResponseRandom() {
         return responseRandom;
     }
-
-    public void setResponseRandom(String[] responseRandom) {
-        this.responseRandom = responseRandom;
-    }
 }
