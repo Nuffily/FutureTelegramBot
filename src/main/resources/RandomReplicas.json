@@ -1,41 +1,5 @@
 [
   {
-    "type" : "SINGLE",
-    "name" : "mainHelp",
-    "response" : "Это учебный бот!!! Пока тут есть только тесты для Джаваскрипта\nКоманды:\nJS - для перехода в меню обучения ДжаваСкрипту\nexit - чтобы прервать работу программы"
-  },
-  {
-    "type" : "SINGLE",
-    "name" : "JSHelp",
-    "response" : "Это меню обучения ДжаваСкрипту\nКоманды:\nquest - чтобы получить вопрос с вариантами ответов\nstats - посмотреть свою статистику по вопросам\nsave - сохранить свою статистику\nupload - загрузить последнюю сохраненую статистику\nback - чтобы вернуться в главное меню"
-  },
-  {
-    "type" : "SINGLE",
-    "name" : "uploadStatsJS",
-    "response" : "Статистика загружена! Чтобы взгянуть на нее, напиши 'stats'"
-  },
-  {
-    "type" : "SINGLE",
-    "name" : "saveStatsJS",
-    "response" : "Статистика сохранена! Чтобы загрузить ее при следующем запуске, используй 'upload'"
-  },
-  {
-    "type" : "SINGLE",
-    "name" : "toMenu",
-    "response" : "Назад в меню!"
-  },
-  {
-    "type" : "SINGLE",
-    "name" : "travelToJS",
-    "response" : "Переходим к изучению JavaScript!\nВводи question для получения вопроса, ну или help, для всякого другого"
-  },
-  {
-    "type" : "SINGLE",
-    "name" : "toMenu",
-    "response" : "Назад в меню!"
-  },
-  {
-    "type" : "RANDOM",
     "name" : "unknownCommand",
     "responseRandom" : [
       "'help' - главное лекарство от незнание",
@@ -48,7 +12,6 @@
     ]
   },
   {
-    "type" : "RANDOM",
     "name" : "correctAnswer",
     "responseRandom" : [
       "Верно! В том же духе!",
@@ -68,7 +31,6 @@
     ]
   },
   {
-    "type" : "RANDOM",
     "name" : "incorrectAnswer",
     "responseRandom" : [
       "...неверно, давай еще разок",
@@ -87,7 +49,6 @@
   },
 
   {
-    "type" : "RANDOM",
     "name" : "correctAnswerIs",
     "responseRandom" : [
       "Правильным ответом был вариант под номером ",

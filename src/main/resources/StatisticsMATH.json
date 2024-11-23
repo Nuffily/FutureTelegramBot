@@ -1,0 +1,6 @@
+{
+  "questionPassed" : [ false, true ],
+  "countOfPassedQuestions" : 1,
+  "questionsAttempts" : [ 0, 1 ],
+  "countOfAttemptedQuestions" : 1
+}
