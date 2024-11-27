@@ -13,9 +13,11 @@ public class TestService {
     private final Map<Location, QuestionStatistics> statistics;
     private final Scanner scan = new Scanner(System.in);
     private final PrintService printer;
+    private final InputService input;
 
-    TestService(ResourceStorage storage) {
+    TestService(ResourceStorage storage, InputService inputService) {
         printer = new PrintService(storage);
+        this.input = inputService;
 
         questions = new HashMap<>();
         questions.put(Location.JS, importQuestions("src/main/resources/QuestionsJS.json"));
@@ -69,7 +71,7 @@ public class TestService {
         int answer;
 
         while (true) {
-            ans = scan.nextLine();
+            ans = input.getInput();
 
             if (!ans.matches("[-+]?\\d+")) {
                 printer.println("Ответ должен быть числом");
