@@ -1,3 +1,5 @@
+package console_bot;
+
 import com.fasterxml.jackson.databind.ObjectMapper;
 import java.io.File;
 import java.io.IOException;
@@ -14,7 +16,7 @@ public class ResourceStorage {
     private final Map<String, String[]> randomReplicas;
     private final ObjectMapper mapper = new ObjectMapper();
 
-    ResourceStorage() {
+    public ResourceStorage() {
         commands = importCommands("src/main/resources/Commands.json");
         singleReplicas = importSingleReplicas("src/main/resources/SimpleReplicas.json");
         randomReplicas = importRandomReplicas("src/main/resources/RandomReplicas.json");
@@ -54,7 +56,7 @@ public class ResourceStorage {
 
     private Map<String, String> importSingleReplicas(String path) {
 
-        HashMap<String, String> map = new HashMap<>();
+        Map<String, String> map = new HashMap<>();
 
         ReplicaSimple[] quotes = importFromJson(path, ReplicaSimple[].class);
 
@@ -71,6 +73,10 @@ public class ResourceStorage {
         } catch (IOException e) {
             throw new RuntimeException(e);
         }
+    }
+
+    public String translateCommand(String command, Location location) {
+        return commands.get(location).get(command);
     }
 
     public Map<Location, Map<String, String>> getCommands() {

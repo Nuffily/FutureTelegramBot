@@ -1,39 +1,43 @@
-import java.util.Scanner;
+package console_bot;
+
 import model.Location;
 
-// должен быть общий интерфейс для бота, полиморфный код, который
-// реализует функционал для тг, дс например
-//
-public class Bot {
+public class Bot implements Runnable{
+    public InputService input = new InputService();
     private Location location = Location.MAIN;
     private final ResourceStorage storage;
-    private final Scanner scan = new Scanner(System.in);
     private final TestService testService;
-    private final PrintService printer;
+    public final OutputService printer;
     private final TheoryService theoryService;
   
-    Bot(ResourceStorage storage) {
+    public Bot(ResourceStorage storage) {
         this.storage = storage;
-        testService = new TestService(storage);
-        printer = new PrintService(storage);
-        theoryService = new TheoryService(storage);
+        printer = new OutputService(storage);
+        testService = new TestService(printer, input);
+        theoryService = new TheoryService(storage, printer, input);
     }
 
 
     public void run() {
 
-        String command = scan.nextLine();
+        printer.println("Здарова! Введи какую-нить команду, например, help");
 
-        command = storage.getCommands().get(location).get(command);
+        while (!location.equals(Location.EXIT)) {
 
-        if (command == null) {
-            printer.printlnResponse("unknownCommand");
-            return;
+            String command = input.getInput();
+
+            command = storage.translateCommand(command, location);
+
+            if (command == null) {
+                printer.printlnResponse("unknownCommand");
+                continue;
+            }
+
+            printer.printlnResponse(command);
+
+            execute(command);
         }
 
-        printer.printlnResponse(command);
-
-        execute(command);
     }
 
     private void execute(String command) {
@@ -42,7 +46,7 @@ public class Bot {
                 location = Location.JS;
                 break;
             case "travelToTheory":
-                location = Location.THEORY;
+                theoryService.startTheory();
                 break;
             case "travelToMATH":
                 location = Location.MATH;
@@ -52,9 +56,7 @@ public class Bot {
                 break;
             case "exit":
                 location = Location.EXIT;
-                break;
-            case "startTheory":
-                theoryService.startTheory();
+                printer.println("Пока-пока!");
                 break;
             case "startQuestion":
                 testService.questionAnswering(location);

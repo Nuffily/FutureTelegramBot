@@ -4,6 +4,7 @@
     "id" : "mainHelp",
     "inputVariants" : [
       "help",
+      "/help",
       "pomosh",
       "h",
       "рудз"
@@ -13,7 +14,9 @@
     "location" : "MAIN",
     "id" : "travelToJS",
     "inputVariants" : [
+      "Js",
       "js",
+      "JavaScript",
       "javascript",
       "джава",
       "джс",
@@ -22,10 +25,11 @@
     ]
   },
   {
-    "location" : "MAIN",
+    "location" : "JS",
     "id" : "travelToTheory",
     "inputVariants" : [
       "t",
+      "T",
       "ttt",
       "theory",
       "th"
@@ -37,6 +41,8 @@
     "id" : "travelToMATH",
     "inputVariants" : [
       "math",
+      "Math",
+      "Высшая математика",
       "ьфер"
     ]
   },
@@ -46,6 +52,8 @@
     "id" : "MATHHelp",
     "inputVariants" : [
       "help",
+      "Help",
+      "/help",
       "pomosh",
       "h",
       "рудз"
@@ -58,7 +66,9 @@
     "inputVariants" : [
       "question",
       "quest",
+      "Вопрос",
       "q",
+      "Q",
       "йгуые"
     ]
   },
@@ -70,8 +80,10 @@
       "back",
       "nazad",
       "назад",
+      "Назад",
       "бек",
       "b",
+      "B",
       "ифсл"
     ]
   },
@@ -83,8 +95,10 @@
       "back",
       "nazad",
       "назад",
+      "Назад",
       "бек",
       "b",
+      "B",
       "ифсл"
     ]
   },
@@ -94,6 +108,8 @@
     "id" : "JSHelp",
     "inputVariants" : [
       "help",
+      "/help",
+      "Help",
       "pomosh",
       "h",
       "рудз"
@@ -105,46 +121,11 @@
     "id" : "startQuestion",
     "inputVariants" : [
       "question",
+      "Вопрос",
       "quest",
       "q",
+      "Q",
       "йгуые"
-    ]
-  },
-
-  {
-    "location" : "THEORY",
-    "id" : "startTheory",
-    "inputVariants" : [
-      "topics",
-      "t",
-      "tt",
-      "go"
-    ]
-  },
-
-
-
-  {
-    "location" : "THEORY",
-    "id" : "toMenu",
-    "inputVariants" : [
-      "back",
-      "nazad",
-      "назад",
-      "бек",
-      "b",
-      "ифсл"
-    ]
-  },
-
-  {
-    "location" : "THEORY",
-    "id" : "TheoryHelp",
-    "inputVariants" : [
-      "help",
-      "pomosh",
-      "h",
-      "рудз"
     ]
   },
   {
