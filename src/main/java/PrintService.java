@@ -30,10 +30,10 @@ public class PrintService {
     }
 
     private String getQuote(String command) {
-        String quote = storage.getSingleQuotes().get(command);
+        String quote = storage.getSingleReplicas().get(command);
 
-        if ((quote == null) && (storage.getRandomQuotes().get(command) != null)) {
-            quote = MyUtils.getRandomElement(storage.getRandomQuotes().get(command));
+        if ((quote == null) && (storage.getRandomReplicas().get(command) != null)) {
+            quote = MyUtils.getRandomElement(storage.getRandomReplicas().get(command));
         }
 
         return quote;

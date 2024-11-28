@@ -1,21 +1,23 @@
 import com.fasterxml.jackson.databind.ObjectMapper;
-import model.Location;
-import model.Question;
-import utils.MyUtils;
 import java.io.File;
 import java.io.IOException;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.Scanner;
+import model.Location;
+import model.Question;
+import utils.MyUtils;
 
 public class TestService {
     private final Map<Location, Question[]> questions;
     private final Map<Location, QuestionStatistics> statistics;
     private final Scanner scan = new Scanner(System.in);
     private final PrintService printer;
+    private final InputService input;
 
-    TestService(ResourceStorage storage) {
+    TestService(ResourceStorage storage, InputService inputService) {
         printer = new PrintService(storage);
+        this.input = inputService;
 
         questions = new HashMap<>();
         questions.put(Location.JS, importQuestions("src/main/resources/QuestionsJS.json"));
@@ -38,8 +40,8 @@ public class TestService {
         statistics.get(location).saveStats(path + location.toString() + ".json");
     }
 
-    public void questionAnswering(Location Location) {
-        Question question = MyUtils.getRandomElement(questions.get(Location));
+    public void questionAnswering(Location location) {
+        Question question = MyUtils.getRandomElement(questions.get(location));
         question.shuffleAnswers();
 
         printer.println(question.getBody() + "\n-------------------------------\n"
@@ -51,16 +53,16 @@ public class TestService {
 
         int answer = getSuitableAnswer(question);
 
-        if (answer == question.getCorrectAnswer()) {
+        if (question.getIsCorrect()[answer - 1]) {
             printer.printlnResponse("correctAnswer");
 
-            statistics.get(Location).updateStats(question.getNumber(), true);
+            statistics.get(location).updateStats(question.getNumber(), true);
         } else {
             printer.printlnResponse("incorrectAnswer");
             printer.printResponse("correctAnswerIs");
             printer.println("" + question.getCorrectAnswer());
 
-            statistics.get(Location).updateStats(question.getNumber(), false);
+            statistics.get(location).updateStats(question.getNumber(), false);
         }
     }
 
@@ -69,7 +71,7 @@ public class TestService {
         int answer;
 
         while (true) {
-            ans = scan.nextLine();
+            ans = input.getInput();
 
             if (!ans.matches("[-+]?\\d+")) {
                 printer.println("Ответ должен быть числом");

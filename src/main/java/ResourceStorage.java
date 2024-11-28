@@ -5,19 +5,19 @@ import java.util.HashMap;
 import java.util.Map;
 import model.Command;
 import model.Location;
-import model.QuoteRandom;
-import model.QuoteSimple;
+import model.ReplicaRandom;
+import model.ReplicaSimple;
 
 public class ResourceStorage {
     private final Map<Location, Map<String, String>> commands;
-    private final Map<String, String> singleQuotes;
-    private final Map<String, String[]> randomQuotes;
+    private final Map<String, String> singleReplicas;
+    private final Map<String, String[]> randomReplicas;
     private final ObjectMapper mapper = new ObjectMapper();
 
     ResourceStorage() {
         commands = importCommands("src/main/resources/Commands.json");
-        singleQuotes = importSingleQuotes("src/main/resources/SimpleQuotes.json");
-        randomQuotes = importRandomQuotes("src/main/resources/RandomQuotes.json");
+        singleReplicas = importSingleReplicas("src/main/resources/SimpleReplicas.json");
+        randomReplicas = importRandomReplicas("src/main/resources/RandomReplicas.json");
     }
 
     private Map<Location, Map<String, String>> importCommands(String path) {
@@ -39,26 +39,26 @@ public class ResourceStorage {
         return map;
     }
 
-    private Map<String, String[]> importRandomQuotes(String path) {
+    private Map<String, String[]> importRandomReplicas(String path) {
 
         Map<String, String[]> map = new HashMap<>();
 
-        QuoteRandom[] quotes = importFromJson(path, QuoteRandom[].class);
+        ReplicaRandom[] quotes = importFromJson(path, ReplicaRandom[].class);
 
-        for (QuoteRandom currentQuote : quotes) {
+        for (ReplicaRandom currentQuote : quotes) {
             map.put(currentQuote.getName(), currentQuote.getResponseRandom());
         }
 
         return map;
     }
 
-    private Map<String, String> importSingleQuotes(String path) {
+    private Map<String, String> importSingleReplicas(String path) {
 
         HashMap<String, String> map = new HashMap<>();
 
-        QuoteSimple[] quotes = importFromJson(path, QuoteSimple[].class);
+        ReplicaSimple[] quotes = importFromJson(path, ReplicaSimple[].class);
 
-        for (QuoteSimple currentQuote : quotes) {
+        for (ReplicaSimple currentQuote : quotes) {
             map.put(currentQuote.getName(), currentQuote.getResponse());
         }
 
@@ -77,11 +77,11 @@ public class ResourceStorage {
         return commands;
     }
 
-    public Map<String, String> getSingleQuotes() {
-        return singleQuotes;
+    public Map<String, String> getSingleReplicas() {
+        return singleReplicas;
     }
 
-    public Map<String, String[]> getRandomQuotes() {
-        return randomQuotes;
+    public Map<String, String[]> getRandomReplicas() {
+        return randomReplicas;
     }
 }

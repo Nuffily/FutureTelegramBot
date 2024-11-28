@@ -1,28 +1,26 @@
 import java.util.Scanner;
 import model.Location;
 
-// должен быть общий интерфейс для бота, полиморфный код, который
-// реализует функционал для тг, дс например
-//
 public class Bot {
+    public InputService input = new InputService();
     private Location location = Location.MAIN;
     private final ResourceStorage storage;
     private final Scanner scan = new Scanner(System.in);
     private final TestService testService;
     private final PrintService printer;
-    private final  TheoryService theoryService;
+    private final TheoryService theoryService;
   
     Bot(ResourceStorage storage) {
         this.storage = storage;
-        testService = new TestService(storage);
+        testService = new TestService(storage, input);
         printer = new PrintService(storage);
-        theoryService = new TheoryService();
+        theoryService = new TheoryService(storage);
     }
 
 
     public void run() {
 
-        String command = scan.nextLine();
+        String command = input.getInput();
 
         command = storage.getCommands().get(location).get(command);
 
