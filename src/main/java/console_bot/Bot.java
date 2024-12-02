@@ -1,37 +1,42 @@
-import java.util.Scanner;
+package console_bot;
+
 import model.Location;
 
-public class Bot {
+public class Bot implements Runnable{
     public InputService input = new InputService();
     private Location location = Location.MAIN;
     private final ResourceStorage storage;
-    private final Scanner scan = new Scanner(System.in);
     private final TestService testService;
-    private final PrintService printer;
+    public final PrintService printer;
     private final TheoryService theoryService;
   
-    Bot(ResourceStorage storage) {
+    public Bot(ResourceStorage storage) {
         this.storage = storage;
-        testService = new TestService(storage, input);
         printer = new PrintService(storage);
+        testService = new TestService(printer, input);
         theoryService = new TheoryService(storage);
     }
 
 
     public void run() {
 
-        String command = input.getInput();
+        printer.println("Здарова! Введи какую-нить команду, например, help");
 
-        command = storage.getCommands().get(location).get(command);
+        while (!location.equals(Location.EXIT)) {
+            String command = input.getInput();
 
-        if (command == null) {
-            printer.printlnResponse("unknownCommand");
-            return;
+            command = storage.getCommands().get(location).get(command);
+
+            if (command == null) {
+                printer.printlnResponse("unknownCommand");
+                continue;
+            }
+
+            printer.printlnResponse(command);
+
+            execute(command);
         }
 
-        printer.printlnResponse(command);
-
-        execute(command);
     }
 
     private void execute(String command) {
@@ -50,6 +55,7 @@ public class Bot {
                 break;
             case "exit":
                 location = Location.EXIT;
+                printer.println("Пока-пока!");
                 break;
             case "startTheory":
                 theoryService.startTheory();

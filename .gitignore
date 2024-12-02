@@ -24,4 +24,4 @@ Sandbox/
 
 application
 
-application.properties
+src/main/resources/application.properties
