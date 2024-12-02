@@ -43,25 +43,25 @@ public class TelegramBot extends TelegramLongPollingBot {
 
             if (!users.containsKey(chatId)) {
                 startConversation(chatId);
-            }
-
-            else {
-                users.get(chatId).input.addToQueue(messageText);
-
-                System.out.println(users.get(chatId).printer.que);
 
                 try {
                     Thread.sleep(30);
                 } catch (InterruptedException e) {
                     throw new RuntimeException(e);
                 }
+            }
 
-                while (!users.get(chatId).printer.que.isEmpty()) {
-                    currentAnswer = users.get(chatId).printer.que.remove();
-                    sendMessage(chatId, currentAnswer);
-                    if (currentAnswer.equals("Пока-пока!"))
-                        users.remove(chatId);
+            else {
+                users.get(chatId).input.addToQueue(messageText);
+                }
 
+            while (!users.get(chatId).printer.que.isEmpty()) {
+                currentAnswer = users.get(chatId).printer.que.remove();
+                sendMessage(chatId, currentAnswer);
+
+                if (currentAnswer.equals("Пока-пока!")) {
+                    users.remove(chatId);
+                    break;
                 }
 
             }
