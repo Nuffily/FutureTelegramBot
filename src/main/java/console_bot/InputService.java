@@ -34,5 +34,10 @@ public class InputService {
         synchronized (que) {
             que.notifyAll();
         }
+        try {
+            Thread.sleep(30);
+        } catch (InterruptedException e) {
+            throw new RuntimeException(e);
+        }
     }
 }
