@@ -60,9 +60,9 @@ public class TestService {
 
             statistics.get(location).updateStats(question.getNumber(), true);
         } else {
-            printer.println(printer.getQuote("incorrectAnswer") + '\n'
-                    + printer.getQuote("correctAnswerIs")
-                    + question.getCorrectAnswer());
+            printer.printlnResponse("incorrectAnswer");
+            printer.printResponse("correctAnswerIs");
+            printer.println(question.getCorrectAnswer());
 
             statistics.get(location).updateStats(question.getNumber(), false);
         }

@@ -48,18 +48,18 @@ public class PrintService {
         return quote;
     }
 
-    public void println(String quote) {
+    public <T>  void println(T quote) {
         if (consoleMode)
             System.out.println(quote);
         else
-            que.add(quote + "\n");
+            que.add(String.valueOf(quote) + "\n");
     }
 
-    public void print(String quote) {
+    public <T> void print(T quote) {
         if (consoleMode)
             System.out.print(quote);
         else
-            que.add(quote);
+            que.add(String.valueOf(quote));
     }
 
     public String getOutput() {
