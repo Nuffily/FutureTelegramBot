@@ -91,20 +91,4 @@ public class QuestionStatistics {
     public int getCountOfAttemptedQuestions() {
         return countOfAttemptedQuestions;
     }
-
-    public void setQuestionPassed(boolean[] questionPassed) {
-        this.questionPassed = questionPassed;
-    }
-
-    public void setQuestionsAttempts(int[] questionsAttempts) {
-        this.questionsAttempts = questionsAttempts;
-    }
-
-    public void setCountOfAttemptedQuestions(int countOfAttemptedQuestions) {
-        this.countOfAttemptedQuestions = countOfAttemptedQuestions;
-    }
-
-    public void setCountOfPassedQuestions(int countOfPassedQuestions) {
-        this.countOfPassedQuestions = countOfPassedQuestions;
-    }
 }

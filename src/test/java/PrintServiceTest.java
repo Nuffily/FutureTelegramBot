@@ -57,7 +57,8 @@ public class PrintServiceTest {
             Method testGetQuoteMethod = PrintService.class.getDeclaredMethod("getQuote", String.class);
 
             testGetQuoteMethod.setAccessible(true);
-            assertEquals("Статистика сохранена! Чтобы загрузить ее при следующем запуске, используй 'upload'", testGetQuoteMethod.invoke(printService, testCommand).toString());
+            assertEquals("Статистика сохранена! Чтобы загрузить ее при следующем запуске, используй 'upload'",
+                    testGetQuoteMethod.invoke(printService, testCommand).toString());
         }
         catch (Exception e){
             e.printStackTrace();
