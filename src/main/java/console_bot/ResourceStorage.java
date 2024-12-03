@@ -75,6 +75,10 @@ public class ResourceStorage {
         }
     }
 
+    public String translateCommand(String command, Location location) {
+        return commands.get(location).get(command);
+    }
+
     public Map<Location, Map<String, String>> getCommands() {
         return commands;
     }

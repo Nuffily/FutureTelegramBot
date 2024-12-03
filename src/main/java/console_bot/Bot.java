@@ -25,7 +25,7 @@ public class Bot implements Runnable{
         while (!location.equals(Location.EXIT)) {
             String command = input.getInput();
 
-            command = storage.getCommands().get(location).get(command);
+            command = storage.translateCommand(command, location);
 
             if (command == null) {
                 printer.printlnResponse("unknownCommand");
