@@ -19,10 +19,12 @@ public class Bot implements Runnable{
 
 
     public void run() {
+
         defineButtons();
         printer.println("Здарова! Введи какую-нить команду, например, help");
 
         while (!location.equals(Location.EXIT)) {
+
             defineButtons();
             String command = input.getInput();
 
@@ -32,7 +34,6 @@ public class Bot implements Runnable{
                 printer.printlnResponse("unknownCommand");
                 continue;
             }
-
 
             printer.printlnResponse(command);
 

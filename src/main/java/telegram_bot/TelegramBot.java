@@ -85,7 +85,6 @@ public class TelegramBot extends TelegramLongPollingBot {
         sendMessage.setText(textToSend);
 
         if (users.get(chatId).input.isThereAnyButtons()) {
-            System.out.println("Qwe");
             setButtons(sendMessage, (users.get(chatId).input.getButtons()));
         }
 
@@ -112,16 +111,7 @@ public class TelegramBot extends TelegramLongPollingBot {
         for (int i = 0; i < buttons.length; i++)
             keyboardFirstRow.add(new KeyboardButton(buttons[i]));
 
-//        keyboardFirstRow.add(new KeyboardButton("math"));
-//
-//
-//        KeyboardRow keyboardSecondRow = new KeyboardRow();
-//
-//        keyboardSecondRow.add(new KeyboardButton("Qwe"));
-
-
         keyboard.add(keyboardFirstRow);
-//        keyboard.add(keyboardSecondRow);
 
         replyKeyboardMarkup.setKeyboard(keyboard);
     }
