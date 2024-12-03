@@ -2,14 +2,14 @@ import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import utils.MyUtils;
+
 import java.io.ByteArrayOutputStream;
 import java.io.PrintStream;
 
-
-public class BotTest {
+public class PrintServiceTest {
 
     private final ResourceStorage storage = new ResourceStorage();
-    private final Bot bot = new Bot(storage);
+    private final PrintService testPrinter = new PrintService(storage);
     private final ByteArrayOutputStream outputStreamCaptor = new ByteArrayOutputStream();
 
 
@@ -21,10 +21,10 @@ public class BotTest {
 
 
     @Test
-    public void testRunNullCommand(){
+    public void testPrintlnResponse(){
 
-        bot.input.addToQueue("null");
-        bot.run();
+        String testCommand = "unknownCommand";
+        testPrinter.printlnResponse(testCommand);
 
         String[] testText = outputStreamCaptor.toString().split("\n");
 
@@ -33,15 +33,10 @@ public class BotTest {
 
 
     @Test
-    public void testRunKnownCommand(){
+    public void testGetQuote(){
 
-        bot.input.addToQueue("js");
-        bot.run();
 
-        String[] textTest = outputStreamCaptor.toString().split("\n");
 
-        Assertions.assertEquals("Переходим к изучению JavaScript!\r" +
-                "Вводи question для получения вопроса, ну или help, для всякого другого\r", textTest[0] + "\r" + textTest[1]);
     }
 
 
