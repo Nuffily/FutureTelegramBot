@@ -1,3 +1,5 @@
+package console_bot;
+
 import com.fasterxml.jackson.databind.ObjectMapper;
 import java.io.File;
 import java.io.IOException;
@@ -14,7 +16,7 @@ public class ResourceStorage {
     private final Map<String, String[]> randomReplicas;
     private final ObjectMapper mapper = new ObjectMapper();
 
-    ResourceStorage() {
+    public ResourceStorage() {
         commands = importCommands("src/main/resources/Commands.json");
         singleReplicas = importSingleReplicas("src/main/resources/SimpleReplicas.json");
         randomReplicas = importRandomReplicas("src/main/resources/RandomReplicas.json");

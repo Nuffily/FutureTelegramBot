@@ -1,3 +1,5 @@
+package console_bot;
+
 import com.fasterxml.jackson.databind.ObjectMapper;
 import java.io.File;
 import java.io.IOException;
@@ -15,8 +17,8 @@ public class TestService {
     private final PrintService printer;
     private final InputService input;
 
-    TestService(ResourceStorage storage, InputService inputService) {
-        printer = new PrintService(storage);
+    TestService(PrintService printer, InputService inputService) {
+        this.printer = printer;
         this.input = inputService;
 
         questions = new HashMap<>();
@@ -24,8 +26,8 @@ public class TestService {
         questions.put(Location.MATH, importQuestions("src/main/resources/QuestionsMATH.json"));
 
         statistics = new HashMap<>();
-        statistics.put(Location.JS, new QuestionStatistics(questions.get(Location.JS)));
-        statistics.put(Location.MATH, new QuestionStatistics(questions.get(Location.MATH)));
+        statistics.put(Location.JS, new QuestionStatistics(questions.get(Location.JS), printer));
+        statistics.put(Location.MATH, new QuestionStatistics(questions.get(Location.MATH), printer));
     }
 
     public void printStats(Location location) {

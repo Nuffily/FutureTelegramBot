@@ -1,3 +1,5 @@
+package console_bot;
+
 import com.fasterxml.jackson.databind.ObjectMapper;
 import java.io.File;
 import java.io.IOException;
@@ -9,12 +11,13 @@ public class QuestionStatistics {
     private int[] questionsAttempts = {};
     private int countOfAttemptedQuestions = 0;
     private final ObjectMapper objectMapper = new ObjectMapper();
-    private final PrintService printer = new PrintService();
+    private PrintService printer;
 
     QuestionStatistics() {
     }
 
-    QuestionStatistics(Question[] questions) {
+    QuestionStatistics(Question[] questions, PrintService printer) {
+        this.printer = printer;
         questionPassed = new boolean[questions.length + 1];
         questionsAttempts = new int[questions.length + 1];
     }

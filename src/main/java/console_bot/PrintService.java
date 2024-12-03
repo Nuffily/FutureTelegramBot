@@ -1,13 +1,21 @@
+package console_bot;
+
 import utils.MyUtils;
+
+import java.util.LinkedList;
+import java.util.Queue;
 
 public class PrintService {
     private final ResourceStorage storage;
+    public final Queue<String> que = new LinkedList<>();
+    public boolean consoleMode = true;
 
-    PrintService(ResourceStorage storage) {
+
+    public PrintService(ResourceStorage storage) {
         this.storage = storage;
     }
 
-    PrintService() {
+    public PrintService() {
         storage = null;
     }
 
@@ -40,11 +48,18 @@ public class PrintService {
     }
 
     public <T> void println(T quote) {
-        System.out.println(quote);
+        if (consoleMode)
+            System.out.println(quote);
+        else
+            que.add(String.valueOf(quote));
     }
 
     public <T> void print(T quote) {
-        System.out.print(quote);
+        if (consoleMode)
+            System.out.print(quote);
+        else
+            que.add(String.valueOf(quote));
     }
+
 
 }
