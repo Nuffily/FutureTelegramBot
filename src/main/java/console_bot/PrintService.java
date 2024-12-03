@@ -38,7 +38,7 @@ public class PrintService {
         }
     }
 
-    private String getQuote(String command) {
+    public String getQuote(String command) {
         String quote = storage.getSingleReplicas().get(command);
 
         if ((quote == null) && (storage.getRandomReplicas().get(command) != null)) {
@@ -48,27 +48,17 @@ public class PrintService {
         return quote;
     }
 
-    public void println(String... quote) {
-        String str = quote[0];
-        for (int i = 1; i < quote.length; i++)
-            str += quote[i];
-
+    public void println(String quote) {
         if (consoleMode)
-            System.out.println(str);
+            System.out.println(quote);
         else
-            que.add(str + "\n");
+            que.add(quote + "\n");
     }
 
-    public void print(String... quote) {
-        String str = quote[0];
-        for (int i = 1; i < quote.length; i++)
-            str += quote[i];
-
+    public void print(String quote) {
         if (consoleMode)
-            System.out.print(str);
+            System.out.print(quote);
         else
-            que.add(str);
+            que.add(quote);
     }
-
-
 }

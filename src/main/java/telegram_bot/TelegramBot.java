@@ -1,16 +1,14 @@
-package chat_bot;
+package telegram_bot;
 
 import console_bot.Bot;
-import console_bot.PrintService;
 import console_bot.ResourceStorage;
 import lombok.AllArgsConstructor;
-import model.Location;
 import org.springframework.stereotype.Component;
 import org.telegram.telegrambots.bots.TelegramLongPollingBot;
 import org.telegram.telegrambots.meta.api.methods.send.SendMessage;
 import org.telegram.telegrambots.meta.api.objects.Update;
 import org.telegram.telegrambots.meta.exceptions.TelegramApiException;
-import chat_bot.config.BotConfig;
+import telegram_bot.config.BotConfig;
 
 import java.util.HashMap;
 import java.util.Map;

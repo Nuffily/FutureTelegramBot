@@ -46,12 +46,8 @@ public class TestService {
         Question question = MyUtils.getRandomElement(questions.get(location));
         question.shuffleAnswers();
 
-        printer.println(question.getBody() + "\n-------------------------------\n"
-                + "Варианты ответа:");
-
-        for (int i = 0; i < question.getAnswers().length; i++) {
-            printer.println((i + 1) + ". " + question.getAnswers()[i]);
-        }
+        printer.print(question.getBody() + "\n-------------------------------\n"
+                + "Варианты ответа:\n" + question.getStringTableOfAnswers());
 
         int answer = getSuitableAnswer(question);
 
@@ -60,9 +56,9 @@ public class TestService {
 
             statistics.get(location).updateStats(question.getNumber(), true);
         } else {
-            printer.printlnResponse("incorrectAnswer");
-            printer.printResponse("correctAnswerIs");
-            printer.println("" + question.getCorrectAnswer());
+            printer.println(printer.getQuote("incorrectAnswer") + '\n'
+                    + printer.getQuote("correctAnswerIs")
+                    + question.getCorrectAnswer());
 
             statistics.get(location).updateStats(question.getNumber(), false);
         }

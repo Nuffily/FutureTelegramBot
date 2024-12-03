@@ -32,6 +32,16 @@ public class Question {
         }
     }
 
+    public String getStringTableOfAnswers() {
+        String result = "";
+
+        for (int i = 0; i < this.getAnswers().length; i++) {
+            result += (i + 1) + ". " + this.getAnswers()[i] + "\n";
+        }
+
+        return result;
+    }
+
     public String getBody() {
         return body;
     }

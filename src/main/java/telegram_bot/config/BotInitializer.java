@@ -1,4 +1,4 @@
-package chat_bot.config;
+package telegram_bot.config;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.event.ContextRefreshedEvent;

@@ -1,4 +1,4 @@
-package chat_bot.config;
+package telegram_bot.config;
 
 import lombok.Data;
 import org.springframework.beans.factory.annotation.Value;
