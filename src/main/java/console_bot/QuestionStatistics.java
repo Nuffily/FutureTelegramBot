@@ -13,10 +13,11 @@ public class QuestionStatistics {
     private final ObjectMapper objectMapper = new ObjectMapper();
     private PrintService printer;
 
-    QuestionStatistics() {
+    public QuestionStatistics() {
+
     }
 
-    QuestionStatistics(Question[] questions, PrintService printer) {
+    public QuestionStatistics(Question[] questions, PrintService printer) {
         this.printer = printer;
         questionPassed = new boolean[questions.length + 1];
         questionsAttempts = new int[questions.length + 1];
