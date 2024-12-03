@@ -4,6 +4,7 @@
     "id" : "mainHelp",
     "inputVariants" : [
       "help",
+      "/help",
       "pomosh",
       "h",
       "рудз"
@@ -13,7 +14,9 @@
     "location" : "MAIN",
     "id" : "travelToJS",
     "inputVariants" : [
+      "Js",
       "js",
+      "JavaScript",
       "javascript",
       "джава",
       "джс",
@@ -38,6 +41,8 @@
     "id" : "travelToMATH",
     "inputVariants" : [
       "math",
+      "Math",
+      "Высшая математика",
       "ьфер"
     ]
   },
@@ -48,6 +53,7 @@
     "inputVariants" : [
       "help",
       "Help",
+      "/help",
       "pomosh",
       "h",
       "рудз"
@@ -60,6 +66,7 @@
     "inputVariants" : [
       "question",
       "quest",
+      "Вопрос",
       "q",
       "Q",
       "йгуые"
@@ -73,6 +80,7 @@
       "back",
       "nazad",
       "назад",
+      "Назад",
       "бек",
       "b",
       "B",
@@ -87,6 +95,7 @@
       "back",
       "nazad",
       "назад",
+      "Назад",
       "бек",
       "b",
       "B",
@@ -99,6 +108,7 @@
     "id" : "JSHelp",
     "inputVariants" : [
       "help",
+      "/help",
       "Help",
       "pomosh",
       "h",
@@ -111,6 +121,7 @@
     "id" : "startQuestion",
     "inputVariants" : [
       "question",
+      "Вопрос",
       "quest",
       "q",
       "Q",
@@ -124,6 +135,7 @@
     "inputVariants" : [
       "back",
       "nazad",
+      "Назад",
       "назад",
       "бек",
       "b",
@@ -136,6 +148,7 @@
     "id" : "TheoryHelp",
     "inputVariants" : [
       "help",
+      "/help",
       "pomosh",
       "h",
       "рудз"

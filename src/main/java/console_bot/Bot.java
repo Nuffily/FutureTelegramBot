@@ -19,10 +19,11 @@ public class Bot implements Runnable{
 
 
     public void run() {
-
+        defineButtons();
         printer.println("Здарова! Введи какую-нить команду, например, help");
 
         while (!location.equals(Location.EXIT)) {
+            defineButtons();
             String command = input.getInput();
 
             command = storage.translateCommand(command, location);
@@ -31,6 +32,7 @@ public class Bot implements Runnable{
                 printer.printlnResponse("unknownCommand");
                 continue;
             }
+
 
             printer.printlnResponse(command);
 
@@ -70,6 +72,18 @@ public class Bot implements Runnable{
                 testService.saveStats(location, "src/main/resources/Statistics");
                 break;
             default:
+        }
+    }
+
+    private void defineButtons() {
+        switch (location) {
+            case Location.MAIN:
+                input.defineButtons("JavaScript", "Высшая математика", "/help");
+                break;
+            case Location.MATH:
+            case Location.JS:
+                input.defineButtons("Вопрос", "Назад", "/help");
+                break;
         }
     }
 

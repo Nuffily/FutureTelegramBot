@@ -6,6 +6,8 @@ import java.io.IOException;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.Scanner;
+
+import lombok.ToString;
 import model.Location;
 import model.Question;
 import utils.MyUtils;
@@ -48,6 +50,8 @@ public class TestService {
 
         printer.print(question.getBody() + "\n-------------------------------\n"
                 + "Варианты ответа:\n" + question.getStringTableOfAnswers());
+
+        defineButtons(question);
 
         int answer = getSuitableAnswer(question);
 
@@ -98,5 +102,12 @@ public class TestService {
         } catch (IOException e) {
             throw new RuntimeException(e);
         }
+    }
+
+    private void defineButtons(Question question) {
+        String[] array = new String[question.getAnswers().length];
+        for (int i = 1; i <= question.getAnswers().length; i++)
+            array[i - 1] = String.valueOf(i);
+        input.defineButtons(array);
     }
 }

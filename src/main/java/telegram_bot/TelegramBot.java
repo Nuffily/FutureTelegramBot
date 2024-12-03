@@ -3,6 +3,7 @@ package telegram_bot;
 import console_bot.Bot;
 import console_bot.ResourceStorage;
 import lombok.AllArgsConstructor;
+import org.apache.commons.lang3.ArrayUtils;
 import org.springframework.stereotype.Component;
 import org.telegram.telegrambots.bots.TelegramLongPollingBot;
 import org.telegram.telegrambots.meta.api.methods.send.SendMessage;
@@ -60,6 +61,7 @@ public class TelegramBot extends TelegramLongPollingBot {
                 }
 
             currentAnswer = users.get(chatId).printer.getAllOutput();
+
             sendMessage(chatId, currentAnswer);
 
             if (currentAnswer.equals("Пока-пока!"))
@@ -75,14 +77,18 @@ public class TelegramBot extends TelegramLongPollingBot {
         bot.printer.consoleMode = false;
         bot.input.consoleMode = false;
         new Thread(bot).start();
-
     }
 
-    private void sendMessage(Long chatId, String textToSend){
+    private void sendMessage(Long chatId, String textToSend) {
         SendMessage sendMessage = new SendMessage();
         sendMessage.setChatId(String.valueOf(chatId));
         sendMessage.setText(textToSend);
-        setButtons(sendMessage);
+
+        if (users.get(chatId).input.isThereAnyButtons()) {
+            System.out.println("Qwe");
+            setButtons(sendMessage, (users.get(chatId).input.getButtons()));
+        }
+
         try {
             execute(sendMessage);
         } catch (TelegramApiException e) {
@@ -90,32 +96,32 @@ public class TelegramBot extends TelegramLongPollingBot {
         }
     }
 
-    public synchronized void setButtons(SendMessage sendMessage) {
+    public synchronized void setButtons(SendMessage sendMessage, String[] buttons) {
 
         ReplyKeyboardMarkup replyKeyboardMarkup = new ReplyKeyboardMarkup();
         sendMessage.setReplyMarkup(replyKeyboardMarkup);
+
         replyKeyboardMarkup.setSelective(true);
         replyKeyboardMarkup.setResizeKeyboard(true);
-        replyKeyboardMarkup.setOneTimeKeyboard(false);
-
+        replyKeyboardMarkup.setOneTimeKeyboard(true);
 
         List<KeyboardRow> keyboard = new ArrayList<>();
 
-
         KeyboardRow keyboardFirstRow = new KeyboardRow();
 
-        keyboardFirstRow.add(new KeyboardButton("zxc"));
-        keyboardFirstRow.add(new KeyboardButton("js"));
-        keyboardFirstRow.add(new KeyboardButton("math"));
+        for (int i = 0; i < buttons.length; i++)
+            keyboardFirstRow.add(new KeyboardButton(buttons[i]));
 
-
-        KeyboardRow keyboardSecondRow = new KeyboardRow();
-
-        keyboardSecondRow.add(new KeyboardButton("Qwe"));
+//        keyboardFirstRow.add(new KeyboardButton("math"));
+//
+//
+//        KeyboardRow keyboardSecondRow = new KeyboardRow();
+//
+//        keyboardSecondRow.add(new KeyboardButton("Qwe"));
 
 
         keyboard.add(keyboardFirstRow);
-        keyboard.add(keyboardSecondRow);
+//        keyboard.add(keyboardSecondRow);
 
         replyKeyboardMarkup.setKeyboard(keyboard);
     }
