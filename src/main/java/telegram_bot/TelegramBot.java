@@ -7,11 +7,17 @@ import org.springframework.stereotype.Component;
 import org.telegram.telegrambots.bots.TelegramLongPollingBot;
 import org.telegram.telegrambots.meta.api.methods.send.SendMessage;
 import org.telegram.telegrambots.meta.api.objects.Update;
+import org.telegram.telegrambots.meta.api.objects.replykeyboard.ReplyKeyboardMarkup;
+import org.telegram.telegrambots.meta.api.objects.replykeyboard.buttons.KeyboardButton;
+import org.telegram.telegrambots.meta.api.objects.replykeyboard.buttons.KeyboardRow;
 import org.telegram.telegrambots.meta.exceptions.TelegramApiException;
 import telegram_bot.config.BotConfig;
 
+import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
+import java.util.logging.Level;
 
 @Component
 @AllArgsConstructor
@@ -53,16 +59,12 @@ public class TelegramBot extends TelegramLongPollingBot {
                 users.get(chatId).input.addToQueue(messageText);
                 }
 
-            while (!users.get(chatId).printer.que.isEmpty()) {
-                currentAnswer = users.get(chatId).printer.que.remove();
-                sendMessage(chatId, currentAnswer);
+            currentAnswer = users.get(chatId).printer.getAllOutput();
+            sendMessage(chatId, currentAnswer);
 
-                if (currentAnswer.equals("Пока-пока!")) {
-                    users.remove(chatId);
-                    break;
-                }
+            if (currentAnswer.equals("Пока-пока!"))
+                users.remove(chatId);
 
-            }
         }
 
     }
@@ -80,10 +82,42 @@ public class TelegramBot extends TelegramLongPollingBot {
         SendMessage sendMessage = new SendMessage();
         sendMessage.setChatId(String.valueOf(chatId));
         sendMessage.setText(textToSend);
+        setButtons(sendMessage);
         try {
             execute(sendMessage);
         } catch (TelegramApiException e) {
 
         }
     }
+
+    public synchronized void setButtons(SendMessage sendMessage) {
+
+        ReplyKeyboardMarkup replyKeyboardMarkup = new ReplyKeyboardMarkup();
+        sendMessage.setReplyMarkup(replyKeyboardMarkup);
+        replyKeyboardMarkup.setSelective(true);
+        replyKeyboardMarkup.setResizeKeyboard(true);
+        replyKeyboardMarkup.setOneTimeKeyboard(false);
+
+
+        List<KeyboardRow> keyboard = new ArrayList<>();
+
+
+        KeyboardRow keyboardFirstRow = new KeyboardRow();
+
+        keyboardFirstRow.add(new KeyboardButton("zxc"));
+        keyboardFirstRow.add(new KeyboardButton("js"));
+        keyboardFirstRow.add(new KeyboardButton("math"));
+
+
+        KeyboardRow keyboardSecondRow = new KeyboardRow();
+
+        keyboardSecondRow.add(new KeyboardButton("Qwe"));
+
+
+        keyboard.add(keyboardFirstRow);
+        keyboard.add(keyboardSecondRow);
+
+        replyKeyboardMarkup.setKeyboard(keyboard);
+    }
+
 }

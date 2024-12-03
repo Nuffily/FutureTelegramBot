@@ -61,4 +61,16 @@ public class PrintService {
         else
             que.add(quote);
     }
+
+    public String getOutput() {
+        return que.remove();
+    }
+
+    public String getAllOutput() {
+        String result = "";
+        while (!que.isEmpty())
+            result += que.remove();
+
+        return result;
+    }
 }

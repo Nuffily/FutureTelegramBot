@@ -14,7 +14,7 @@ public class Bot implements Runnable{
         this.storage = storage;
         printer = new PrintService(storage);
         testService = new TestService(printer, input);
-        theoryService = new TheoryService(storage);
+        theoryService = new TheoryService(storage, printer, input);
     }
 
 
@@ -45,7 +45,7 @@ public class Bot implements Runnable{
                 location = Location.JS;
                 break;
             case "travelToTheory":
-                location = Location.THEORY;
+                theoryService.startTheory();
                 break;
             case "travelToMATH":
                 location = Location.MATH;
@@ -56,9 +56,6 @@ public class Bot implements Runnable{
             case "exit":
                 location = Location.EXIT;
                 printer.println("Пока-пока!");
-                break;
-            case "startTheory":
-                theoryService.startTheory();
                 break;
             case "startQuestion":
                 testService.questionAnswering(location);

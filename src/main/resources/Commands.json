@@ -22,10 +22,11 @@
     ]
   },
   {
-    "location" : "MAIN",
+    "location" : "JS",
     "id" : "travelToTheory",
     "inputVariants" : [
       "t",
+      "T",
       "ttt",
       "theory",
       "th"
@@ -46,6 +47,7 @@
     "id" : "MATHHelp",
     "inputVariants" : [
       "help",
+      "Help",
       "pomosh",
       "h",
       "рудз"
@@ -59,6 +61,7 @@
       "question",
       "quest",
       "q",
+      "Q",
       "йгуые"
     ]
   },
@@ -72,6 +75,7 @@
       "назад",
       "бек",
       "b",
+      "B",
       "ифсл"
     ]
   },
@@ -85,6 +89,7 @@
       "назад",
       "бек",
       "b",
+      "B",
       "ифсл"
     ]
   },
@@ -94,6 +99,7 @@
     "id" : "JSHelp",
     "inputVariants" : [
       "help",
+      "Help",
       "pomosh",
       "h",
       "рудз"
@@ -107,22 +113,10 @@
       "question",
       "quest",
       "q",
+      "Q",
       "йгуые"
     ]
   },
-
-  {
-    "location" : "THEORY",
-    "id" : "startTheory",
-    "inputVariants" : [
-      "topics",
-      "t",
-      "tt",
-      "go"
-    ]
-  },
-
-
 
   {
     "location" : "THEORY",

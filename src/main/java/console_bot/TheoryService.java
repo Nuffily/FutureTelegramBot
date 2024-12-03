@@ -10,11 +10,12 @@ import model.Theory;
 
 public class TheoryService {
     private Theory[] theories;
-    private final Scanner scan = new Scanner(System.in);
+    private final InputService input;
     private final PrintService printer;
 
-    public TheoryService(ResourceStorage storage) {
-        printer = new PrintService(storage);
+    public TheoryService(ResourceStorage storage, PrintService printer, InputService input) {
+        this.printer = printer;
+        this.input = input;
         ObjectMapper objectMapper = new ObjectMapper();
         try {
             this.theories = objectMapper.readValue(
@@ -42,7 +43,7 @@ public class TheoryService {
             displayAvailableTheories();
             printer.print("Введите номер темы или 'exit' для выхода: ");
 
-            String userInput = scan.nextLine();
+            String userInput = input.getInput();
 
             try {
                 int index = Integer.parseInt(userInput) - 1;
@@ -78,7 +79,7 @@ public class TheoryService {
         while (true) {
             displaySections(theories[index]);
             printer.print("Введите номер раздела для изучения или 'back' для возврата: ");
-            String userInput = scan.nextLine();
+            String userInput = input.getInput();
 
             try {
                 int sectionIndex = Integer.parseInt(userInput) - 1;
@@ -87,7 +88,7 @@ public class TheoryService {
                     printer.println(theory.getSections().get(sectionIndex).getContent());
                     printer.println("Введите back для возврата.");
 
-                    String curInput = scan.nextLine();
+                    String curInput = input.getInput();
                     if (Objects.equals(curInput, "menu")) {
                         displayAvailableTheories();
                         break;
