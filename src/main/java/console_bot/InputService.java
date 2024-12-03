@@ -12,18 +12,17 @@ public class InputService {
 
     public String getInput()  {
         synchronized (que) {
-            if (que.isEmpty() && consoleMode) {
+            if (consoleMode) {
                 return scanner.nextLine();
             }
-            else if (que.isEmpty()) {
-                try {
-                    que.wait();
-                } catch (InterruptedException e) {
-                    e.printStackTrace();
-                }
-                return que.remove();
-            }
             else {
+                if (que.isEmpty())
+                    try {
+                        que.wait();
+                    } catch (InterruptedException e) {
+                        e.printStackTrace();
+                    }
+
                 return que.remove();
             }
         }

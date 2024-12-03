@@ -2,6 +2,7 @@ package console_bot;
 
 import utils.MyUtils;
 
+import java.util.Collections;
 import java.util.LinkedList;
 import java.util.Queue;
 
@@ -47,18 +48,26 @@ public class PrintService {
         return quote;
     }
 
-    public <T> void println(T quote) {
+    public void println(String... quote) {
+        String str = quote[0];
+        for (int i = 1; i < quote.length; i++)
+            str += quote[i];
+
         if (consoleMode)
-            System.out.println(quote);
+            System.out.println(str);
         else
-            que.add(String.valueOf(quote));
+            que.add(str + "\n");
     }
 
-    public <T> void print(T quote) {
+    public void print(String... quote) {
+        String str = quote[0];
+        for (int i = 1; i < quote.length; i++)
+            str += quote[i];
+
         if (consoleMode)
-            System.out.print(quote);
+            System.out.print(str);
         else
-            que.add(String.valueOf(quote));
+            que.add(str);
     }
 
 
