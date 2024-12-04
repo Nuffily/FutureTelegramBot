@@ -7,7 +7,7 @@ import java.util.Queue;
 
 public class OutputService {
     private final ResourceStorage storage;
-    public final Queue<String> que = new LinkedList<>();
+    private final Queue<String> que = new LinkedList<>();
     public boolean consoleMode = true;
 
 

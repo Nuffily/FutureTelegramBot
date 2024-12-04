@@ -1,25 +1,34 @@
 import com.fasterxml.jackson.databind.ObjectMapper;
 import console_bot.OutputService;
 import console_bot.QuestionStatistics;
+import console_bot.ResourceStorage;
 import model.Question;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
 import java.io.File;
+import java.io.FileWriter;
 import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Path;
+import java.util.Arrays;
 
 import static org.junit.jupiter.api.Assertions.*;
 
 public class QuestionStatisticsTest {
 
+    ResourceStorage storage = new ResourceStorage();
     Question[] question = new Question[10];
-    QuestionStatistics statistics = new QuestionStatistics(question, new OutputService());
+    OutputService printer = new OutputService(storage);
+    QuestionStatistics statistics = new QuestionStatistics(question, printer);
+
 
     @BeforeEach
     public void init() {
+        printer.consoleMode = false;
+
         statistics.updateStats(1, true);
+        statistics.updateStats(2, false);
         statistics.updateStats(2, false);
     }
 
@@ -35,8 +44,6 @@ public class QuestionStatisticsTest {
 
     @Test
     public void testUpdateStatsAttempts() {
-
-        statistics.updateStats(2, false);
 
         assertEquals(1, statistics.getQuestionsAttempts()[1]);
         assertEquals(2, statistics.getQuestionsAttempts()[2]);
@@ -54,17 +61,14 @@ public class QuestionStatisticsTest {
         assertTrue(Files.exists(Path.of(testPath)));
 
         try {
-            String testContent = new String(Files.readAllBytes(Path.of(testPath)));
             ObjectMapper objectMapper = new ObjectMapper();
 
-//            QuestionStatistics statisticsCopy = objectMapper.readTree(testContent));
             QuestionStatistics statisticsCopy = objectMapper.readValue(new File(testPath), QuestionStatistics.class);
 
-            statisticsCopy.pr(new OutputService());
-            statisticsCopy.printStats();
-            statistics.printStats();
-
-            assertTrue(statistics.equals(statisticsCopy));
+            assertArrayEquals(statistics.getQuestionPassed(), statisticsCopy.getQuestionPassed());
+            assertArrayEquals(statistics.getQuestionsAttempts(), statisticsCopy.getQuestionsAttempts());
+            assertEquals(statistics.getCountOfAttemptedQuestions(), statisticsCopy.getCountOfAttemptedQuestions());
+            assertEquals(statistics.getCountOfPassedQuestions(), statisticsCopy.getCountOfPassedQuestions());
 
         } catch (IOException e) {
 
@@ -83,24 +87,48 @@ public class QuestionStatisticsTest {
     public void testUploadStats() {
 
         String testPath = "test.json";
-        statistics.uploadStats(testPath);
+        statistics.saveStats(testPath);
+
+        QuestionStatistics statisticsCopy = new QuestionStatistics(question, printer);
+        statisticsCopy.uploadStats(testPath);
+
         assertTrue(Files.exists(Path.of(testPath)));
+        assertEquals(printer.getOutput(), "Статистика загружена! Чтобы взгянуть на нее, напиши 'stats'\n");
 
-        try {
+        assertArrayEquals(statistics.getQuestionPassed(), statisticsCopy.getQuestionPassed());
+        assertArrayEquals(statistics.getQuestionsAttempts(), statisticsCopy.getQuestionsAttempts());
+        assertEquals(statistics.getCountOfAttemptedQuestions(), statisticsCopy.getCountOfAttemptedQuestions());
+        assertEquals(statistics.getCountOfPassedQuestions(), statisticsCopy.getCountOfPassedQuestions());
+    }
 
-            String testContent = new String(Files.readAllBytes(Path.of(testPath)));
-            ObjectMapper objectMapper = new ObjectMapper();
-            objectMapper.readTree(testContent);
+    @Test
+    public void testUploadStatsGarbage() {
 
-        } catch (IOException e) {
+        String testPath = "test.json";
+        try (FileWriter writer = new FileWriter(testPath, false)) {
+            String text = "Hello Gold!";
+            writer.write("""
+                {
+                    "questionPassed" : [ false, true, false, false, false, false, false, false, false, false, false ],
+                    "countOfPassedQuestions" : 1,
+                    "questionsAttempts" : [ 0, 1, 2, 0, 0, 0, 0, 0, 0, 0, 0 ],
+                    "countOfAttemptedQuestions" : 2     GARBAGE <-------
+                }
+            """);
+            writer.flush();
 
-            fail("Содержимое файла не является валидным JSON: " + e.getMessage());
+            QuestionStatistics statisticsCopy = new QuestionStatistics(question, printer);
+            statisticsCopy.uploadStats(testPath);
 
+            assertEquals(printer.getOutput(), "Существующая статистика не найдена или повреждена\n");
+        }
+        catch(IOException ex){
+            System.out.println(ex.getMessage());
         } finally {
             try {
                 Files.delete(Path.of(testPath));
             } catch (IOException e) {
-                e.printStackTrace();
+                System.out.println(e.getMessage());
             }
         }
     }

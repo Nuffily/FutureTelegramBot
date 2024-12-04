@@ -13,7 +13,7 @@ public class QuestionStatistics {
     private final ObjectMapper objectMapper = new ObjectMapper();
     private OutputService printer;
 
-    QuestionStatistics() {
+    public QuestionStatistics() {
     }
 
     public QuestionStatistics(Question[] questions, OutputService printer) {
