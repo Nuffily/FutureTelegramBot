@@ -1,4 +1,4 @@
-package consoleBot;
+package bot.console;
 
 import java.util.Collections;
 import java.util.LinkedList;

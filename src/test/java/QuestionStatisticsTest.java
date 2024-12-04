@@ -1,7 +1,7 @@
 import com.fasterxml.jackson.databind.ObjectMapper;
-import consoleBot.OutputService;
-import consoleBot.QuestionStatistics;
-import consoleBot.ResourceStorage;
+import bot.console.OutputService;
+import bot.console.QuestionStatistics;
+import bot.console.ResourceStorage;
 import model.Question;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;

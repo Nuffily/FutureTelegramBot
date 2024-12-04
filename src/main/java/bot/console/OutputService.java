@@ -1,4 +1,4 @@
-package consoleBot;
+package bot.console;
 
 import utils.MyUtils;
 
@@ -48,7 +48,7 @@ public class OutputService {
             System.out.println(quote);
         }
         else {
-            que.add(String.valueOf(quote) + "\n");
+            que.add(quote + "\n");
         }
     }
 
@@ -66,11 +66,11 @@ public class OutputService {
     }
 
     public String getAllOutput() {
-        String result = "";
+        StringBuilder result = new StringBuilder();
         while (!que.isEmpty()) {
-            result += que.remove();
+            result.append(que.remove());
         }
 
-        return result;
+        return result.toString();
     }
 }

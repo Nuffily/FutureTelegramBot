@@ -1,4 +1,4 @@
-package consoleBot;
+package bot.console;
 
 public class Start {
 
