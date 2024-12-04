@@ -13,10 +13,6 @@ public class QuestionStatistics {
     private final ObjectMapper objectMapper = new ObjectMapper();
     private OutputService printer;
 
-    public void pr(OutputService os) {
-        this.printer = os;
-    }
-
     QuestionStatistics() {
     }
 
