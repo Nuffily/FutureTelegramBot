@@ -13,8 +13,8 @@ public class TheoryService {
     private final Scanner scan = new Scanner(System.in);
     private final PrintService printer;
 
-    public TheoryService(ResourceStorage storage) {
-        printer = new PrintService(storage);
+    public TheoryService(ResourceStorage storage, PrintService printer) {
+        this.printer = printer;
         ObjectMapper objectMapper = new ObjectMapper();
         try {
             this.theories = objectMapper.readValue(

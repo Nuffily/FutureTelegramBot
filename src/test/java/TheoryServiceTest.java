@@ -11,30 +11,19 @@ import java.lang.reflect.Field;
 import java.lang.reflect.Method;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertTimeoutPreemptively;
 
 public class TheoryServiceTest {
 
     private final ResourceStorage storage = new ResourceStorage();
     private final Bot bot = new Bot(storage);
-    private final TheoryService theoryService = new TheoryService(storage);
+    private final TheoryService theoryService = new TheoryService(storage, new PrintService());
 
     @BeforeEach
     public void init(){
 
         MyUtils.isRandomFixed = true;
 
-        bot.printer.consoleMode = false;
-        bot.input.consoleMode = false;
-
-        new Thread(bot).start();
-
-        try {
-            Thread.sleep(10);
-        } catch (InterruptedException e) {
-            throw new RuntimeException(e);
-        }
-
-        bot.printer.que.remove();
 
     }
 
@@ -54,16 +43,18 @@ public class TheoryServiceTest {
             e.printStackTrace();
         }
 
-        try {
-            Method testedMethod = TheoryService.class.getDeclaredMethod("displayAvailableTheories");
-            testedMethod.setAccessible(true);
-            testedMethod.invoke(theoryService);
-            assertEquals(countOfTheories, );
 
 
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
+//        try {
+//            Method testedMethod = TheoryService.class.getDeclaredMethod("displayAvailableTheories");
+//            testedMethod.setAccessible(true);
+//            testedMethod.invoke(theoryService);
+//            assertEquals(countOfTheories, );
+//
+//
+//        } catch (Exception e) {
+//            e.printStackTrace();
+//        }
 
     }
 
