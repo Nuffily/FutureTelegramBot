@@ -7,12 +7,12 @@ public class Bot implements Runnable{
     private Location location = Location.MAIN;
     private final ResourceStorage storage;
     private final TestService testService;
-    public final PrintService printer;
+    public final OutputService printer;
     private final TheoryService theoryService;
   
     public Bot(ResourceStorage storage) {
         this.storage = storage;
-        printer = new PrintService(storage);
+        printer = new OutputService(storage);
         testService = new TestService(printer, input);
         theoryService = new TheoryService(storage, printer, input);
     }

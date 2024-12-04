@@ -128,32 +128,6 @@
       "йгуые"
     ]
   },
-
-  {
-    "location" : "THEORY",
-    "id" : "toMenu",
-    "inputVariants" : [
-      "back",
-      "nazad",
-      "Назад",
-      "назад",
-      "бек",
-      "b",
-      "ифсл"
-    ]
-  },
-
-  {
-    "location" : "THEORY",
-    "id" : "TheoryHelp",
-    "inputVariants" : [
-      "help",
-      "/help",
-      "pomosh",
-      "h",
-      "рудз"
-    ]
-  },
   {
     "location" : "MAIN",
     "id" : "exit",

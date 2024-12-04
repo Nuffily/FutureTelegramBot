@@ -10,25 +10,23 @@ import java.util.Scanner;
 public class InputService {
     private final Scanner scanner = new Scanner(System.in);
     private final Queue<String> que = new LinkedList<>();
-    public boolean consoleMode = true;
     private final TelegramButtons telegramButtons = new TelegramButtons();
+    public boolean consoleMode = true;
 
     public String getInput()  {
-        synchronized (que) {
-            if (consoleMode) {
-                return scanner.nextLine();
-            }
-            else {
+        if (consoleMode) {
+            return scanner.nextLine();
+        }
+        else
+            synchronized (que) {
                 if (que.isEmpty())
                     try {
                         que.wait();
                     } catch (InterruptedException e) {
                         e.printStackTrace();
                     }
-
                 return que.remove();
             }
-        }
     }
 
     public void addToQueue(String... messages) {

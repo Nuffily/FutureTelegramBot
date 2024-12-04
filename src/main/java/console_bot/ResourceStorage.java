@@ -56,7 +56,7 @@ public class ResourceStorage {
 
     private Map<String, String> importSingleReplicas(String path) {
 
-        HashMap<String, String> map = new HashMap<>();
+        Map<String, String> map = new HashMap<>();
 
         ReplicaSimple[] quotes = importFromJson(path, ReplicaSimple[].class);
 

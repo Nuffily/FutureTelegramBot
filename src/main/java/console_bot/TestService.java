@@ -7,7 +7,6 @@ import java.util.HashMap;
 import java.util.Map;
 import java.util.Scanner;
 
-import lombok.ToString;
 import model.Location;
 import model.Question;
 import utils.MyUtils;
@@ -16,10 +15,10 @@ public class TestService {
     private final Map<Location, Question[]> questions;
     private final Map<Location, QuestionStatistics> statistics;
     private final Scanner scan = new Scanner(System.in);
-    private final PrintService printer;
+    private final OutputService printer;
     private final InputService input;
 
-    TestService(PrintService printer, InputService inputService) {
+    TestService(OutputService printer, InputService inputService) {
         this.printer = printer;
         this.input = inputService;
 
@@ -47,11 +46,10 @@ public class TestService {
     public void questionAnswering(Location location) {
         Question question = MyUtils.getRandomElement(questions.get(location));
         question.shuffleAnswers();
+        defineButtons(question);
 
         printer.print(question.getBody() + "\n-------------------------------\n"
                 + "Варианты ответа:\n" + question.getStringTableOfAnswers());
-
-        defineButtons(question);
 
         int answer = getSuitableAnswer(question);
 

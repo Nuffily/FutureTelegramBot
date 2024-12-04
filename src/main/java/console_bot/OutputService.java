@@ -2,21 +2,20 @@ package console_bot;
 
 import utils.MyUtils;
 
-import java.util.Collections;
 import java.util.LinkedList;
 import java.util.Queue;
 
-public class PrintService {
+public class OutputService {
     private final ResourceStorage storage;
     public final Queue<String> que = new LinkedList<>();
     public boolean consoleMode = true;
 
 
-    public PrintService(ResourceStorage storage) {
+    public OutputService(ResourceStorage storage) {
         this.storage = storage;
     }
 
-    public PrintService() {
+    public OutputService() {
         storage = null;
     }
 

@@ -4,16 +4,16 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 import java.io.File;
 import java.io.IOException;
 import java.util.Objects;
-import java.util.Scanner;
+
 import model.Theory;
 
 
 public class TheoryService {
     private Theory[] theories;
     private final InputService input;
-    private final PrintService printer;
+    private final OutputService printer;
 
-    public TheoryService(ResourceStorage storage, PrintService printer, InputService input) {
+    public TheoryService(ResourceStorage storage, OutputService printer, InputService input) {
         this.printer = printer;
         this.input = input;
         ObjectMapper objectMapper = new ObjectMapper();

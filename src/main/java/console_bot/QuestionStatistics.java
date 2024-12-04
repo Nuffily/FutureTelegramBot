@@ -11,12 +11,16 @@ public class QuestionStatistics {
     private int[] questionsAttempts = {};
     private int countOfAttemptedQuestions = 0;
     private final ObjectMapper objectMapper = new ObjectMapper();
-    private PrintService printer;
+    private OutputService printer;
+
+    public void pr(OutputService os) {
+        this.printer = os;
+    }
 
     QuestionStatistics() {
     }
 
-    public QuestionStatistics(Question[] questions, PrintService printer) {
+    public QuestionStatistics(Question[] questions, OutputService printer) {
         this.printer = printer;
         questionPassed = new boolean[questions.length + 1];
         questionsAttempts = new int[questions.length + 1];
