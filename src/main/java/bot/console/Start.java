@@ -1,6 +1,4 @@
-package console_bot;
-
-import model.Location;
+package bot.console;
 
 public class Start {
 

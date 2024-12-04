@@ -1,6 +1,6 @@
-package console_bot;
+package bot.console;
 
-import telegram_bot.TelegramButtons;
+import bot.telegram.TelegramButtons;
 
 import java.util.Collections;
 import java.util.LinkedList;

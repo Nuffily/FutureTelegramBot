@@ -1,4 +1,4 @@
-package console_bot;
+package bot.console;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
 import java.io.File;
@@ -13,7 +13,7 @@ public class TheoryService {
     private final InputService input;
     private final OutputService printer;
 
-    public TheoryService(ResourceStorage storage, OutputService printer, InputService input) {
+    public TheoryService(OutputService printer, InputService input) {
         this.printer = printer;
         this.input = input;
         ObjectMapper objectMapper = new ObjectMapper();

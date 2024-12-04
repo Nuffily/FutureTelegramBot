@@ -1,7 +1,7 @@
 import com.fasterxml.jackson.databind.ObjectMapper;
-import console_bot.OutputService;
-import console_bot.QuestionStatistics;
-import console_bot.ResourceStorage;
+import bot.console.OutputService;
+import bot.console.QuestionStatistics;
+import bot.console.ResourceStorage;
 import model.Question;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
@@ -11,7 +11,6 @@ import java.io.FileWriter;
 import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Path;
-import java.util.Arrays;
 
 import static org.junit.jupiter.api.Assertions.*;
 

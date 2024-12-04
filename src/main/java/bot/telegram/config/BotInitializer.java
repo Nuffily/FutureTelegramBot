@@ -1,4 +1,4 @@
-package telegram_bot.config;
+package bot.telegram.config;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.event.ContextRefreshedEvent;
@@ -24,7 +24,7 @@ public class BotInitializer {
         try{
             telegramBotsApi.registerBot((LongPollingBot) telegramBot);
         } catch (TelegramApiException e){
-
+            System.out.println(e.getMessage());
         }
     }
 }

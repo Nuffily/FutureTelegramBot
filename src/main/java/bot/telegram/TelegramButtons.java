@@ -1,8 +1,4 @@
-package telegram_bot;
-
-import org.apache.commons.lang3.ArrayUtils;
-
-import java.util.List;
+package bot.telegram;
 
 public class TelegramButtons {
     private String[] buttons;
@@ -10,8 +6,7 @@ public class TelegramButtons {
 
     public void defineButtons(String... buttons) {
         this.buttons = new String[buttons.length];
-        for (int i = 0; i < buttons.length; i++)
-            this.buttons[i] = buttons[i];
+        System.arraycopy(buttons, 0, this.buttons, 0, buttons.length);
         buttonsDefined = true;
     }
 

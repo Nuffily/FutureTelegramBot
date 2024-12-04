@@ -1,9 +1,8 @@
-package telegram_bot;
+package bot.telegram;
 
-import console_bot.Bot;
-import console_bot.ResourceStorage;
+import bot.console.Bot;
+import bot.console.ResourceStorage;
 import lombok.AllArgsConstructor;
-import org.apache.commons.lang3.ArrayUtils;
 import org.springframework.stereotype.Component;
 import org.telegram.telegrambots.bots.TelegramLongPollingBot;
 import org.telegram.telegrambots.meta.api.methods.send.SendMessage;
@@ -12,13 +11,12 @@ import org.telegram.telegrambots.meta.api.objects.replykeyboard.ReplyKeyboardMar
 import org.telegram.telegrambots.meta.api.objects.replykeyboard.buttons.KeyboardButton;
 import org.telegram.telegrambots.meta.api.objects.replykeyboard.buttons.KeyboardRow;
 import org.telegram.telegrambots.meta.exceptions.TelegramApiException;
-import telegram_bot.config.BotConfig;
+import bot.telegram.config.BotConfig;
 
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
-import java.util.logging.Level;
 
 @Component
 @AllArgsConstructor
@@ -91,7 +89,7 @@ public class TelegramBot extends TelegramLongPollingBot {
         try {
             execute(sendMessage);
         } catch (TelegramApiException e) {
-
+            System.out.println(e.getMessage());
         }
     }
 
@@ -108,8 +106,7 @@ public class TelegramBot extends TelegramLongPollingBot {
 
         KeyboardRow keyboardFirstRow = new KeyboardRow();
 
-        for (int i = 0; i < buttons.length; i++)
-            keyboardFirstRow.add(new KeyboardButton(buttons[i]));
+        for (String button : buttons) keyboardFirstRow.add(new KeyboardButton(button));
 
         keyboard.add(keyboardFirstRow);
 

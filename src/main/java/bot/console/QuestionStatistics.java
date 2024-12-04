@@ -1,4 +1,4 @@
-package console_bot;
+package bot.console;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
 import java.io.File;
