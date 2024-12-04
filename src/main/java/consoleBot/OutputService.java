@@ -1,4 +1,4 @@
-package console_bot;
+package consoleBot;
 
 import utils.MyUtils;
 
@@ -13,10 +13,6 @@ public class OutputService {
 
     public OutputService(ResourceStorage storage) {
         this.storage = storage;
-    }
-
-    public OutputService() {
-        storage = null;
     }
 
     public void printlnResponse(String command) {
@@ -48,17 +44,21 @@ public class OutputService {
     }
 
     public <T>  void println(T quote) {
-        if (consoleMode)
+        if (consoleMode) {
             System.out.println(quote);
-        else
+        }
+        else {
             que.add(String.valueOf(quote) + "\n");
+        }
     }
 
     public <T> void print(T quote) {
-        if (consoleMode)
+        if (consoleMode) {
             System.out.print(quote);
-        else
+        }
+        else {
             que.add(String.valueOf(quote));
+        }
     }
 
     public String getOutput() {
@@ -67,8 +67,9 @@ public class OutputService {
 
     public String getAllOutput() {
         String result = "";
-        while (!que.isEmpty())
+        while (!que.isEmpty()) {
             result += que.remove();
+        }
 
         return result;
     }

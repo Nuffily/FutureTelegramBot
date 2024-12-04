@@ -1,4 +1,4 @@
-package console_bot;
+package consoleBot;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
 import java.io.File;
@@ -22,7 +22,7 @@ public class TheoryService {
                     new File("src/main/resources/TheoryStorage.json"), Theory[].class);
 
         } catch (IOException e) {
-
+            printer.println(e.getMessage());
         }
     }
 

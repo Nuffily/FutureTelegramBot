@@ -1,4 +1,4 @@
-package console_bot;
+package consoleBot;
 
 import model.Location;
 

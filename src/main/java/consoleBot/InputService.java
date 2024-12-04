@@ -1,4 +1,4 @@
-package console_bot;
+package consoleBot;
 
 import java.util.Collections;
 import java.util.LinkedList;
@@ -14,16 +14,15 @@ public class InputService {
         if (consoleMode) {
             return scanner.nextLine();
         }
-        else
-            synchronized (que) {
-                if (que.isEmpty())
-                    try {
-                        que.wait();
-                    } catch (InterruptedException e) {
-                        e.printStackTrace();
-                    }
-                return que.remove();
-            }
+        else synchronized (que) {
+            if (que.isEmpty())
+                try {
+                    que.wait();
+                } catch (InterruptedException e) {
+                    e.printStackTrace();
+                }
+            return que.remove();
+        }
     }
 
     public void addToQueue(String... messages) {

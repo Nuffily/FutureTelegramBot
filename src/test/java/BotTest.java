@@ -1,5 +1,5 @@
-import console_bot.Bot;
-import console_bot.ResourceStorage;
+import consoleBot.Bot;
+import consoleBot.ResourceStorage;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;

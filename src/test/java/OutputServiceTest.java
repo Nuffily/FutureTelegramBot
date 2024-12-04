@@ -1,6 +1,6 @@
-import console_bot.InputService;
-import console_bot.OutputService;
-import console_bot.ResourceStorage;
+import consoleBot.InputService;
+import consoleBot.OutputService;
+import consoleBot.ResourceStorage;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import utils.MyUtils;
