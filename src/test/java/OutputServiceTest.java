@@ -1,4 +1,3 @@
-import console_bot.Bot;
 import console_bot.InputService;
 import console_bot.OutputService;
 import console_bot.ResourceStorage;
@@ -11,7 +10,7 @@ import java.lang.reflect.Method;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
 
-public class PrintServiceTest {
+public class OutputServiceTest {
 
     private final ResourceStorage storage = new ResourceStorage();
     private  final OutputService printer = new OutputService(storage);
