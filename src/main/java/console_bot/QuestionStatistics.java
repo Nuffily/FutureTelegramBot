@@ -22,7 +22,7 @@ public class QuestionStatistics {
         questionsAttempts = new int[questions.length + 1];
     }
 
-    public void printStats() {
+    public void printStats(OutputService outputService) {
         printer.println("Количество пройденных вопросов: "
                 + countOfPassedQuestions + "/" + (questionPassed.length - 1));
         printer.println("Количество встретившихся вопросов: "

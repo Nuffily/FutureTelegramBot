@@ -14,7 +14,6 @@ import utils.MyUtils;
 public class TestService {
     private final Map<Location, Question[]> questions;
     private final Map<Location, QuestionStatistics> statistics;
-    private final Scanner scan = new Scanner(System.in);
     private final OutputService printer;
     private final InputService input;
 
@@ -32,7 +31,7 @@ public class TestService {
     }
 
     public void printStats(Location location) {
-        statistics.get(location).printStats();
+        statistics.get(location).printStats(new OutputService());
     }
 
     public void uploadStats(Location location, String path) {

@@ -85,7 +85,7 @@ public class TheoryService {
     }
 
 
-    private void handleUserInputForTheory() {
+    public void handleUserInputForTheory() {
         while (true) {
             String userInput = input.getInput();
             if (userInput.equalsIgnoreCase("rand")){
@@ -159,5 +159,8 @@ public class TheoryService {
         }
     }
 
+    public Theory[] getTheories(){
+        return this.theories;
+    }
 
 }

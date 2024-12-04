@@ -1,5 +1,5 @@
 import console_bot.Bot;
-import console_bot.PrintService;
+import console_bot.OutputService;
 import console_bot.ResourceStorage;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
@@ -14,7 +14,7 @@ public class PrintServiceTest {
 
     private final ResourceStorage storage = new ResourceStorage();
     private final Bot bot = new Bot(storage);
-    private  final PrintService printService = new PrintService(storage);
+    private  final OutputService printService = new OutputService(storage);
 
 
     @BeforeEach
@@ -54,7 +54,7 @@ public class PrintServiceTest {
         String testCommand = "saveStats";
 
         try {
-            Method testGetQuoteMethod = PrintService.class.getDeclaredMethod("getQuote", String.class);
+            Method testGetQuoteMethod = OutputService.class.getDeclaredMethod("getQuote", String.class);
 
             testGetQuoteMethod.setAccessible(true);
             assertEquals("Статистика сохранена! Чтобы загрузить ее при следующем запуске, используй 'upload'",

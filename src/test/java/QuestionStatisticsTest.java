@@ -60,9 +60,9 @@ public class QuestionStatisticsTest {
 //            QuestionStatistics statisticsCopy = objectMapper.readTree(testContent));
             QuestionStatistics statisticsCopy = objectMapper.readValue(new File(testPath), QuestionStatistics.class);
 
-            statisticsCopy.pr(new OutputService());
-            statisticsCopy.printStats();
-            statistics.printStats();
+            statisticsCopy.printStats(new OutputService());
+            statisticsCopy.printStats(new OutputService());
+            statistics.printStats(new OutputService());
 
             assertTrue(statistics.equals(statisticsCopy));
 
