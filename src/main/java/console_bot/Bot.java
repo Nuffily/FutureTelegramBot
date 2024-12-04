@@ -14,7 +14,7 @@ public class Bot implements Runnable{
         this.storage = storage;
         printer = new OutputService(storage);
         testService = new TestService(printer, input);
-        theoryService = new TheoryService(storage, printer, input);
+        theoryService = new TheoryService(printer, input);
     }
 
 

@@ -3,17 +3,16 @@ package console_bot;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import java.io.File;
 import java.io.IOException;
-import java.util.Objects;
-
 import model.Theory;
-
+import utils.MyUtils;
 
 public class TheoryService {
     private Theory[] theories;
     private final InputService input;
     private final OutputService printer;
+    private int countTheory = 0;
 
-    public TheoryService(ResourceStorage storage, OutputService printer, InputService input) {
+    public TheoryService(OutputService printer, InputService input) {
         this.printer = printer;
         this.input = input;
         ObjectMapper objectMapper = new ObjectMapper();
@@ -22,7 +21,8 @@ public class TheoryService {
                     new File("src/main/resources/TheoryStorage.json"), Theory[].class);
 
         } catch (IOException e) {
-
+            printer.println("Ошибка при загрузке теорий: " + e.getMessage());
+            this.theories = new Theory[0];
         }
     }
 
@@ -38,32 +38,84 @@ public class TheoryService {
         }
     }
 
-    private void handleUserInputForTheory() {
+    private void handleRandomTheory() {
         while (true) {
-            displayAvailableTheories();
-            printer.print("Введите номер темы или 'exit' для выхода: ");
+            int theoryIndex = MyUtils.getRandom(0, theories.length - 1);
+            Theory randomTheory = theories[theoryIndex];
+            int sectionIndex = MyUtils.getRandom(0, randomTheory.getSections().size() - 1);
+            if (theories.length == 0) {
+                printer.println("Нет доступных теорий для отображения.");
+                return;
+            }
+            if (randomTheory.getSections().isEmpty()) {
+                printer.println("Нет разделов в выбранной теории.");
+                return;
+            }
+            countTheory++;
+            printer.println("---- Случайная теория ----");
+            printer.println(randomTheory.getTitle());
+            printer.println(randomTheory.getSections().get(sectionIndex).getContent());
+            printer.println("--------------------------");
 
             String userInput = input.getInput();
-
-            try {
-                int index = Integer.parseInt(userInput) - 1;
-                if (index >= 0 && index < theories.length) {
-                    handleUserInputForSection(theories[index], index);
-
-                } else {
-                    if ("back".equalsIgnoreCase(userInput)) {
-                        printer.println("Выход из программы.");
-                        break;
-                    }
-                    printer.println("Такой команды нет, пожалуйста, введите корректный номер.");
-                }
-            } catch (NumberFormatException e) {
-                if ("exit".equalsIgnoreCase(userInput) || "back".equalsIgnoreCase(userInput)) {
-                    printer.println("Выход в главное меню.");
-                    break;
-                }
-                printer.println("Некорректный ввод, пожалуйста, введите число.");
+            if ("back".equalsIgnoreCase(userInput)) {
+                printer.println("Выход из случайной теории.");
+                break;
             }
+        }
+    }
+
+    private Integer parseInputAsInteger(String input) {
+        try {
+            printer.println(Integer.parseInt(input) );
+            return Integer.parseInt(input);
+        } catch (NumberFormatException e) {
+            printer.println("Некорректный ввод: ");
+            return null; // Вернуть null вместо исключения
+        }
+    }
+
+    private String getTrimmedInput(String promptMessage) {
+        printer.print(promptMessage);
+        return input.getInput().trim();
+    }
+
+    private void printTheoryMenu() {
+        printer.println("Вы в меню теории! \nВведите rand для получения рандомной теории, tstat для статистики или tt для списка теорий.");
+    }
+
+
+    private void handleUserInputForTheory() {
+        while (true) {
+            String userInput = input.getInput();
+            if (userInput.equalsIgnoreCase("rand")){
+                handleRandomTheory();
+                printTheoryMenu();
+                continue;
+            }
+            if (userInput.equalsIgnoreCase("tstat")){
+                printer.println("Вы изучили " + countTheory);
+                printTheoryMenu();
+                continue;
+            }
+            if (userInput.equalsIgnoreCase("back")){
+                printer.println("Вы в главном меню бота!");
+                break;
+            }
+
+            displayAvailableTheories();
+            userInput = getTrimmedInput("Введите номер темы или 'back' для выхода: ");
+            Integer index = parseInputAsInteger(userInput);
+
+            if (index != null && index >= 1 && index <= theories.length) {
+                handleUserInputForSection(theories[index - 1]);
+            } else if ("back".equalsIgnoreCase(userInput)) {
+                printer.println("Выход из меню теорий.");
+                break;
+            } else {
+                printer.println("Некорректный ввод, попробуйте ещё раз.");
+            }
+
         }
     }
 
@@ -74,36 +126,38 @@ public class TheoryService {
         }
     }
 
-    private void handleUserInputForSection(Theory theory, int index) {
-
+    private void handleUserInputForSection(Theory theory) {
         while (true) {
-            displaySections(theories[index]);
-            printer.print("Введите номер раздела для изучения или 'back' для возврата: ");
-            String userInput = input.getInput();
+            displaySections(theory);
+            String userInput = getTrimmedInput("Введите номер раздела для изучения или 'back' для возврата: ");
+            if ("back".equalsIgnoreCase(userInput)) {
+                printer.println("Выходим из раздела.");
+                printer.println("Вы в меню теории! Введите rand для получения рандомной теории или tt для получения списка теории");
 
-            try {
-                int sectionIndex = Integer.parseInt(userInput) - 1;
-                if (sectionIndex >= 0 && sectionIndex < theory.getSections().size()) {
+                break;
+            }
 
-                    printer.println(theory.getSections().get(sectionIndex).getContent());
-                    printer.println("Введите back для возврата.");
+            Integer sectionIndex = parseInputAsInteger(userInput);
+            if (sectionIndex != null && sectionIndex >= 0 && sectionIndex < theory.getSections().size()) {
+                Theory.Section section = theory.getSections().get(sectionIndex);
+                printer.println("Содержание раздела:");
+                printer.println(section.getContent());
+                printer.println("-------------------");
+                countTheory++;
 
-                    String curInput = input.getInput();
-                    if (Objects.equals(curInput, "menu")) {
-                        displayAvailableTheories();
+                printer.println("Введите 'back', чтобы вернуться к разделам.");
+                while (true) {
+                    String backInput = input.getInput().trim();
+                    if ("back".equalsIgnoreCase(backInput)) {
                         break;
                     }
-                } else {
-                    printer.println("Некорректный номер раздела, пожалуйста, введите число в диапазоне.");
+                    printer.println("Некорректный ввод. Введите 'back' для возврата.");
                 }
-            } catch (NumberFormatException e) {
-                if ("back".equalsIgnoreCase(userInput)) {
-                    printer.println("Выходим из раздела секции.");
-                    break;
-                }
-                printer.println("Некорректный ввод, пожалуйста, введите число или 'back'.");
+            } else {
+                printer.println("Некорректный номер раздела. Введите число от 1 до " + theory.getSections().size() + " или 'back' для возврата.");
             }
         }
     }
+
 
 }
