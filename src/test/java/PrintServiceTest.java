@@ -42,8 +42,6 @@ public class PrintServiceTest {
         String testCommand = "unknownCommand";
         bot.printer.printlnResponse(testCommand);
 
-        bot.input.addToQueue("null");
-
         assertEquals("'help' - главное лекарство от незнания", bot.printer.que.remove());
     }
 
