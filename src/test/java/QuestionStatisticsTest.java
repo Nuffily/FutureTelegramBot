@@ -132,5 +132,26 @@ public class QuestionStatisticsTest {
         }
     }
 
+    @Test
+    public void testPrintStats() {
+        statistics.printStats();
+
+        assertEquals("""
+                Количество пройденных вопросов: 1/10
+                Количество встретившихся вопросов: 2/10
+                """, printer.getAllOutput());
+
+        statistics.updateStats(4, false);
+        statistics.updateStats(6, true);
+
+        statistics.printStats();
+
+        assertEquals("""
+                Количество пройденных вопросов: 2/10
+                Количество встретившихся вопросов: 4/10
+                """, printer.getAllOutput());
+    }
+
+
 
 }

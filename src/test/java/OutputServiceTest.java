@@ -65,7 +65,7 @@ public class OutputServiceTest {
         printer.consoleMode = true;
         printer.println(testQuote);
 
-        assertEquals("1testData\r\n", outputStreamCaptor.toString());
+        assertEquals("1testData\n", outputStreamCaptor.toString());
     }
 
 

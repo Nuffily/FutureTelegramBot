@@ -16,8 +16,7 @@ public class BotTest {
     public void init(){
         MyUtils.isRandomFixed = true;
 
-        bot.printer.consoleMode = false;
-        bot.input.consoleMode = false;
+        bot.consoleModeDisable();
 
         new Thread(bot).start();
 

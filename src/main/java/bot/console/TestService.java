@@ -16,7 +16,7 @@ public class TestService {
     private final OutputService printer;
     private final InputService input;
 
-    TestService(OutputService printer, InputService inputService) {
+    public TestService(OutputService printer, InputService inputService) {
         this.printer = printer;
         this.input = inputService;
 

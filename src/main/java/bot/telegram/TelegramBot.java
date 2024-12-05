@@ -72,8 +72,7 @@ public class TelegramBot extends TelegramLongPollingBot {
     private void startConversation(Long chatId) {
         final Bot bot = new Bot(storage);
         users.put(chatId, bot);
-        bot.printer.consoleMode = false;
-        bot.input.consoleMode = false;
+        bot.consoleModeDisable();
         new Thread(bot).start();
     }
 

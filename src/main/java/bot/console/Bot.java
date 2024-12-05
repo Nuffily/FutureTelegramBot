@@ -91,4 +91,9 @@ public class Bot implements Runnable{
     public Location getLocation() {
         return location;
     }
+
+    public void consoleModeDisable() {
+        printer.consoleMode = false;
+        input.consoleMode = false;
+    }
 }

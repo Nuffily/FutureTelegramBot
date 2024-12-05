@@ -25,7 +25,7 @@
   },
   {
     "name" : "travelToTheory",
-    "response" : " \"Добро пожаловать в библеотеку теории по JavaScript!\nВводи tt для получения теории, ну или help!"
+    "response" : "Добро пожаловать в библеотеку теории по JavaScript!"
   },
   {
     "name" : "travelToMATH",
