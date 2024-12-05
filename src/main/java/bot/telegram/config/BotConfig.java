@@ -1,16 +1,28 @@
 package bot.telegram.config;
 
-import lombok.Data;
-import org.springframework.beans.factory.annotation.Value;
-import org.springframework.context.annotation.Configuration;
-import org.springframework.context.annotation.PropertySource;
+import java.io.*;
 
-@Configuration
-@Data
-@PropertySource("application.properties")
 public class BotConfig {
-    @Value("${bot.name}") String botName;
-    @Value("${bot.token}") String token;
+
+    String botName;
+    String token;
+
+
+    public BotConfig() {
+        BufferedReader reader = null;
+        try {
+            reader = new BufferedReader(new FileReader("src/main/resources/application.properties"));
+
+            botName = reader.readLine();
+            token = reader.readLine();
+
+            reader.close();
+        } catch (IOException e) {
+            throw new RuntimeException(e);
+        }
+
+    }
+
 
     public String getBotName() {
         return botName;

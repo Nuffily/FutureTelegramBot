@@ -2,8 +2,6 @@ package bot.telegram;
 
 import bot.console.Bot;
 import bot.console.ResourceStorage;
-import lombok.AllArgsConstructor;
-import org.springframework.stereotype.Component;
 import org.telegram.telegrambots.bots.TelegramLongPollingBot;
 import org.telegram.telegrambots.meta.api.methods.send.SendMessage;
 import org.telegram.telegrambots.meta.api.objects.Update;
@@ -18,11 +16,9 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-@Component
-@AllArgsConstructor
 public class TelegramBot extends TelegramLongPollingBot {
 
-    private BotConfig botConfig;
+    private BotConfig botConfig = new BotConfig();
     final private Map<Long, Bot> users = new HashMap<>();
     private final ResourceStorage storage = new ResourceStorage();
 

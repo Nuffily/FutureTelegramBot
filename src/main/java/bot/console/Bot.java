@@ -78,11 +78,11 @@ public class Bot implements Runnable{
 
     private void defineButtons() {
         switch (location) {
-            case Location.MAIN:
+            case MAIN:
                 input.defineButtons("JavaScript", "Высшая математика", "/help");
                 break;
-            case Location.MATH:
-            case Location.JS:
+            case MATH:
+            case JS:
                 input.defineButtons("Вопрос", "Назад", "/help");
                 break;
         }

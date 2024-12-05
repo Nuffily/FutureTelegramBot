@@ -16,7 +16,7 @@ public class Question {
     public void shuffleAnswers() {
         Random rnd = new Random();
         for (int i = answers.length - 1; i > 0; i--) {
-            int index = getRandom(0, i + 1);
+            int index = getRandom(0, i);
             String temp = answers[index];
             answers[index] = answers[i];
             answers[i] = temp;
