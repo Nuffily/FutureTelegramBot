@@ -46,12 +46,12 @@ public class OutputServiceTest {
         String testCommand = "saveStats";
 
         try {
-            Method testGetQuoteMethod = OutputService.class.
-                    getDeclaredMethod("getQuote", String.class);
+            Method testGetQuoteMethod = OutputService.class
+                    .getDeclaredMethod("getQuote", String.class);
 
             testGetQuoteMethod.setAccessible(true);
-            assertEquals("Статистика сохранена! Чтобы загрузить ее при " +
-                            "следующем запуске, используй 'upload'",
+            assertEquals("Статистика сохранена! Чтобы загрузить ее при "
+                            + "следующем запуске, используй 'upload'",
                     testGetQuoteMethod.invoke(printer, testCommand).toString());
         } catch (Exception e) {
             e.printStackTrace();

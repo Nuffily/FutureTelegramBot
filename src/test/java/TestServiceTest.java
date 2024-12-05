@@ -29,7 +29,7 @@ public class TestServiceTest {
     }
 
     @Test
-    public void CorrectQuestionPrinting() {
+    public void correctQuestionPrinting() {
         assertEquals("""
                 Что выведет этот код?
                 const arr = ['apple', 'banana', 'cherry'];
@@ -44,7 +44,7 @@ public class TestServiceTest {
     }
 
     @Test
-    public void AnswerSuitabilityTest() {
+    public void answerSuitabilityTest() {
         bot.printer.getAllOutput();
 
         bot.input.addToQueue("5");
@@ -61,7 +61,7 @@ public class TestServiceTest {
     }
 
     @Test
-    public void WrongAnswer() {
+    public void wrongAnswer() {
         bot.printer.getAllOutput();
 
         bot.input.addToQueue("4");
@@ -69,7 +69,7 @@ public class TestServiceTest {
     }
 
     @Test
-    public void CorrectAnswer() {
+    public void correctAnswer() {
         bot.printer.getAllOutput();
 
         bot.input.addToQueue("3");

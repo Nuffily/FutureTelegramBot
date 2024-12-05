@@ -14,6 +14,7 @@ import java.nio.file.Path;
 
 import static org.junit.jupiter.api.Assertions.*;
 
+
 public class QuestionStatisticsTest {
 
     ResourceStorage storage = new ResourceStorage();
@@ -62,8 +63,8 @@ public class QuestionStatisticsTest {
         try {
             ObjectMapper objectMapper = new ObjectMapper();
 
-            QuestionStatistics statisticsCopy = objectMapper.
-                    readValue(new File(testPath), QuestionStatistics.class);
+            QuestionStatistics statisticsCopy = objectMapper
+                    .readValue(new File(testPath), QuestionStatistics.class);
 
             assertArrayEquals(statistics.getQuestionPassed(),
                     statisticsCopy.getQuestionPassed());
@@ -82,7 +83,7 @@ public class QuestionStatisticsTest {
             try {
                 Files.delete(Path.of(testPath));
             } catch (IOException e) {
-                e.printStackTrace();
+                System.out.println(e.getMessage());
             }
         }
     }
@@ -97,8 +98,8 @@ public class QuestionStatisticsTest {
         statisticsCopy.uploadStats(testPath);
 
         assertTrue(Files.exists(Path.of(testPath)));
-        assertEquals(printer.getOutput(), "Статистика загружена! " +
-                "Чтобы взгянуть на нее, напиши 'stats'\n");
+        assertEquals(printer.getOutput(), "Статистика загружена! "
+                + "Чтобы взгянуть на нее, напиши 'stats'\n");
 
         assertArrayEquals(statistics.getQuestionPassed(),
                 statisticsCopy.getQuestionPassed());

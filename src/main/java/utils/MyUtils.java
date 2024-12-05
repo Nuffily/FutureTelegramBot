@@ -3,7 +3,7 @@ package utils;
 import java.util.Random;
 
 public class MyUtils {
-    static public final Random random = new Random();
+    public static final Random random = new Random();
 
     public static int getRandom(int min, int max) {
         return min + random.nextInt(max);
