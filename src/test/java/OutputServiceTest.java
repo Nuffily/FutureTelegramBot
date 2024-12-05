@@ -7,6 +7,8 @@ import utils.MyUtils;
 import java.io.ByteArrayOutputStream;
 import java.io.PrintStream;
 import java.lang.reflect.Method;
+import java.util.Random;
+
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
 
@@ -19,7 +21,7 @@ public class OutputServiceTest {
 
     @BeforeEach
     public void init(){
-        MyUtils.isRandomFixed = true;
+        MyUtils.random.setSeed(1);
 
         printer.consoleMode = false;
         input.consoleMode = false;
@@ -30,10 +32,10 @@ public class OutputServiceTest {
     public void testPrintResponse(){
 
         printer.printlnResponse("unknownCommand");
-        assertEquals("'help' - главное лекарство от незнания\n", printer.getOutput());
+        assertEquals("Человечество еще не изобрело такую команду\n", printer.getOutput());
 
         printer.printResponse("correctAnswerIs");
-        assertEquals("Правильным ответом был вариант под номером ", printer.getOutput());
+        assertEquals("Ответ - ", printer.getOutput());
     }
 
 
@@ -65,7 +67,7 @@ public class OutputServiceTest {
         printer.consoleMode = true;
         printer.println(testQuote);
 
-        assertEquals("1testData\n", outputStreamCaptor.toString());
+        assertEquals("1testData\r\n", outputStreamCaptor.toString());
     }
 
 

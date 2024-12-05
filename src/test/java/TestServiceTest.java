@@ -17,7 +17,7 @@ public class TestServiceTest {
 
     @BeforeEach
     public void init() {
-        MyUtils.isRandomFixed = true;
+        MyUtils.random.setSeed(1);
 
         bot.consoleModeDisable();
 
@@ -38,20 +38,14 @@ public class TestServiceTest {
     public void CorrectQuestionPrinting() {
         assertEquals("""
                 Что выведет этот код?
-                // JavaScript Equalto Operators
-                function equalto() {
-                    let num=10;
-                    if(num==="10")
-                        return true;
-                    else
-                        return false;
-                }
+                const arr = ['apple', 'banana', 'cherry'];
+                console.log(arr.length);
                 -------------------------------
                 Варианты ответа:
-                1. true
-                2. compilation error
-                3. runtime error
-                4. false
+                1. TypeError
+                2. undefined
+                3. 3
+                4. 'apple'
                 """, bot.printer.getAllOutput());
     }
 
@@ -76,16 +70,16 @@ public class TestServiceTest {
     public void WrongAnswer() {
         bot.printer.getAllOutput();
 
-        bot.input.addToQueue("3");
-        assertEquals("...неверно, давай еще разок\n", bot.printer.getOutput());
+        bot.input.addToQueue("4");
+        assertEquals("Вообще ни разу, по новой\n", bot.printer.getOutput());
     }
 
     @Test
     public void CorrectAnswer() {
         bot.printer.getAllOutput();
 
-        bot.input.addToQueue("4");
-        assertEquals("Верно! В том же духе!\n", bot.printer.getOutput());
+        bot.input.addToQueue("3");
+        assertEquals("Верно! Мужик\n", bot.printer.getOutput());
     }
 
 }

@@ -18,7 +18,7 @@ public class TheoryServiceTest {
     @BeforeEach
     public void init() {
 
-        MyUtils.isRandomFixed = true;
+        MyUtils.random.setSeed(1);
         bot.consoleModeDisable();
 
         new Thread(bot).start();

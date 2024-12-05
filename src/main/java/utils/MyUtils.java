@@ -3,17 +3,14 @@ package utils;
 import java.util.Random;
 
 public class MyUtils {
-    static public boolean isRandomFixed = false;
+    static public final Random random = new Random();
 
     public static int getRandom(int min, int max) {
-        if (!isRandomFixed)
-            return min + (int) (Math.random() * (max - min + 1));
-        else
-            return min;
+        return min + random.nextInt(max);
     }
 
     public static <T> T getRandomElement(T[] arr) {
-        int elem = getRandom(0, arr.length - 1);
+        int elem = random.nextInt(arr.length);
         return arr[elem];
     }
 }

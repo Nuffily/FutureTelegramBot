@@ -24,13 +24,27 @@ public class Start {
         }
 
         if (mode.equals("telegram")) {
+            try {
+                TelegramBotsApi botsApi = new TelegramBotsApi(DefaultBotSession.class);
+                botsApi.registerBot(new TelegramBot());
+            } catch (TelegramApiException e) {
+                System.out.println(e.getMessage());
+            }
+        }
+
+        if (mode.equals("both")) {
+            final ResourceStorage storage = new ResourceStorage();
+            final Bot bot = new Bot(storage);
+
+            new Thread(bot).start();
 
             try {
                 TelegramBotsApi botsApi = new TelegramBotsApi(DefaultBotSession.class);
                 botsApi.registerBot(new TelegramBot());
             } catch (TelegramApiException e) {
-                e.printStackTrace();
+                System.out.println(e.getMessage());
             }
         }
+
     }
 }

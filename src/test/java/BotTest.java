@@ -14,7 +14,7 @@ public class BotTest {
 
     @BeforeEach
     public void init(){
-        MyUtils.isRandomFixed = true;
+        MyUtils.random.setSeed(1);
 
         bot.consoleModeDisable();
 
@@ -34,13 +34,13 @@ public class BotTest {
     public void testRunUnknownCommand(){
 
         bot.input.addToQueue("null");
-        Assertions.assertEquals("'help' - главное лекарство от незнания\n", bot.printer.getOutput());
+        Assertions.assertEquals("Человечество еще не изобрело такую команду\n", bot.printer.getOutput());
 
         bot.input.addToQueue("qwfrgreg");
-        Assertions.assertEquals("'help' - главное лекарство от незнания\n", bot.printer.getOutput());
+        Assertions.assertEquals("Человечество еще не изобрело такую команду\n", bot.printer.getOutput());
 
         bot.input.addToQueue("1");
-        Assertions.assertEquals("'help' - главное лекарство от незнания\n", bot.printer.getOutput());
+        Assertions.assertEquals("Лучше попробуй 'help'\n", bot.printer.getOutput());
     }
 
 

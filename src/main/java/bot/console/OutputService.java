@@ -46,8 +46,7 @@ public class OutputService {
     public <T> void println(T quote) {
         if (consoleMode) {
             System.out.println(quote);
-        }
-        else {
+        } else {
             que.add(quote + "\n");
         }
     }
@@ -55,8 +54,7 @@ public class OutputService {
     public <T> void print(T quote) {
         if (consoleMode) {
             System.out.print(quote);
-        }
-        else {
+        } else {
             que.add(String.valueOf(quote));
         }
     }
