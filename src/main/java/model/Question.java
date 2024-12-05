@@ -17,9 +17,11 @@ public class Question {
         Random rnd = new Random();
         for (int i = answers.length - 1; i > 0; i--) {
             int index = getRandom(0, i);
+
             String temp = answers[index];
             answers[index] = answers[i];
             answers[i] = temp;
+
             boolean temp2 = isCorrect[index];
             isCorrect[index] = isCorrect[i];
             isCorrect[i] = temp2;
@@ -27,7 +29,7 @@ public class Question {
     }
 
     public int getCorrectAnswer() {
-        for (int i = 0;; i++) {
+        for (int i = 0; ; i++) {
             if (isCorrect[i]) {
                 return i + 1;
             }

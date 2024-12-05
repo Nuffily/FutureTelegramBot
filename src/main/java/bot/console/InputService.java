@@ -13,11 +13,10 @@ public class InputService {
     private final TelegramButtons telegramButtons = new TelegramButtons();
     public boolean consoleMode = true;
 
-    public String getInput()  {
+    public String getInput() {
         if (consoleMode) {
             return scanner.nextLine();
-        }
-        else
+        } else
             synchronized (que) {
                 if (que.isEmpty())
                     try {

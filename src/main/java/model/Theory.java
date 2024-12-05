@@ -7,7 +7,6 @@ public class Theory {
     private String title;    // Заголовок темы
     private List<Section> sections;  // Список разделов темы
 
-
     public String getCommand() {
         return command;
     }

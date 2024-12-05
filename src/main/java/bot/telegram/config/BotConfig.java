@@ -1,12 +1,13 @@
 package bot.telegram.config;
 
-import java.io.*;
+import java.io.BufferedReader;
+import java.io.FileReader;
+import java.io.IOException;
 
 public class BotConfig {
 
     String botName;
     String token;
-
 
     public BotConfig() {
         BufferedReader reader = null;
@@ -22,7 +23,6 @@ public class BotConfig {
         }
 
     }
-
 
     public String getBotName() {
         return botName;

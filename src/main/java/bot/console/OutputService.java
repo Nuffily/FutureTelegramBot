@@ -47,7 +47,7 @@ public class OutputService {
         return quote;
     }
 
-    public <T>  void println(T quote) {
+    public <T> void println(T quote) {
         if (consoleMode)
             System.out.println(quote);
         else

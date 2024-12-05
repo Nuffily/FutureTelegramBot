@@ -8,6 +8,7 @@ import org.telegram.telegrambots.updatesreceivers.DefaultBotSession;
 
 public class BotInitializer {
     private final TelegramBot telegramBot;
+
     public BotInitializer(TelegramBot telegramBot) {
         this.telegramBot = telegramBot;
     }

@@ -19,7 +19,7 @@ import java.util.Map;
 public class TelegramBot extends TelegramLongPollingBot {
 
     private BotConfig botConfig = new BotConfig();
-    final private Map<Long, Bot> users = new HashMap<>();
+    private final Map<Long, Bot> users = new HashMap<>();
     private final ResourceStorage storage = new ResourceStorage();
 
     @Override
@@ -36,7 +36,7 @@ public class TelegramBot extends TelegramLongPollingBot {
     public void onUpdateReceived(Update update) {
         String currentAnswer;
 
-        if(update.hasMessage() && update.getMessage().hasText()){
+        if (update.hasMessage() && update.getMessage().hasText()) {
             String messageText = update.getMessage().getText();
             long chatId = update.getMessage().getChatId();
 
@@ -48,11 +48,9 @@ public class TelegramBot extends TelegramLongPollingBot {
                 } catch (InterruptedException e) {
                     throw new RuntimeException(e);
                 }
-            }
-
-            else {
+            } else {
                 users.get(chatId).input.addToQueue(messageText);
-                }
+            }
 
             currentAnswer = users.get(chatId).printer.getAllOutput();
 

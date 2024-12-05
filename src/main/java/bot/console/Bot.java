@@ -2,14 +2,14 @@ package bot.console;
 
 import model.Location;
 
-public class Bot implements Runnable{
+public class Bot implements Runnable {
     public InputService input = new InputService();
     private Location location = Location.MAIN;
     private final ResourceStorage storage;
     private final TestService testService;
     public final OutputService printer;
     private final TheoryService theoryService;
-  
+
     public Bot(ResourceStorage storage) {
         this.storage = storage;
         printer = new OutputService(storage);
