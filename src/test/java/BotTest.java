@@ -13,25 +13,18 @@ public class BotTest {
 
 
     @BeforeEach
-    public void init(){
+    public void init() {
         MyUtils.random.setSeed(1);
-
         bot.consoleModeDisable();
 
         new Thread(bot).start();
-
-        try {
-            Thread.sleep(10);
-        } catch (InterruptedException e) {
-            throw new RuntimeException(e);
-        }
 
         bot.printer.getOutput();
     }
 
 
     @Test
-    public void testRunUnknownCommand(){
+    public void testRunUnknownCommand() {
 
         bot.input.addToQueue("null");
         Assertions.assertEquals("Человечество еще не изобрело такую команду\n", bot.printer.getOutput());
@@ -45,7 +38,7 @@ public class BotTest {
 
 
     @Test
-    public void testRunKnownCommand(){
+    public void testRunKnownCommand() {
 
         bot.input.addToQueue("js");
 
@@ -81,6 +74,5 @@ public class BotTest {
                 exit - чтобы прервать работу программы
                 """, bot.printer.getOutput());
     }
-
 
 }

@@ -23,12 +23,6 @@ public class TestServiceTest {
 
         new Thread(bot).start();
 
-        try {
-            Thread.sleep(10);
-        } catch (InterruptedException e) {
-            throw new RuntimeException(e);
-        }
-
         bot.input.addToQueue("js");
         bot.printer.getAllOutput();
         bot.input.addToQueue("q");

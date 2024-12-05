@@ -13,7 +13,8 @@ public class TheoryServiceTest {
 
     private final ResourceStorage storage = new ResourceStorage();
     private final Bot bot = new Bot(storage);
-    private final TheoryService theoryService = new TheoryService(new OutputService(storage), new InputService());
+    private final TheoryService theoryService =
+            new TheoryService(new OutputService(storage), new InputService());
 
     @BeforeEach
     public void init() {

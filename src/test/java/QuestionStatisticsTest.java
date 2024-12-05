@@ -62,12 +62,17 @@ public class QuestionStatisticsTest {
         try {
             ObjectMapper objectMapper = new ObjectMapper();
 
-            QuestionStatistics statisticsCopy = objectMapper.readValue(new File(testPath), QuestionStatistics.class);
+            QuestionStatistics statisticsCopy = objectMapper.
+                    readValue(new File(testPath), QuestionStatistics.class);
 
-            assertArrayEquals(statistics.getQuestionPassed(), statisticsCopy.getQuestionPassed());
-            assertArrayEquals(statistics.getQuestionsAttempts(), statisticsCopy.getQuestionsAttempts());
-            assertEquals(statistics.getCountOfAttemptedQuestions(), statisticsCopy.getCountOfAttemptedQuestions());
-            assertEquals(statistics.getCountOfPassedQuestions(), statisticsCopy.getCountOfPassedQuestions());
+            assertArrayEquals(statistics.getQuestionPassed(),
+                    statisticsCopy.getQuestionPassed());
+            assertArrayEquals(statistics.getQuestionsAttempts(),
+                    statisticsCopy.getQuestionsAttempts());
+            assertEquals(statistics.getCountOfAttemptedQuestions(),
+                    statisticsCopy.getCountOfAttemptedQuestions());
+            assertEquals(statistics.getCountOfPassedQuestions(),
+                    statisticsCopy.getCountOfPassedQuestions());
 
         } catch (IOException e) {
 
@@ -92,12 +97,17 @@ public class QuestionStatisticsTest {
         statisticsCopy.uploadStats(testPath);
 
         assertTrue(Files.exists(Path.of(testPath)));
-        assertEquals(printer.getOutput(), "Статистика загружена! Чтобы взгянуть на нее, напиши 'stats'\n");
+        assertEquals(printer.getOutput(), "Статистика загружена! " +
+                "Чтобы взгянуть на нее, напиши 'stats'\n");
 
-        assertArrayEquals(statistics.getQuestionPassed(), statisticsCopy.getQuestionPassed());
-        assertArrayEquals(statistics.getQuestionsAttempts(), statisticsCopy.getQuestionsAttempts());
-        assertEquals(statistics.getCountOfAttemptedQuestions(), statisticsCopy.getCountOfAttemptedQuestions());
-        assertEquals(statistics.getCountOfPassedQuestions(), statisticsCopy.getCountOfPassedQuestions());
+        assertArrayEquals(statistics.getQuestionPassed(),
+                statisticsCopy.getQuestionPassed());
+        assertArrayEquals(statistics.getQuestionsAttempts(),
+                statisticsCopy.getQuestionsAttempts());
+        assertEquals(statistics.getCountOfAttemptedQuestions(),
+                statisticsCopy.getCountOfAttemptedQuestions());
+        assertEquals(statistics.getCountOfPassedQuestions(),
+                statisticsCopy.getCountOfPassedQuestions());
     }
 
     @Test
@@ -107,21 +117,20 @@ public class QuestionStatisticsTest {
         try (FileWriter writer = new FileWriter(testPath, false)) {
             String text = "Hello Gold!";
             writer.write("""
-                {
-                    "questionPassed" : [ false, true, false, false, false, false, false, false, false, false, false ],
-                    "countOfPassedQuestions" : 1,
-                    "questionsAttempts" : [ 0, 1, 2, 0, 0, 0, 0, 0, 0, 0, 0 ],
-                    "countOfAttemptedQuestions" : 2     GARBAGE <-------
-                }
-            """);
+                    {
+                        "questionPassed" : [ false, true, false, false, false, false, false, false, false, false, false ],
+                        "countOfPassedQuestions" : 1,
+                        "questionsAttempts" : [ 0, 1, 2, 0, 0, 0, 0, 0, 0, 0, 0 ],
+                        "countOfAttemptedQuestions" : 2     GARBAGE <-------
+                    }
+                    """);
             writer.flush();
 
             QuestionStatistics statisticsCopy = new QuestionStatistics(question, printer);
             statisticsCopy.uploadStats(testPath);
 
             assertEquals(printer.getOutput(), "Существующая статистика не найдена или повреждена\n");
-        }
-        catch(IOException ex){
+        } catch (IOException ex) {
             System.out.println(ex.getMessage());
         } finally {
             try {
@@ -151,7 +160,6 @@ public class QuestionStatisticsTest {
                 Количество встретившихся вопросов: 4/10
                 """, printer.getAllOutput());
     }
-
 
 
 }

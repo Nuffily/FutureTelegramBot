@@ -4,6 +4,7 @@ import bot.console.ResourceStorage;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import utils.MyUtils;
+
 import java.io.ByteArrayOutputStream;
 import java.io.PrintStream;
 import java.lang.reflect.Method;
@@ -15,12 +16,12 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 public class OutputServiceTest {
 
     private final ResourceStorage storage = new ResourceStorage();
-    private  final OutputService printer = new OutputService(storage);
-    private  final InputService input = new InputService();
+    private final OutputService printer = new OutputService(storage);
+    private final InputService input = new InputService();
 
 
     @BeforeEach
-    public void init(){
+    public void init() {
         MyUtils.random.setSeed(1);
 
         printer.consoleMode = false;
@@ -29,7 +30,7 @@ public class OutputServiceTest {
 
 
     @Test
-    public void testPrintResponse(){
+    public void testPrintResponse() {
 
         printer.printlnResponse("unknownCommand");
         assertEquals("Человечество еще не изобрело такую команду\n", printer.getOutput());
@@ -40,25 +41,26 @@ public class OutputServiceTest {
 
 
     @Test
-    public void testGetQuote(){
+    public void testGetQuote() {
 
         String testCommand = "saveStats";
 
         try {
-            Method testGetQuoteMethod = OutputService.class.getDeclaredMethod("getQuote", String.class);
+            Method testGetQuoteMethod = OutputService.class.
+                    getDeclaredMethod("getQuote", String.class);
 
             testGetQuoteMethod.setAccessible(true);
-            assertEquals("Статистика сохранена! Чтобы загрузить ее при следующем запуске, используй 'upload'",
+            assertEquals("Статистика сохранена! Чтобы загрузить ее при " +
+                            "следующем запуске, используй 'upload'",
                     testGetQuoteMethod.invoke(printer, testCommand).toString());
-        }
-        catch (Exception e){
+        } catch (Exception e) {
             e.printStackTrace();
         }
     }
 
 
     @Test
-    public void testPrintLnConsoleModeOn(){
+    public void testPrintLnConsoleModeOn() {
 
         ByteArrayOutputStream outputStreamCaptor = new ByteArrayOutputStream();
         System.setOut(new PrintStream(outputStreamCaptor));
@@ -72,7 +74,7 @@ public class OutputServiceTest {
 
 
     @Test
-    public void testPrintLnConsoleModeOff(){
+    public void testPrintLnConsoleModeOff() {
 
         ByteArrayOutputStream outputStreamCaptor = new ByteArrayOutputStream();
         System.setOut(new PrintStream(outputStreamCaptor));

@@ -60,11 +60,23 @@ public class OutputService {
     }
 
     public String getOutput() {
+        try {
+            Thread.sleep(10);
+        } catch (InterruptedException e) {
+            throw new RuntimeException(e);
+        }
+
         return que.remove();
     }
 
     public String getAllOutput() {
         StringBuilder result = new StringBuilder();
+
+        try {
+            Thread.sleep(10);
+        } catch (InterruptedException e) {
+            throw new RuntimeException(e);
+        }
 
         while (!que.isEmpty()) {
             result.append(que.remove());
