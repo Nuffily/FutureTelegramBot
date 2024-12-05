@@ -15,10 +15,6 @@ public class OutputService {
         this.storage = storage;
     }
 
-    public OutputService() {
-        storage = null;
-    }
-
     public void printlnResponse(String command) {
 
         String quote = getQuote(command);
@@ -40,7 +36,7 @@ public class OutputService {
     public String getQuote(String command) {
         String quote = storage.getSingleReplicas().get(command);
 
-        if ((quote == null) && (storage.getRandomReplicas().get(command) != null)) {
+        if (quote == null && storage.getRandomReplicas().get(command) != null) {
             quote = MyUtils.getRandomElement(storage.getRandomReplicas().get(command));
         }
 
@@ -48,17 +44,21 @@ public class OutputService {
     }
 
     public <T> void println(T quote) {
-        if (consoleMode)
+        if (consoleMode) {
             System.out.println(quote);
-        else
+        }
+        else {
             que.add(quote + "\n");
+        }
     }
 
     public <T> void print(T quote) {
-        if (consoleMode)
+        if (consoleMode) {
             System.out.print(quote);
-        else
+        }
+        else {
             que.add(String.valueOf(quote));
+        }
     }
 
     public String getOutput() {
@@ -67,8 +67,10 @@ public class OutputService {
 
     public String getAllOutput() {
         StringBuilder result = new StringBuilder();
-        while (!que.isEmpty())
+
+        while (!que.isEmpty()) {
             result.append(que.remove());
+        }
 
         return result.toString();
     }

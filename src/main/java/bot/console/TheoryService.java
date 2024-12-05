@@ -22,7 +22,7 @@ public class TheoryService {
                     new File("src/main/resources/TheoryStorage.json"), Theory[].class);
 
         } catch (IOException e) {
-
+            printer.println(e.getMessage());
         }
     }
 

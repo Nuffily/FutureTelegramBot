@@ -18,7 +18,7 @@ import java.util.Map;
 
 public class TelegramBot extends TelegramLongPollingBot {
 
-    private BotConfig botConfig = new BotConfig();
+    private final BotConfig botConfig = new BotConfig();
     private final Map<Long, Bot> users = new HashMap<>();
     private final ResourceStorage storage = new ResourceStorage();
 
@@ -56,11 +56,10 @@ public class TelegramBot extends TelegramLongPollingBot {
 
             sendMessage(chatId, currentAnswer);
 
-            if (currentAnswer.equals("Пока-пока!"))
+            if (currentAnswer.equals("Пока-пока!")) {
                 users.remove(chatId);
-
+            }
         }
-
     }
 
     private void startConversation(Long chatId) {
@@ -99,7 +98,9 @@ public class TelegramBot extends TelegramLongPollingBot {
 
         KeyboardRow keyboardFirstRow = new KeyboardRow();
 
-        for (String button : buttons) keyboardFirstRow.add(new KeyboardButton(button));
+        for (String button : buttons) {
+            keyboardFirstRow.add(new KeyboardButton(button));
+        }
 
         keyboard.add(keyboardFirstRow);
 

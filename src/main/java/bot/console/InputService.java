@@ -16,16 +16,18 @@ public class InputService {
     public String getInput() {
         if (consoleMode) {
             return scanner.nextLine();
-        } else
+        } else {
             synchronized (que) {
-                if (que.isEmpty())
+                if (que.isEmpty()) {
                     try {
                         que.wait();
                     } catch (InterruptedException e) {
                         e.printStackTrace();
                     }
+                }
                 return que.remove();
             }
+        }
     }
 
     public void addToQueue(String... messages) {
