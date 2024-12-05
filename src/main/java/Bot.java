@@ -1,37 +1,30 @@
+import structures.*;
+
+
 import java.util.Scanner;
-import model.Location;
 
-// должен быть общий интерфейс для бота, полиморфный код, который
-// реализует функционал для тг, дс например
-//
 public class Bot {
-    private Location location = Location.MAIN;
-    private final ResourceStorage storage;
-    private final Scanner scan = new Scanner(System.in);
-    private final TestService testService;
-    private final PrintService printer;
-    private final TheoryService theoryService;
-  
-    Bot(ResourceStorage storage) {
-        this.storage = storage;
-        testService = new TestService(storage);
-        printer = new PrintService(storage);
-        theoryService = new TheoryService(storage);
-    }
 
+    Location location = Location.MAIN;
+    ResourceStorage storage;
+    Scanner scan = new Scanner(System.in);
+    Statistics statisticsJS;
 
     public void run() {
 
-        String command = scan.nextLine();
+        String command;
+        command = scan.nextLine();
 
-        command = storage.getCommands().get(location).get(command);
+        command = storage.commands.get(location).get(command);
 
         if (command == null) {
-            printer.printlnResponse("unknownCommand");
+
+            PrintService.printlnQuote("unknownCommand");
             return;
         }
 
-        printer.printlnResponse(command);
+        PrintService.printlnQuote(command);
+
 
         execute(command);
     }
@@ -41,38 +34,77 @@ public class Bot {
             case "travelToJS":
                 location = Location.JS;
                 break;
-            case "travelToTheory":
-                location = Location.THEORY;
-                break;
-            case "travelToMATH":
-                location = Location.MATH;
-                break;
             case "toMenu":
                 location = Location.MAIN;
                 break;
             case "exit":
                 location = Location.EXIT;
                 break;
-            case "startTheory":
-                theoryService.startTheory();
+            case "JSQuestion":
+                createQuestion();
                 break;
-            case "startQuestion":
-                testService.questionAnswering(location);
+            case "showStatsJS":
+                statisticsJS.printStats();
                 break;
-            case "showStats":
-                testService.printStats(location);
+            case "uploadStatsJS":
+                statisticsJS = Statistics.uploadStats("src/main/java/resources/Statistics.json");
                 break;
-            case "uploadStats":
-                testService.uploadStats(location, "src/main/resources/Statistics");
+            case "saveStatsJS":
+                statisticsJS.saveStats("src/main/java/resources/Statistics.json");
                 break;
-            case "saveStats":
-                testService.saveStats(location, "src/main/resources/Statistics");
-                break;
-            default:
         }
     }
 
-    public Location getLocation() {
-        return location;
+    private void createQuestion() {
+
+
+        Question question = MyUtils.getRandomElement(storage.JSQuestions);
+
+
+        Scanner scan = new Scanner(System.in);
+
+        PrintService.println(question.body + "\n-------------------------------\n"
+                + "Варианты ответа:");
+
+        for (int i = 0; i < question.answers.length; i++) {
+            PrintService.println((i + 1) + ". " + question.answers[i]);
+        }
+
+        String ans;
+        int answer;
+
+        while (true) {
+            ans = scan.nextLine();
+
+            if (!ans.matches("[-+]?\\d+")) {
+                PrintService.println("Ответ должен быть числом");
+                continue;
+            }
+
+            answer = Integer.parseInt(ans);
+
+            if (answer < 1 || answer > question.answers.length) {
+                PrintService.println("Такого варианта ответа нет");
+                continue;
+            }
+
+            break;
+        }
+
+
+        if (answer == question.correctAnswer) {
+            PrintService.printlnQuote("correctAnswer");
+
+            statisticsJS.update(question.number, true);
+        }
+        else {
+            PrintService.printlnQuote("incorrectAnswer");
+            PrintService.printQuote("correctAnswerIs");
+            PrintService.println("" + question.correctAnswer);
+
+            statisticsJS.update(question.number, false);
+        }
     }
+
 }
+

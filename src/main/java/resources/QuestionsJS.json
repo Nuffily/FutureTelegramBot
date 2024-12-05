@@ -9,10 +9,11 @@
       "runtime error"
     ],
     "number": 1,
-    "isCorrect": [ 1, 0, 0, 0 ] ,
-    "countOfAnswers": 4,
-    "explanation": ""
+    "correctAnswer": 1,
+    "countOfAnswers": 4
   },
+
+
 
   {
     "body": "Что выведет этот код?\n// Javascript code snippet to compare the height\nfunction height() {\n    var height = 123.56;\n    var type = (height>=190) ? \"tall\" : \"short\";\n    return type;\n}",
@@ -23,10 +24,11 @@
       "190"
     ],
     "number": 2,
-    "isCorrect": [ 1, 0, 0, 0 ] ,
-    "countOfAnswers": 4,
-    "explanation": ""
+    "correctAnswer": 1,
+    "countOfAnswers": 4
   },
+
+
 
   {
     "body": "Что выведет этот код?\nprint(typeof(NaN));",
@@ -37,10 +39,11 @@
       "none of the above"
     ],
     "number": 3,
-    "isCorrect": [ 0, 1, 0, 0 ] ,
-    "countOfAnswers": 4,
-    "explanation": ""
+    "correctAnswer": 2,
+    "countOfAnswers": 4
   },
+
+
 
   {
     "body": "Что выведет этот код?\nlet s = \"00000001111111\";\nlet l = 0, r = s.length - 1, ans = -1;\nwhile(l <= r) {\n   var mid = Math.floor((l + r) / 2);\n   if(s[mid] == '1') {\n       ans = mid;\n       r = mid - 1;\n   }\n   else {\n       l = mid + 1;\n   }\n}\nprint(ans);",
@@ -51,10 +54,11 @@
       "1"
     ],
     "number": 4,
-    "isCorrect": [ 0, 1, 0, 0 ] ,
-    "countOfAnswers": 4,
-    "explanation": ""
+    "correctAnswer": 2,
+    "countOfAnswers": 4
   },
+
+
 
   {
     "body": "Что выведет этот код?\nlet s = \"00000001111111\";\nlet l = 0, r = s.length - 1, ans = -1;\nwhile(l <= r) {\n   var mid = Math.floor((l + r) / 2);\n   if(s[mid] == '1') {\n       ans = mid;\n       r = mid - 1;\n   }\n   else {\n       l = mid + 1;\n   }\n}\nprint(ans);",
@@ -65,10 +69,11 @@
       "1"
     ],
     "number": 5,
-    "isCorrect": [ 0, 1, 0, 0 ] ,
-    "countOfAnswers": 4,
-    "explanation": ""
+    "correctAnswer": 2,
+    "countOfAnswers": 4
   },
+
+
 
   {
     "body": "Что выведет этот код?\nconst example = ({ a, b, c }) => {\n console.log(a, b, c);\n};\nexample(0, 1, 2);",
@@ -79,10 +84,11 @@
       "none of the above"
     ],
     "number": 6,
-    "isCorrect": [ 0, 0, 1, 0 ] ,
-    "countOfAnswers": 4,
-    "explanation": ""
+    "correctAnswer": 3,
+    "countOfAnswers": 4
   },
+
+
 
   {
     "body": "Что выведет этот код?\nfunction solve(arr, rotations){\n if(rotations == 0) return arr;\n for(let i = 0; i < rotations; i++){\n   let element = arr.pop();\n   arr.unshift(element);\n }\n return arr;\n}\n// solve([44, 1, 22, 111], 5);",
@@ -93,10 +99,11 @@
       "[22,111,44,1]"
     ],
     "number": 7,
-    "isCorrect": [ 1, 0, 0, 0 ] ,
-    "countOfAnswers": 4,
-    "explanation": ""
+    "correctAnswer": 1,
+    "countOfAnswers": 4
   },
+
+
 
   {
     "body": "Что выведет этот код?\nvar a = Math.max();\nvar b = Math.min();\nprint(a);\nprint(b);",
@@ -107,10 +114,11 @@
       "-infinity -infinity"
     ],
     "number": 8,
-    "isCorrect": [ 1, 0, 0, 0 ] ,
-    "countOfAnswers": 4,
-    "explanation": ""
+    "correctAnswer": 1,
+    "countOfAnswers": 4
   },
+
+
 
   {
     "body": "Что выведет этот код?\nconst set = new Set();\nset.add(5);\nset.add('Hello');\nset.add({ name: 'Scaler' });\nfor (let item of set) {\n console.log(item + 6);\n}",
@@ -121,10 +129,11 @@
       "None of the above"
     ],
     "number": 9,
-    "isCorrect": [ 0, 0, 1, 0 ] ,
-    "countOfAnswers": 4,
-    "explanation": ""
+    "correctAnswer": 3,
+    "countOfAnswers": 4
   },
+
+
 
   {
     "body": "Что выведет этот код?\nvar a = \"hello\";\nvar sum = 0;\nfor(var i = 0; i < a.length; i++) {\n   sum += (a[i] - 'a');\n}\nprint(sum);",
@@ -135,10 +144,11 @@
       "None of the above"
     ],
     "number": 10,
-    "isCorrect": [ 0, 1, 0, 0 ] ,
-    "countOfAnswers": 4,
-    "explanation": ""
+    "correctAnswer": 2,
+    "countOfAnswers": 4
   },
+
+
 
   {
     "body": "Что выведет этот код?\nfunction test(...args) {\n console.log(typeof args);\n}\ntest(12);",
@@ -149,10 +159,11 @@
       "Array"
     ],
     "number": 11,
-    "isCorrect": [ 0, 0, 1, 0 ] ,
-    "countOfAnswers": 4,
-    "explanation": ""
+    "correctAnswer": 3,
+    "countOfAnswers": 4
   },
+
+
 
   {
     "body": "Что выведет этот код??\nvar a = true + true + true * 3;\nprint(a);",
@@ -163,10 +174,11 @@
       "5"
     ],
     "number": 12,
-    "isCorrect": [ 0, 0, 0, 1 ] ,
-    "countOfAnswers": 4,
-    "explanation": ""
+    "correctAnswer": 4,
+    "countOfAnswers": 4
   },
+
+
 
   {
     "body": "Что выведет этот код?\na = [1, 2, 3, 4, 5];\nprint(a.slice(2, 4));",
@@ -177,10 +189,11 @@
       "2,3,4"
     ],
     "number": 13,
-    "isCorrect": [ 1, 0, 0, 0 ] ,
-    "countOfAnswers": 4,
-    "explanation": ""
+    "correctAnswer": 1,
+    "countOfAnswers": 4
   },
+
+
 
   {
     "body": "Что выведет этот код?\nvar a = 1;\nvar b = 0;\nwhile (a <= 3) {\n   a++;\n   b += a * 2;\n   print(b);\n}",
@@ -191,10 +204,11 @@
       "None of the above"
     ],
     "number": 14,
-    "isCorrect": [ 1, 0, 0, 0 ] ,
-    "countOfAnswers": 4,
-    "explanation": ""
+    "correctAnswer": 1,
+    "countOfAnswers": 4
   },
+
+
 
   {
     "body": "Что выведет этот код?\n(function(){\n setTimeout(()=> console.log(1),2000);\n console.log(2);\n setTimeout(()=> console.log(3),0);\n console.log(4);\n})();",
@@ -205,10 +219,11 @@
       "4 3 1 2"
     ],
     "number": 15,
-    "isCorrect": [ 0, 0, 1, 0 ] ,
-    "countOfAnswers": 4,
-    "explanation": ""
+    "correctAnswer": 3,
+    "countOfAnswers": 4
   },
+
+
 
   {
     "body": "Что выведет этот код?\n<script type=\"text/javascript\" language=\"javascript\"\nvar a = \"Scaler\";\nvar result = a.substring(2, 4);\ndocument.write(result);\n</script>",
@@ -219,10 +234,11 @@
       "caler"
     ],
     "number": 16,
-    "isCorrect": [ 1, 0, 0, 0 ] ,
-    "countOfAnswers": 4,
-    "explanation": ""
+    "correctAnswer": 1,
+    "countOfAnswers": 4
   },
+
+
 
   {
     "body": "Когда значение оператора равно NULL,\nунарный оператор typeof вернет...",
@@ -233,10 +249,11 @@
       "Integer"
     ],
     "number": 17,
-    "isCorrect": [ 0, 0, 1, 0 ] ,
-    "countOfAnswers": 4,
-    "explanation": ""
+    "correctAnswer": 3,
+    "countOfAnswers": 4
   },
+
+
 
   {
     "body": "When the switch statement matches the expression with the given labels,\nhow is the comparison done?",
@@ -247,10 +264,11 @@
       "None of the above"
     ],
     "number": 18,
-    "isCorrect": [ 1, 0, 0, 0 ] ,
-    "countOfAnswers": 4,
-    "explanation": ""
+    "correctAnswer": 1,
+    "countOfAnswers": 4
   },
+
+
 
   {
     "body": "Which function is used to serialize an object into a JSON string in JavaScript?",
@@ -261,10 +279,11 @@
       "None of the above"
     ],
     "number": 19,
-    "isCorrect": [ 1, 0, 0, 0 ] ,
-    "countOfAnswers": 4,
-    "explanation": ""
+    "correctAnswer": 1,
+    "countOfAnswers": 4
   },
+
+
 
   {
     "body": "У какого объекта нет прототипа?",
@@ -275,10 +294,11 @@
       "None of the above"
     ],
     "number": 20,
-    "isCorrect": [ 1, 0, 0, 0 ] ,
-    "countOfAnswers": 4,
-    "explanation": ""
+    "correctAnswer": 1,
+    "countOfAnswers": 4
   },
+
+
 
   {
     "body": "Which of the following are closures in JavaScript?",
@@ -289,10 +309,11 @@
       "All of the above"
     ],
     "number": 21,
-    "isCorrect": [ 0, 0, 0, 1 ] ,
-    "countOfAnswers": 4,
-    "explanation": ""
+    "correctAnswer": 4,
+    "countOfAnswers": 4
   },
+
+
 
   {
     "body": "What does the following JavaScript code output?\nconsole.log(10 == '10');",
@@ -303,10 +324,11 @@
       "TypeError"
     ],
     "number": 22,
-    "isCorrect": [ 1, 0, 0, 0 ] ,
-    "countOfAnswers": 4,
-    "explanation": ""
+    "correctAnswer": 1,
+    "countOfAnswers": 4
   },
+
+
 
   {
     "body": "What does the following JavaScript function return?\nfunction checkBoolean() {\n  var x = true;\n  var y = false;\n  return x && y;\n}",
@@ -317,10 +339,11 @@
       "null"
     ],
     "number": 23,
-    "isCorrect": [ 0, 1, 0, 0 ] ,
-    "countOfAnswers": 4,
-    "explanation": ""
+    "correctAnswer": 2,
+    "countOfAnswers": 4
   },
+
+
 
   {
     "body": "Что выведет этот код?\nlet x = 5;\nlet y = 2;\nconsole.log(x % y);",
@@ -331,10 +354,11 @@
       "0"
     ],
     "number": 24,
-    "isCorrect": [ 0, 1, 0, 0 ] ,
-    "countOfAnswers": 4,
-    "explanation": ""
+    "correctAnswer": 2,
+    "countOfAnswers": 4
   },
+
+
 
   {
     "body": "Что выведет этот код?\nconsole.log(typeof undefined);",
@@ -345,10 +369,11 @@
       "'NaN'"
     ],
     "number": 25,
-    "isCorrect": [ 1, 0, 0, 0 ] ,
-    "countOfAnswers": 4,
-    "explanation": ""
+    "correctAnswer": 1,
+    "countOfAnswers": 4
   },
+
+
 
   {
     "body": "Что выведет этот код?\nconsole.log(\"5\" + 1);",
@@ -359,10 +384,11 @@
       "TypeError"
     ],
     "number": 26,
-    "isCorrect": [ 0, 1, 0, 0 ] ,
-    "countOfAnswers": 4,
-    "explanation": ""
+    "correctAnswer": 2,
+    "countOfAnswers": 4
   },
+
+
 
   {
     "body": "Что выведет этот код?\nconsole.log(\"five\" * 2);",
@@ -373,10 +399,11 @@
       "'fivefive'"
     ],
     "number": 27,
-    "isCorrect": [ 0, 1, 0, 0 ] ,
-    "countOfAnswers": 4,
-    "explanation": ""
+    "correctAnswer": 2,
+    "countOfAnswers": 4
   },
+
+
 
   {
     "body": "Что выведет этот код?\nfunction compareNumbers() {\n  return 10 > 9;\n}",
@@ -387,9 +414,8 @@
       "'9'"
     ],
     "number": 28,
-    "isCorrect": [ 1, 0, 0, 0 ] ,
-    "countOfAnswers": 4,
-    "explanation" : ""
+    "correctAnswer": 1,
+    "countOfAnswers": 4
   },
 
 
@@ -403,10 +429,12 @@
       "'undefined'"
     ],
     "number": 29,
-    "isCorrect": [ 1, 0, 0, 0 ] ,
-    "countOfAnswers": 4,
-    "explanation": ""
+    "correctAnswer": 1,
+    "countOfAnswers": 4
   },
+
+
+
   {
     "body": "Что выведет этот код?\nconsole.log(typeof null);",
     "answers": [
@@ -416,22 +444,26 @@
       "'NaN'"
     ],
     "number": 30,
-    "isCorrect": [ 1, 0, 0, 0 ] ,
-    "countOfAnswers": 4,
-    "explanation": ""
-  },  {
-  "body": "Что выведет этот код?\nfunction multiply(a, b) {\n  return a * b;\n}\nconsole.log(multiply(5, 3));",
-  "answers": [
-    "15",
-    "8",
-    "'53'",
-    "undefined"
-  ],
-  "number": 31,
-  "isCorrect": [ 1, 0, 0, 0 ] ,
-  "countOfAnswers": 4,
-  "explanation": ""
-},
+    "correctAnswer": 1,
+    "countOfAnswers": 4
+  },
+
+
+
+  {
+    "body": "Что выведет этот код?\nfunction multiply(a, b) {\n  return a * b;\n}\nconsole.log(multiply(5, 3));",
+    "answers": [
+      "15",
+      "8",
+      "'53'",
+      "undefined"
+    ],
+    "number": 31,
+    "correctAnswer": 1,
+    "countOfAnswers": 4
+  },
+
+
 
   {
     "body": "Что выведет этот код?\nconst arr = ['apple', 'banana', 'cherry'];\nconsole.log(arr.length);",
@@ -442,10 +474,11 @@
       "TypeError"
     ],
     "number": 32,
-    "isCorrect": [ 1, 0, 0, 0 ] ,
-    "countOfAnswers": 4,
-    "explanation": ""
+    "correctAnswer": 1,
+    "countOfAnswers": 4
   },
+
+
 
   {
     "body": "Что выведет этот код?\nconsole.log(0.1 + 0.2 === 0.3);",
@@ -456,10 +489,11 @@
       "undefined"
     ],
     "number": 33,
-    "isCorrect": [ 0, 1, 0, 0 ] ,
-    "countOfAnswers": 4,
-    "explanation": ""
+    "correctAnswer": 2,
+    "countOfAnswers": 4
   },
+
+
 
   {
     "body": "Что выведет этот код?\nlet x = \"10\";\nlet y = \"5\";\nconsole.log(x + y);",
@@ -470,10 +504,11 @@
       "TypeError"
     ],
     "number": 34,
-    "isCorrect": [ 0, 1, 0, 0 ] ,
-    "countOfAnswers": 4,
-    "explanation": ""
+    "correctAnswer": 2,
+    "countOfAnswers": 4
   },
+
+
 
   {
     "body": "Что выведет этот код?\nconsole.log(\"Hello World\".charAt(6));",
@@ -484,10 +519,11 @@
       "undefined"
     ],
     "number": 35,
-    "isCorrect": [ 0, 1, 0, 0 ] ,
-    "countOfAnswers": 4,
-    "explanation": ""
+    "correctAnswer": 2,
+    "countOfAnswers": 4
   },
+
+
 
   {
     "body": "Что выведет этот код?\nconsole.log(\"2\" + 2);",
@@ -498,10 +534,11 @@
       "TypeError"
     ],
     "number": 36,
-    "isCorrect": [ 0, 1, 0, 0 ] ,
-    "countOfAnswers": 4,
-    "explanation": ""
+    "correctAnswer": 2,
+    "countOfAnswers": 4
   },
+
+
 
   {
     "body": "Что выведет этот код?\nlet a = true;\nlet b = false;\nconsole.log(a && b);",
@@ -512,8 +549,10 @@
       "null"
     ],
     "number": 37,
-    "isCorrect": [ 0, 1, 0, 0 ] ,
-    "countOfAnswers": 4,
-    "explanation": ""
+    "correctAnswer": 2,
+    "countOfAnswers": 4
   }
+
+
+
 ]

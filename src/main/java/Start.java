@@ -1,19 +1,27 @@
-import model.Location;
+import structures.*;
 
 public class Start {
 
     public static void main(String[] args) {
 
-        final ResourceStorage storage = new ResourceStorage();
-        final PrintService printer = new PrintService(storage);
-        final Bot bot = new Bot(storage);
+        ResourceStorage storage = new ResourceStorage();
+        
+        Statistics statisticsJS = new Statistics(storage, storage.JSQuestions);
 
-        printer.println("Здарова! Введи какую-нить команду, например, /help");
+        PrintService.println("Здарова! Введи какую-нить команду, например, /help");
 
-        while (!bot.getLocation().equals(Location.EXIT)) {
+        PrintService.storage = storage;
+
+        Bot bot = new Bot();
+        bot.storage = storage;
+        bot.statisticsJS = statisticsJS;
+
+        while (!bot.location.equals(Location.EXIT)) {
+
             bot.run();
+
         }
 
-        printer.println("Пока-пока!");
+        PrintService.println("Пока-пока!");
     }
 }

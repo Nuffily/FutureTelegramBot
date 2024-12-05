@@ -1,50 +1,34 @@
-import utils.MyUtils;
-
 public class PrintService {
-    private final ResourceStorage storage;
 
-    PrintService(ResourceStorage storage) {
-        this.storage = storage;
-    }
+    static ResourceStorage storage;
 
-    PrintService() {
-        storage = null;
-    }
+    public static void printlnQuote(String command) {
 
-    public void printlnResponse(String command) {
+        String quote = storage.singleQuotes.get(command);
 
-        String quote = getQuote(command);
-
-        if (quote != null) {
-            println(quote);
-        }
-    }
-
-    public void printResponse(String command) {
-
-        String quote = getQuote(command);
-
-        if (quote != null) {
-            print(quote);
-        }
-    }
-
-    private String getQuote(String command) {
-        String quote = storage.getSingleReplicas().get(command);
-
-        if ((quote == null) && (storage.getRandomReplicas().get(command) != null)) {
-            quote = MyUtils.getRandomElement(storage.getRandomReplicas().get(command));
+        if ((quote == null) && (storage.randomQuotes.get(command) != null)) {
+            quote = MyUtils.getRandomElement(storage.randomQuotes.get(command));
         }
 
-        return quote;
+        if (quote != null) System.out.println(quote);
     }
 
-    public <T> void println(T quote) {
+    public static void printQuote(String command) {
+
+        String quote = storage.singleQuotes.get(command);
+
+        if ((quote == null) && (storage.randomQuotes.get(command) != null)) {
+            quote = MyUtils.getRandomElement(storage.randomQuotes.get(command));
+        }
+
+        if (quote != null) System.out.print(quote);
+    }
+
+    public static <T> void println(T quote) {
         System.out.println(quote);
     }
 
-    public <T> void print(T quote) {
+    public static <T> void print(T quote) {
         System.out.print(quote);
     }
-
 }

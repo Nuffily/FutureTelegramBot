@@ -1,87 +1,89 @@
-import com.fasterxml.jackson.databind.ObjectMapper;
-import java.io.File;
-import java.io.IOException;
+import java.io.*;
 import java.util.HashMap;
 import java.util.Map;
-import model.Command;
-import model.Location;
-import model.ReplicaRandom;
-import model.ReplicaSimple;
+
+import com.fasterxml.jackson.databind.ObjectMapper;
+import structures.*;
 
 public class ResourceStorage {
-    private final Map<Location, Map<String, String>> commands;
-    private final Map<String, String> singleReplicas;
-    private final Map<String, String[]> randomReplicas;
-    private final ObjectMapper mapper = new ObjectMapper();
+    Map<Location, Map<String, String> > commands;
+    Map<String, String> singleQuotes;
+
+    Map<String, String[]> randomQuotes;
+    Question[] JSQuestions;
 
     ResourceStorage() {
-        commands = importCommands("src/main/resources/Commands.json");
-        singleReplicas = importSingleReplicas("src/main/resources/SimpleReplicas.json");
-        randomReplicas = importRandomReplicas("src/main/resources/RandomReplicas.json");
+        commands = importCommands("src/main/java/resources/Commands.json");
+        singleQuotes = importSingleQuotes("src/main/java/resources/Quotes.json");
+        randomQuotes = importRandomQuotes("src/main/java/resources/Quotes.json");
+        JSQuestions = importQuestions("src/main/java/resources/QuestionsJS.json");
     }
 
-    private Map<Location, Map<String, String>> importCommands(String path) {
+    private Question[] importQuestions(String path) {
 
-        Map<Location, Map<String, String>> map = new HashMap<>();
+        Question[] array = importFromJSon(path, Question[].class);
 
-        Command[] commands = importFromJson(path, Command[].class);
+        return array;
+    }
 
-        for (Command currentCommand : commands) {
-            if (!map.containsKey(currentCommand.getLocation())) {
-                map.put((currentCommand.getLocation()), new HashMap<>());
+    private Map<Location, Map<String, String> > importCommands(String path) {
+
+        Map<Location, Map<String, String> > map = new HashMap<>();
+
+        Command[] commands = importFromJSon(path, Command[].class);
+
+        for (Command currentCommand: commands) {
+            if (!map.containsKey(currentCommand.location)) {
+                map.put((currentCommand.location), new HashMap<>());
             }
+            for (String variant: currentCommand.inputVariants) {
 
-            for (String variant : currentCommand.getInputVariants()) {
-                map.get(currentCommand.getLocation()).put(variant, currentCommand.getId());
+                map.get(currentCommand.location).put(variant, currentCommand.id);
             }
         }
 
         return map;
     }
 
-    private Map<String, String[]> importRandomReplicas(String path) {
+    private Map<String, String[]> importRandomQuotes(String path) {
 
         Map<String, String[]> map = new HashMap<>();
 
-        ReplicaRandom[] quotes = importFromJson(path, ReplicaRandom[].class);
+        Quote[] quotes = importFromJSon(path, Quote[].class);
 
-        for (ReplicaRandom currentQuote : quotes) {
-            map.put(currentQuote.getName(), currentQuote.getResponseRandom());
+        for (Quote currentQuote: quotes) {
+            if (currentQuote.type == QuoteType.RANDOM)
+                map.put(currentQuote.name, currentQuote.responseRandom);
         }
 
         return map;
     }
 
-    private Map<String, String> importSingleReplicas(String path) {
+    private Map<String, String> importSingleQuotes(String path) {
 
         HashMap<String, String> map = new HashMap<>();
 
-        ReplicaSimple[] quotes = importFromJson(path, ReplicaSimple[].class);
+        Quote[] quotes = importFromJSon(path, Quote[].class);
 
-        for (ReplicaSimple currentQuote : quotes) {
-            map.put(currentQuote.getName(), currentQuote.getResponse());
+        for (Quote currentQuote: quotes) {
+            if (currentQuote.type == QuoteType.SINGLE)
+                map.put(currentQuote.name, currentQuote.response);
         }
 
         return map;
     }
 
-    private <T> T[] importFromJson(String path, Class<T[]> clazz) {
+    private <T> T[] importFromJSon(String path, Class<T[]> clazz) {
+        T[] array;
+        File file = new File(path);
+        ObjectMapper objectMapper = new ObjectMapper();
+
         try {
-            return mapper.readValue(new File(path), clazz);
+            array = objectMapper.readValue(file, clazz);
         } catch (IOException e) {
             throw new RuntimeException(e);
         }
-    }
 
-    public Map<Location, Map<String, String>> getCommands() {
-        return commands;
-    }
-
-    public Map<String, String> getSingleReplicas() {
-        return singleReplicas;
-    }
-
-    public Map<String, String[]> getRandomReplicas() {
-        return randomReplicas;
+        return array;
     }
 }
