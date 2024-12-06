@@ -1,7 +1,5 @@
 package bot.console;
 
-import bot.telegram.TelegramButtons;
-
 import java.util.Collections;
 import java.util.LinkedList;
 import java.util.Queue;
@@ -10,8 +8,9 @@ import java.util.Scanner;
 public class InputService {
     private final Scanner scanner = new Scanner(System.in);
     private final Queue<String> que = new LinkedList<>();
-    private final TelegramButtons telegramButtons = new TelegramButtons();
     public boolean consoleMode = true;
+
+    private String[] telegramButtons = null;
 
     public String getInput() {
         if (consoleMode) {
@@ -43,14 +42,14 @@ public class InputService {
     }
 
     public void defineButtons(String... buttons) {
-        telegramButtons.defineButtons(buttons);
+        this.telegramButtons = new String[buttons.length];
+        System.arraycopy(buttons, 0, this.telegramButtons, 0, buttons.length);
     }
 
     public String[] getButtons() {
-        return telegramButtons.getButtons();
-    }
-
-    public boolean isThereAnyButtons() {
-        return telegramButtons.isThereButtons();
+        String[] result = new String[telegramButtons.length];
+        System.arraycopy(this.telegramButtons, 0, result, 0, result.length);
+        telegramButtons = new String[0];
+        return result;
     }
 }

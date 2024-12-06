@@ -27,10 +27,6 @@ public class TheoryService {
         }
     }
 
-    public void startTheory() {
-        handleUserInputForTheory();
-    }
-
     private void displayAvailableTheories() {
         printer.println("Доступные темы:");
         int count = 0;
@@ -39,7 +35,7 @@ public class TheoryService {
         }
     }
 
-    private void handleUserInputForTheory() {
+    public void startTheory() {
         while (true) {
             displayAvailableTheories();
             printer.print("Введите номер темы или 'exit' для выхода: ");
