@@ -74,9 +74,7 @@ public class TelegramBot extends TelegramLongPollingBot {
         sendMessage.setChatId(String.valueOf(chatId));
         sendMessage.setText(textToSend);
 
-        if (users.get(chatId).input.isThereAnyButtons()) {
-            setButtons(sendMessage, (users.get(chatId).input.getButtons()));
-        }
+        setButtons(sendMessage, (users.get(chatId).input.getButtons()));
 
         try {
             execute(sendMessage);

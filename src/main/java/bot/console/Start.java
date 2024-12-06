@@ -9,11 +9,15 @@ public class Start {
 
     public static void main(String[] args) {
 
-        String mode;
-        try {
+        String mode = "";
+        if (args.length > 0) {
             mode = args[0];
-        } catch (Exception e) {
-            mode = "";
+        } else {
+            System.out.print("""
+                    Выберите режим работы в программных аргументах
+                        console - для запуска в консоли
+                        telegram - для запуска телеграм бота
+                        both - для запуска и там и там""");
         }
 
         if (mode.equals("console")) {
