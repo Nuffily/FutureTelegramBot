@@ -1,12 +1,9 @@
 import bot.console.*;
-import model.Location;
-import model.Theory;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import utils.MyUtils;
 
-import java.lang.reflect.Field;
-import java.util.List;
+
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 

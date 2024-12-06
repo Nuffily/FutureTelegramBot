@@ -18,7 +18,7 @@ import static org.junit.jupiter.api.Assertions.*;
 public class QuestionStatisticsTest {
 
     ResourceStorage storage = new ResourceStorage();
-    Question[] question = new Question[10];
+    Question[] question = new Question[9];
     OutputService printer = new OutputService(storage);
     QuestionStatistics statistics = new QuestionStatistics(question, printer);
 
@@ -116,12 +116,11 @@ public class QuestionStatisticsTest {
 
         String testPath = "test.json";
         try (FileWriter writer = new FileWriter(testPath, false)) {
-            String text = "Hello Gold!";
             writer.write("""
                     {
-                        "questionPassed" : [ false, true, false, false, false, false, false, false, false, false, false ],
+                        "questionPassed" : [ false, true, false, false, false, false, false, false, false, false],
                         "countOfPassedQuestions" : 1,
-                        "questionsAttempts" : [ 0, 1, 2, 0, 0, 0, 0, 0, 0, 0, 0 ],
+                        "questionsAttempts" : [ 0, 1, 2, 0, 0, 0, 0, 0, 0, 0],
                         "countOfAttemptedQuestions" : 2     GARBAGE <-------
                     }
                     """);
@@ -147,8 +146,8 @@ public class QuestionStatisticsTest {
         statistics.printStats();
 
         assertEquals("""
-                Количество пройденных вопросов: 1/10
-                Количество встретившихся вопросов: 2/10
+                Количество пройденных вопросов: 1/9
+                Количество встретившихся вопросов: 2/9
                 """, printer.getAllOutput());
 
         statistics.updateStats(4, false);
@@ -157,8 +156,8 @@ public class QuestionStatisticsTest {
         statistics.printStats();
 
         assertEquals("""
-                Количество пройденных вопросов: 2/10
-                Количество встретившихся вопросов: 4/10
+                Количество пройденных вопросов: 2/9
+                Количество встретившихся вопросов: 4/9
                 """, printer.getAllOutput());
     }
 

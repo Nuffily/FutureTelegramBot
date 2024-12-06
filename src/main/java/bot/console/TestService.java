@@ -103,7 +103,7 @@ public class TestService {
 
     private void defineButtons(Question question) {
         String[] array = new String[question.getAnswers().length];
-        
+
         for (int i = 1; i <= question.getAnswers().length; i++) {
             array[i - 1] = String.valueOf(i);
         }
