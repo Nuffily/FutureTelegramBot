@@ -21,3 +21,7 @@ Junk/Sandbox.java
 Sandbox
 Sandbox/
 /Sandbox/
+
+application
+
+src/main/resources/application.properties
