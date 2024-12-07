@@ -134,7 +134,9 @@
     "id" : "explanationQuestion",
     "inputVariants" : [
       "explanation",
-      "объяснение"
+      "объяснение",
+      "ответ",
+      "answer"
     ]
   },
 

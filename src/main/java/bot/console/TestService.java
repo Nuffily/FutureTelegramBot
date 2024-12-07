@@ -57,6 +57,8 @@ public class TestService {
 
         if (answer == 0) {
             printer.println(question.getExplanation());
+            printer.printResponse("correctAnswerIs");
+            printer.println(question.getCorrectAnswer());
             return;
         }
 
@@ -80,7 +82,7 @@ public class TestService {
         while (true) {
             ans = input.getInput();
 
-            if (ans.equals("объяснение")) {
+            if (storage.translateCommand(ans, location) != null) {
                 answer = 0;
                 return answer;
             }
@@ -115,11 +117,14 @@ public class TestService {
     }
 
     private void defineButtons(Question question) {
-        String[] array = new String[question.getAnswers().length];
+        String[] array = new String[question.getAnswers().length + 1];
+
+        int CountOfButtons = question.getAnswers().length + 1;
 
         for (int i = 1; i <= question.getAnswers().length; i++) {
             array[i - 1] = String.valueOf(i);
         }
+        array[CountOfButtons - 1] = "ответ";
 
         input.defineButtons(array);
     }
