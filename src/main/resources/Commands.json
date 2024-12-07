@@ -125,9 +125,21 @@
       "quest",
       "q",
       "Q",
-      "йгуые"
+      "йгуые",
+      "explanation",
+      "объяснение"
     ]
   },
+
+  {
+    "location" : "JS",
+    "id" : "explanationQuestion",
+    "inputVariants" : [
+      "explanation",
+      "объяснение"
+    ]
+  },
+
   {
     "location" : "MAIN",
     "id" : "exit",

@@ -72,6 +72,8 @@ public class TestService {
         while (true) {
             ans = input.getInput();
 
+            if (answer ==
+
             if (!ans.matches("[-+]?\\d+")) {
                 printer.println("Ответ должен быть числом");
                 continue;
