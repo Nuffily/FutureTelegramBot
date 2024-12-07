@@ -13,7 +13,7 @@ public class Bot implements Runnable {
     public Bot(ResourceStorage storage) {
         this.storage = storage;
         printer = new OutputService(storage);
-        testService = new TestService(printer, input);
+        testService = new TestService(printer, input, storage);
         theoryService = new TheoryService(printer, input);
     }
 

@@ -6,6 +6,7 @@ import java.io.File;
 import java.io.IOException;
 import java.util.HashMap;
 import java.util.Map;
+import java.util.Objects;
 
 import model.Location;
 import model.Question;
@@ -16,10 +17,12 @@ public class TestService {
     private final Map<Location, QuestionStatistics> statistics;
     private final OutputService printer;
     private final InputService input;
+    private final ResourceStorage storage;
 
-    public TestService(OutputService printer, InputService inputService) {
+    public TestService(OutputService printer, InputService inputService, ResourceStorage storage) {
         this.printer = printer;
         this.input = inputService;
+        this.storage = storage;
 
         questions = new HashMap<>();
         questions.put(Location.JS, importQuestions("src/main/resources/QuestionsJS.json"));
@@ -50,7 +53,12 @@ public class TestService {
         printer.print(question.getBody() + "\n-------------------------------\n"
                 + "Варианты ответа:\n" + question.getStringTableOfAnswers());
 
-        int answer = getSuitableAnswer(question);
+        int answer = getSuitableAnswer(location, question);
+
+        if (answer == 0) {
+            printer.println(question.getExplanation());
+            return;
+        }
 
         if (question.getIsCorrect()[answer - 1]) {
             printer.printlnResponse("correctAnswer");
@@ -65,14 +73,17 @@ public class TestService {
         }
     }
 
-    private int getSuitableAnswer(Question question) {
+    private int getSuitableAnswer(Location location, Question question) {
         String ans;
         int answer;
 
         while (true) {
             ans = input.getInput();
 
-            if (answer ==
+            if (ans.equals("объяснение")) {
+                answer = 0;
+                return answer;
+            }
 
             if (!ans.matches("[-+]?\\d+")) {
                 printer.println("Ответ должен быть числом");
