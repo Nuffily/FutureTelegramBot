@@ -50,7 +50,7 @@ public class TestService {
 
     public void questionAnswering(Location location) {
 
-        Question question = GetQuestion(location);
+        Question question = getQuestion(location);
 
         question.shuffleAnswers();
         defineButtons(question);
@@ -134,16 +134,24 @@ public class TestService {
         input.defineButtons(array);
     }
 
-    public Question GetQuestion(Location location) {
+    public Question getQuestion(Location location) {
 
         List<Integer> listQuestions = new ArrayList<>();
-        for (int i = 1; i <= questions.get(location).length; i++) {
-            if (!statistics.get(location).getQuestionPassed()[i]) {
-                listQuestions.add(i);
+
+        if (!settings.getRepeatSolved()) {
+            for (int i = 1; i <= questions.get(location).length; i++) {
+                if (!statistics.get(location).getQuestionPassed()[i]) {
+                    listQuestions.add(i);
+                }
+            }
+        } else if (!settings.getRepeatQuestions()) {
+
+            for (int i = 1; i <= questions.get(location).length; i++) {
+                if (statistics.get(location).getQuestionsAttempts()[i] == 0) {
+                    listQuestions.add(i);
+                }
             }
         }
-
-        System.out.println(listQuestions);
 
         if (!listQuestions.isEmpty()) {
             return questions.get(location)[listQuestions.get(MyUtils.getRandom(0, listQuestions.size())) - 1];
