@@ -2,6 +2,7 @@ package bot.console;
 
 import model.Question;
 import model.State;
+import utils.MyUtils;
 
 public class SettingsService {
 
@@ -11,10 +12,15 @@ public class SettingsService {
     private State ExplanationSettings = State.ON;
 
 
-    public static Question GetNotRepeatQuestion(Question[] arr){
-
+    public Question GetNotRepeatQuestion(Question[] arr, int[] questionsAttempts){
+        for(int counter = 0; counter < arr.length; counter++){
+            Question question = MyUtils.getRandomElement(arr);
+            if (questionsAttempts[question.getNumber()] == 0){
+                return question;
+            }
+        }
+        return MyUtils.getRandomElement(arr);
     }
-
 
 
     public State getRepeatSettings() {

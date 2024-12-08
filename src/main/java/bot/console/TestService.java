@@ -35,6 +35,10 @@ public class TestService {
         statistics.put(Location.MATH, new QuestionStatistics(questions.get(Location.MATH), printer));
     }
 
+//    public Map<Location, QuestionStatistics> getStatistics() {
+//        return statistics;
+//    }
+
     public void printStats(Location location) {
         statistics.get(location).printStats();
     }
@@ -54,7 +58,7 @@ public class TestService {
             question = MyUtils.getRandomElement(questions.get(location));
         }
         else{
-            question = settings.GetNotRepeatQuestion(questions.get(location));
+            question = settings.GetNotRepeatQuestion(questions.get(location), statistics.get(location).getQuestionsAttempts());
         }
         question.shuffleAnswers();
         defineButtons(question);
@@ -91,7 +95,7 @@ public class TestService {
         while (true) {
             ans = input.getInput();
 
-            if (storage.translateCommand(ans, location) != null) {
+            if (storage.translateCommand(ans, location) != null && storage.translateCommand(ans, location).equals("explanationQuestion")) {
                 answer = 0;
                 return answer;
             }
