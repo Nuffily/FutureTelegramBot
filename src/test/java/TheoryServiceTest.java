@@ -1,4 +1,8 @@
-import bot.console.*;
+import bot.console.Bot;
+import bot.console.OutputService;
+import bot.console.ResourceStorage;
+import bot.console.TheoryService;
+import bot.console.InputService;
 import model.Theory;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;

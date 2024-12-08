@@ -9,6 +9,7 @@ import java.util.Map;
 
 import model.Location;
 import model.Question;
+import model.State;
 import utils.MyUtils;
 
 public class TestService {
@@ -16,10 +17,14 @@ public class TestService {
     private final Map<Location, QuestionStatistics> statistics;
     private final OutputService printer;
     private final InputService input;
+    private final ResourceStorage storage;
+    private final SettingsService settings;
 
-    public TestService(OutputService printer, InputService inputService) {
+    public TestService(OutputService printer, InputService inputService, ResourceStorage storage, SettingsService settings) {
         this.printer = printer;
         this.input = inputService;
+        this.storage = storage;
+        this.settings = settings;
 
         questions = new HashMap<>();
         questions.put(Location.JS, importQuestions("src/main/resources/QuestionsJS.json"));
@@ -43,14 +48,28 @@ public class TestService {
     }
 
     public void questionAnswering(Location location) {
-        Question question = MyUtils.getRandomElement(questions.get(location));
+
+        Question question;
+        if (settings.getRepeatSettings() == State.ON){
+            question = MyUtils.getRandomElement(questions.get(location));
+        }
+        else{
+            question = settings.GetNotRepeatQuestion(questions.get(location), statistics.get(location).getQuestionsAttempts());
+        }
         question.shuffleAnswers();
         defineButtons(question);
 
         printer.print(question.getBody() + "\n-------------------------------\n"
                 + "Варианты ответа:\n" + question.getStringTableOfAnswers());
 
-        int answer = getSuitableAnswer(question);
+        int answer = getSuitableAnswer(location, question);
+
+        if (answer == 0) {
+            printer.println(question.getExplanation());
+            printer.printResponse("correctAnswerIs");
+            printer.println(question.getCorrectAnswer());
+            return;
+        }
 
         if (question.getIsCorrect()[answer - 1]) {
             printer.printlnResponse("correctAnswer");
@@ -65,12 +84,17 @@ public class TestService {
         }
     }
 
-    private int getSuitableAnswer(Question question) {
+    private int getSuitableAnswer(Location location, Question question) {
         String ans;
         int answer;
 
         while (true) {
             ans = input.getInput();
+
+            if (storage.translateCommand(ans, location) != null && storage.translateCommand(ans, location).equals("explanationQuestion")) {
+                answer = 0;
+                return answer;
+            }
 
             if (!ans.matches("[-+]?\\d+")) {
                 printer.println("Ответ должен быть числом");
@@ -102,11 +126,15 @@ public class TestService {
     }
 
     private void defineButtons(Question question) {
-        String[] array = new String[question.getAnswers().length];
+        String[] array = new String[question.getAnswers().length + 1];
+
+        int CountOfButtons = question.getAnswers().length + 1;
+
 
         for (int i = 1; i <= question.getAnswers().length; i++) {
             array[i - 1] = String.valueOf(i);
         }
+        array[CountOfButtons - 1] = "ответ";
 
         input.defineButtons(array);
     }

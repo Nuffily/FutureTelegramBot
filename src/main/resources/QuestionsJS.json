@@ -1,5 +1,6 @@
 
 [
+
   {
     "body": "Что выведет этот код?\n// JavaScript Equalto Operators\nfunction equalto() {\n    let num=10;\n    if(num===\"10\")\n        return true;\n    else\n        return false;\n}",
     "answers": [
@@ -11,7 +12,7 @@
     "number": 1,
     "isCorrect": [ 1, 0, 0, 0 ] ,
     "countOfAnswers": 4,
-    "explanation": ""
+    "explanation": "Используется строгое сравнение (===), которое проверяет и значение, и тип данных. Число 10 не равно строке '10', поэтому результат false."
   },
 
   {
@@ -25,7 +26,7 @@
     "number": 2,
     "isCorrect": [ 1, 0, 0, 0 ] ,
     "countOfAnswers": 4,
-    "explanation": ""
+    "explanation": "Значение переменной height — 123.56, которое меньше 190, поэтому результат будет 'short'."
   },
 
   {
@@ -39,7 +40,7 @@
     "number": 3,
     "isCorrect": [ 0, 1, 0, 0 ] ,
     "countOfAnswers": 4,
-    "explanation": ""
+    "explanation": "В JavaScript значение NaN (Not-a-Number) считается числом, несмотря на его название. Поэтому typeof NaN возвращает 'number'."
   },
 
   {
@@ -53,7 +54,7 @@
     "number": 4,
     "isCorrect": [ 0, 1, 0, 0 ] ,
     "countOfAnswers": 4,
-    "explanation": ""
+    "explanation": "Данный код ищет первый элемент '1' в строке, используя бинарный поиск. Ответом будет индекс 7, так как первый '1' встречается в этом месте."
   },
 
   {
@@ -67,7 +68,7 @@
     "number": 5,
     "isCorrect": [ 0, 1, 0, 0 ] ,
     "countOfAnswers": 4,
-    "explanation": ""
+    "explanation": "Это тот же код, что и в предыдущем вопросе, и результат будет такой же: индекс первого вхождения '1' — 7."
   },
 
   {
@@ -81,7 +82,7 @@
     "number": 6,
     "isCorrect": [ 0, 0, 1, 0 ] ,
     "countOfAnswers": 4,
-    "explanation": ""
+    "explanation": "В JavaScript параметры функции, определённые как { a, b, c }, ожидают объект. При вызове функции с обычными аргументами (0, 1, 2) результатом будет undefined для каждого из параметров."
   },
 
   {
@@ -95,7 +96,7 @@
     "number": 7,
     "isCorrect": [ 1, 0, 0, 0 ] ,
     "countOfAnswers": 4,
-    "explanation": ""
+    "explanation": "При 5 поворотах (попытках перемещения последнего элемента в начало) массив [44, 1, 22, 111] преобразуется в [111, 44, 1, 22]."
   },
 
   {
@@ -109,7 +110,7 @@
     "number": 8,
     "isCorrect": [ 1, 0, 0, 0 ] ,
     "countOfAnswers": 4,
-    "explanation": ""
+    "explanation": "Функции Math.max() и Math.min() без аргументов возвращают -Infinity и Infinity соответственно."
   },
 
   {
@@ -123,7 +124,7 @@
     "number": 9,
     "isCorrect": [ 0, 0, 1, 0 ] ,
     "countOfAnswers": 4,
-    "explanation": ""
+    "explanation": "При сложении с числом, строка 'Hello' станет 'Hello6', а объект будет приведён к строке '[object Object]'."
   },
 
   {
@@ -137,7 +138,7 @@
     "number": 10,
     "isCorrect": [ 0, 1, 0, 0 ] ,
     "countOfAnswers": 4,
-    "explanation": ""
+    "explanation": "Попытка вычесть символ 'a' из каждого символа строки приведет к NaN, так как вычитание строк из символов не имеет смысла."
   },
 
   {
@@ -151,11 +152,11 @@
     "number": 11,
     "isCorrect": [ 0, 0, 1, 0 ] ,
     "countOfAnswers": 4,
-    "explanation": ""
+    "explanation": "Оператор 'typeof' возвращает 'object' для объектов, а 'args' — это массив аргументов функции, который является объектом."
   },
 
   {
-    "body": "Что выведет этот код??\nvar a = true + true + true * 3;\nprint(a);",
+    "body": "Что выведет этот код?\nvar a = true + true + true * 3;\nprint(a);",
     "answers": [
       "3",
       "0",
@@ -165,7 +166,7 @@
     "number": 12,
     "isCorrect": [ 0, 0, 0, 1 ] ,
     "countOfAnswers": 4,
-    "explanation": ""
+    "explanation": "В JavaScript оператор '*' имеет больший приоритет, чем '+'. Сначала выполняется умножение (true * 3 = 3), затем сложение (true + true + 3 = 5)."
   },
 
   {
@@ -179,7 +180,7 @@
     "number": 13,
     "isCorrect": [ 1, 0, 0, 0 ] ,
     "countOfAnswers": 4,
-    "explanation": ""
+    "explanation": "Метод 'slice' возвращает подмассив с элементами с индекса 2 по 3, не включая индекс 4. Ответом будет [3, 4]."
   },
 
   {
@@ -193,7 +194,7 @@
     "number": 14,
     "isCorrect": [ 1, 0, 0, 0 ] ,
     "countOfAnswers": 4,
-    "explanation": ""
+    "explanation": "Каждый шаг цикла увеличивает 'a' и добавляет к 'b' удвоенное значение 'a'. После трех итераций значения b будут: 4, 10, 18."
   },
 
   {
@@ -207,7 +208,7 @@
     "number": 15,
     "isCorrect": [ 0, 0, 1, 0 ] ,
     "countOfAnswers": 4,
-    "explanation": ""
+    "explanation": "setTimeout с задержкой 0 выполняется после выполнения основного кода, так что сначала выводится 2 и 4, затем 3 и 1 (после задержки)."
   },
 
   {
@@ -221,7 +222,7 @@
     "number": 16,
     "isCorrect": [ 1, 0, 0, 0 ] ,
     "countOfAnswers": 4,
-    "explanation": ""
+    "explanation": "Метод substring извлекает часть строки начиная с индекса 2 и заканчивая индексом 4 (не включая его). Ответ будет 'al'."
   },
 
   {
@@ -235,7 +236,7 @@
     "number": 17,
     "isCorrect": [ 0, 0, 1, 0 ] ,
     "countOfAnswers": 4,
-    "explanation": ""
+    "explanation": "В JavaScript значение 'null' считается объектом, несмотря на его название. Поэтому typeof null возвращает 'object'."
   },
 
   {
@@ -249,7 +250,7 @@
     "number": 18,
     "isCorrect": [ 1, 0, 0, 0 ] ,
     "countOfAnswers": 4,
-    "explanation": ""
+    "explanation": "В операторе switch сравниваются и значение выражения, и его тип. Это строгое сравнение (похожее на использование ===)."
   },
 
   {
@@ -263,7 +264,7 @@
     "number": 19,
     "isCorrect": [ 1, 0, 0, 0 ] ,
     "countOfAnswers": 4,
-    "explanation": ""
+    "explanation": "Для сериализации объекта в строку JSON используется метод JSON.stringify()."
   },
 
   {
@@ -277,7 +278,7 @@
     "number": 20,
     "isCorrect": [ 1, 0, 0, 0 ] ,
     "countOfAnswers": 4,
-    "explanation": ""
+    "explanation": "В JavaScript объект Object.prototype является базовым прототипом для всех объектов, за исключением самого Object, который не имеет прототипа."
   },
 
   {
@@ -289,9 +290,9 @@
       "All of the above"
     ],
     "number": 21,
-    "isCorrect": [ 0, 0, 0, 1 ] ,
+    "isCorrect": [ 0, 1, 0, 0 ] ,
     "countOfAnswers": 4,
-    "explanation": ""
+    "explanation": "Closures в JavaScript — это функции, которые могут «захватывать» переменные из окружающего контекста. Таким образом, функции являются замыканиями, а не переменные или объекты."
   },
 
   {
@@ -305,7 +306,7 @@
     "number": 22,
     "isCorrect": [ 1, 0, 0, 0 ] ,
     "countOfAnswers": 4,
-    "explanation": ""
+    "explanation": "Оператор '==' выполняет преобразование типов перед сравнением, поэтому строка '10' приводится к числу 10, и результатом будет true."
   },
 
   {
@@ -319,7 +320,7 @@
     "number": 23,
     "isCorrect": [ 0, 1, 0, 0 ] ,
     "countOfAnswers": 4,
-    "explanation": ""
+    "explanation": "Оператор '&&' возвращает 'true' только если оба операнда истинны. Поскольку y = false, результат будет false."
   },
 
   {
@@ -333,7 +334,7 @@
     "number": 24,
     "isCorrect": [ 0, 1, 0, 0 ] ,
     "countOfAnswers": 4,
-    "explanation": ""
+    "explanation": "Оператор '%' возвращает остаток от деления. 5 % 2 = 1."
   },
 
   {
@@ -347,7 +348,7 @@
     "number": 25,
     "isCorrect": [ 1, 0, 0, 0 ] ,
     "countOfAnswers": 4,
-    "explanation": ""
+    "explanation": "Тип значения 'undefined' всегда возвращает строку 'undefined'."
   },
 
   {
@@ -361,7 +362,7 @@
     "number": 26,
     "isCorrect": [ 0, 1, 0, 0 ] ,
     "countOfAnswers": 4,
-    "explanation": ""
+    "explanation": "Когда строка объединяется с числом с помощью оператора '+', число преобразуется в строку, и результатом будет строка '51'."
   },
 
   {
@@ -375,7 +376,7 @@
     "number": 27,
     "isCorrect": [ 0, 1, 0, 0 ] ,
     "countOfAnswers": 4,
-    "explanation": ""
+    "explanation": "Попытка умножить строку на число приводит к ошибке, так как строка 'five' не может быть преобразована в число, результат будет NaN."
   },
 
   {
@@ -389,10 +390,8 @@
     "number": 28,
     "isCorrect": [ 1, 0, 0, 0 ] ,
     "countOfAnswers": 4,
-    "explanation" : ""
+    "explanation": "Условие 10 > 9 возвращает true, так как 10 больше 9."
   },
-
-
 
   {
     "body": "Что выведет этот код?\nfunction testArray() {\n  var arr = [1, 2, 3];\n  return arr[0];\n}",
@@ -405,8 +404,9 @@
     "number": 29,
     "isCorrect": [ 1, 0, 0, 0 ] ,
     "countOfAnswers": 4,
-    "explanation": ""
+    "explanation": "Массив arr имеет элементы 1, 2, 3. Индекс 0 соответствует элементу 1."
   },
+
   {
     "body": "Что выведет этот код?\nconsole.log(typeof null);",
     "answers": [
@@ -418,20 +418,22 @@
     "number": 30,
     "isCorrect": [ 1, 0, 0, 0 ] ,
     "countOfAnswers": 4,
-    "explanation": ""
-  },  {
-  "body": "Что выведет этот код?\nfunction multiply(a, b) {\n  return a * b;\n}\nconsole.log(multiply(5, 3));",
-  "answers": [
-    "15",
-    "8",
-    "'53'",
-    "undefined"
-  ],
-  "number": 31,
-  "isCorrect": [ 1, 0, 0, 0 ] ,
-  "countOfAnswers": 4,
-  "explanation": ""
-},
+    "explanation": "В JavaScript значение 'null' возвращает тип 'object', что является известной ошибкой в языке."
+  },
+
+  {
+    "body": "Что выведет этот код?\nfunction multiply(a, b) {\n  return a * b;\n}\nconsole.log(multiply(5, 3));",
+    "answers": [
+      "15",
+      "8",
+      "'53'",
+      "undefined"
+    ],
+    "number": 31,
+    "isCorrect": [ 1, 0, 0, 0 ] ,
+    "countOfAnswers": 4,
+    "explanation": "Функция умножает два числа, 5 * 3 = 15."
+  },
 
   {
     "body": "Что выведет этот код?\nconst arr = ['apple', 'banana', 'cherry'];\nconsole.log(arr.length);",
@@ -444,7 +446,7 @@
     "number": 32,
     "isCorrect": [ 1, 0, 0, 0 ] ,
     "countOfAnswers": 4,
-    "explanation": ""
+    "explanation": "Массив содержит три элемента, поэтому его длина равна 3."
   },
 
   {
@@ -458,7 +460,7 @@
     "number": 33,
     "isCorrect": [ 0, 1, 0, 0 ] ,
     "countOfAnswers": 4,
-    "explanation": ""
+    "explanation": "Из-за особенностей представления чисел с плавающей запятой в JavaScript, результат 0.1 + 0.2 не точно равен 0.3, поэтому выражение возвращает false."
   },
 
   {
@@ -472,7 +474,7 @@
     "number": 34,
     "isCorrect": [ 0, 1, 0, 0 ] ,
     "countOfAnswers": 4,
-    "explanation": ""
+    "explanation": "Оператор '+' при применении к строкам выполняет их конкатенацию, поэтому результатом будет строка '105'."
   },
 
   {
@@ -486,7 +488,7 @@
     "number": 35,
     "isCorrect": [ 0, 1, 0, 0 ] ,
     "countOfAnswers": 4,
-    "explanation": ""
+    "explanation": "Метод charAt возвращает символ на указанной позиции, в данном случае на позиции 6 находится символ 'W'."
   },
 
   {
@@ -500,7 +502,7 @@
     "number": 36,
     "isCorrect": [ 0, 1, 0, 0 ] ,
     "countOfAnswers": 4,
-    "explanation": ""
+    "explanation": "Оператор '+' при применении к строке и числу преобразует число в строку и выполняет конкатенацию. Результатом будет строка '22'."
   },
 
   {
@@ -514,6 +516,7 @@
     "number": 37,
     "isCorrect": [ 0, 1, 0, 0 ] ,
     "countOfAnswers": 4,
-    "explanation": ""
+    "explanation": "Оператор '&&' возвращает true только если оба операнда истинны. Поскольку b = false, результат будет false."
   }
+
 ]

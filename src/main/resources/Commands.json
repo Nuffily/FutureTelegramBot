@@ -128,6 +128,29 @@
       "йгуые"
     ]
   },
+
+  {
+    "location" : "JS",
+    "id" : "explanationQuestion",
+    "inputVariants" : [
+      "explanation",
+      "объяснение",
+      "ответ",
+      "answer"
+    ]
+  },
+
+  {
+    "location" : "MATH",
+    "id" : "explanationQuestion",
+    "inputVariants" : [
+      "explanation",
+      "объяснение",
+      "ответ",
+      "answer"
+    ]
+  },
+
   {
     "location" : "MAIN",
     "id" : "exit",
