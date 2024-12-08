@@ -6,10 +6,10 @@ import java.io.File;
 import java.io.IOException;
 import java.util.HashMap;
 import java.util.Map;
-import java.util.Objects;
 
 import model.Location;
 import model.Question;
+import model.State;
 import utils.MyUtils;
 
 public class TestService {
@@ -18,11 +18,13 @@ public class TestService {
     private final OutputService printer;
     private final InputService input;
     private final ResourceStorage storage;
+    private final SettingsService settings;
 
-    public TestService(OutputService printer, InputService inputService, ResourceStorage storage) {
+    public TestService(OutputService printer, InputService inputService, ResourceStorage storage, SettingsService settings) {
         this.printer = printer;
         this.input = inputService;
         this.storage = storage;
+        this.settings = settings;
 
         questions = new HashMap<>();
         questions.put(Location.JS, importQuestions("src/main/resources/QuestionsJS.json"));
@@ -46,7 +48,14 @@ public class TestService {
     }
 
     public void questionAnswering(Location location) {
-        Question question = MyUtils.getRandomElement(questions.get(location));
+
+        Question question;
+        if (settings.getRepeatSettings() == State.OFF){
+            question = MyUtils.getRandomElement(questions.get(location));
+        }
+        else{
+            question = settings.GetNotRepeatQuestion(questions.get(location));
+        }
         question.shuffleAnswers();
         defineButtons(question);
 

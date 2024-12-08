@@ -14,7 +14,7 @@ public class PrintServiceTest {
 
     private final ResourceStorage storage = new ResourceStorage();
     private final Bot bot = new Bot(storage);
-    private  final PrintService printService = new PrintService(storage);
+    private final PrintService printService = new PrintService(storage);
 
 
     @BeforeEach

@@ -1,6 +1,7 @@
 package bot.console;
 
 import model.Location;
+import model.State;
 
 public class Bot implements Runnable {
     public InputService input = new InputService();
@@ -9,11 +10,13 @@ public class Bot implements Runnable {
     private final TestService testService;
     public final OutputService printer;
     private final TheoryService theoryService;
+    public SettingsService settings;
 
     public Bot(ResourceStorage storage) {
         this.storage = storage;
+        settings = new SettingsService();
         printer = new OutputService(storage);
-        testService = new TestService(printer, input, storage);
+        testService = new TestService(printer, input, storage, settings);
         theoryService = new TheoryService(printer, input);
     }
 
@@ -52,6 +55,9 @@ public class Bot implements Runnable {
                 break;
             case "travelToMATH":
                 location = Location.MATH;
+                break;
+            case "travelToSettings":
+                location = Location.SETTINGS;
                 break;
             case "toMenu":
                 location = Location.MAIN;
