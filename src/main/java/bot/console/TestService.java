@@ -35,10 +35,6 @@ public class TestService {
         statistics.put(Location.MATH, new QuestionStatistics(questions.get(Location.MATH), printer));
     }
 
-//    public Map<Location, QuestionStatistics> getStatistics() {
-//        return statistics;
-//    }
-
     public void printStats(Location location) {
         statistics.get(location).printStats();
     }
@@ -54,7 +50,7 @@ public class TestService {
     public void questionAnswering(Location location) {
 
         Question question;
-        if (settings.getRepeatSettings() == State.OFF){
+        if (settings.getRepeatSettings() == State.ON){
             question = MyUtils.getRandomElement(questions.get(location));
         }
         else{
