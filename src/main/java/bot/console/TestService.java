@@ -4,12 +4,13 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 
 import java.io.File;
 import java.io.IOException;
+import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 import model.Location;
 import model.Question;
-import model.State;
 import utils.MyUtils;
 
 public class TestService {
@@ -49,13 +50,8 @@ public class TestService {
 
     public void questionAnswering(Location location) {
 
-        Question question;
-        if (settings.getRepeatSettings() == State.ON){
-            question = MyUtils.getRandomElement(questions.get(location));
-        }
-        else{
-            question = settings.GetNotRepeatQuestion(questions.get(location), statistics.get(location).getQuestionsAttempts());
-        }
+        Question question = GetQuestion(location);
+
         question.shuffleAnswers();
         defineButtons(question);
 
@@ -65,13 +61,12 @@ public class TestService {
         int answer = getSuitableAnswer(location, question);
 
         if (answer == 0) {
-            printer.println(question.getExplanation());
             printer.printResponse("correctAnswerIs");
             printer.println(question.getCorrectAnswer());
-            return;
-        }
+            printer.println(question.getExplanation());
 
-        if (question.getIsCorrect()[answer - 1]) {
+            statistics.get(location).updateStats(question.getNumber(), false);
+        } else if (question.getIsCorrect()[answer - 1]) {
             printer.printlnResponse("correctAnswer");
 
             statistics.get(location).updateStats(question.getNumber(), true);
@@ -91,7 +86,7 @@ public class TestService {
         while (true) {
             ans = input.getInput();
 
-            if (storage.translateCommand(ans, location) != null && storage.translateCommand(ans, location).equals("explanationQuestion")) {
+            if (storage.translateCommand(ans, location).equals("surrenderQuestion")) {
                 answer = 0;
                 return answer;
             }
@@ -134,8 +129,26 @@ public class TestService {
         for (int i = 1; i <= question.getAnswers().length; i++) {
             array[i - 1] = String.valueOf(i);
         }
-        array[CountOfButtons - 1] = "ответ";
+        array[CountOfButtons - 1] = "Ответ";
 
         input.defineButtons(array);
+    }
+
+    public Question GetQuestion(Location location) {
+
+        List<Integer> listQuestions = new ArrayList<>();
+        for (int i = 1; i <= questions.get(location).length; i++) {
+            if (!statistics.get(location).getQuestionPassed()[i]) {
+                listQuestions.add(i);
+            }
+        }
+
+        System.out.println(listQuestions);
+
+        if (!listQuestions.isEmpty()) {
+            return questions.get(location)[listQuestions.get(MyUtils.getRandom(0, listQuestions.size())) - 1];
+        } else {
+            return MyUtils.getRandomElement(questions.get(location));
+        }
     }
 }

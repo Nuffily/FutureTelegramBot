@@ -1,7 +1,6 @@
 package bot.console;
 
 import model.Location;
-import model.State;
 
 public class Bot implements Runnable {
     public InputService input = new InputService();
@@ -33,7 +32,7 @@ public class Bot implements Runnable {
 
             command = storage.translateCommand(command, location);
 
-            if (command == null) {
+            if (command.isEmpty()) {
                 printer.printlnResponse("unknownCommand");
                 continue;
             }

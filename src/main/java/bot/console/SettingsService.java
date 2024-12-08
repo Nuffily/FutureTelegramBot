@@ -1,21 +1,19 @@
 package bot.console;
 
 import model.Question;
-import model.State;
 import utils.MyUtils;
 
 public class SettingsService {
 
-    private State RepeatSettings = State.ON;
-    private State SolvedSettings = State.ON;
-    private State AnswerSettings = State.ON;
-    private State ExplanationSettings = State.ON;
+    private boolean RepeatSettings = true;
+    private boolean SolvedSettings = true;
+    private boolean AnswerSettings = true;
+    private boolean ExplanationSettings = true;
 
-
-    public Question GetNotRepeatQuestion(Question[] arr, int[] questionsAttempts){
-        for(int counter = 0; counter < arr.length; counter++){
+    public Question GetNotRepeatQuestion(Question[] arr, int[] questionsAttempts) {
+        for (int counter = 0; counter < arr.length; counter++) {
             Question question = MyUtils.getRandomElement(arr);
-            if (questionsAttempts[question.getNumber()] == 0){
+            if (questionsAttempts[question.getNumber()] == 0) {
                 return question;
             }
         }
@@ -23,19 +21,19 @@ public class SettingsService {
     }
 
 
-    public State getRepeatSettings() {
+    public boolean getRepeatSettings() {
         return RepeatSettings;
     }
 
-    public State getSolvedSettings() {
+    public boolean getSolvedSettings() {
         return SolvedSettings;
     }
 
-    public State getAnswerSettings() {
+    public boolean getAnswerSettings() {
         return AnswerSettings;
     }
 
-    public State getExplanationSettings() {
+    public boolean getExplanationSettings() {
         return ExplanationSettings;
     }
 }

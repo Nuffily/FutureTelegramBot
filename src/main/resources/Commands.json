@@ -131,12 +131,27 @@
 
   {
     "location" : "JS",
+    "id" : "surrenderQuestion",
+    "inputVariants" : [
+      "от",
+      "сдаюсь",
+      "ответ",
+      "Ответ",
+      "answer",
+      "Answer"
+    ]
+  },
+
+  {
+    "location" : "JS",
     "id" : "explanationQuestion",
     "inputVariants" : [
       "explanation",
+      "Explanation",
+      "Объяснение",
       "объяснение",
-      "ответ",
-      "answer"
+      "объясни",
+      "Объясни"
     ]
   },
 
