@@ -97,5 +97,33 @@ public class TheoryServiceTest {
         assertEquals(expected, bot.printer.getAllOutput());
     }
 
+    @Test
+    public void testDisplayContent() {
+
+        String expected = "";
+
+        try {
+            Field theories = theoryService.getClass().getDeclaredField("theories");
+            theories.setAccessible(true);
+            Theory[] value = (Theory[]) theories.get(theoryService);
+
+            expected = value[1].getSections().getFirst().getContent() + "\n";
+
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+
+        expected += "Введите back для возврата.\n";
+
+        bot.input.addToQueue("t");
+        bot.input.addToQueue("2");
+
+        bot.printer.getAllOutput();
+
+        bot.input.addToQueue("1");
+
+        assertEquals(expected, bot.printer.getAllOutput());
+    }
+
 
 }
