@@ -22,7 +22,8 @@ public class TestService {
     private final SettingsService settings;
     private Question lastQuestion;
 
-    public TestService(OutputService printer, InputService inputService, ResourceStorage storage, SettingsService settings) {
+    public TestService(OutputService printer, InputService inputService,
+                       ResourceStorage storage, SettingsService settings) {
         this.printer = printer;
         this.input = inputService;
         this.storage = storage;
@@ -137,13 +138,12 @@ public class TestService {
     private void defineButtons(Question question) {
         String[] array = new String[question.getAnswers().length + 1];
 
-        int CountOfButtons = question.getAnswers().length + 1;
-
+        int countOfButtons = question.getAnswers().length + 1;
 
         for (int i = 1; i <= question.getAnswers().length; i++) {
             array[i - 1] = String.valueOf(i);
         }
-        array[CountOfButtons - 1] = "Ответ";
+        array[countOfButtons - 1] = "Ответ";
 
         input.defineButtons(array);
     }
