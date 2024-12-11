@@ -1,42 +1,42 @@
 package bot.console;
 
-import model.Question;
-import model.State;
-import utils.MyUtils;
-
 public class SettingsService {
 
-    private State RepeatSettings = State.ON;
-    private State SolvedSettings = State.ON;
-    private State AnswerSettings = State.ON;
-    private State ExplanationSettings = State.ON;
+    private boolean repeatQuestions = true;
+    private boolean repeatSolved = true;
+    private boolean showAnswer = true;
+    private boolean showExplanation = false;
 
-
-    public Question GetNotRepeatQuestion(Question[] arr, int[] questionsAttempts){
-        for(int counter = 0; counter < arr.length; counter++){
-            Question question = MyUtils.getRandomElement(arr);
-            if (questionsAttempts[question.getNumber()] == 0){
-                return question;
-            }
-        }
-        return MyUtils.getRandomElement(arr);
+    public boolean getRepeatQuestions() {
+        return repeatQuestions;
     }
 
-
-    public State getRepeatSettings() {
-        return RepeatSettings;
+    public boolean getRepeatSolved() {
+        return repeatSolved;
     }
 
-    public State getSolvedSettings() {
-        return SolvedSettings;
+    public boolean getShowAnswer() {
+        return showAnswer;
     }
 
-    public State getAnswerSettings() {
-        return AnswerSettings;
+    public boolean getShowExplanation() {
+        return showExplanation;
     }
 
-    public State getExplanationSettings() {
-        return ExplanationSettings;
+    public void switchRepeatQuestions() {
+        repeatQuestions = !repeatQuestions;
+    }
+
+    public void switchRepeatSolved() {
+        repeatSolved = !repeatSolved;
+    }
+
+    public void switchShowAnswer() {
+        showAnswer = !showAnswer;
+    }
+
+    public void switchShowExplanation() {
+        showExplanation = !showExplanation;
     }
 }
 

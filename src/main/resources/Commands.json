@@ -131,12 +131,42 @@
 
   {
     "location" : "JS",
+    "id" : "surrenderQuestion",
+    "inputVariants" : [
+      "от",
+      "сдаюсь",
+      "ответ",
+      "Ответ",
+      "answer",
+      "Answer"
+    ]
+  },
+
+  {
+    "location" : "JS",
     "id" : "explanationQuestion",
     "inputVariants" : [
       "explanation",
+      "exp",
+      "Exp",
+      "Explanation",
+      "Объяснение",
       "объяснение",
+      "объясни",
+      "Объясни"
+    ]
+  },
+
+  {
+    "location" : "MATH",
+    "id" : "surrenderQuestion",
+    "inputVariants" : [
+      "от",
+      "сдаюсь",
       "ответ",
-      "answer"
+      "Ответ",
+      "answer",
+      "Answer"
     ]
   },
 
@@ -145,9 +175,13 @@
     "id" : "explanationQuestion",
     "inputVariants" : [
       "explanation",
+      "exp",
+      "Exp",
+      "Explanation",
+      "Объяснение",
       "объяснение",
-      "ответ",
-      "answer"
+      "объясни",
+      "Объясни"
     ]
   },
 
@@ -217,6 +251,47 @@
     "inputVariants" : [
       "save",
       "sav"
+    ]
+  },
+
+  {
+    "location" : "MAIN",
+    "id" : "travelToSettings",
+    "inputVariants" : [
+      "Settings",
+      "settings",
+      "set",
+      "настройки",
+      "Set",
+      "наст",
+      "Настройки"
+    ]
+  },
+
+  {
+    "location" : "SETTINGS",
+    "id" : "toMenu",
+    "inputVariants" : [
+      "back",
+      "nazad",
+      "назад",
+      "Назад",
+      "бек",
+      "b",
+      "B",
+      "ифсл"
+    ]
+  },
+
+  {
+    "location" : "SETTINGS",
+    "id" : "repeat",
+    "inputVariants" : [
+      "repeat",
+      "Repeat",
+      "повтор",
+      "rep",
+      "Rep"
     ]
   }
 ]
