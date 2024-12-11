@@ -57,6 +57,14 @@ public class Bot implements Runnable {
                 break;
             case "travelToSettings":
                 location = Location.SETTINGS;
+                printer.println("1. repeat (" + toONorOFF(settings.getRepeatQuestions()) + ") - выводить/скрыть "
+                        + "уже встречавшиеся вопросы\n"
+                        + "2. repeatSolved (" + toONorOFF(settings.getRepeatSolved()) + ") - выводить/скрыть "
+                        + "верно решенные вопросы\n"
+                        + "3. showAnswer (" + toONorOFF(settings.getShowAnswer()) + ") - выводить/не выводить "
+                        + "ответы при неверном ответе на вопрос\n"
+                        + "4. showExplanation (" + toONorOFF(settings.getShowExplanation()) + ") - выводить/не "
+                        + "выводить объяснение ответа при неверном ответе на вопрос");
                 break;
             case "toMenu":
                 location = Location.MAIN;
@@ -100,5 +108,9 @@ public class Bot implements Runnable {
     public void consoleModeDisable() {
         printer.consoleMode = false;
         input.consoleMode = false;
+    }
+
+    public String toONorOFF(boolean bool) {
+        return (bool ? "ON" : "OFF");
     }
 }

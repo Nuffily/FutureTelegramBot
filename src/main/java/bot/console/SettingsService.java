@@ -22,6 +22,22 @@ public class SettingsService {
     public boolean getShowExplanation() {
         return showExplanation;
     }
+
+    public void switchRepeatQuestions() {
+        repeatQuestions = !repeatQuestions;
+    }
+
+    public void switchRepeatSolved() {
+        repeatSolved = !repeatSolved;
+    }
+
+    public void switchShowAnswer() {
+        showAnswer = !showAnswer;
+    }
+
+    public void switchShowExplanation() {
+        showExplanation = !showExplanation;
+    }
 }
 
 

@@ -157,6 +157,32 @@
 
   {
     "location" : "MATH",
+    "id" : "surrenderQuestion",
+    "inputVariants" : [
+      "от",
+      "сдаюсь",
+      "ответ",
+      "Ответ",
+      "answer",
+      "Answer"
+    ]
+  },
+
+  {
+    "location" : "MATH",
+    "id" : "explanationQuestion",
+    "inputVariants" : [
+      "explanation",
+      "Explanation",
+      "Объяснение",
+      "объяснение",
+      "объясни",
+      "Объясни"
+    ]
+  },
+
+  {
+    "location" : "MATH",
     "id" : "explanationQuestion",
     "inputVariants" : [
       "explanation",
@@ -232,6 +258,59 @@
     "inputVariants" : [
       "save",
       "sav"
+    ]
+  },
+
+  {
+    "location" : "SETTINGS",
+    "id" : "travelToSettings",
+    "inputVariants" : [
+      "Settings",
+      "settings",
+      "set",
+      "настройки",
+      "Set",
+      "наст",
+      "Настройки"
+    ]
+  },
+
+  {
+    "location" : "SETTINGS",
+    "id" : "toMenu",
+    "inputVariants" : [
+      "back",
+      "nazad",
+      "назад",
+      "Назад",
+      "бек",
+      "b",
+      "B",
+      "ифсл"
+    ]
+  },
+
+  {
+    "location" : "SETTINGS",
+    "id" : "repeat",
+    "inputVariants" : [
+      "repeat",
+      "Repeat",
+      "повтор",
+      "rep",
+      "Rep"
+    ]
+  },
+
+  {
+    "location" : "SETTINGS",
+    "id" : "toMenu",
+    "inputVariants" : [
+      "repeat",
+      "Repeat",
+      "повтор",
+      "rep",
+      "Rep"
     ]
   }
 ]
