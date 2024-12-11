@@ -69,6 +69,9 @@ public class Bot implements Runnable {
             case "toMenu":
                 location = Location.MAIN;
                 break;
+            case "explanationQuestion":
+                testService.showLastExplanation();
+                break;
             case "exit":
                 location = Location.EXIT;
                 printer.println("Пока-пока!");

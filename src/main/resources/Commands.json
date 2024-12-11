@@ -147,6 +147,8 @@
     "id" : "explanationQuestion",
     "inputVariants" : [
       "explanation",
+      "exp",
+      "Exp",
       "Explanation",
       "Объяснение",
       "объяснение",
@@ -173,22 +175,13 @@
     "id" : "explanationQuestion",
     "inputVariants" : [
       "explanation",
+      "exp",
+      "Exp",
       "Explanation",
       "Объяснение",
       "объяснение",
       "объясни",
       "Объясни"
-    ]
-  },
-
-  {
-    "location" : "MATH",
-    "id" : "explanationQuestion",
-    "inputVariants" : [
-      "explanation",
-      "объяснение",
-      "ответ",
-      "answer"
     ]
   },
 
@@ -262,7 +255,7 @@
   },
 
   {
-    "location" : "SETTINGS",
+    "location" : "MAIN",
     "id" : "travelToSettings",
     "inputVariants" : [
       "Settings",
@@ -293,18 +286,6 @@
   {
     "location" : "SETTINGS",
     "id" : "repeat",
-    "inputVariants" : [
-      "repeat",
-      "Repeat",
-      "повтор",
-      "rep",
-      "Rep"
-    ]
-  },
-
-  {
-    "location" : "SETTINGS",
-    "id" : "toMenu",
     "inputVariants" : [
       "repeat",
       "Repeat",

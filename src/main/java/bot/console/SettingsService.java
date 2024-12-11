@@ -5,7 +5,7 @@ public class SettingsService {
     private boolean repeatQuestions = true;
     private boolean repeatSolved = true;
     private boolean showAnswer = true;
-    private boolean showExplanation = true;
+    private boolean showExplanation = false;
 
     public boolean getRepeatQuestions() {
         return repeatQuestions;

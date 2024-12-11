@@ -20,6 +20,7 @@ public class TestService {
     private final InputService input;
     private final ResourceStorage storage;
     private final SettingsService settings;
+    private Question lastQuestion;
 
     public TestService(OutputService printer, InputService inputService, ResourceStorage storage, SettingsService settings) {
         this.printer = printer;
@@ -60,10 +61,16 @@ public class TestService {
 
         int answer = getSuitableAnswer(location, question);
 
+        questionAnsweringResult(answer, question, location);
+
+        lastQuestion = question;
+    }
+
+    private void questionAnsweringResult(int answer, Question question, Location location) {
         if (answer == 0) {
             printer.printResponse("correctAnswerIs");
             printer.println(question.getCorrectAnswer());
-            printer.println(question.getExplanation());
+            printer.println("-------------------------------\n" + question.getExplanation());
 
             statistics.get(location).updateStats(question.getNumber(), false);
         } else if (question.getIsCorrect()[answer - 1]) {
@@ -72,8 +79,15 @@ public class TestService {
             statistics.get(location).updateStats(question.getNumber(), true);
         } else {
             printer.printlnResponse("incorrectAnswer");
-            printer.printResponse("correctAnswerIs");
-            printer.println(question.getCorrectAnswer());
+
+            if (settings.getShowAnswer()) {
+                printer.printResponse("correctAnswerIs");
+                printer.println(question.getCorrectAnswer());
+            }
+
+            if (settings.getShowExplanation()) {
+                printer.println("-------------------------------\n" + question.getExplanation());
+            }
 
             statistics.get(location).updateStats(question.getNumber(), false);
         }
@@ -134,6 +148,17 @@ public class TestService {
         input.defineButtons(array);
     }
 
+    public void showLastExplanation() {
+        if (lastQuestion != null) {
+            printer.printResponse("correctAnswerIs");
+            printer.println(lastQuestion.getCorrectAnswer() + " ("
+                    + lastQuestion.getAnswers()[lastQuestion.getCorrectAnswer() - 1] + ")");
+            printer.println("-------------------------------\n" + lastQuestion.getExplanation());
+        } else {
+            printer.println("Сначала попробуй пройти хоть один тест");
+        }
+    }
+
     public Question getQuestion(Location location) {
 
         List<Integer> listQuestions = new ArrayList<>();
@@ -145,7 +170,6 @@ public class TestService {
                 }
             }
         } else if (!settings.getRepeatQuestions()) {
-
             for (int i = 1; i <= questions.get(location).length; i++) {
                 if (statistics.get(location).getQuestionsAttempts()[i] == 0) {
                     listQuestions.add(i);

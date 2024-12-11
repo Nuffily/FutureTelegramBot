@@ -16,6 +16,8 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+import static java.lang.Math.ceil;
+
 public class TelegramBot extends TelegramLongPollingBot {
 
     private final BotConfig botConfig = new BotConfig();
@@ -96,11 +98,26 @@ public class TelegramBot extends TelegramLongPollingBot {
 
         KeyboardRow keyboardFirstRow = new KeyboardRow();
 
-        for (String button : buttons) {
-            keyboardFirstRow.add(new KeyboardButton(button));
-        }
+        if (buttons.length <= 3) {
+            for (String button : buttons) {
+                keyboardFirstRow.add(new KeyboardButton(button));
+            }
+            keyboard.add(keyboardFirstRow);
 
-        keyboard.add(keyboardFirstRow);
+        } else {
+            KeyboardRow keyboardSecondRow = new KeyboardRow();
+
+            for (int i = 0; i < (buttons.length - buttons.length / 2); i++) {
+                keyboardFirstRow.add(new KeyboardButton(buttons[i]));
+            }
+
+            for (int i = buttons.length - buttons.length / 2; i < buttons.length; i++) {
+                keyboardSecondRow.add(new KeyboardButton(buttons[i]));
+            }
+
+            keyboard.add(keyboardFirstRow);
+            keyboard.add(keyboardSecondRow);
+        }
 
         replyKeyboardMarkup.setKeyboard(keyboard);
     }
