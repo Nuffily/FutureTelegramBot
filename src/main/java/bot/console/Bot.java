@@ -13,8 +13,8 @@ public class Bot implements Runnable {
 
     public Bot(ResourceStorage storage) {
         this.storage = storage;
-        settings = new SettingsService();
         printer = new OutputService(storage);
+        settings = new SettingsService(printer);
         testService = new TestService(printer, input, storage, settings);
         theoryService = new TheoryService(printer, input);
     }
@@ -65,6 +65,11 @@ public class Bot implements Runnable {
                         + "ответы при неверном ответе на вопрос\n"
                         + "4. showExplanation (" + toONorOFF(settings.getShowExplanation()) + ") - выводить/не "
                         + "выводить объяснение ответа при неверном ответе на вопрос");
+                break;
+            case "repeatON", "repeatOFF", "repeatSolvedON",
+                 "repeatSolvedOFF", "showAnswerON", "showAnswerOFF",
+                 "showExplanationON", "showExplanationOFF":
+                settings.SettingsChanger(command);
                 break;
             case "toMenu":
                 location = Location.MAIN;

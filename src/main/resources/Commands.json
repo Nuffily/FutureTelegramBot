@@ -285,13 +285,78 @@
 
   {
     "location" : "SETTINGS",
-    "id" : "repeat",
+    "id" : "SETTINGSHelp",
     "inputVariants" : [
-      "repeat",
-      "Repeat",
-      "повтор",
-      "rep",
-      "Rep"
+      "help",
+      "/help",
+      "Help",
+      "pomosh",
+      "h",
+      "рудз"
+    ]
+  },
+
+  {
+    "location": "SETTINGS",
+    "id": "repeatON",
+    "inputVariants": [
+      "repeat ON"
+    ]
+  },
+
+  {
+    "location": "SETTINGS",
+    "id": "repeatOFF",
+    "inputVariants": [
+      "repeat OFF"
+    ]
+  },
+
+  {
+    "location": "SETTINGS",
+    "id": "repeatSolvedON",
+    "inputVariants": [
+      "repeatSolved ON"
+    ]
+  },
+
+  {
+    "location": "SETTINGS",
+    "id": "repeatSolvedOFF",
+    "inputVariants": [
+      "repeatSolved OFF"
+    ]
+  },
+
+  {
+    "location": "SETTINGS",
+    "id": "showAnswerON",
+    "inputVariants": [
+      "showAnswer ON"
+    ]
+  },
+
+  {
+    "location": "SETTINGS",
+    "id": "showAnswerOFF",
+    "inputVariants": [
+      "showAnswer OFF"
+    ]
+  },
+
+  {
+    "location": "SETTINGS",
+    "id": "showExplanationON",
+    "inputVariants": [
+      "showExplanation ON"
+    ]
+  },
+
+  {
+    "location": "SETTINGS",
+    "id": "showExplanationOFF",
+    "inputVariants": [
+      "showExplanation OFF"
     ]
   }
 ]
