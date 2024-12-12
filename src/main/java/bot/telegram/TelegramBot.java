@@ -1,7 +1,6 @@
 package bot.telegram;
 
-import bot.console.Bot;
-import bot.console.ResourceStorage;
+import bot.console.*;
 import org.telegram.telegrambots.bots.TelegramLongPollingBot;
 import org.telegram.telegrambots.meta.api.methods.send.SendMessage;
 import org.telegram.telegrambots.meta.api.objects.Update;
@@ -36,8 +35,6 @@ public class TelegramBot extends TelegramLongPollingBot {
 
     @Override
     public void onUpdateReceived(Update update) {
-        String currentAnswer;
-
         if (update.hasMessage() && update.getMessage().hasText()) {
             String messageText = update.getMessage().getText();
             long chatId = update.getMessage().getChatId();
@@ -54,20 +51,22 @@ public class TelegramBot extends TelegramLongPollingBot {
                 users.get(chatId).input.addToQueue(messageText);
             }
 
-            currentAnswer = users.get(chatId).printer.getAllOutput();
+            String currentAnswer = users.get(chatId).printer.getAllOutput();
 
             sendMessage(chatId, currentAnswer);
 
-            if (currentAnswer.equals("Пока-пока!")) {
+            if (currentAnswer.equals("Пока-пока!\n")) {
                 users.remove(chatId);
             }
         }
     }
 
     private void startConversation(Long chatId) {
-        final Bot bot = new Bot(storage);
+        final OutputService outputService = new NonConsoleOutputService(storage);
+        final Bot bot = new Bot(storage, outputService);
+        bot.input.consoleMode = false;
         users.put(chatId, bot);
-        bot.consoleModeDisable();
+
         new Thread(bot).start();
     }
 

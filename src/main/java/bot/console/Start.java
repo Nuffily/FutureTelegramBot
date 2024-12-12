@@ -22,7 +22,9 @@ public class Start {
 
         if (mode.equals("console")) {
             final ResourceStorage storage = new ResourceStorage();
-            final Bot bot = new Bot(storage);
+            final OutputService outputService = new ConsoleOutputService(storage);
+
+            final Bot bot = new Bot(storage, outputService);
 
             bot.run();
         }
@@ -38,7 +40,9 @@ public class Start {
 
         if (mode.equals("both")) {
             final ResourceStorage storage = new ResourceStorage();
-            final Bot bot = new Bot(storage);
+            final OutputService outputService = new ConsoleOutputService(storage);
+
+            final Bot bot = new Bot(storage, outputService);
 
             new Thread(bot).start();
 

@@ -11,9 +11,9 @@ public class Bot implements Runnable {
     private final TheoryService theoryService;
     public SettingsService settings;
 
-    public Bot(ResourceStorage storage) {
+    public Bot(ResourceStorage storage, OutputService outputService) {
         this.storage = storage;
-        printer = new OutputService(storage);
+        printer = outputService;
         settings = new SettingsService(printer);
         testService = new TestService(printer, input, storage, settings);
         theoryService = new TheoryService(printer, input);
@@ -123,11 +123,6 @@ public class Bot implements Runnable {
 
     public Location getLocation() {
         return location;
-    }
-
-    public void consoleModeDisable() {
-        printer.consoleMode = false;
-        input.consoleMode = false;
     }
 
     public String toONorOFF(boolean bool) {
