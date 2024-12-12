@@ -23,11 +23,12 @@ public class TestServiceTest {
 
         bot.input.addToQueue("js");
         bot.printer.getAllOutput();
-        bot.input.addToQueue("q");
     }
 
     @Test
-    public void correctQuestionPrinting() {
+    public void testCorrectQuestionPrinting() {
+        bot.input.addToQueue("q");
+
         assertEquals("""
                 Что выведет этот код?
                 const arr = ['apple', 'banana', 'cherry'];
@@ -42,7 +43,8 @@ public class TestServiceTest {
     }
 
     @Test
-    public void answerSuitabilityTest() {
+    public void testAnswerSuitabilityTest() {
+        bot.input.addToQueue("q");
         bot.printer.getAllOutput();
 
         bot.input.addToQueue("5");
@@ -59,7 +61,8 @@ public class TestServiceTest {
     }
 
     @Test
-    public void wrongAnswer() {
+    public void testWrongAnswer() {
+        bot.input.addToQueue("q");
         bot.printer.getAllOutput();
 
         bot.input.addToQueue("4");
@@ -67,11 +70,29 @@ public class TestServiceTest {
     }
 
     @Test
-    public void correctAnswer() {
+    public void testCorrectAnswer() {
+        bot.input.addToQueue("q");
         bot.printer.getAllOutput();
 
         bot.input.addToQueue("3");
         assertEquals("Верно! Мужик\n", bot.printer.getOutput());
+    }
+
+    @Test
+    public void testShowExplanation() {
+        bot.input.addToQueue("explanation");
+        assertEquals("Сначала попробуй пройти хоть один тест\n", bot.printer.getOutput());
+
+        bot.input.addToQueue("q");
+        bot.input.addToQueue("3");
+        bot.printer.getAllOutput();
+
+        bot.input.addToQueue("explanation");
+        assertEquals("""
+                Верным был вариант 3 (3)
+                -------------------------------
+                Массив содержит три элемента, поэтому его длина равна 3.
+                """, bot.printer.getAllOutput());
     }
 
 }

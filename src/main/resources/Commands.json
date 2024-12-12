@@ -128,6 +128,63 @@
       "йгуые"
     ]
   },
+
+  {
+    "location" : "JS",
+    "id" : "surrenderQuestion",
+    "inputVariants" : [
+      "от",
+      "сдаюсь",
+      "ответ",
+      "Ответ",
+      "answer",
+      "Answer"
+    ]
+  },
+
+  {
+    "location" : "JS",
+    "id" : "explanationQuestion",
+    "inputVariants" : [
+      "explanation",
+      "exp",
+      "Exp",
+      "Explanation",
+      "Объяснение",
+      "объяснение",
+      "объясни",
+      "Объясни"
+    ]
+  },
+
+  {
+    "location" : "MATH",
+    "id" : "surrenderQuestion",
+    "inputVariants" : [
+      "от",
+      "сдаюсь",
+      "ответ",
+      "Ответ",
+      "answer",
+      "Answer"
+    ]
+  },
+
+  {
+    "location" : "MATH",
+    "id" : "explanationQuestion",
+    "inputVariants" : [
+      "explanation",
+      "exp",
+      "Exp",
+      "Explanation",
+      "Объяснение",
+      "объяснение",
+      "объясни",
+      "Объясни"
+    ]
+  },
+
   {
     "location" : "MAIN",
     "id" : "exit",
@@ -194,6 +251,148 @@
     "inputVariants" : [
       "save",
       "sav"
+    ]
+  },
+
+  {
+    "location" : "MAIN",
+    "id" : "travelToSettings",
+    "inputVariants" : [
+      "Settings",
+      "settings",
+      "set",
+      "настройки",
+      "Set",
+      "наст",
+      "Настройки"
+    ]
+  },
+
+  {
+    "location" : "JS",
+    "id" : "travelToSettings",
+    "inputVariants" : [
+      "Settings",
+      "settings",
+      "set",
+      "настройки",
+      "Set",
+      "наст",
+      "Настройки"
+    ]
+  },
+
+  {
+    "location" : "MATH",
+    "id" : "travelToSettings",
+    "inputVariants" : [
+      "Settings",
+      "settings",
+      "set",
+      "настройки",
+      "Set",
+      "наст",
+      "Настройки"
+    ]
+  },
+
+  {
+    "location" : "SETTINGS",
+    "id" : "toMenu",
+    "inputVariants" : [
+      "back",
+      "nazad",
+      "назад",
+      "Назад",
+      "бек",
+      "b",
+      "B",
+      "ифсл"
+    ]
+  },
+
+  {
+    "location" : "SETTINGS",
+    "id" : "SETTINGSHelp",
+    "inputVariants" : [
+      "help",
+      "/help",
+      "Help",
+      "pomosh",
+      "h",
+      "рудз"
+    ]
+  },
+
+  {
+    "location": "SETTINGS",
+    "id": "repeatON",
+    "inputVariants": [
+      "repeat ON",
+      "rpt on"
+    ]
+  },
+
+  {
+    "location": "SETTINGS",
+    "id": "repeatOFF",
+    "inputVariants": [
+      "repeat OFF",
+      "rpt off"
+    ]
+  },
+
+  {
+    "location": "SETTINGS",
+    "id": "repeatSolvedON",
+    "inputVariants": [
+      "repeatSolved ON",
+      "rptslv on"
+    ]
+  },
+
+  {
+    "location": "SETTINGS",
+    "id": "repeatSolvedOFF",
+    "inputVariants": [
+      "repeatSolved OFF",
+      "rptslv off"
+    ]
+  },
+
+  {
+    "location": "SETTINGS",
+    "id": "showAnswerON",
+    "inputVariants": [
+      "showAnswer ON",
+      "shwans on"
+    ]
+  },
+
+  {
+    "location": "SETTINGS",
+    "id": "showAnswerOFF",
+    "inputVariants": [
+      "showAnswer OFF",
+      "shwans off"
+    ]
+  },
+
+  {
+    "location": "SETTINGS",
+    "id": "showExplanationON",
+    "inputVariants": [
+      "showExplanation ON",
+      "shwexp on"
+    ]
+  },
+
+  {
+    "location": "SETTINGS",
+    "id": "showExplanationOFF",
+    "inputVariants": [
+      "showExplanation OFF",
+      "shwexp off"
     ]
   }
 ]
