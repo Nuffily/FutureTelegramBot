@@ -100,12 +100,21 @@ public class Bot implements Runnable {
     private void defineButtons() {
         switch (location) {
             case MAIN:
-                input.defineButtons("JavaScript", "Высшая математика", "/help");
+                input.defineButtons("JavaScript", "Высшая математика", "Настройки", "/help");
                 break;
             case MATH:
             case JS:
                 input.defineButtons("Вопрос", "Назад", "/help");
                 break;
+            case SETTINGS:
+                input.defineButtons("repeat " + toONorOFF(!settings.getRepeatQuestions()),
+                        "repeatSolved " + toONorOFF(!settings.getRepeatSolved()),
+                        "showAnswer " + toONorOFF(!settings.getShowAnswer()),
+                        "showExplanation " + toONorOFF(!settings.getShowExplanation()),
+                        "Назад"
+                        );
+                break;
+
         }
     }
 
