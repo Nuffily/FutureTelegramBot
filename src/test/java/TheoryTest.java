@@ -3,7 +3,7 @@ import model.Theory;
 import org.junit.Test;
 import static org.mockito.Mockito.*; // Для статических методов
 
-import org.junit.jupiter.api.BeforeEach;
+
 import org.mockito.Mockito; // Для общих методов
 import utils.MyUtils;
 
@@ -11,11 +11,7 @@ public class TheoryTest {
 
     InputService mockInput = Mockito.mock(InputService.class);
     OutputService mockOutput = Mockito.mock(OutputService.class);
-    TheoryService service = new TheoryService(mockOutput, mockInput);  // Предположим, что у вас есть такой сервис
-
-//    private final ResourceStorage storage = new ResourceStorage();
-//    private final Bot bot = new Bot(storage);
-//
+    TheoryService service = new TheoryService(mockOutput, mockInput);
 
 
     @Test
