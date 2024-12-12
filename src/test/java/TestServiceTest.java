@@ -79,7 +79,9 @@ public class TestServiceTest {
     }
 
     @Test
-    public void testShowExplanation() {
+    public void testShowExplanationAfterMistake() {
+        bot.input.addToQueue("js");
+        bot.printer.getAllOutput();
         bot.input.addToQueue("explanation");
         assertEquals("Сначала попробуй пройти хоть один тест\n", bot.printer.getOutput());
 
@@ -89,10 +91,83 @@ public class TestServiceTest {
 
         bot.input.addToQueue("explanation");
         assertEquals("""
-                Верным был вариант 3 (3)
+                Правильным ответом был вариант под номером 3 (4 10 18)
+                -------------------------------
+                Каждый шаг цикла увеличивает 'a' и добавляет к 'b' удвоенное значение 'a'. После трех итераций значения b будут: 4, 10, 18.
+                """, bot.printer.getAllOutput());
+    }
+
+    @Test
+    public void testShowExplanationOFF() {
+
+        bot.input.addToQueue("settings");
+        bot.input.addToQueue("showExplanation OFF");
+        bot.input.addToQueue("back");
+        bot.input.addToQueue("js");
+        bot.input.addToQueue("q");
+        bot.printer.getAllOutput();
+        bot.input.addToQueue("2");
+
+
+        assertEquals("Вообще ни разу, по новой\nВерным был вариант 3\n", bot.printer.getAllOutput());
+    }
+
+    @Test
+    public void testShowExplanationON() {
+
+        bot.input.addToQueue("settings");
+        bot.input.addToQueue("showExplanation ON");
+        bot.input.addToQueue("back");
+        bot.input.addToQueue("js");
+        bot.input.addToQueue("q");
+        bot.printer.getAllOutput();
+        bot.input.addToQueue("2");
+
+
+        assertEquals("""
+                Вообще ни разу, по новой
+                Верным был вариант 3
                 -------------------------------
                 Массив содержит три элемента, поэтому его длина равна 3.
-                """, bot.printer.getAllOutput());
+                """
+                , bot.printer.getAllOutput());
+    }
+
+    @Test
+    public void testShowAnswerON() {
+
+        bot.input.addToQueue("settings");
+        bot.input.addToQueue("showAnswer ON");
+        bot.input.addToQueue("back");
+        bot.input.addToQueue("js");
+        bot.input.addToQueue("q");
+        bot.printer.getAllOutput();
+        bot.input.addToQueue("2");
+
+
+        assertEquals("""
+                Вообще ни разу, по новой
+                Верным был вариант 3
+                """
+                , bot.printer.getAllOutput());
+    }
+
+    @Test
+    public void testShowAnswerOFF() {
+
+        bot.input.addToQueue("settings");
+        bot.input.addToQueue("showAnswer OFF");
+        bot.input.addToQueue("back");
+        bot.input.addToQueue("js");
+        bot.input.addToQueue("q");
+        bot.printer.getAllOutput();
+        bot.input.addToQueue("2");
+
+
+        assertEquals("""
+                Вообще ни разу, по новой
+                """
+                , bot.printer.getAllOutput());
     }
 
 }
