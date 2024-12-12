@@ -116,8 +116,7 @@ public class Bot implements Runnable {
                         "repeatSolved " + toONorOFF(!settings.getRepeatSolved()),
                         "showAnswer " + toONorOFF(!settings.getShowAnswer()),
                         "showExplanation " + toONorOFF(!settings.getShowExplanation()),
-                        "Назад"
-                        );
+                        "Назад");
                 break;
 
         }
