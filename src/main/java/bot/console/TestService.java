@@ -4,7 +4,9 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 
 import java.io.File;
 import java.io.IOException;
+import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 import model.Location;
@@ -16,10 +18,16 @@ public class TestService {
     private final Map<Location, QuestionStatistics> statistics;
     private final OutputService printer;
     private final InputService input;
+    private final ResourceStorage storage;
+    private final SettingsService settings;
+    private Question lastQuestion;
 
-    public TestService(OutputService printer, InputService inputService) {
+    public TestService(OutputService printer, InputService inputService,
+                       ResourceStorage storage, SettingsService settings) {
         this.printer = printer;
         this.input = inputService;
+        this.storage = storage;
+        this.settings = settings;
 
         questions = new HashMap<>();
         questions.put(Location.JS, importQuestions("src/main/resources/QuestionsJS.json"));
@@ -43,34 +51,60 @@ public class TestService {
     }
 
     public void questionAnswering(Location location) {
-        Question question = MyUtils.getRandomElement(questions.get(location));
+
+        Question question = getQuestion(location);
+
         question.shuffleAnswers();
         defineButtons(question);
 
         printer.print(question.getBody() + "\n-------------------------------\n"
                 + "Варианты ответа:\n" + question.getStringTableOfAnswers());
 
-        int answer = getSuitableAnswer(question);
+        int answer = getSuitableAnswer(location, question);
 
-        if (question.getIsCorrect()[answer - 1]) {
+        questionAnsweringResult(answer, question, location);
+
+        lastQuestion = question;
+    }
+
+    private void questionAnsweringResult(int answer, Question question, Location location) {
+        if (answer == 0) {
+            printer.printResponse("correctAnswerIs");
+            printer.println(question.getCorrectAnswer());
+            printer.println("-------------------------------\n" + question.getExplanation());
+
+            statistics.get(location).updateStats(question.getNumber(), false);
+        } else if (question.getIsCorrect()[answer - 1]) {
             printer.printlnResponse("correctAnswer");
 
             statistics.get(location).updateStats(question.getNumber(), true);
         } else {
             printer.printlnResponse("incorrectAnswer");
-            printer.printResponse("correctAnswerIs");
-            printer.println(question.getCorrectAnswer());
+
+            if (settings.getShowAnswer()) {
+                printer.printResponse("correctAnswerIs");
+                printer.println(question.getCorrectAnswer());
+            }
+
+            if (settings.getShowExplanation()) {
+                printer.println("-------------------------------\n" + question.getExplanation());
+            }
 
             statistics.get(location).updateStats(question.getNumber(), false);
         }
     }
 
-    private int getSuitableAnswer(Question question) {
+    private int getSuitableAnswer(Location location, Question question) {
         String ans;
         int answer;
 
         while (true) {
             ans = input.getInput();
+
+            if (storage.translateCommand(ans, location).equals("surrenderQuestion")) {
+                answer = 0;
+                return answer;
+            }
 
             if (!ans.matches("[-+]?\\d+")) {
                 printer.println("Ответ должен быть числом");
@@ -102,12 +136,51 @@ public class TestService {
     }
 
     private void defineButtons(Question question) {
-        String[] array = new String[question.getAnswers().length];
+        String[] array = new String[question.getAnswers().length + 1];
+
+        int countOfButtons = question.getAnswers().length + 1;
 
         for (int i = 1; i <= question.getAnswers().length; i++) {
             array[i - 1] = String.valueOf(i);
         }
+        array[countOfButtons - 1] = "Ответ";
 
         input.defineButtons(array);
+    }
+
+    public void showLastExplanation() {
+        if (lastQuestion != null) {
+            printer.printResponse("correctAnswerIs");
+            printer.println(lastQuestion.getCorrectAnswer() + " ("
+                    + lastQuestion.getAnswers()[lastQuestion.getCorrectAnswer() - 1] + ")");
+            printer.println("-------------------------------\n" + lastQuestion.getExplanation());
+        } else {
+            printer.println("Сначала попробуй пройти хоть один тест");
+        }
+    }
+
+    public Question getQuestion(Location location) {
+
+        List<Integer> listQuestions = new ArrayList<>();
+
+        if (!settings.getRepeatSolved()) {
+            for (int i = 1; i <= questions.get(location).length; i++) {
+                if (!statistics.get(location).getQuestionPassed()[i]) {
+                    listQuestions.add(i);
+                }
+            }
+        } else if (!settings.getRepeatQuestions()) {
+            for (int i = 1; i <= questions.get(location).length; i++) {
+                if (statistics.get(location).getQuestionsAttempts()[i] == 0) {
+                    listQuestions.add(i);
+                }
+            }
+        }
+
+        if (!listQuestions.isEmpty()) {
+            return questions.get(location)[listQuestions.get(MyUtils.getRandom(0, listQuestions.size())) - 1];
+        } else {
+            return MyUtils.getRandomElement(questions.get(location));
+        }
     }
 }
