@@ -71,7 +71,7 @@ public class Bot implements Runnable {
             case "repeatON", "repeatOFF", "repeatSolvedON",
                  "repeatSolvedOFF", "showAnswerON", "showAnswerOFF",
                  "showExplanationON", "showExplanationOFF":
-                settings.SettingsChanger(command);
+                settings.settingsChanger(command);
                 break;
             case "toMenu":
                 location = Location.MAIN;
@@ -116,8 +116,7 @@ public class Bot implements Runnable {
                         "repeatSolved " + toONorOFF(!settings.getRepeatSolved()),
                         "showAnswer " + toONorOFF(!settings.getShowAnswer()),
                         "showExplanation " + toONorOFF(!settings.getShowExplanation()),
-                        "Назад"
-                        );
+                        "Назад");
                 break;
 
         }
