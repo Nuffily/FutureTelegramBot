@@ -20,13 +20,12 @@ public class TestServiceTest {
         bot.consoleModeDisable();
 
         new Thread(bot).start();
-
-        bot.input.addToQueue("js");
-        bot.printer.getAllOutput();
     }
 
     @Test
     public void testCorrectQuestionPrinting() {
+        bot.input.addToQueue("js");
+        bot.printer.getAllOutput();
         bot.input.addToQueue("q");
 
         assertEquals("""
@@ -44,6 +43,8 @@ public class TestServiceTest {
 
     @Test
     public void testAnswerSuitabilityTest() {
+        bot.input.addToQueue("js");
+        bot.printer.getAllOutput();
         bot.input.addToQueue("q");
         bot.printer.getAllOutput();
 
@@ -62,6 +63,8 @@ public class TestServiceTest {
 
     @Test
     public void testWrongAnswer() {
+        bot.input.addToQueue("js");
+        bot.printer.getAllOutput();
         bot.input.addToQueue("q");
         bot.printer.getAllOutput();
 
@@ -71,6 +74,8 @@ public class TestServiceTest {
 
     @Test
     public void testCorrectAnswer() {
+        bot.input.addToQueue("js");
+        bot.printer.getAllOutput();
         bot.input.addToQueue("q");
         bot.printer.getAllOutput();
 
@@ -79,7 +84,9 @@ public class TestServiceTest {
     }
 
     @Test
-    public void testShowExplanation() {
+    public void testShowExplanationAfterMistake() {
+        bot.input.addToQueue("js");
+        bot.printer.getAllOutput();
         bot.input.addToQueue("explanation");
         assertEquals("Сначала попробуй пройти хоть один тест\n", bot.printer.getOutput());
 
@@ -93,6 +100,79 @@ public class TestServiceTest {
                 -------------------------------
                 Массив содержит три элемента, поэтому его длина равна 3.
                 """, bot.printer.getAllOutput());
+    }
+
+    @Test
+    public void testShowExplanationOFF() {
+
+        bot.input.addToQueue("settings");
+        bot.input.addToQueue("showExplanation OFF");
+        bot.input.addToQueue("back");
+        bot.input.addToQueue("js");
+        bot.input.addToQueue("q");
+        bot.printer.getAllOutput();
+        bot.input.addToQueue("2");
+
+
+        assertEquals("Вообще ни разу, по новой\nВерным был вариант 3\n", bot.printer.getAllOutput());
+    }
+
+    @Test
+    public void testShowExplanationON() {
+
+        bot.input.addToQueue("settings");
+        bot.input.addToQueue("showExplanation ON");
+        bot.input.addToQueue("back");
+        bot.input.addToQueue("js");
+        bot.input.addToQueue("q");
+        bot.printer.getAllOutput();
+        bot.input.addToQueue("2");
+
+
+        assertEquals("""
+                Вообще ни разу, по новой
+                Верным был вариант 3
+                -------------------------------
+                Массив содержит три элемента, поэтому его длина равна 3.
+                """
+                , bot.printer.getAllOutput());
+    }
+
+    @Test
+    public void testShowAnswerON() {
+
+        bot.input.addToQueue("settings");
+        bot.input.addToQueue("showAnswer ON");
+        bot.input.addToQueue("back");
+        bot.input.addToQueue("js");
+        bot.input.addToQueue("q");
+        bot.printer.getAllOutput();
+        bot.input.addToQueue("2");
+
+
+        assertEquals("""
+                Вообще ни разу, по новой
+                Верным был вариант 3
+                """
+                , bot.printer.getAllOutput());
+    }
+
+    @Test
+    public void testShowAnswerOFF() {
+
+        bot.input.addToQueue("settings");
+        bot.input.addToQueue("showAnswer OFF");
+        bot.input.addToQueue("back");
+        bot.input.addToQueue("js");
+        bot.input.addToQueue("q");
+        bot.printer.getAllOutput();
+        bot.input.addToQueue("2");
+
+
+        assertEquals("""
+                Вообще ни разу, по новой
+                """
+                , bot.printer.getAllOutput());
     }
 
 }
