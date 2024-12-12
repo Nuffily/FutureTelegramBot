@@ -118,7 +118,6 @@ public class Bot implements Runnable {
                         "showExplanation " + toONorOFF(!settings.getShowExplanation()),
                         "Назад");
                 break;
-
         }
     }
 
