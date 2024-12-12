@@ -50,7 +50,9 @@ public class Bot implements Runnable {
                 location = Location.JS;
                 break;
             case "travelToTheory":
+                location = Location.THEORY;
                 theoryService.startTheory();
+                location = Location.MAIN;
                 break;
             case "travelToMATH":
                 location = Location.MATH;
@@ -105,6 +107,9 @@ public class Bot implements Runnable {
             case MATH:
             case JS:
                 input.defineButtons("Вопрос", "Назад", "/help");
+                break;
+            case THEORY:
+                input.defineButtons("1", "2", "3", "back");
                 break;
             case SETTINGS:
                 input.defineButtons("repeat " + toONorOFF(!settings.getRepeatQuestions()),
