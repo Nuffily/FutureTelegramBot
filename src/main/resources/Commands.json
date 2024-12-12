@@ -269,6 +269,34 @@
   },
 
   {
+    "location" : "JS",
+    "id" : "travelToSettings",
+    "inputVariants" : [
+      "Settings",
+      "settings",
+      "set",
+      "настройки",
+      "Set",
+      "наст",
+      "Настройки"
+    ]
+  },
+
+  {
+    "location" : "MATH",
+    "id" : "travelToSettings",
+    "inputVariants" : [
+      "Settings",
+      "settings",
+      "set",
+      "настройки",
+      "Set",
+      "наст",
+      "Настройки"
+    ]
+  },
+
+  {
     "location" : "SETTINGS",
     "id" : "toMenu",
     "inputVariants" : [
@@ -300,7 +328,8 @@
     "location": "SETTINGS",
     "id": "repeatON",
     "inputVariants": [
-      "repeat ON"
+      "repeat ON",
+      "rpt on"
     ]
   },
 
@@ -308,7 +337,8 @@
     "location": "SETTINGS",
     "id": "repeatOFF",
     "inputVariants": [
-      "repeat OFF"
+      "repeat OFF",
+      "rpt off"
     ]
   },
 
@@ -316,7 +346,8 @@
     "location": "SETTINGS",
     "id": "repeatSolvedON",
     "inputVariants": [
-      "repeatSolved ON"
+      "repeatSolved ON",
+      "rptslv on"
     ]
   },
 
@@ -324,7 +355,8 @@
     "location": "SETTINGS",
     "id": "repeatSolvedOFF",
     "inputVariants": [
-      "repeatSolved OFF"
+      "repeatSolved OFF",
+      "rptslv off"
     ]
   },
 
@@ -332,7 +364,8 @@
     "location": "SETTINGS",
     "id": "showAnswerON",
     "inputVariants": [
-      "showAnswer ON"
+      "showAnswer ON",
+      "shwans on"
     ]
   },
 
@@ -340,7 +373,8 @@
     "location": "SETTINGS",
     "id": "showAnswerOFF",
     "inputVariants": [
-      "showAnswer OFF"
+      "showAnswer OFF",
+      "shwans off"
     ]
   },
 
@@ -348,7 +382,8 @@
     "location": "SETTINGS",
     "id": "showExplanationON",
     "inputVariants": [
-      "showExplanation ON"
+      "showExplanation ON",
+      "shwexp on"
     ]
   },
 
@@ -356,7 +391,8 @@
     "location": "SETTINGS",
     "id": "showExplanationOFF",
     "inputVariants": [
-      "showExplanation OFF"
+      "showExplanation OFF",
+      "shwexp off"
     ]
   }
 ]

@@ -1,5 +1,6 @@
 package bot.console;
 
+import bot.telegram.TelegramButtons;
 import com.fasterxml.jackson.databind.ObjectMapper;
 
 import java.io.File;
@@ -20,14 +21,16 @@ public class TestService {
     private final InputService input;
     private final ResourceStorage storage;
     private final SettingsService settings;
+    private final TelegramButtons buttons;
     private Question lastQuestion;
 
     public TestService(OutputService printer, InputService inputService,
-                       ResourceStorage storage, SettingsService settings) {
+                       ResourceStorage storage, SettingsService settings, TelegramButtons buttons) {
         this.printer = printer;
         this.input = inputService;
         this.storage = storage;
         this.settings = settings;
+        this.buttons = buttons;
 
         questions = new HashMap<>();
         questions.put(Location.JS, importQuestions("src/main/resources/QuestionsJS.json"));
@@ -145,7 +148,7 @@ public class TestService {
         }
         array[countOfButtons - 1] = "Ответ";
 
-        input.defineButtons(array);
+        buttons.set(array);
     }
 
     public void showLastExplanation() {

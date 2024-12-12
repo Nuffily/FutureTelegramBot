@@ -12,7 +12,7 @@ public class SettingsService {
         this.printer = printer;
     }
 
-    public void SettingsChanger(String command){
+    public void settingsChanger(String command) {
         switch (command) {
             case "repeatON":
                 repeatQuestions = true;

@@ -1,21 +1,24 @@
 package bot.console;
 
+import bot.telegram.TelegramButtons;
 import model.Location;
 
 public class Bot implements Runnable {
-    public InputService input = new InputService();
+    public final InputService input;
     private Location location = Location.MAIN;
     private final ResourceStorage storage;
     private final TestService testService;
     public final OutputService printer;
     private final TheoryService theoryService;
     public SettingsService settings;
+    private final TelegramButtons buttons = new TelegramButtons();
 
-    public Bot(ResourceStorage storage) {
+    public Bot(ResourceStorage storage, OutputService outputService, InputService inputService) {
         this.storage = storage;
-        printer = new OutputService(storage);
+        printer = outputService;
+        this.input = inputService;
         settings = new SettingsService(printer);
-        testService = new TestService(printer, input, storage, settings);
+        testService = new TestService(printer, input, storage, settings, buttons);
         theoryService = new TheoryService(printer, input);
     }
 
@@ -50,7 +53,9 @@ public class Bot implements Runnable {
                 location = Location.JS;
                 break;
             case "travelToTheory":
+                location = Location.THEORY;
                 theoryService.startTheory();
+                location = Location.MAIN;
                 break;
             case "travelToMATH":
                 location = Location.MATH;
@@ -69,7 +74,7 @@ public class Bot implements Runnable {
             case "repeatON", "repeatOFF", "repeatSolvedON",
                  "repeatSolvedOFF", "showAnswerON", "showAnswerOFF",
                  "showExplanationON", "showExplanationOFF":
-                settings.SettingsChanger(command);
+                settings.settingsChanger(command);
                 break;
             case "toMenu":
                 location = Location.MAIN;
@@ -100,22 +105,31 @@ public class Bot implements Runnable {
     private void defineButtons() {
         switch (location) {
             case MAIN:
-                input.defineButtons("JavaScript", "Высшая математика", "/help");
+                buttons.set("JavaScript", "Высшая математика", "Настройки", "/help");
                 break;
             case MATH:
             case JS:
-                input.defineButtons("Вопрос", "Назад", "/help");
+                buttons.set("Вопрос", "Назад", "/help");
+                break;
+            case THEORY:
+                buttons.set("1", "2", "3", "back");
+                break;
+            case SETTINGS:
+                buttons.set("repeat " + toONorOFF(!settings.getRepeatQuestions()),
+                        "repeatSolved " + toONorOFF(!settings.getRepeatSolved()),
+                        "showAnswer " + toONorOFF(!settings.getShowAnswer()),
+                        "showExplanation " + toONorOFF(!settings.getShowExplanation()),
+                        "Назад");
                 break;
         }
     }
 
-    public Location getLocation() {
-        return location;
+    public String[] getButtons() {
+        return buttons.getButtons();
     }
 
-    public void consoleModeDisable() {
-        printer.consoleMode = false;
-        input.consoleMode = false;
+    public Location getLocation() {
+        return location;
     }
 
     public String toONorOFF(boolean bool) {

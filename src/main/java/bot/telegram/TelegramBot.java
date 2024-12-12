@@ -1,7 +1,6 @@
 package bot.telegram;
 
-import bot.console.Bot;
-import bot.console.ResourceStorage;
+import bot.console.*;
 import org.telegram.telegrambots.bots.TelegramLongPollingBot;
 import org.telegram.telegrambots.meta.api.methods.send.SendMessage;
 import org.telegram.telegrambots.meta.api.objects.Update;
@@ -15,8 +14,6 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
-
-import static java.lang.Math.ceil;
 
 public class TelegramBot extends TelegramLongPollingBot {
 
@@ -36,8 +33,6 @@ public class TelegramBot extends TelegramLongPollingBot {
 
     @Override
     public void onUpdateReceived(Update update) {
-        String currentAnswer;
-
         if (update.hasMessage() && update.getMessage().hasText()) {
             String messageText = update.getMessage().getText();
             long chatId = update.getMessage().getChatId();
@@ -54,20 +49,23 @@ public class TelegramBot extends TelegramLongPollingBot {
                 users.get(chatId).input.addToQueue(messageText);
             }
 
-            currentAnswer = users.get(chatId).printer.getAllOutput();
+            String currentAnswer = users.get(chatId).printer.getAllOutput();
 
             sendMessage(chatId, currentAnswer);
 
-            if (currentAnswer.equals("Пока-пока!")) {
+            if (currentAnswer.equals("Пока-пока!\n")) {
                 users.remove(chatId);
             }
         }
     }
 
     private void startConversation(Long chatId) {
-        final Bot bot = new Bot(storage);
+        final OutputService outputService = new NonConsoleOutputService(storage);
+        final InputService inputService = new NonConsoleInputService();
+
+        final Bot bot = new Bot(storage, outputService, inputService);
         users.put(chatId, bot);
-        bot.consoleModeDisable();
+
         new Thread(bot).start();
     }
 
@@ -76,7 +74,7 @@ public class TelegramBot extends TelegramLongPollingBot {
         sendMessage.setChatId(String.valueOf(chatId));
         sendMessage.setText(textToSend);
 
-        setButtons(sendMessage, (users.get(chatId).input.getButtons()));
+        setButtons(sendMessage, (users.get(chatId).getButtons()));
 
         try {
             execute(sendMessage);
