@@ -20,7 +20,7 @@ public class ConsoleOutputService extends OutputService {
     }
 
     public String getAllOutput() {
-        System.out.print("getAllOutPut не доступнен в консольном режиме");
+        System.out.print("метод getAllOutput не доступнен в консольном режиме");
         return null;
     }
 }

@@ -15,8 +15,6 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-import static java.lang.Math.ceil;
-
 public class TelegramBot extends TelegramLongPollingBot {
 
     private final BotConfig botConfig = new BotConfig();
@@ -63,8 +61,9 @@ public class TelegramBot extends TelegramLongPollingBot {
 
     private void startConversation(Long chatId) {
         final OutputService outputService = new NonConsoleOutputService(storage);
-        final Bot bot = new Bot(storage, outputService);
-        bot.input.consoleMode = false;
+        final InputService inputService = new NonConsoleInputService();
+
+        final Bot bot = new Bot(storage, outputService, inputService);
         users.put(chatId, bot);
 
         new Thread(bot).start();
@@ -75,7 +74,7 @@ public class TelegramBot extends TelegramLongPollingBot {
         sendMessage.setChatId(String.valueOf(chatId));
         sendMessage.setText(textToSend);
 
-        setButtons(sendMessage, (users.get(chatId).input.getButtons()));
+        setButtons(sendMessage, (users.get(chatId).getButtons()));
 
         try {
             execute(sendMessage);
