@@ -1,5 +1,10 @@
 package bot.console;
 
+import model.Location;
+
+import java.util.HashMap;
+import java.util.Map;
+
 public class SettingsService {
 
     private boolean repeatQuestions = true;
@@ -7,47 +12,60 @@ public class SettingsService {
     private boolean showAnswer = true;
     private boolean showExplanation = false;
     private final OutputService printer;
+    private final Map<String, Runnable> settingMap;
 
-    public SettingsService(OutputService printer) {
+    public SettingsService(OutputService printer)
+    {
         this.printer = printer;
+        settingMap = new HashMap<>();
     }
 
     public void settingsChanger(String command) {
-        switch (command) {
-            case "repeatON":
-                repeatQuestions = true;
-                printer.println("встречавшиеся вопросы доступны");
-                break;
-            case "repeatOFF":
-                repeatQuestions = false;
-                printer.println("встречавшиеся вопросы скрыты");
-                break;
-            case "repeatSolvedON":
-                repeatSolved = true;
-                printer.println("верно решенные вопросы доступны");
-                break;
-            case "repeatSolvedOFF":
-                repeatSolved = false;
-                printer.println("верно решенные вопросы скрыты");
-                break;
-            case "showAnswerON":
-                showAnswer = true;
-                printer.println("при неверном решении виден ответ");
-                break;
-            case "showAnswerOFF":
-                showAnswer = false;
-                printer.println("при неверном решении ответ не выводится");
-                break;
-            case "showExplanationON":
-                showExplanation = true;
-                printer.println("при неверном решении выводится объяснение");
-                break;
-            case "showExplanationOFF":
-                showExplanation = false;
-                printer.println("при неверном решении объяснения не будет");
-                break;
-            default:
-        }
+        fillSettingMap();
+
+        if (settingMap.containsKey(command)) { settingMap.get(command).run(); }
+    }
+
+    private void fillSettingMap(){
+        settingMap.put("repeatON", () -> {
+            repeatQuestions = true;
+            printer.println("встречавшиеся вопросы доступны");
+        });
+
+        settingMap.put("repeatOFF", () -> {
+            repeatQuestions = false;
+            printer.println("встречавшиеся вопросы скрыты");
+        });
+
+        settingMap.put("repeatSolvedON", () -> {
+            repeatSolved = true;
+            printer.println("верно решенные вопросы доступны");
+        });
+
+        settingMap.put("repeatSolvedOFF", () -> {
+            repeatSolved = false;
+            printer.println("верно решенные вопросы скрыты");
+        });
+
+        settingMap.put("showAnswerON", () -> {
+            showAnswer = true;
+            printer.println("при неверном решении виден ответ");
+        });
+
+        settingMap.put("showAnswerOFF", () -> {
+            showAnswer = false;
+            printer.println("при неверном решении ответ не выводится");
+        });
+
+        settingMap.put("showExplanationON", () -> {
+            showExplanation = true;
+            printer.println("при неверном решении выводится объяснение");
+        });
+
+        settingMap.put("showExplanationOFF", () -> {
+            showExplanation = false;
+            printer.println("при неверном решении объяснения не будет");
+        });
     }
 
     public boolean getRepeatQuestions() {
