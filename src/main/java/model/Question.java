@@ -2,9 +2,6 @@ package model;
 
 import java.util.Random;
 
-import static utils.MyUtils.getRandom;
-
-
 public class Question {
     private String body;
     private String[] answers;
@@ -13,10 +10,10 @@ public class Question {
     private int countOfAnswers;
     private String explanation; // в процессе
 
-    public void shuffleAnswers() {
-        Random rnd = new Random();
+    public void shuffleAnswers(Random random) {
+
         for (int i = answers.length - 1; i > 0; i--) {
-            int index = getRandom(0, i);
+            int index = random.nextInt(i);
 
             String temp = answers[index];
             answers[index] = answers[i];
