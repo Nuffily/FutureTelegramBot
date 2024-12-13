@@ -2,21 +2,18 @@ package model;
 
 import java.util.Random;
 
-import static utils.MyUtils.getRandom;
-
-
 public class Question {
     private String body;
     private String[] answers;
     private boolean[] isCorrect;
     private int number;
     private int countOfAnswers;
-    private String explanation; // в процессе
+    private String explanation;
 
-    public void shuffleAnswers() {
-        Random rnd = new Random();
+    public void shuffleAnswers(Random random) {
+
         for (int i = answers.length - 1; i > 0; i--) {
-            int index = getRandom(0, i);
+            int index = random.nextInt(i);
 
             String temp = answers[index];
             answers[index] = answers[i];

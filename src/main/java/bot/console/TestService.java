@@ -5,14 +5,14 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 
 import java.io.File;
 import java.io.IOException;
-import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.Random;
+import java.util.ArrayList;
 
 import model.Location;
 import model.Question;
-import utils.MyUtils;
 
 public class TestService {
     private final Map<Location, Question[]> questions;
@@ -22,15 +22,17 @@ public class TestService {
     private final ResourceStorage storage;
     private final SettingsService settings;
     private final TelegramButtons buttons;
+    private final Random random;
     private Question lastQuestion;
 
-    public TestService(OutputService printer, InputService inputService,
-                       ResourceStorage storage, SettingsService settings, TelegramButtons buttons) {
+    public TestService(OutputService printer, InputService inputService, ResourceStorage storage,
+                       SettingsService settings, TelegramButtons buttons, Random random) {
         this.printer = printer;
         this.input = inputService;
         this.storage = storage;
         this.settings = settings;
         this.buttons = buttons;
+        this.random = random;
 
         questions = new HashMap<>();
         questions.put(Location.JS, importQuestions("src/main/resources/QuestionsJS.json"));
@@ -57,7 +59,7 @@ public class TestService {
 
         Question question = getQuestion(location);
 
-        question.shuffleAnswers();
+        question.shuffleAnswers(random);
         defineButtons(question);
 
         printer.print(question.getBody() + "\n-------------------------------\n"
@@ -166,13 +168,8 @@ public class TestService {
 
         List<Integer> listQuestions = new ArrayList<>();
 
-        if (!settings.getRepeatSolved()) {
-            for (int i = 1; i <= questions.get(location).length; i++) {
-                if (!statistics.get(location).getQuestionPassed()[i]) {
-                    listQuestions.add(i);
-                }
-            }
-        } else if (!settings.getRepeatQuestions()) {
+
+        if (!settings.getRepeatQuestions()) {
             for (int i = 1; i <= questions.get(location).length; i++) {
                 if (statistics.get(location).getQuestionsAttempts()[i] == 0) {
                     listQuestions.add(i);
@@ -180,10 +177,18 @@ public class TestService {
             }
         }
 
+        if (!settings.getRepeatSolved() && listQuestions.isEmpty()) {
+            for (int i = 1; i <= questions.get(location).length; i++) {
+                if (!statistics.get(location).getQuestionPassed()[i]) {
+                    listQuestions.add(i);
+                }
+            }
+        }
+
         if (!listQuestions.isEmpty()) {
-            return questions.get(location)[listQuestions.get(MyUtils.getRandom(0, listQuestions.size())) - 1];
+            return questions.get(location)[listQuestions.get(random.nextInt(listQuestions.size())) - 1];
         } else {
-            return MyUtils.getRandomElement(questions.get(location));
+            return questions.get(location)[random.nextInt(questions.get(location).length)];
         }
     }
 }

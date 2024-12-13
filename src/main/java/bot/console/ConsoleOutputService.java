@@ -1,14 +1,15 @@
 package bot.console;
 
-import utils.MyUtils;
-
-import java.util.LinkedList;
-import java.util.Queue;
+import java.util.Random;
 
 public class ConsoleOutputService extends OutputService {
 
     public ConsoleOutputService(ResourceStorage storage) {
         super(storage);
+    }
+
+    public ConsoleOutputService(ResourceStorage storage, Random random) {
+        super(storage, random);
     }
 
     public <T> void println(T quote) {

@@ -2,12 +2,17 @@ package bot.console;
 
 import java.util.LinkedList;
 import java.util.Queue;
+import java.util.Random;
 
-public class NonConsoleOutputService extends OutputService{
+public class NonConsoleOutputService extends OutputService {
     private final Queue<String> que = new LinkedList<>();
 
     public NonConsoleOutputService(ResourceStorage storage) {
         super(storage);
+    }
+
+    public NonConsoleOutputService(ResourceStorage storage, Random random) {
+        super(storage, random);
     }
 
     public <T> void println(T quote) {
@@ -22,7 +27,7 @@ public class NonConsoleOutputService extends OutputService{
         StringBuilder result = new StringBuilder();
 
         try {
-            Thread.sleep(10);
+            Thread.sleep(50);
         } catch (InterruptedException e) {
             throw new RuntimeException(e);
         }

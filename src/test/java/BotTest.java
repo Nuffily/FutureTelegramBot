@@ -1,25 +1,27 @@
 import bot.console.Bot;
-import bot.console.NonConsoleOutputService;
+import bot.console.InputService;
 import bot.console.OutputService;
 import bot.console.ResourceStorage;
+import bot.console.NonConsoleOutputService;
+import bot.console.NonConsoleInputService;
+
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
-import utils.MyUtils;
+
+import java.util.Random;
 
 
 public class BotTest {
 
     private final ResourceStorage storage = new ResourceStorage();
-    private final OutputService outputService = new NonConsoleOutputService(storage);
-    private final Bot bot = new Bot(storage, outputService);
+    private final OutputService outputService = new NonConsoleOutputService(storage, new Random(1));
+    private final InputService inputService = new NonConsoleInputService();
+    private final Bot bot = new Bot(storage, outputService, inputService);
 
 
     @BeforeEach
     public void init() {
-        MyUtils.random.setSeed(1);
-
-        bot.input.consoleMode = false;
 
         new Thread(bot).start();
 

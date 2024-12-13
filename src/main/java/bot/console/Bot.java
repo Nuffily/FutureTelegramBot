@@ -18,7 +18,7 @@ public class Bot implements Runnable {
         printer = outputService;
         this.input = inputService;
         settings = new SettingsService(printer);
-        testService = new TestService(printer, input, storage, settings, buttons);
+        testService = new TestService(printer, input, storage, settings, buttons, outputService.getRandom());
         theoryService = new TheoryService(printer, input);
     }
 
