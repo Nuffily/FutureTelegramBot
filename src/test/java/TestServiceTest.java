@@ -1,4 +1,9 @@
-import bot.console.*;
+import bot.console.Bot;
+import bot.console.InputService;
+import bot.console.OutputService;
+import bot.console.ResourceStorage;
+import bot.console.NonConsoleOutputService;
+import bot.console.NonConsoleInputService;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
@@ -124,11 +129,11 @@ public class TestServiceTest {
 
 
         assertEquals("""
-                Вообще ни разу, по новой
-                Верным был вариант 3
-                -------------------------------
-                Массив содержит три элемента, поэтому его длина равна 3.
-                """
+                        Вообще ни разу, по новой
+                        Верным был вариант 3
+                        -------------------------------
+                        Массив содержит три элемента, поэтому его длина равна 3.
+                        """
                 , bot.printer.getAllOutput());
     }
 
@@ -145,9 +150,9 @@ public class TestServiceTest {
 
 
         assertEquals("""
-                Вообще ни разу, по новой
-                Верным был вариант 3
-                """
+                        Вообще ни разу, по новой
+                        Верным был вариант 3
+                        """
                 , bot.printer.getAllOutput());
     }
 
@@ -164,8 +169,8 @@ public class TestServiceTest {
 
 
         assertEquals("""
-                Вообще ни разу, по новой
-                """
+                        Вообще ни разу, по новой
+                        """
                 , bot.printer.getAllOutput());
     }
 

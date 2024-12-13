@@ -1,4 +1,12 @@
-import bot.console.*;
+import bot.console.Bot;
+import bot.console.InputService;
+import bot.console.OutputService;
+import bot.console.ResourceStorage;
+import bot.console.TheoryService;
+import bot.console.NonConsoleOutputService;
+import bot.console.NonConsoleInputService;
+import bot.console.ConsoleOutputService;
+
 import model.Theory;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
@@ -25,9 +33,7 @@ public class TheoryServiceTest {
 
         bot.input.addToQueue("js");
         bot.printer.getAllOutput();
-
     }
-
 
     @Test
     public void testDisplayAvailableTheories() {
@@ -55,7 +61,6 @@ public class TheoryServiceTest {
 
         assertEquals(expected, bot.printer.getAllOutput());
     }
-
 
     @Test
     public void testDisplaySection() {
@@ -113,6 +118,4 @@ public class TheoryServiceTest {
 
         assertEquals(expected, bot.printer.getAllOutput());
     }
-
-
 }

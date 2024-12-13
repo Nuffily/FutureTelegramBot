@@ -8,7 +8,7 @@ public class Question {
     private boolean[] isCorrect;
     private int number;
     private int countOfAnswers;
-    private String explanation; // в процессе
+    private String explanation;
 
     public void shuffleAnswers(Random random) {
 

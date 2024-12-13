@@ -1,4 +1,8 @@
-import bot.console.*;
+import bot.console.OutputService;
+import bot.console.QuestionStatistics;
+import bot.console.ResourceStorage;
+import bot.console.NonConsoleOutputService;
+
 import com.fasterxml.jackson.databind.ObjectMapper;
 import model.Question;
 import org.junit.jupiter.api.BeforeEach;

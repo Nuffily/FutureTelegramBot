@@ -4,7 +4,7 @@ import java.util.LinkedList;
 import java.util.Queue;
 import java.util.Random;
 
-public class NonConsoleOutputService extends OutputService{
+public class NonConsoleOutputService extends OutputService {
     private final Queue<String> que = new LinkedList<>();
 
     public NonConsoleOutputService(ResourceStorage storage) {
