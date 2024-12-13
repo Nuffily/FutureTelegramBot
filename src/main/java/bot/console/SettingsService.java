@@ -18,11 +18,10 @@ public class SettingsService {
     {
         this.printer = printer;
         settingMap = new HashMap<>();
+        fillSettingMap();
     }
 
     public void settingsChanger(String command) {
-        fillSettingMap();
-
         if (settingMap.containsKey(command)) { settingMap.get(command).run(); }
     }
 

@@ -25,6 +25,7 @@ public class Bot implements Runnable {
         testService = new TestService(printer, input, storage, settings, buttons, outputService.getRandom());
         theoryService = new TheoryService(printer, input);
         commandMap = new HashMap<>();
+        fillCommandMap();
     }
 
 
@@ -53,8 +54,6 @@ public class Bot implements Runnable {
     }
 
     private void execute(String command) {
-        fillCommandMap();
-
         if (commandMap.containsKey(command)) { commandMap.get(command).run(); }
     }
 
