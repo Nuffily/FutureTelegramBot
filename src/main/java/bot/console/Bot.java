@@ -3,6 +3,9 @@ package bot.console;
 import bot.telegram.TelegramButtons;
 import model.Location;
 
+import java.util.HashMap;
+import java.util.Map;
+
 public class Bot implements Runnable {
     public final InputService input;
     private Location location = Location.MAIN;
@@ -12,6 +15,7 @@ public class Bot implements Runnable {
     private final TheoryService theoryService;
     public SettingsService settings;
     private final TelegramButtons buttons = new TelegramButtons();
+    private final Map<String, Runnable> commandMap;
 
     public Bot(ResourceStorage storage, OutputService outputService, InputService inputService) {
         this.storage = storage;
@@ -20,6 +24,7 @@ public class Bot implements Runnable {
         settings = new SettingsService(printer);
         testService = new TestService(printer, input, storage, settings, buttons, outputService.getRandom());
         theoryService = new TheoryService(printer, input);
+        commandMap = new HashMap<>();
     }
 
 
@@ -48,58 +53,66 @@ public class Bot implements Runnable {
     }
 
     private void execute(String command) {
-        switch (command) {
-            case "travelToJS":
-                location = Location.JS;
-                break;
-            case "travelToTheory":
-                location = Location.THEORY;
-                theoryService.startTheory();
-                location = Location.MAIN;
-                break;
-            case "travelToMATH":
-                location = Location.MATH;
-                break;
-            case "travelToSettings":
-                location = Location.SETTINGS;
-                printer.println("1. repeat (" + toONorOFF(settings.getRepeatQuestions()) + ") - выводить/скрыть "
-                        + "уже встречавшиеся вопросы\n"
-                        + "2. repeatSolved (" + toONorOFF(settings.getRepeatSolved()) + ") - выводить/скрыть "
-                        + "верно решенные вопросы\n"
-                        + "3. showAnswer (" + toONorOFF(settings.getShowAnswer()) + ") - выводить/не выводить "
-                        + "ответы при неверном ответе на вопрос\n"
-                        + "4. showExplanation (" + toONorOFF(settings.getShowExplanation()) + ") - выводить/не "
-                        + "выводить объяснение ответа при неверном ответе на вопрос");
-                break;
-            case "repeatON", "repeatOFF", "repeatSolvedON",
-                 "repeatSolvedOFF", "showAnswerON", "showAnswerOFF",
-                 "showExplanationON", "showExplanationOFF":
-                settings.settingsChanger(command);
-                break;
-            case "toMenu":
-                location = Location.MAIN;
-                break;
-            case "explanationQuestion":
-                testService.showLastExplanation();
-                break;
-            case "exit":
-                location = Location.EXIT;
-                printer.println("Пока-пока!");
-                break;
-            case "startQuestion":
-                testService.questionAnswering(location);
-                break;
-            case "showStats":
-                testService.printStats(location);
-                break;
-            case "uploadStats":
-                testService.uploadStats(location, "src/main/resources/Statistics");
-                break;
-            case "saveStats":
-                testService.saveStats(location, "src/main/resources/Statistics");
-                break;
-            default:
-        }
+        fillCommandMap();
+
+        if (commandMap.containsKey(command)) { commandMap.get(command).run(); }
+    }
+
+    private void fillCommandMap(){
+        commandMap.put("travelToJS", () -> location = Location.JS);
+
+        commandMap.put("travelToTheory", () -> {
+            location = Location.THEORY;
+            theoryService.startTheory();
+            location = Location.MAIN;
+        });
+
+        commandMap.put("travelToMATH", () -> location = Location.MATH);
+
+        commandMap.put("travelToSettings", () -> {
+            location = Location.SETTINGS;
+            printer.println("1. repeat (" + toONorOFF(settings.getRepeatQuestions()) + ") - выводить/скрыть "
+                    + "уже встречавшиеся вопросы\n"
+                    + "2. repeatSolved (" + toONorOFF(settings.getRepeatSolved()) + ") - выводить/скрыть "
+                    + "верно решенные вопросы\n"
+                    + "3. showAnswer (" + toONorOFF(settings.getShowAnswer()) + ") - выводить/не выводить "
+                    + "ответы при неверном ответе на вопрос\n"
+                    + "4. showExplanation (" + toONorOFF(settings.getShowExplanation()) + ") - выводить/не "
+                    + "выводить объяснение ответа при неверном ответе на вопрос");
+        });
+
+        commandMap.put("repeatON", () -> settings.settingsChanger("repeatON"));
+
+        commandMap.put("repeatOFF", () -> settings.settingsChanger("repeatOFF"));
+
+        commandMap.put("repeatSolvedON", () -> settings.settingsChanger("repeatSolvedON"));
+
+        commandMap.put("repeatSolvedOFF", () -> settings.settingsChanger("repeatSolvedOFF"));
+
+        commandMap.put("showAnswerON", () -> settings.settingsChanger("showAnswerON"));
+
+        commandMap.put("showAnswerOFF", () -> settings.settingsChanger("showAnswerOFF"));
+
+        commandMap.put("showExplanationON", () -> settings.settingsChanger("showExplanationON"));
+
+        commandMap.put("showExplanationOFF", () -> settings.settingsChanger("showExplanationOFF"));
+
+        commandMap.put("toMenu", () -> location = Location.MAIN);
+
+        commandMap.put("explanationQuestion", testService::showLastExplanation);
+
+        commandMap.put("exit", () -> {
+            location = Location.EXIT;
+            printer.println("Пока-пока!");
+        });
+
+        commandMap.put("startQuestion", () -> testService.questionAnswering(location));
+
+        commandMap.put("showStats", () -> testService.printStats(location));
+
+        commandMap.put("uploadStats", () -> testService.uploadStats(location, "src/main/resources/Statistics"));
+
+        commandMap.put("saveStats", () -> testService.saveStats(location, "src/main/resources/Statistics"));
     }
 
     private void defineButtons() {
