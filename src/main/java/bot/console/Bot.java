@@ -24,8 +24,7 @@ public class Bot implements Runnable {
         settings = new SettingsService(printer);
         testService = new TestService(printer, input, storage, settings, buttons, outputService.getRandom());
         theoryService = new TheoryService(printer, input);
-        commandMap = new HashMap<>();
-        fillCommandMap();
+        commandMap = createCommandMap();
     }
 
 
@@ -57,18 +56,20 @@ public class Bot implements Runnable {
         if (commandMap.containsKey(command)) { commandMap.get(command).run(); }
     }
 
-    private void fillCommandMap(){
-        commandMap.put("travelToJS", () -> location = Location.JS);
+    private Map <String, Runnable> createCommandMap(){
+        Map<String, Runnable> Map = new HashMap<>();
 
-        commandMap.put("travelToTheory", () -> {
+        Map.put("travelToJS", () -> location = Location.JS);
+
+        Map.put("travelToTheory", () -> {
             location = Location.THEORY;
             theoryService.startTheory();
             location = Location.MAIN;
         });
 
-        commandMap.put("travelToMATH", () -> location = Location.MATH);
+        Map.put("travelToMATH", () -> location = Location.MATH);
 
-        commandMap.put("travelToSettings", () -> {
+        Map.put("travelToSettings", () -> {
             location = Location.SETTINGS;
             printer.println("1. repeat (" + toONorOFF(settings.getRepeatQuestions()) + ") - выводить/скрыть "
                     + "уже встречавшиеся вопросы\n"
@@ -80,38 +81,40 @@ public class Bot implements Runnable {
                     + "выводить объяснение ответа при неверном ответе на вопрос");
         });
 
-        commandMap.put("repeatON", () -> settings.settingsChanger("repeatON"));
+        Map.put("repeatON", () -> settings.settingsChanger("repeatON"));
 
-        commandMap.put("repeatOFF", () -> settings.settingsChanger("repeatOFF"));
+        Map.put("repeatOFF", () -> settings.settingsChanger("repeatOFF"));
 
-        commandMap.put("repeatSolvedON", () -> settings.settingsChanger("repeatSolvedON"));
+        Map.put("repeatSolvedON", () -> settings.settingsChanger("repeatSolvedON"));
 
-        commandMap.put("repeatSolvedOFF", () -> settings.settingsChanger("repeatSolvedOFF"));
+        Map.put("repeatSolvedOFF", () -> settings.settingsChanger("repeatSolvedOFF"));
 
-        commandMap.put("showAnswerON", () -> settings.settingsChanger("showAnswerON"));
+        Map.put("showAnswerON", () -> settings.settingsChanger("showAnswerON"));
 
-        commandMap.put("showAnswerOFF", () -> settings.settingsChanger("showAnswerOFF"));
+        Map.put("showAnswerOFF", () -> settings.settingsChanger("showAnswerOFF"));
 
-        commandMap.put("showExplanationON", () -> settings.settingsChanger("showExplanationON"));
+        Map.put("showExplanationON", () -> settings.settingsChanger("showExplanationON"));
 
-        commandMap.put("showExplanationOFF", () -> settings.settingsChanger("showExplanationOFF"));
+        Map.put("showExplanationOFF", () -> settings.settingsChanger("showExplanationOFF"));
 
-        commandMap.put("toMenu", () -> location = Location.MAIN);
+        Map.put("toMenu", () -> location = Location.MAIN);
 
-        commandMap.put("explanationQuestion", testService::showLastExplanation);
+        Map.put("explanationQuestion", testService::showLastExplanation);
 
-        commandMap.put("exit", () -> {
+        Map.put("exit", () -> {
             location = Location.EXIT;
             printer.println("Пока-пока!");
         });
 
-        commandMap.put("startQuestion", () -> testService.questionAnswering(location));
+        Map.put("startQuestion", () -> testService.questionAnswering(location));
 
-        commandMap.put("showStats", () -> testService.printStats(location));
+        Map.put("showStats", () -> testService.printStats(location));
 
-        commandMap.put("uploadStats", () -> testService.uploadStats(location, "src/main/resources/Statistics"));
+        Map.put("uploadStats", () -> testService.uploadStats(location, "src/main/resources/Statistics"));
 
-        commandMap.put("saveStats", () -> testService.saveStats(location, "src/main/resources/Statistics"));
+        Map.put("saveStats", () -> testService.saveStats(location, "src/main/resources/Statistics"));
+
+        return Map;
     }
 
     private void defineButtons() {

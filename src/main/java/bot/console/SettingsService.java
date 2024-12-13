@@ -17,54 +17,57 @@ public class SettingsService {
     public SettingsService(OutputService printer)
     {
         this.printer = printer;
-        settingMap = new HashMap<>();
-        fillSettingMap();
+        settingMap = createSettingMap();
     }
 
     public void settingsChanger(String command) {
         if (settingMap.containsKey(command)) { settingMap.get(command).run(); }
     }
 
-    private void fillSettingMap(){
-        settingMap.put("repeatON", () -> {
+    private Map<String, Runnable> createSettingMap(){
+        Map<String, Runnable> Map = new HashMap<>();
+
+        Map.put("repeatON", () -> {
             repeatQuestions = true;
             printer.println("встречавшиеся вопросы доступны");
         });
 
-        settingMap.put("repeatOFF", () -> {
+        Map.put("repeatOFF", () -> {
             repeatQuestions = false;
             printer.println("встречавшиеся вопросы скрыты");
         });
 
-        settingMap.put("repeatSolvedON", () -> {
+        Map.put("repeatSolvedON", () -> {
             repeatSolved = true;
             printer.println("верно решенные вопросы доступны");
         });
 
-        settingMap.put("repeatSolvedOFF", () -> {
+        Map.put("repeatSolvedOFF", () -> {
             repeatSolved = false;
             printer.println("верно решенные вопросы скрыты");
         });
 
-        settingMap.put("showAnswerON", () -> {
+        Map.put("showAnswerON", () -> {
             showAnswer = true;
             printer.println("при неверном решении виден ответ");
         });
 
-        settingMap.put("showAnswerOFF", () -> {
+        Map.put("showAnswerOFF", () -> {
             showAnswer = false;
             printer.println("при неверном решении ответ не выводится");
         });
 
-        settingMap.put("showExplanationON", () -> {
+        Map.put("showExplanationON", () -> {
             showExplanation = true;
             printer.println("при неверном решении выводится объяснение");
         });
 
-        settingMap.put("showExplanationOFF", () -> {
+        Map.put("showExplanationOFF", () -> {
             showExplanation = false;
             printer.println("при неверном решении объяснения не будет");
         });
+
+        return Map;
     }
 
     public boolean getRepeatQuestions() {
