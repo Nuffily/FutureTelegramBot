@@ -57,19 +57,19 @@ public class Bot implements Runnable {
     }
 
     private Map <String, Runnable> createCommandMap(){
-        Map<String, Runnable> Map = new HashMap<>();
+        Map<String, Runnable> map = new HashMap<>();
 
-        Map.put("travelToJS", () -> location = Location.JS);
+        map.put("travelToJS", () -> location = Location.JS);
 
-        Map.put("travelToTheory", () -> {
+        map.put("travelToTheory", () -> {
             location = Location.THEORY;
             theoryService.startTheory();
             location = Location.MAIN;
         });
 
-        Map.put("travelToMATH", () -> location = Location.MATH);
+        map.put("travelToMATH", () -> location = Location.MATH);
 
-        Map.put("travelToSettings", () -> {
+        map.put("travelToSettings", () -> {
             location = Location.SETTINGS;
             printer.println("1. repeat (" + toONorOFF(settings.getRepeatQuestions()) + ") - выводить/скрыть "
                     + "уже встречавшиеся вопросы\n"
@@ -81,40 +81,40 @@ public class Bot implements Runnable {
                     + "выводить объяснение ответа при неверном ответе на вопрос");
         });
 
-        Map.put("repeatON", () -> settings.settingsChanger("repeatON"));
+        map.put("repeatON", () -> settings.settingsChanger("repeatON"));
 
-        Map.put("repeatOFF", () -> settings.settingsChanger("repeatOFF"));
+        map.put("repeatOFF", () -> settings.settingsChanger("repeatOFF"));
 
-        Map.put("repeatSolvedON", () -> settings.settingsChanger("repeatSolvedON"));
+        map.put("repeatSolvedON", () -> settings.settingsChanger("repeatSolvedON"));
 
-        Map.put("repeatSolvedOFF", () -> settings.settingsChanger("repeatSolvedOFF"));
+        map.put("repeatSolvedOFF", () -> settings.settingsChanger("repeatSolvedOFF"));
 
-        Map.put("showAnswerON", () -> settings.settingsChanger("showAnswerON"));
+        map.put("showAnswerON", () -> settings.settingsChanger("showAnswerON"));
 
-        Map.put("showAnswerOFF", () -> settings.settingsChanger("showAnswerOFF"));
+        map.put("showAnswerOFF", () -> settings.settingsChanger("showAnswerOFF"));
 
-        Map.put("showExplanationON", () -> settings.settingsChanger("showExplanationON"));
+        map.put("showExplanationON", () -> settings.settingsChanger("showExplanationON"));
 
-        Map.put("showExplanationOFF", () -> settings.settingsChanger("showExplanationOFF"));
+        map.put("showExplanationOFF", () -> settings.settingsChanger("showExplanationOFF"));
 
-        Map.put("toMenu", () -> location = Location.MAIN);
+        map.put("toMenu", () -> location = Location.MAIN);
 
-        Map.put("explanationQuestion", testService::showLastExplanation);
+        map.put("explanationQuestion", testService::showLastExplanation);
 
-        Map.put("exit", () -> {
+        map.put("exit", () -> {
             location = Location.EXIT;
             printer.println("Пока-пока!");
         });
 
-        Map.put("startQuestion", () -> testService.questionAnswering(location));
+        map.put("startQuestion", () -> testService.questionAnswering(location));
 
-        Map.put("showStats", () -> testService.printStats(location));
+        map.put("showStats", () -> testService.printStats(location));
 
-        Map.put("uploadStats", () -> testService.uploadStats(location, "src/main/resources/Statistics"));
+        map.put("uploadStats", () -> testService.uploadStats(location, "src/main/resources/Statistics"));
 
-        Map.put("saveStats", () -> testService.saveStats(location, "src/main/resources/Statistics"));
+        map.put("saveStats", () -> testService.saveStats(location, "src/main/resources/Statistics"));
 
-        return Map;
+        return map;
     }
 
     private void defineButtons() {

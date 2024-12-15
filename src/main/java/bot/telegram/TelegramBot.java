@@ -1,6 +1,12 @@
 package bot.telegram;
 
-import bot.console.*;
+import bot.console.Bot;
+import bot.console.InputService;
+import bot.console.OutputService;
+import bot.console.ResourceStorage;
+import bot.console.NonConsoleOutputService;
+import bot.console.NonConsoleInputService;
+
 import org.telegram.telegrambots.bots.TelegramLongPollingBot;
 import org.telegram.telegrambots.meta.api.methods.send.SendMessage;
 import org.telegram.telegrambots.meta.api.objects.Update;
