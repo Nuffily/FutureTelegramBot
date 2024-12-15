@@ -133,8 +133,7 @@ public class TestServiceTest {
                         Верным был вариант 3
                         -------------------------------
                         Массив содержит три элемента, поэтому его длина равна 3.
-                        """
-                , bot.printer.getAllOutput());
+                        """, bot.printer.getAllOutput());
     }
 
     @Test
@@ -152,8 +151,7 @@ public class TestServiceTest {
         assertEquals("""
                         Вообще ни разу, по новой
                         Верным был вариант 3
-                        """
-                , bot.printer.getAllOutput());
+                        """, bot.printer.getAllOutput());
     }
 
     @Test
@@ -170,8 +168,7 @@ public class TestServiceTest {
 
         assertEquals("""
                         Вообще ни разу, по новой
-                        """
-                , bot.printer.getAllOutput());
+                        """, bot.printer.getAllOutput());
     }
 
 }

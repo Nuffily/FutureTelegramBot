@@ -53,10 +53,12 @@ public class Bot implements Runnable {
     }
 
     private void execute(String command) {
-        if (commandMap.containsKey(command)) { commandMap.get(command).run(); }
+        if (commandMap.containsKey(command)) {
+            commandMap.get(command).run();
+        }
     }
 
-    private Map <String, Runnable> createCommandMap(){
+    private Map<String, Runnable> createCommandMap() {
         Map<String, Runnable> map = new HashMap<>();
 
         map.put("travelToJS", () -> location = Location.JS);
