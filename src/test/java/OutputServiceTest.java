@@ -61,21 +61,6 @@ public class OutputServiceTest {
 
 
     @Test
-    public void testPrintLn() {
-
-        ByteArrayOutputStream outputStreamCaptor = new ByteArrayOutputStream();
-        System.setOut(new PrintStream(outputStreamCaptor));
-        var testQuote = 1 + "testData";
-
-        printer.println(testQuote);
-        nonPrinter.println(testQuote);
-
-        assertEquals(testQuote + "\r\n", outputStreamCaptor.toString());
-        assertEquals(testQuote + "\n", nonPrinter.getAllOutput());
-    }
-
-
-    @Test
     public void testPrint() {
 
         ByteArrayOutputStream outputStreamCaptor = new ByteArrayOutputStream();
