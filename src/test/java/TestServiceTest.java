@@ -94,11 +94,10 @@ public class TestServiceTest {
         bot.printer.getAllOutput();
 
         bot.input.addToQueue("explanation");
-        assertEquals("""
-                Правильным ответом был вариант под номером 3 (4 10 18)
-                -------------------------------
-                Каждый шаг цикла увеличивает 'a' и добавляет к 'b' удвоенное значение 'a'. После трех итераций значения b будут: 4, 10, 18.
-                """, bot.printer.getAllOutput());
+        assertEquals(
+                "Правильным ответом был вариант под номером 3 (4 10 18)\n-------------------------------\n"
+                        + "Каждый шаг цикла увеличивает 'a' и добавляет к 'b' удвоенное значение 'a'."
+                        + " После трех итераций значения b будут: 4, 10, 18.\n", bot.printer.getAllOutput());
     }
 
     @Test
@@ -129,11 +128,11 @@ public class TestServiceTest {
 
 
         assertEquals("""
-                        Вообще ни разу, по новой
-                        Верным был вариант 3
-                        -------------------------------
-                        Массив содержит три элемента, поэтому его длина равна 3.
-                        """, bot.printer.getAllOutput());
+                Вообще ни разу, по новой
+                Верным был вариант 3
+                -------------------------------
+                Массив содержит три элемента, поэтому его длина равна 3.
+                """, bot.printer.getAllOutput());
     }
 
     @Test
@@ -149,9 +148,9 @@ public class TestServiceTest {
 
 
         assertEquals("""
-                        Вообще ни разу, по новой
-                        Верным был вариант 3
-                        """, bot.printer.getAllOutput());
+                Вообще ни разу, по новой
+                Верным был вариант 3
+                """, bot.printer.getAllOutput());
     }
 
     @Test
@@ -167,8 +166,8 @@ public class TestServiceTest {
 
 
         assertEquals("""
-                        Вообще ни разу, по новой
-                        """, bot.printer.getAllOutput());
+                Вообще ни разу, по новой
+                """, bot.printer.getAllOutput());
     }
 
 }
