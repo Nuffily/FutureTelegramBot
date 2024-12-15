@@ -56,6 +56,7 @@ public class TheoryService {
             printer.println(randomTheory.getTitle());
             printer.println(randomTheory.getSections().get(sectionIndex).getContent());
             printer.println("--------------------------");
+            printer.println("-Для выхода введите back--");
 
             String userInput = input.getInput();
             if ("back".equalsIgnoreCase(userInput)) {
@@ -70,8 +71,13 @@ public class TheoryService {
             printer.println(Integer.parseInt(input) );
             return Integer.parseInt(input);
         } catch (NumberFormatException e) {
-            printer.println("Некорректный ввод: ");
-            return null; // Вернуть null вместо исключения
+            if (input.equalsIgnoreCase("back")){
+                return null;
+            }
+            else{
+                printer.println("Некорректный ввод: ");
+                return null;
+            }
         }
     }
 
@@ -81,7 +87,7 @@ public class TheoryService {
     }
 
     private void printTheoryMenu() {
-        printer.println("Вы в меню теории! \nВведите rand для получения рандомной теории, tstat для статистики или tt для списка теорий.");
+        printer.println("Вы в меню теории! \nВведите rand для получения рандомной теории \n stat для статистики \n get_theory для списка теорий.");
     }
 
 
@@ -93,7 +99,7 @@ public class TheoryService {
                 printTheoryMenu();
                 continue;
             }
-            if (userInput.equalsIgnoreCase("tstat")){
+            if (userInput.equalsIgnoreCase("stat")){
                 printer.println("Вы изучили " + countTheory);
                 printTheoryMenu();
                 continue;
@@ -112,10 +118,7 @@ public class TheoryService {
             } else if ("back".equalsIgnoreCase(userInput)) {
                 printer.println("Выход из меню теорий.");
                 break;
-            } else {
-                printer.println("Некорректный ввод, попробуйте ещё раз.");
             }
-
         }
     }
 
@@ -132,7 +135,7 @@ public class TheoryService {
             String userInput = getTrimmedInput("Введите номер раздела для изучения или 'back' для возврата: ");
             if ("back".equalsIgnoreCase(userInput)) {
                 printer.println("Выходим из раздела.");
-                printer.println("Вы в меню теории! Введите rand для получения рандомной теории или tt для получения списка теории");
+                printer.println("Вы в меню теории! Введите rand для получения рандомной теории \n get_theory для получения списка теории");
 
                 break;
             }
