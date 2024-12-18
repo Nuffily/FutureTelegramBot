@@ -17,7 +17,7 @@ public class SettingsServiceTest {
 
     private final OutputService outputService = new NonConsoleOutputService(storage, new Random(1));
     private final InputService inputService = new NonConsoleInputService();
-    private final Bot bot = new Bot(storage, outputService, inputService);
+    private final Bot bot = new Bot(storage, outputService, inputService, -1);
 
 
     @BeforeEach

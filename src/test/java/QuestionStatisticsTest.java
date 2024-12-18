@@ -4,6 +4,7 @@ import bot.console.ResourceStorage;
 import bot.console.NonConsoleOutputService;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
+import model.Location;
 import model.Question;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
@@ -61,8 +62,8 @@ public class QuestionStatisticsTest {
     @Test
     public void testSaveStats() {
 
-        String testPath = "test.json";
-        statistics.saveStats(testPath);
+        String testPath = "src/test/";
+        statistics.saveStats(testPath, Location.JS);
 
         assertTrue(Files.exists(Path.of(testPath)));
 
@@ -70,7 +71,7 @@ public class QuestionStatisticsTest {
             ObjectMapper objectMapper = new ObjectMapper();
 
             QuestionStatistics statisticsCopy = objectMapper
-                    .readValue(new File(testPath), QuestionStatistics.class);
+                    .readValue(new File(testPath + "StatisticsJS.json"), QuestionStatistics.class);
 
             assertArrayEquals(statistics.getQuestionPassed(),
                     statisticsCopy.getQuestionPassed());
@@ -87,7 +88,7 @@ public class QuestionStatisticsTest {
 
         } finally {
             try {
-                Files.delete(Path.of(testPath));
+                Files.delete(Path.of("src/test/StatisticsJS.json"));
             } catch (IOException e) {
                 System.out.println(e.getMessage());
             }
@@ -97,24 +98,34 @@ public class QuestionStatisticsTest {
     @Test
     public void testUploadStats() {
 
-        String testPath = "test.json";
-        statistics.saveStats(testPath);
+        String testPath = "src/test/";
+        statistics.saveStats(testPath, Location.JS);
 
         QuestionStatistics statisticsCopy = new QuestionStatistics(question, printer);
-        statisticsCopy.uploadStats(testPath);
 
-        assertTrue(Files.exists(Path.of(testPath)));
-        assertEquals(printer.getAllOutput(), "Статистика загружена! "
-                + "Чтобы взгянуть на нее, напиши 'stats'\n");
+        try {
+            statisticsCopy.uploadStats(testPath + "StatisticsJS.json");
 
-        assertArrayEquals(statistics.getQuestionPassed(),
-                statisticsCopy.getQuestionPassed());
-        assertArrayEquals(statistics.getQuestionsAttempts(),
-                statisticsCopy.getQuestionsAttempts());
-        assertEquals(statistics.getCountOfAttemptedQuestions(),
-                statisticsCopy.getCountOfAttemptedQuestions());
-        assertEquals(statistics.getCountOfPassedQuestions(),
-                statisticsCopy.getCountOfPassedQuestions());
+            assertTrue(Files.exists(Path.of(testPath)));
+
+            assertArrayEquals(statistics.getQuestionPassed(),
+                    statisticsCopy.getQuestionPassed());
+            assertArrayEquals(statistics.getQuestionsAttempts(),
+                    statisticsCopy.getQuestionsAttempts());
+            assertEquals(statistics.getCountOfAttemptedQuestions(),
+                    statisticsCopy.getCountOfAttemptedQuestions());
+            assertEquals(statistics.getCountOfPassedQuestions(),
+                    statisticsCopy.getCountOfPassedQuestions());
+
+        } catch (Exception e) {
+            throw new RuntimeException(e);
+        } finally {
+            try {
+                Files.delete(Path.of("src/test/StatisticsJS.json"));
+            } catch (IOException e) {
+                System.out.println(e.getMessage());
+            }
+        }
     }
 
     @Test
@@ -133,9 +144,20 @@ public class QuestionStatisticsTest {
             writer.flush();
 
             QuestionStatistics statisticsCopy = new QuestionStatistics(question, printer);
-            statisticsCopy.uploadStats(testPath);
 
-            assertEquals(printer.getAllOutput(), "Существующая статистика не найдена или повреждена\n");
+            Exception exception = new Exception();
+
+            try {
+                statisticsCopy.uploadStats(testPath);
+            } catch (Exception e) {
+                exception = e;
+            }
+
+            assertEquals("Unexpected character ('G' (code 71)): was expecting comma to separate " +
+                    "Object entries\n" +
+                    " at [Source: REDACTED (`StreamReadFeature.INCLUDE_SOURCE_IN_LOCATION` disabled); " +
+                    "line: 5, column: 41]", exception.getMessage());
+
         } catch (IOException ex) {
             System.out.println(ex.getMessage());
         } finally {

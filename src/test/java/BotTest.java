@@ -17,7 +17,7 @@ public class BotTest {
     private final ResourceStorage storage = new ResourceStorage();
     private final OutputService outputService = new NonConsoleOutputService(storage, new Random(1));
     private final InputService inputService = new NonConsoleInputService();
-    private final Bot bot = new Bot(storage, outputService, inputService);
+    private final Bot bot = new Bot(storage, outputService, inputService, -1);
 
 
     @BeforeEach
@@ -61,6 +61,7 @@ public class BotTest {
                 Команды:
                 quest - чтобы получить вопрос с вариантами ответов
                 stats - посмотреть свою статистику по вопросам
+                reset - сбросить статистику
                 save - сохранить свою статистику
                 upload - загрузить последнюю сохраненую статистику
                 t - страница теории

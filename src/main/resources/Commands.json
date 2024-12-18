@@ -200,6 +200,7 @@
     "inputVariants" : [
       "exit",
       "учше",
+      "Пока-пока!",
       "ex"
     ]
   },
@@ -211,6 +212,7 @@
       "stats",
       "st",
       "ыефеы",
+      "Статистика",
       "stat",
       "ыефе"
     ]
@@ -218,6 +220,15 @@
 
   {
     "location" : "JS",
+    "id" : "uploadStats",
+    "inputVariants" : [
+      "upload",
+      "upl"
+    ]
+  },
+
+  {
+    "location" : "MAIN",
     "id" : "uploadStats",
     "inputVariants" : [
       "upload",
@@ -240,6 +251,7 @@
       "stats",
       "st",
       "ыефеы",
+      "Статистика",
       "stat",
       "ыефе"
     ]
@@ -251,6 +263,48 @@
     "inputVariants" : [
       "upload",
       "upl"
+    ]
+  },
+
+  {
+    "location" : "MATH",
+    "id" : "resetStatistics",
+    "inputVariants" : [
+      "reset",
+      "drop",
+      "ресет",
+      "сброс"
+    ]
+  },
+
+  {
+    "location" : "MAIN",
+    "id" : "resetStatistics",
+    "inputVariants" : [
+      "reset",
+      "drop",
+      "ресет",
+      "сброс"
+    ]
+  },
+
+  {
+    "location" : "JS",
+    "id" : "resetStatistics",
+    "inputVariants" : [
+      "reset",
+      "drop",
+      "ресет",
+      "сброс"
+    ]
+  },
+
+  {
+    "location" : "MAIN",
+    "id" : "saveStats",
+    "inputVariants" : [
+      "save",
+      "sav"
     ]
   },
 

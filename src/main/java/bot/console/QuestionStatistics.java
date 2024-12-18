@@ -62,31 +62,25 @@ public class QuestionStatistics {
         }
     }
 
-    public void uploadStats(String path) {
+    public void uploadStats(String path) throws Exception {
 
-        File file;
-        try {
-            file = new File(path);
-        } catch (Exception e) {
-            printer.println("Существующая статистика не найдена или повреждена!");
-            return;
-        }
+        File file = new File(path);
 
-        try {
-            QuestionStatistics newQuestionStatistics =
-                    objectMapper.readValue(file, QuestionStatistics.class);
-            printer.println("Статистика загружена! Чтобы взгянуть на нее, напиши 'stats'");
+        QuestionStatistics newQuestionStatistics =
+                objectMapper.readValue(file, QuestionStatistics.class);
 
-            this.countOfAttemptedQuestions = newQuestionStatistics.countOfAttemptedQuestions;
-            this.countOfPassedQuestions = newQuestionStatistics.countOfPassedQuestions;
-            this.questionsAttempts = newQuestionStatistics.questionsAttempts;
-            this.questionPassed = newQuestionStatistics.questionPassed;
-
-        } catch (IOException e) {
-            printer.println("Существующая статистика не найдена или повреждена");
-        }
+        this.countOfAttemptedQuestions = newQuestionStatistics.countOfAttemptedQuestions;
+        this.countOfPassedQuestions = newQuestionStatistics.countOfPassedQuestions;
+        this.questionsAttempts = newQuestionStatistics.questionsAttempts;
+        this.questionPassed = newQuestionStatistics.questionPassed;
     }
 
+    public void resetStatistics() {
+        countOfAttemptedQuestions = 0;
+        countOfPassedQuestions = 0;
+        questionsAttempts = new int[questionsAttempts.length];
+        questionPassed = new boolean[questionPassed.length];
+    }
 
     public int getCountOfPassedQuestions() {
         return countOfPassedQuestions;

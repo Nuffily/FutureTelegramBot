@@ -49,12 +49,30 @@ public class TestService {
         statistics.get(location).printStats();
     }
 
-    public void uploadStats(Location location) {
-        statistics.get(location).uploadStats("src/main/users/chatId" + chatId + "/Statistics" + location.toString() + ".json");
+    public void uploadStats(boolean doNotPrint) {
+        try {
+            statistics.get(Location.JS).uploadStats("src/main/users/chatId" + chatId + "/StatisticsJS" + ".json");
+            statistics.get(Location.MATH).uploadStats("src/main/users/chatId" + chatId + "/StatisticsMATH" + ".json");
+        } catch (Exception e) {
+            if (!doNotPrint) {
+                printer.println("Существующая статистика не найдена или повреждена");
+            }
+            return;
+        }
+
+        if (!doNotPrint) {
+            printer.println("Статистика загружена! Чтобы взгянуть на нее, напиши 'stats'");
+        }
     }
 
-    public void saveStats(Location location) {
-        statistics.get(location).saveStats("src/main/users/chatId" + chatId + "/", location);
+    public void saveStats() {
+        statistics.get(Location.JS).saveStats("src/main/users/chatId" + chatId + "/", Location.JS);
+        statistics.get(Location.MATH).saveStats("src/main/users/chatId" + chatId + "/", Location.MATH);
+    }
+
+    public void resetStatistics() {
+        statistics.get(Location.JS).resetStatistics();
+        statistics.get(Location.MATH).resetStatistics();
     }
 
     public void questionAnswering(Location location) {
