@@ -23,16 +23,18 @@ public class TestService {
     private final SettingsService settings;
     private final TelegramButtons buttons;
     private final Random random;
+    private final long chatId;
     private Question lastQuestion;
 
     public TestService(OutputService printer, InputService inputService, ResourceStorage storage,
-                       SettingsService settings, TelegramButtons buttons, Random random) {
+                       SettingsService settings, TelegramButtons buttons, Random random, long chatId) {
         this.printer = printer;
         this.input = inputService;
         this.storage = storage;
         this.settings = settings;
         this.buttons = buttons;
         this.random = random;
+        this.chatId = chatId;
 
         questions = new HashMap<>();
         questions.put(Location.JS, importQuestions("src/main/resources/QuestionsJS.json"));
@@ -47,12 +49,12 @@ public class TestService {
         statistics.get(location).printStats();
     }
 
-    public void uploadStats(Location location, String path) {
-        statistics.get(location).uploadStats(path + location.toString() + ".json");
+    public void uploadStats(Location location) {
+        statistics.get(location).uploadStats("src/main/users/chatId" + chatId + "/Statistics" + location.toString() + ".json");
     }
 
-    public void saveStats(Location location, String path) {
-        statistics.get(location).saveStats(path + location.toString() + ".json");
+    public void saveStats(Location location) {
+        statistics.get(location).saveStats("src/main/users/chatId" + chatId + "/", location);
     }
 
     public void questionAnswering(Location location) {

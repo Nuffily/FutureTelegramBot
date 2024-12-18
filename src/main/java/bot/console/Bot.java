@@ -17,12 +17,12 @@ public class Bot implements Runnable {
     private final TelegramButtons buttons = new TelegramButtons();
     private final Map<String, Runnable> commandMap;
 
-    public Bot(ResourceStorage storage, OutputService outputService, InputService inputService) {
+    public Bot(ResourceStorage storage, OutputService outputService, InputService inputService, long chatId) {
         this.storage = storage;
         printer = outputService;
         this.input = inputService;
         settings = new SettingsService(printer);
-        testService = new TestService(printer, input, storage, settings, buttons, outputService.getRandom());
+        testService = new TestService(printer, input, storage, settings, buttons, outputService.getRandom(), chatId);
         theoryService = new TheoryService(printer, input);
         commandMap = createCommandMap();
     }
@@ -112,9 +112,9 @@ public class Bot implements Runnable {
 
         map.put("showStats", () -> testService.printStats(location));
 
-        map.put("uploadStats", () -> testService.uploadStats(location, "src/main/resources/Statistics"));
+        map.put("uploadStats", () -> testService.uploadStats(location));
 
-        map.put("saveStats", () -> testService.saveStats(location, "src/main/resources/Statistics"));
+        map.put("saveStats", () -> testService.saveStats(location));
 
         return map;
     }

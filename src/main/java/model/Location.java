@@ -6,5 +6,6 @@ public enum Location {
     MATH,
     THEORY,
     SETTINGS,
+    ARENA,
     EXIT
 }

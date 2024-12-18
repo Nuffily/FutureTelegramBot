@@ -5,6 +5,7 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 import java.io.File;
 import java.io.IOException;
 
+import model.Location;
 import model.Question;
 
 public class QuestionStatistics {
@@ -14,6 +15,7 @@ public class QuestionStatistics {
     private int countOfAttemptedQuestions = 0;
     private final ObjectMapper objectMapper = new ObjectMapper();
     private OutputService printer;
+
 
     public QuestionStatistics() {
     }
@@ -43,16 +45,25 @@ public class QuestionStatistics {
         }
     }
 
-    public void saveStats(String path) {
+    public void saveStats(String path, Location location) {
+
+        File directory = new File(path);
+
+        if (!directory.exists()) {
+            directory.mkdir();
+        }
+
+        File file = new File(path + "Statistics" + location.toString() + ".json");
 
         try {
-            objectMapper.writerWithDefaultPrettyPrinter().writeValue(new File(path), this);
+            objectMapper.writerWithDefaultPrettyPrinter().writeValue(file, this);
         } catch (IOException e) {
             throw new RuntimeException(e);
         }
     }
 
     public void uploadStats(String path) {
+
         File file;
         try {
             file = new File(path);
