@@ -1,7 +1,9 @@
-import com.fasterxml.jackson.databind.ObjectMapper;
 import bot.console.OutputService;
 import bot.console.QuestionStatistics;
 import bot.console.ResourceStorage;
+import bot.console.NonConsoleOutputService;
+
+import com.fasterxml.jackson.databind.ObjectMapper;
 import model.Question;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
@@ -11,6 +13,7 @@ import java.io.FileWriter;
 import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Path;
+import java.util.Random;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertTrue;
@@ -23,13 +26,12 @@ public class QuestionStatisticsTest {
 
     ResourceStorage storage = new ResourceStorage();
     Question[] question = new Question[9];
-    OutputService printer = new OutputService(storage);
+    private final OutputService printer = new NonConsoleOutputService(storage, new Random(1));
     QuestionStatistics statistics = new QuestionStatistics(question, printer);
 
 
     @BeforeEach
     public void init() {
-        printer.consoleMode = false;
 
         statistics.updateStats(1, true);
         statistics.updateStats(2, false);
@@ -102,7 +104,7 @@ public class QuestionStatisticsTest {
         statisticsCopy.uploadStats(testPath);
 
         assertTrue(Files.exists(Path.of(testPath)));
-        assertEquals(printer.getOutput(), "Статистика загружена! "
+        assertEquals(printer.getAllOutput(), "Статистика загружена! "
                 + "Чтобы взгянуть на нее, напиши 'stats'\n");
 
         assertArrayEquals(statistics.getQuestionPassed(),
@@ -133,7 +135,7 @@ public class QuestionStatisticsTest {
             QuestionStatistics statisticsCopy = new QuestionStatistics(question, printer);
             statisticsCopy.uploadStats(testPath);
 
-            assertEquals(printer.getOutput(), "Существующая статистика не найдена или повреждена\n");
+            assertEquals(printer.getAllOutput(), "Существующая статистика не найдена или повреждена\n");
         } catch (IOException ex) {
             System.out.println(ex.getMessage());
         } finally {

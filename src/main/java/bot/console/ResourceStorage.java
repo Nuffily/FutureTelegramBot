@@ -78,6 +78,9 @@ public class ResourceStorage {
     }
 
     public String translateCommand(String command, Location location) {
+        if (!commands.get(location).containsKey(command)) {
+            return "";
+        }
         return commands.get(location).get(command);
     }
 

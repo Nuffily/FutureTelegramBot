@@ -1,21 +1,26 @@
 package bot.console;
 
-import utils.MyUtils;
+import java.util.Random;
 
-import java.util.LinkedList;
-import java.util.Queue;
-
-public class OutputService {
+public abstract class OutputService {
     private final ResourceStorage storage;
-    private final Queue<String> que = new LinkedList<>();
-    public boolean consoleMode = true;
-
+    private final Random random;
 
     public OutputService(ResourceStorage storage) {
         this.storage = storage;
+        random = new Random();
     }
 
-    public void printlnResponse(String command) {
+    public OutputService(ResourceStorage storage, Random random) {
+        this.storage = storage;
+        this.random = random;
+    }
+
+    public abstract <T> void println(T quote);
+
+    public abstract <T> void print(T quote);
+
+    public final void printlnResponse(String command) {
 
         String quote = getQuote(command);
 
@@ -24,7 +29,7 @@ public class OutputService {
         }
     }
 
-    public void printResponse(String command) {
+    public final void printResponse(String command) {
 
         String quote = getQuote(command);
 
@@ -33,55 +38,20 @@ public class OutputService {
         }
     }
 
-    public String getQuote(String command) {
+    private String getQuote(String command) {
         String quote = storage.getSingleReplicas().get(command);
 
         if (quote == null && storage.getRandomReplicas().get(command) != null) {
-            quote = MyUtils.getRandomElement(storage.getRandomReplicas().get(command));
+            quote = storage.getRandomReplicas().get(command)[random.nextInt(storage.getRandomReplicas()
+                    .get(command).length)];
         }
 
         return quote;
     }
 
-    public <T> void println(T quote) {
-        if (consoleMode) {
-            System.out.println(quote);
-        } else {
-            que.add(quote + "\n");
-        }
-    }
+    public abstract String getAllOutput();
 
-    public <T> void print(T quote) {
-        if (consoleMode) {
-            System.out.print(quote);
-        } else {
-            que.add(String.valueOf(quote));
-        }
-    }
-
-    public String getOutput() {
-        try {
-            Thread.sleep(10);
-        } catch (InterruptedException e) {
-            throw new RuntimeException(e);
-        }
-
-        return que.remove();
-    }
-
-    public String getAllOutput() {
-        StringBuilder result = new StringBuilder();
-
-        try {
-            Thread.sleep(10);
-        } catch (InterruptedException e) {
-            throw new RuntimeException(e);
-        }
-
-        while (!que.isEmpty()) {
-            result.append(que.remove());
-        }
-
-        return result.toString();
+    public Random getRandom() {
+        return random;
     }
 }

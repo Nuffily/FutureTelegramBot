@@ -1,7 +1,12 @@
 package bot.telegram;
 
 import bot.console.Bot;
+import bot.console.InputService;
+import bot.console.OutputService;
 import bot.console.ResourceStorage;
+import bot.console.NonConsoleOutputService;
+import bot.console.NonConsoleInputService;
+
 import org.telegram.telegrambots.bots.TelegramLongPollingBot;
 import org.telegram.telegrambots.meta.api.methods.send.SendMessage;
 import org.telegram.telegrambots.meta.api.objects.Update;
@@ -34,8 +39,6 @@ public class TelegramBot extends TelegramLongPollingBot {
 
     @Override
     public void onUpdateReceived(Update update) {
-        String currentAnswer;
-
         if (update.hasMessage() && update.getMessage().hasText()) {
             String messageText = update.getMessage().getText();
             long chatId = update.getMessage().getChatId();
@@ -52,20 +55,23 @@ public class TelegramBot extends TelegramLongPollingBot {
                 users.get(chatId).input.addToQueue(messageText);
             }
 
-            currentAnswer = users.get(chatId).printer.getAllOutput();
+            String currentAnswer = users.get(chatId).printer.getAllOutput();
 
             sendMessage(chatId, currentAnswer);
 
-            if (currentAnswer.equals("Пока-пока!")) {
+            if (currentAnswer.equals("Пока-пока!\n")) {
                 users.remove(chatId);
             }
         }
     }
 
     private void startConversation(Long chatId) {
-        final Bot bot = new Bot(storage);
+        final OutputService outputService = new NonConsoleOutputService(storage);
+        final InputService inputService = new NonConsoleInputService();
+
+        final Bot bot = new Bot(storage, outputService, inputService);
         users.put(chatId, bot);
-        bot.consoleModeDisable();
+
         new Thread(bot).start();
     }
 
@@ -74,7 +80,7 @@ public class TelegramBot extends TelegramLongPollingBot {
         sendMessage.setChatId(String.valueOf(chatId));
         sendMessage.setText(textToSend);
 
-        setButtons(sendMessage, (users.get(chatId).input.getButtons()));
+        setButtons(sendMessage, (users.get(chatId).getButtons()));
 
         try {
             execute(sendMessage);
@@ -96,11 +102,26 @@ public class TelegramBot extends TelegramLongPollingBot {
 
         KeyboardRow keyboardFirstRow = new KeyboardRow();
 
-        for (String button : buttons) {
-            keyboardFirstRow.add(new KeyboardButton(button));
-        }
+        if (buttons.length <= 3) {
+            for (String button : buttons) {
+                keyboardFirstRow.add(new KeyboardButton(button));
+            }
+            keyboard.add(keyboardFirstRow);
 
-        keyboard.add(keyboardFirstRow);
+        } else {
+            KeyboardRow keyboardSecondRow = new KeyboardRow();
+
+            for (int i = 0; i < (buttons.length - buttons.length / 2); i++) {
+                keyboardFirstRow.add(new KeyboardButton(buttons[i]));
+            }
+
+            for (int i = buttons.length - buttons.length / 2; i < buttons.length; i++) {
+                keyboardSecondRow.add(new KeyboardButton(buttons[i]));
+            }
+
+            keyboard.add(keyboardFirstRow);
+            keyboard.add(keyboardSecondRow);
+        }
 
         replyKeyboardMarkup.setKeyboard(keyboard);
     }
