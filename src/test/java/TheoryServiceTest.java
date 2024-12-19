@@ -1,44 +1,39 @@
 import bot.console.Bot;
+import bot.console.InputService;
 import bot.console.OutputService;
 import bot.console.ResourceStorage;
 import bot.console.TheoryService;
-import bot.console.InputService;
+import bot.console.NonConsoleOutputService;
+import bot.console.NonConsoleInputService;
+import bot.console.ConsoleOutputService;
+
 import model.Theory;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
-import utils.MyUtils;
 
 import java.lang.reflect.Field;
 import java.util.List;
+import java.util.Random;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
 public class TheoryServiceTest {
 
     private final ResourceStorage storage = new ResourceStorage();
-    private final Bot bot = new Bot(storage);
+    private final OutputService outputService = new NonConsoleOutputService(storage, new Random(1));
+    private final InputService inputService = new NonConsoleInputService();
+    private final Bot bot = new Bot(storage, outputService, inputService);
     private final TheoryService theoryService =
-            new TheoryService(new OutputService(storage), new InputService());
+            new TheoryService(new ConsoleOutputService(storage), new NonConsoleInputService());
 
     @BeforeEach
     public void init() {
 
-        MyUtils.random.setSeed(1);
-        bot.consoleModeDisable();
-
         new Thread(bot).start();
-
-        try {
-            Thread.sleep(100);
-        } catch (InterruptedException e) {
-            throw new RuntimeException(e);
-        }
 
         bot.input.addToQueue("js");
         bot.printer.getAllOutput();
-
     }
-
 
     @Test
     public void testDisplayAvailableTheories() {
@@ -66,7 +61,6 @@ public class TheoryServiceTest {
 
         assertEquals(expected, bot.printer.getAllOutput());
     }
-
 
     @Test
     public void testDisplaySection() {
@@ -124,6 +118,4 @@ public class TheoryServiceTest {
 
         assertEquals(expected, bot.printer.getAllOutput());
     }
-
-
 }

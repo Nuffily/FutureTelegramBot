@@ -1,13 +1,15 @@
-import bot.console.InputService;
 import bot.console.OutputService;
 import bot.console.ResourceStorage;
+import bot.console.NonConsoleOutputService;
+import bot.console.ConsoleOutputService;
+
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
-import utils.MyUtils;
 
 import java.io.ByteArrayOutputStream;
 import java.io.PrintStream;
 import java.lang.reflect.Method;
+import java.util.Random;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
@@ -15,27 +17,27 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 public class OutputServiceTest {
 
     private final ResourceStorage storage = new ResourceStorage();
-    private final OutputService printer = new OutputService(storage);
-    private final InputService input = new InputService();
+    private final OutputService nonPrinter = new NonConsoleOutputService(storage, new Random(1));
+    private final OutputService printer = new ConsoleOutputService(storage, new Random(1));
 
 
     @BeforeEach
     public void init() {
-        MyUtils.random.setSeed(1);
 
-        printer.consoleMode = false;
-        input.consoleMode = false;
     }
 
 
     @Test
     public void testPrintResponse() {
 
-        printer.printlnResponse("unknownCommand");
-        assertEquals("Человечество еще не изобрело такую команду\n", printer.getOutput());
+        nonPrinter.printlnResponse("unknownCommand");
+        assertEquals("Человечество еще не изобрело такую команду\n", nonPrinter.getAllOutput());
 
-        printer.printResponse("correctAnswerIs");
-        assertEquals("Ответ - ", printer.getOutput());
+        nonPrinter.printResponse("correctAnswerIs");
+        assertEquals("Ответ - ", nonPrinter.getAllOutput());
+
+        nonPrinter.printResponse("correctAnswerIs");
+        assertEquals("Правильным ответом был ответ ", nonPrinter.getAllOutput());
     }
 
 
@@ -59,31 +61,17 @@ public class OutputServiceTest {
 
 
     @Test
-    public void testPrintLnConsoleModeOn() {
+    public void testPrint() {
 
         ByteArrayOutputStream outputStreamCaptor = new ByteArrayOutputStream();
         System.setOut(new PrintStream(outputStreamCaptor));
         var testQuote = 1 + "testData";
 
-        printer.consoleMode = true;
-        printer.println(testQuote);
-
-        assertEquals("1testData\r\n", outputStreamCaptor.toString());
-    }
-
-
-    @Test
-    public void testPrintLnConsoleModeOff() {
-
-        ByteArrayOutputStream outputStreamCaptor = new ByteArrayOutputStream();
-        System.setOut(new PrintStream(outputStreamCaptor));
-        var testQuote = 1 + "testData";
-
-        printer.consoleMode = false;
         printer.print(testQuote);
+        nonPrinter.print(testQuote);
 
-        assertEquals("", outputStreamCaptor.toString());
-        assertEquals(testQuote, printer.getOutput());
+        assertEquals(testQuote, outputStreamCaptor.toString());
+        assertEquals(testQuote, nonPrinter.getAllOutput());
 
     }
 }

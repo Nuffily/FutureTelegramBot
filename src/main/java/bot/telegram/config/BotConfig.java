@@ -10,7 +10,7 @@ public class BotConfig {
     String token;
 
     public BotConfig() {
-        BufferedReader reader = null;
+        BufferedReader reader;
         try {
             reader = new BufferedReader(new FileReader("src/main/resources/application.properties"));
 
