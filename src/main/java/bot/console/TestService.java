@@ -23,16 +23,18 @@ public class TestService {
     private final SettingsService settings;
     private final TelegramButtons buttons;
     private final Random random;
+    private final long chatId;
     private Question lastQuestion;
 
     public TestService(OutputService printer, InputService inputService, ResourceStorage storage,
-                       SettingsService settings, TelegramButtons buttons, Random random) {
+                       SettingsService settings, TelegramButtons buttons, Random random, long chatId) {
         this.printer = printer;
         this.input = inputService;
         this.storage = storage;
         this.settings = settings;
         this.buttons = buttons;
         this.random = random;
+        this.chatId = chatId;
 
         questions = new HashMap<>();
         questions.put(Location.JS, importQuestions("src/main/resources/QuestionsJS.json"));
@@ -47,12 +49,30 @@ public class TestService {
         statistics.get(location).printStats();
     }
 
-    public void uploadStats(Location location, String path) {
-        statistics.get(location).uploadStats(path + location.toString() + ".json");
+    public void uploadStats(boolean doNotPrint) {
+        try {
+            statistics.get(Location.JS).uploadStats("src/main/users/chatId" + chatId + "/StatisticsJS" + ".json");
+            statistics.get(Location.MATH).uploadStats("src/main/users/chatId" + chatId + "/StatisticsMATH" + ".json");
+        } catch (Exception e) {
+            if (!doNotPrint) {
+                printer.println("Существующая статистика не найдена или повреждена");
+            }
+            return;
+        }
+
+        if (!doNotPrint) {
+            printer.println("Статистика загружена! Чтобы взгянуть на нее, напиши 'stats'");
+        }
     }
 
-    public void saveStats(Location location, String path) {
-        statistics.get(location).saveStats(path + location.toString() + ".json");
+    public void saveStats() {
+        statistics.get(Location.JS).saveStats("src/main/users/chatId" + chatId + "/", Location.JS);
+        statistics.get(Location.MATH).saveStats("src/main/users/chatId" + chatId + "/", Location.MATH);
+    }
+
+    public void resetStatistics() {
+        statistics.get(Location.JS).resetStatistics();
+        statistics.get(Location.MATH).resetStatistics();
     }
 
     public void questionAnswering(Location location) {
@@ -71,6 +91,7 @@ public class TestService {
 
         lastQuestion = question;
     }
+
 
     private void questionAnsweringResult(int answer, Question question, Location location) {
         if (answer == 0) {
@@ -176,6 +197,7 @@ public class TestService {
                 }
             }
         }
+
 
         if (!settings.getRepeatSolved() && listQuestions.isEmpty()) {
             for (int i = 1; i <= questions.get(location).length; i++) {

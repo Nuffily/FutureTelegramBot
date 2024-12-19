@@ -1,6 +1,0 @@
-{
-  "questionPassed" : [ false, false, false, false, true, false, false, false, false, true, false, true, false, false, true, false, false, false, false, false, false, false, true, false, false, false, false, false, true, false, false, false, false, false, false, false, false, false ],
-  "countOfPassedQuestions" : 6,
-  "questionsAttempts" : [ 0, 1, 0, 2, 2, 0, 0, 2, 0, 2, 0, 2, 0, 2, 2, 0, 1, 1, 0, 0, 0, 0, 1, 0, 1, 1, 2, 0, 2, 1, 0, 0, 1, 2, 0, 0, 0, 0 ],
-  "countOfAttemptedQuestions" : 18
-}
