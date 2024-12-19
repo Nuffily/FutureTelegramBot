@@ -46,6 +46,7 @@ public class Start {
 
             final Bot bot = new Bot(storage, outputService, inputService, 0);
 
+
             new Thread(bot).start();
 
             try {

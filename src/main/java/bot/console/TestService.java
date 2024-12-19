@@ -92,6 +92,7 @@ public class TestService {
         lastQuestion = question;
     }
 
+
     private void questionAnsweringResult(int answer, Question question, Location location) {
         if (answer == 0) {
             printer.printResponse("correctAnswerIs");
@@ -196,6 +197,7 @@ public class TestService {
                 }
             }
         }
+
 
         if (!settings.getRepeatSolved() && listQuestions.isEmpty()) {
             for (int i = 1; i <= questions.get(location).length; i++) {

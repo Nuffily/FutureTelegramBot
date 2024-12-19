@@ -131,6 +131,7 @@ public class Bot implements Runnable {
             case MATH:
             case JS:
                 buttons.set("Вопрос", "Назад", "Статистика", "/help");
+
                 break;
             case THEORY:
                 buttons.set("1", "2", "3", "back");

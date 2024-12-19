@@ -375,21 +375,7 @@
   },
 
   {
-    "location" : "ARENA",
-    "id" : "toMenu",
-    "inputVariants" : [
-      "back",
-      "nazad",
-      "назад",
-      "Назад",
-      "бек",
-      "b",
-      "B",
-      "ифсл"
-    ]
-  },
 
-  {
     "location" : "SETTINGS",
     "id" : "SETTINGSHelp",
     "inputVariants" : [

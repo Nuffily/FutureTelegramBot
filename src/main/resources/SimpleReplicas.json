@@ -20,6 +20,10 @@
     "response" : "Статистика сброшена!"
   },
   {
+    "name" : "SETTINGSHelp",
+    "response" : "Это меню настроек\nКоманды:\nrepeat ON/OFF\nrepeatSolved ON/OFF\nshowAnswer ON/OFF\nshowExplanation ON/OFF"
+  },
+  {
     "name" : "saveStats",
     "response" : "Статистика сохранена! Чтобы загрузить ее при следующем запуске, используй 'upload'"
   },
