@@ -17,12 +17,12 @@ public class Bot implements Runnable {
     private final TelegramButtons buttons = new TelegramButtons();
     private final Map<String, Runnable> commandMap;
 
-    public Bot(ResourceStorage storage, OutputService outputService, InputService inputService) {
+    public Bot(ResourceStorage storage, OutputService outputService, InputService inputService, long chatId) {
         this.storage = storage;
         printer = outputService;
         this.input = inputService;
         settings = new SettingsService(printer);
-        testService = new TestService(printer, input, storage, settings, buttons, outputService.getRandom());
+        testService = new TestService(printer, input, storage, settings, buttons, outputService.getRandom(), chatId);
         theoryService = new TheoryService(printer, input);
         commandMap = createCommandMap();
     }
@@ -32,6 +32,7 @@ public class Bot implements Runnable {
 
         defineButtons();
         printer.println("Здарова! Введи какую-нить команду, например, help");
+        testService.uploadStats(true);
 
         while (!location.equals(Location.EXIT)) {
 
@@ -106,15 +107,18 @@ public class Bot implements Runnable {
         map.put("exit", () -> {
             location = Location.EXIT;
             printer.println("Пока-пока!");
+            testService.saveStats();
         });
 
         map.put("startQuestion", () -> testService.questionAnswering(location));
 
         map.put("showStats", () -> testService.printStats(location));
 
-        map.put("uploadStats", () -> testService.uploadStats(location, "src/main/resources/Statistics"));
+        map.put("uploadStats", () -> testService.uploadStats(false));
 
-        map.put("saveStats", () -> testService.saveStats(location, "src/main/resources/Statistics"));
+        map.put("saveStats", testService::saveStats);
+
+        map.put("resetStatistics", testService::resetStatistics);
 
         return map;
     }
@@ -122,11 +126,12 @@ public class Bot implements Runnable {
     private void defineButtons() {
         switch (location) {
             case MAIN:
-                buttons.set("JavaScript", "Высшая математика", "Настройки", "/help");
+                buttons.set("JavaScript", "Высшая математика", "Настройки", "/help", "Пока-пока!");
                 break;
             case MATH:
             case JS:
-                buttons.set("Вопрос", "Назад", "/help");
+                buttons.set("Вопрос", "Назад", "Статистика", "/help");
+
                 break;
             case THEORY:
                 buttons.set("1", "2", "3", "back");

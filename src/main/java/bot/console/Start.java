@@ -25,7 +25,7 @@ public class Start {
             final OutputService outputService = new ConsoleOutputService(storage);
             final InputService inputService = new ConsoleInputService();
 
-            final Bot bot = new Bot(storage, outputService, inputService);
+            final Bot bot = new Bot(storage, outputService, inputService, 0);
 
             bot.run();
         }
@@ -44,7 +44,8 @@ public class Start {
             final OutputService outputService = new ConsoleOutputService(storage);
             final InputService inputService = new ConsoleInputService();
 
-            final Bot bot = new Bot(storage, outputService, inputService);
+            final Bot bot = new Bot(storage, outputService, inputService, 0);
+
 
             new Thread(bot).start();
 

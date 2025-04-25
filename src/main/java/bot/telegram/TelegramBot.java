@@ -44,6 +44,7 @@ public class TelegramBot extends TelegramLongPollingBot {
             long chatId = update.getMessage().getChatId();
 
             if (!users.containsKey(chatId)) {
+
                 startConversation(chatId);
 
                 try {
@@ -51,6 +52,7 @@ public class TelegramBot extends TelegramLongPollingBot {
                 } catch (InterruptedException e) {
                     throw new RuntimeException(e);
                 }
+
             } else {
                 users.get(chatId).input.addToQueue(messageText);
             }
@@ -65,11 +67,12 @@ public class TelegramBot extends TelegramLongPollingBot {
         }
     }
 
-    private void startConversation(Long chatId) {
+    private void startConversation(long chatId) {
         final OutputService outputService = new NonConsoleOutputService(storage);
         final InputService inputService = new NonConsoleInputService();
 
-        final Bot bot = new Bot(storage, outputService, inputService);
+        final Bot bot = new Bot(storage, outputService, inputService, chatId);
+  
         users.put(chatId, bot);
 
         new Thread(bot).start();
